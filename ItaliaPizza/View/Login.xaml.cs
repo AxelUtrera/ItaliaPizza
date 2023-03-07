@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,36 @@ namespace View
         public Login()
         {
             InitializeComponent();
+        }
+
+        private void Button_Login_Click(object sender, RoutedEventArgs e)
+        {
+            int statusOK = 200;
+            if(UserLogic.AutenticateUser(TextBox_Username.Text, PasswordBox_PasswordUser.Password) == statusOK)
+            {
+                Model.Worker worker = UserLogic.GetWorkerByUsername(TextBox_Username.Text); 
+                if (worker.Role == "Administrador")
+                {
+                    Console.WriteLine("Este es un adminstrador");
+                }
+                else
+                {
+                    MainMenu mainMenu = new MainMenu();
+                    mainMenu.ShowDialog();
+                }
+            }
+            else
+            {
+                //internacionalizar.
+                MessageBox.Show("El usuario o contraseña no son validos, intentelo de nuevo");
+            }
+        }
+
+        
+
+        private void Button_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

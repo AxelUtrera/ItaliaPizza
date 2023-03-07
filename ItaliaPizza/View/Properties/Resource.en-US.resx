@@ -118,11 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Global_Username_Label" xml:space="preserve">
-    <value>Nombre de usuario.</value>
+    <value>Username.</value>
     <comment>Used by: Login, </comment>
   </data>
   <data name="Login_ContentPasswordBox_Label" xml:space="preserve">
-    <value>Ingrese su contraseña</value>
+    <value>Write your password</value>
     <comment>Used by: Login</comment>
   </data>
   <data name="Login_ContentTextBox_Label" xml:space="preserve">
@@ -130,19 +130,19 @@
     <comment>Used by: Login</comment>
   </data>
   <data name="Login_ForgotPasswordInfo_Login" xml:space="preserve">
-    <value>¿Olvidaste tu contraseña?, consúltalo con tu administrador</value>
+    <value>Forgot your pwssword?, verify with your manager</value>
     <comment>Used by: Login</comment>
   </data>
   <data name="Login_Login_Button" xml:space="preserve">
-    <value>Iniciar sesion</value>
+    <value>Login</value>
     <comment>Used by: Login</comment>
   </data>
   <data name="Login_Login_Tittle" xml:space="preserve">
-    <value>Inicio de sesión</value>
+    <value>Login</value>
     <comment>Used by: Login</comment>
   </data>
   <data name="Login_Password_Label" xml:space="preserve">
-    <value>Contraseña.</value>
+    <value>Password.</value>
     <comment>Used by: Login</comment>
   </data>
 </root>
