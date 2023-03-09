@@ -35,10 +35,7 @@ namespace Logic
                 {
                     operationResult = 400;
                 }
-                catch (EntityException ex)
-                {
-                    operationResult = 401;
-                }
+                
                 
                 return operationResult;
             }
@@ -66,7 +63,7 @@ namespace Logic
                     }
                 }
             }
-            catch(EntityException ex)
+            catch(ArgumentException ex)
             {
 
             }
@@ -74,9 +71,6 @@ namespace Logic
             return workerFounded;
             
         }
-
-
-        
     }
 
 

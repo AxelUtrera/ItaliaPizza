@@ -68,5 +68,43 @@ namespace Model
             get { return idUser; }
         }
 
+        public override bool Equals(object obj)
+        {
+            return obj is Worker worker &&
+                   username == worker.username &&
+                   nss == worker.nss &&
+                   password == worker.password &&
+                   rfc == worker.rfc &&
+                   role == worker.role &&
+                   workerNumber == worker.workerNumber &&
+                   idUser == worker.idUser &&
+                   Username == worker.Username &&
+                   NSS == worker.NSS &&
+                   Password == worker.Password &&
+                   RFC == worker.RFC &&
+                   Role == worker.Role &&
+                   WorkerNumber == worker.WorkerNumber &&
+                   IdUser == worker.IdUser;
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = 1383793456;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(username);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(nss);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(password);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(rfc);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(role);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(workerNumber);
+            hashCode = hashCode * -1521134295 + idUser.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Username);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(NSS);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Password);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(RFC);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Role);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(WorkerNumber);
+            hashCode = hashCode * -1521134295 + IdUser.GetHashCode();
+            return hashCode;
+        }
     }
 }
