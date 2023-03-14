@@ -28,13 +28,15 @@ namespace View
 
         private void Button_Login_Click(object sender, RoutedEventArgs e)
         {
+            
             int statusOK = 200;
             if(UserLogic.AutenticateUser(TextBox_Username.Text, PasswordBox_PasswordUser.Password) == statusOK)
             {
                 Model.Worker worker = UserLogic.GetWorkerByUsername(TextBox_Username.Text); 
                 if (worker.Role == "Administrador")
                 {
-                    Console.WriteLine("Este es un adminstrador");
+                    MainMenu m = new MainMenu();
+                    m.Show();
                 }
                 else
                 {

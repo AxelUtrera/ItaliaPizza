@@ -149,6 +149,20 @@
       <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\MainMenu_Background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\Image_Cashbox.jpg" />
+    <Resource Include="Img\Image_Kitchen.jpg" />
+    <Resource Include="Img\Image_Order.jpg" />
+    <Resource Include="Img\Image_Products.jpg" />
+    <Resource Include="Img\Image_Suplier.jpg" />
+    <Resource Include="Img\Image_Users.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\Icon_Logout.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
