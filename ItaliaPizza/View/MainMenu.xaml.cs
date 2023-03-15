@@ -23,5 +23,40 @@ namespace View
         {
             InitializeComponent();
         }
+
+        private void Button_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Button_CashBox_Click(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void Button_Order_Click(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void Button_Product_Click(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void Button_Kitchen_Click(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void Button_Suplier_Click(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void Button_User_Click(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
