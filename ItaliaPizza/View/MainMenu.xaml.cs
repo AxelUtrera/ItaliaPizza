@@ -56,7 +56,8 @@ namespace View
 
         private void Button_User_Click(object sender, MouseButtonEventArgs e)
         {
-
+            UserRegister userRegister = new UserRegister();
+            userRegister.Show();
         }
     }
 }
