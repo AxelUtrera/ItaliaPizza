@@ -61,6 +61,15 @@ namespace View.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Cancelar.
+        /// </summary>
+        public static string Global_Cancel_Button {
+            get {
+                return ResourceManager.GetString("Global_Cancel_Button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Nombre de usuario..
         /// </summary>
         public static string Global_Username_Label {
@@ -120,6 +129,276 @@ namespace View.Properties {
         public static string Login_Password_Label {
             get {
                 return ResourceManager.GetString("Login_Password_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Dirección.
+        /// </summary>
+        public static string UserRegister_Address_Label {
+            get {
+                return ResourceManager.GetString("UserRegister_Address_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Administrador.
+        /// </summary>
+        public static string UserRegister_Administrator_WorkerType {
+            get {
+                return ResourceManager.GetString("UserRegister_Administrator_WorkerType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cajero.
+        /// </summary>
+        public static string UserRegister_Cashier_WorkerType {
+            get {
+                return ResourceManager.GetString("UserRegister_Cashier_WorkerType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ciudad:.
+        /// </summary>
+        public static string UserRegister_City_Label {
+            get {
+                return ResourceManager.GetString("UserRegister_City_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Colonia:.
+        /// </summary>
+        public static string UserRegister_Colony_Label {
+            get {
+                return ResourceManager.GetString("UserRegister_Colony_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cocinero.
+        /// </summary>
+        public static string UserRegister_Cook_WorkerType {
+            get {
+                return ResourceManager.GetString("UserRegister_Cook_WorkerType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cliente.
+        /// </summary>
+        public static string UserRegister_Customer_UserType {
+            get {
+                return ResourceManager.GetString("UserRegister_Customer_UserType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cliente registrado con éxito.
+        /// </summary>
+        public static string UserRegister_CustomerSuccesfull_Message {
+            get {
+                return ResourceManager.GetString("UserRegister_CustomerSuccesfull_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Correo electrónico:.
+        /// </summary>
+        public static string UserRegister_Email_Label {
+            get {
+                return ResourceManager.GetString("UserRegister_Email_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Apellido:.
+        /// </summary>
+        public static string UserRegister_LastName_Label {
+            get {
+                return ResourceManager.GetString("UserRegister_LastName_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Nombre:.
+        /// </summary>
+        public static string UserRegister_Name_Label {
+            get {
+                return ResourceManager.GetString("UserRegister_Name_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Número de seguro social (NSS): .
+        /// </summary>
+        public static string UserRegister_NSS_Label {
+            get {
+                return ResourceManager.GetString("UserRegister_NSS_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Número exterior:.
+        /// </summary>
+        public static string UserRegister_Number_Label {
+            get {
+                return ResourceManager.GetString("UserRegister_Number_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Contraseña:.
+        /// </summary>
+        public static string UserRegister_Password_Label {
+            get {
+                return ResourceManager.GetString("UserRegister_Password_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Teléfono:.
+        /// </summary>
+        public static string UserRegister_PhoneNumber_Label {
+            get {
+                return ResourceManager.GetString("UserRegister_PhoneNumber_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Referencias:.
+        /// </summary>
+        public static string UserRegister_References_Label {
+            get {
+                return ResourceManager.GetString("UserRegister_References_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Registrar.
+        /// </summary>
+        public static string UserRegister_Register_Button {
+            get {
+                return ResourceManager.GetString("UserRegister_Register_Button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a RFC:.
+        /// </summary>
+        public static string UserRegister_RFC_Label {
+            get {
+                return ResourceManager.GetString("UserRegister_RFC_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Calle:.
+        /// </summary>
+        public static string UserRegister_Street_Label {
+            get {
+                return ResourceManager.GetString("UserRegister_Street_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Supervisor.
+        /// </summary>
+        public static string UserRegister_Supervisor_WorkerType {
+            get {
+                return ResourceManager.GetString("UserRegister_Supervisor_WorkerType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Registro de Usuario.
+        /// </summary>
+        public static string UserRegister_Title_Label {
+            get {
+                return ResourceManager.GetString("UserRegister_Title_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Nombre de usuario:.
+        /// </summary>
+        public static string UserRegister_Username_Label {
+            get {
+                return ResourceManager.GetString("UserRegister_Username_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Tipo de usuario:.
+        /// </summary>
+        public static string UserRegister_UserType_Label {
+            get {
+                return ResourceManager.GetString("UserRegister_UserType_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Mesero.
+        /// </summary>
+        public static string UserRegister_Waiter_WorkerType {
+            get {
+                return ResourceManager.GetString("UserRegister_Waiter_WorkerType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Trabajador.
+        /// </summary>
+        public static string UserRegister_Worker_UserType {
+            get {
+                return ResourceManager.GetString("UserRegister_Worker_UserType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Datos del Trabajador.
+        /// </summary>
+        public static string UserRegister_WorkerData_Label {
+            get {
+                return ResourceManager.GetString("UserRegister_WorkerData_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Número de trabajador:.
+        /// </summary>
+        public static string UserRegister_WorkerNumber_Label {
+            get {
+                return ResourceManager.GetString("UserRegister_WorkerNumber_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Trabajador registrado con éxito.
+        /// </summary>
+        public static string UserRegister_WorkerSuccesfull_Message {
+            get {
+                return ResourceManager.GetString("UserRegister_WorkerSuccesfull_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Tipo de trabajador:.
+        /// </summary>
+        public static string UserRegister_WorkerType_Label {
+            get {
+                return ResourceManager.GetString("UserRegister_WorkerType_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Código postal:.
+        /// </summary>
+        public static string UserRegister_ZipCode_Label {
+            get {
+                return ResourceManager.GetString("UserRegister_ZipCode_Label", resourceCulture);
             }
         }
     }

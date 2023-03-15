@@ -13,5 +13,9 @@ namespace View
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTMwNjgzOEAzMjMwMmUzNDJlMzBZc0pWMUNwWGZhU0JmUjR3c0k2OUJBMjZSWkFPNjN3RFlBVU5hdnhvcU9vPQ==");
+        }
     }
 }

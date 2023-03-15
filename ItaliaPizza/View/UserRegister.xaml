@@ -1,0 +1,95 @@
+﻿<Window x:Class="View.UserRegister"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:View"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        WindowStyle="None"
+        xmlns:p = "clr-namespace:View.Properties"
+        Title="{x:Static p:Resources.UserRegister_Title_Label}" Height="810" Width="1440">
+    <Grid Background="Black">
+        <Image Source="/Img/UserRegisterBackground.jpg" Stretch="UniformToFill" Opacity="0.3">
+            <Image.Effect>
+                <BlurEffect Radius="1"></BlurEffect>
+            </Image.Effect>
+        </Image>
+
+        <Label Content="{x:Static p:Resources.UserRegister_Title_Label}" FontSize="34" Foreground="White" Margin="30,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
+        <Label Content="{x:Static p:Resources.UserRegister_UserType_Label}" FontSize="26" Foreground="White" Margin="30,155,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
+        <ComboBox x:Name="ComboBox_UserType" FontSize="24" Margin="30,199,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="385" Height="35" Background="#5F5F5F" Opacity="0.5" BorderThickness="0" BorderBrush="Red"  Foreground="Black" VerticalContentAlignment="Center" SelectionChanged="UserData"></ComboBox>
+        <Label Content="{x:Static p:Resources.UserRegister_Name_Label}" FontSize="26" Foreground="White" Margin="0,155,340,0" VerticalAlignment="Top" HorizontalAlignment="Center"></Label>
+        <TextBox x:Name="TextBox_Name" HorizontalAlignment="Center" Margin="0,200,30,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="420" Height="35" Background="#5F5F5F" Opacity="0.7" FontSize="24" BorderThickness="0" BorderBrush="Red" Foreground="White"/>
+        <Label Content="{x:Static p:Resources.UserRegister_LastName_Label}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,155,350,0" FontSize="26" Foreground="White"></Label>
+        <TextBox x:Name="TextBox_Lastname" Width="420" Height="35" Background="#5F5F5F" Opacity="0.7" Foreground="White" FontSize="24" BorderThickness="0" BorderBrush="Red" Margin="0,200,50,0" VerticalAlignment="Top" HorizontalAlignment="Right"></TextBox>
+        <Label Content="{x:Static p:Resources.UserRegister_PhoneNumber_Label}" Margin="30,0,0,230" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="26" Foreground="White"></Label>
+        <TextBox x:Name="TextBox_PhoneNumber" Width="650" Height="35" Background="#5F5F5F" Opacity="0.7" Foreground="White" FontSize="24" BorderThickness="0" BorderBrush="Red" Margin="30,0,0,150" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBox>
+        <Label Content="{x:Static p:Resources.UserRegister_Email_Label}" Margin="270,0,0,230" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="26"></Label>
+        <TextBox x:Name="TextBox_Email" Width="650" Height="35" Background="#5F5F5F" Opacity="0.7" Foreground="White" FontSize="24" BorderThickness="0" BorderBrush="Red" Margin="0,0,50,150" VerticalAlignment="Center" HorizontalAlignment="Right"></TextBox>
+        
+        <Button Cursor="Hand" x:Name="Button_Register" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,60,50" Width="200" Height="45" Foreground="#f3f3f3" FontSize="20" FontWeight="DemiBold" Click="Button_RegisterUser_Click" IsDefault="True">
+            <Button.Template >
+                <ControlTemplate TargetType="{x:Type Button}" >
+                    <Border Background="#3F8C23"  CornerRadius="15">
+                        <ContentPresenter Content="{x:Static p:Resources.UserRegister_Register_Button}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <Button Cursor="Hand" x:Name="Button_Cancel" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,280,50" Width="200" Height="45" Foreground="#f3f3f3" FontSize="20" FontWeight="DemiBold" Click="Button_CancelRegisterUser_Click" IsDefault="False">
+            <Button.Template >
+                <ControlTemplate TargetType="{x:Type Button}" >
+                    <Border Background="Red"  CornerRadius="15">
+                        <ContentPresenter Content="{x:Static p:Resources.Global_Cancel_Button}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <Button Width="35" Click="Button_Exit_Click" Cursor="Hand" Margin="0,20,20,0" VerticalAlignment="Top" HorizontalAlignment="Right">
+            <Button.Template>
+                <ControlTemplate  TargetType="Button">
+                    <Border Background="Transparent">
+                        <Image Source="/Img/ExitIcon.png" Width="35" Height="35"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <Grid Name="WorkerGrid" Height="450" VerticalAlignment="Bottom" Visibility="Hidden" Margin="0,0,0,0">
+            <Label Content="{x:Static p:Resources.UserRegister_WorkerData_Label}" Foreground="White" FontSize="30" Margin="30,40,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
+            <Label Content="{x:Static p:Resources.UserRegister_NSS_Label}" Margin="30,100,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="26"></Label>
+            <TextBox x:Name="TextBox_NSS" Width="420" Height="35" Background="#5F5F5F" Opacity="0.7" Foreground="White" FontSize="24" BorderThickness="0" BorderBrush="Red" Margin="30,150,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBox>
+            <Label Content="{x:Static p:Resources.UserRegister_RFC_Label}" Margin="0,100,380,0" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="26" Foreground="White"></Label>
+            <TextBox x:Name="TextBox_RFC" Width="420" Height="35" Background="#5F5F5F" Opacity="0.7" Foreground="White" FontSize="24" BorderThickness="0" BorderBrush="Red" Margin="0,150,30,0" VerticalAlignment="Top" HorizontalAlignment="Center"></TextBox>
+            <Label Content="{x:Static p:Resources.UserRegister_WorkerNumber_Label}" Margin="0,100,200,0" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="26" Foreground="White"></Label>
+            <TextBox x:Name="TextBox_WorkerNumber" Width="420" Height="35" Background="#5F5F5F" Opacity="0.7" Foreground="White" FontSize="24" BorderThickness="0" BorderBrush="Red" Margin="0,150,50,0" VerticalAlignment="Top" HorizontalAlignment="Right"></TextBox>
+            <Label Content="{x:Static p:Resources.UserRegister_Username_Label}" FontSize="26" Foreground="White" Margin="30,0,0,10" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
+            <TextBox x:Name="TextBox_Username" Width="420" Height="35" Background="#5F5F5F" Opacity="0.7" Foreground="White" FontSize="24" BorderThickness="0" BorderBrush="Red" Margin="30,70,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBox>
+            <Label Content="{x:Static p:Resources.UserRegister_Password_Label}" FontSize="26" Foreground="White" Margin="0,0,300,10" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+            <PasswordBox Name="PasswordBox_Password" VerticalContentAlignment="Center" Opacity=".7" Background="#5F5F5F" BorderThickness="0" BorderBrush="Red" HorizontalAlignment="Center" Margin="0,70,25,0" Width="420" Height="35" Foreground="#f3f3f3" FontSize="24"></PasswordBox>
+            <Label Content="{x:Static p:Resources.UserRegister_WorkerType_Label}" Foreground="White" FontSize="26" Margin="0,0,240,10" HorizontalAlignment="Right" VerticalAlignment="Center"></Label>
+            <ComboBox x:Name="ComboBox_WorkerType" FontSize="24" Margin="0,70,50,0"  VerticalAlignment="Center" Width="420" Height="35" Background="#5F5F5F" Opacity="0.7" BorderThickness="0" BorderBrush="Red"  Foreground="Black" VerticalContentAlignment="Center" HorizontalAlignment="Right"/>
+            <Rectangle HorizontalAlignment="Center" Height="1" Margin="0,90,0,0" Stroke="White" VerticalAlignment="Top" Width="2000" StrokeThickness="10"/>
+        </Grid>
+
+        <Grid Name="CustomerGrid" Height="450" VerticalAlignment="Bottom" Margin="0,0,0,0" Visibility="Hidden">
+            <Label Content="{x:Static p:Resources.UserRegister_Address_Label}" Foreground="White" FontSize="30" Margin="30,40,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
+            <Label Content="{x:Static p:Resources.UserRegister_Street_Label}" Margin="30,100,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="26"></Label>
+            <TextBox x:Name="TextBox_Street" Width="420" Height="35" Background="#5F5F5F" Opacity="0.7" Foreground="White" FontSize="24" BorderThickness="0" BorderBrush="Red" Margin="30,150,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBox>
+            <Label Content="{x:Static p:Resources.UserRegister_Colony_Label}" Margin="0,100,340,0" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="26" Foreground="White"></Label>
+            <TextBox x:Name="TextBox_Colony" Width="420" Height="35" Background="#5F5F5F" Opacity="0.7" Foreground="White" FontSize="24" BorderThickness="0" BorderBrush="Red" Margin="0,150,30,0" VerticalAlignment="Top" HorizontalAlignment="Center"></TextBox>
+            <Label Content="{x:Static p:Resources.UserRegister_Number_Label}" Margin="0,100,265,0" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="26" Foreground="White"></Label>
+            <TextBox x:Name="TextBox_Number" Width="420" Height="35" Background="#5F5F5F" Opacity="0.7" Foreground="White" FontSize="24" BorderThickness="0" BorderBrush="Red" Margin="0,150,50,0" VerticalAlignment="Top" HorizontalAlignment="Right"></TextBox>
+            <Label Content="{x:Static p:Resources.UserRegister_ZipCode_Label}" FontSize="26" Foreground="White" Margin="30,0,0,10" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
+            <TextBox x:Name="TextBox_Zipcode" Width="420" Height="35" Background="#5F5F5F" Opacity="0.7" Foreground="White" FontSize="24" BorderThickness="0" BorderBrush="Red" Margin="30,70,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBox>
+            <Label Content="{x:Static p:Resources.UserRegister_City_Label}" Foreground="White" FontSize="26" Margin="0,0,350,0" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+            <TextBox x:Name="TextBox_City" FontSize="24" Margin="0,70,30,0"  VerticalAlignment="Center" Width="420" Height="35" Background="#5F5F5F" Opacity="0.7" BorderThickness="0" BorderBrush="Red" Foreground="White" VerticalContentAlignment="Center" HorizontalAlignment="Center"/>
+            <Label Content="{x:Static p:Resources.UserRegister_References_Label}" Foreground="White" FontSize="26" Margin="0,0,323,0" HorizontalAlignment="Right" VerticalAlignment="Center"></Label>
+            <TextBox x:Name="TextBox_References" FontSize="24" Margin="0,70,50,0"  VerticalAlignment="Center" Width="420" Height="35" Background="#5F5F5F" Opacity="0.7" BorderThickness="0" BorderBrush="Red" Foreground="White" VerticalContentAlignment="Center" HorizontalAlignment="Right"/>
+            <Rectangle HorizontalAlignment="Center" Height="1" Margin="0,90,0,0" Stroke="White" VerticalAlignment="Top" Width="2000" StrokeThickness="10"/>
+        </Grid>
+    </Grid>
+</Window>

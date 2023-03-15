@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Global_Cancel_Button" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>Used by: Global</comment>
+  </data>
   <data name="Global_Username_Label" xml:space="preserve">
     <value>Username.</value>
     <comment>Used by: Login, </comment>
@@ -144,5 +148,125 @@
   <data name="Login_Password_Label" xml:space="preserve">
     <value>Password.</value>
     <comment>Used by: Login</comment>
+  </data>
+  <data name="UserRegister_Address_Label" xml:space="preserve">
+    <value>Address</value>
+    <comment>Used by: UserRegister</comment>
+  </data>
+  <data name="UserRegister_Administrator_WorkerType" xml:space="preserve">
+    <value>Administrator</value>
+    <comment>Used by: UserRegister</comment>
+  </data>
+  <data name="UserRegister_Cashier_WorkerType" xml:space="preserve">
+    <value>Cashier</value>
+    <comment>Used by: UserRegister</comment>
+  </data>
+  <data name="UserRegister_City_Label" xml:space="preserve">
+    <value>City:</value>
+    <comment>Used by: UserRegister</comment>
+  </data>
+  <data name="UserRegister_Colony_Label" xml:space="preserve">
+    <value>Colony:</value>
+    <comment>Used by: UserRegister</comment>
+  </data>
+  <data name="UserRegister_Cook_WorkerType" xml:space="preserve">
+    <value>Cook</value>
+    <comment>Used by: UserRegister</comment>
+  </data>
+  <data name="UserRegister_CustomerSuccesfull_Message" xml:space="preserve">
+    <value>Successfully registered customer</value>
+    <comment>Used by: UserRegister</comment>
+  </data>
+  <data name="UserRegister_Customer_UserType" xml:space="preserve">
+    <value>Customer</value>
+    <comment>Used by: UserRegister</comment>
+  </data>
+  <data name="UserRegister_Email_Label" xml:space="preserve">
+    <value>Email:</value>
+    <comment>Used by: UserRegister</comment>
+  </data>
+  <data name="UserRegister_LastName_Label" xml:space="preserve">
+    <value>Last name:</value>
+    <comment>Used by: UserRegister</comment>
+  </data>
+  <data name="UserRegister_Name_Label" xml:space="preserve">
+    <value>Name:</value>
+    <comment>Used by: UserRegister</comment>
+  </data>
+  <data name="UserRegister_NSS_Label" xml:space="preserve">
+    <value>Social Security Number (SSN): </value>
+    <comment>Used by: UserRegister</comment>
+  </data>
+  <data name="UserRegister_Number_Label" xml:space="preserve">
+    <value>Number:</value>
+    <comment>Used by: UserRegister</comment>
+  </data>
+  <data name="UserRegister_Password_Label" xml:space="preserve">
+    <value>Password:</value>
+    <comment>Used by: UserRegister</comment>
+  </data>
+  <data name="UserRegister_PhoneNumber_Label" xml:space="preserve">
+    <value>Phone Number:</value>
+    <comment>Used by: UserRegister</comment>
+  </data>
+  <data name="UserRegister_References_Label" xml:space="preserve">
+    <value>References:</value>
+    <comment>Used by: UserRegister</comment>
+  </data>
+  <data name="UserRegister_Register_Button" xml:space="preserve">
+    <value>Sign Up</value>
+    <comment>Used by: UserRegister</comment>
+  </data>
+  <data name="UserRegister_RFC_Label" xml:space="preserve">
+    <value>RFC:</value>
+    <comment>Used by: UserRegister</comment>
+  </data>
+  <data name="UserRegister_Street_Label" xml:space="preserve">
+    <value>Street:</value>
+    <comment>Used by: UserRegister</comment>
+  </data>
+  <data name="UserRegister_Supervisor_WorkerType" xml:space="preserve">
+    <value>Supervisor</value>
+    <comment>Used by: UserRegister</comment>
+  </data>
+  <data name="UserRegister_Title_Label" xml:space="preserve">
+    <value>User Sign UP</value>
+    <comment>Used by: UserRegister</comment>
+  </data>
+  <data name="UserRegister_Username_Label" xml:space="preserve">
+    <value>Username:</value>
+    <comment>Used by: UserRegister</comment>
+  </data>
+  <data name="UserRegister_UserType_Label" xml:space="preserve">
+    <value>User type:</value>
+    <comment>Used by: UserRegister</comment>
+  </data>
+  <data name="UserRegister_Waiter_WorkerType" xml:space="preserve">
+    <value>Waiter</value>
+    <comment>Used by: UserRegister</comment>
+  </data>
+  <data name="UserRegister_WorkerData_Label" xml:space="preserve">
+    <value>Worker Data</value>
+    <comment>Used by: UserRegister</comment>
+  </data>
+  <data name="UserRegister_WorkerNumber_Label" xml:space="preserve">
+    <value>Worker number: </value>
+    <comment>Used by: UserRegister</comment>
+  </data>
+  <data name="UserRegister_WorkerSuccesfull_Message" xml:space="preserve">
+    <value>Successfully Registered Worker</value>
+    <comment>Used by: UserRegister</comment>
+  </data>
+  <data name="UserRegister_WorkerType_Label" xml:space="preserve">
+    <value>Worker type:</value>
+    <comment>Used by: UserRegister</comment>
+  </data>
+  <data name="UserRegister_Worker_UserType" xml:space="preserve">
+    <value>Worker</value>
+    <comment>Used by: UserRegister</comment>
+  </data>
+  <data name="UserRegister_ZipCode_Label" xml:space="preserve">
+    <value>ZIP code:</value>
+    <comment>Used by: UserRegister</comment>
   </data>
 </root>
