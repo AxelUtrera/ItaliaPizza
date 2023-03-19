@@ -66,7 +66,6 @@ namespace View
 
                 if (userTypeSelected.Equals(itemsResource.GetString("UserRegister_Worker_UserType")))
                 {
-                    Console.WriteLine("Trabajador valido");
                     if (ValidateWorkerFields())
                     {
                         Console.WriteLine("Campos trabajador validos");

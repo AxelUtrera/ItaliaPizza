@@ -197,5 +197,32 @@ namespace Logic
 
             return statusCode;
         }
+
+        public static List<User> RecoverActiveUsers()
+        {
+            List<User> usersObtained = new List<User>();
+
+            using (var database = new ItaliaPizzaEntities())
+            {
+                var activeUsers = database.users.Where(x => x.active.Equals(true)).ToList();
+
+                foreach (var user in activeUsers)
+                {
+                    User recoverUser = new User()
+                    {
+                        IdUser = user.idUser,
+                        Name = user.name,
+                        Lastname = user.lastname,
+                        PhoneNumber = user.phoneNumber,
+                        Email = user.email,
+                        IsActive = user.active,
+                        UserType = "Todavia Falta"
+                    };
+
+                    usersObtained.Add(recoverUser);
+                }
+            }
+            return usersObtained;
+        }
     }
 }
