@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Management.Instrumentation;
 using Model;
+using static System.Net.Mime.MediaTypeNames;
+using System.Security.Cryptography;
 
 namespace Logic.Tests
 {
@@ -31,7 +33,7 @@ namespace Logic.Tests
             Assert.AreNotEqual(operationExpected, operationResult);
         }
 
-        
+
 
         [TestMethod()]
         public void Test03_GetWorkerByUsername_SuccessfulTest()
@@ -152,6 +154,39 @@ namespace Logic.Tests
             int obtainedResult = UserLogic.RegisterNewCustomer(userTest, addressTest);
 
             Assert.AreEqual(expectedResult, obtainedResult);
+        }
+
+        [TestMethod()]
+        public void TestDeleteUser()
+        {
+            int userId = 1;
+            int expectedStatusCode = 200;
+
+            int actualStatusCode = UserLogic.DeleteUser(userId);
+
+            Assert.AreEqual(expectedStatusCode, actualStatusCode);
+        }
+
+        [TestMethod()]
+        public void TestDeleteUserWithInvalidUserId()
+        {
+            int userId = -1;
+            int expectedStatusCode = 500;
+
+            int actualStatusCode = UserLogic.DeleteUser(userId);
+
+            Assert.AreEqual(expectedStatusCode, actualStatusCode);
+        }
+
+        [TestMethod()]
+        public void TestDeleteUserWithNonExistingUserId()
+        {
+            int userId = 100;
+            int expectedStatusCode = 500;
+
+            int actualStatusCode = UserLogic.DeleteUser(userId);
+
+            Assert.AreEqual(expectedStatusCode, actualStatusCode);
         }
     }
 }
