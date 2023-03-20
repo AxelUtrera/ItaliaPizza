@@ -14,6 +14,7 @@ namespace Model
         protected string lastname;
         protected string phoneNumber;
         protected bool isActive;
+        protected string userType;
 
         public int IdUser
         {
@@ -54,6 +55,13 @@ namespace Model
                 isActive = value;
             }
         }
+
+        public string UserType
+        {
+            get { return userType; }
+            set { userType = value; }
+        }
+
         public User()
         {
 

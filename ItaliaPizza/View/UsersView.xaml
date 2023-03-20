@@ -1,0 +1,68 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:View"
+        xmlns:p = "clr-namespace:View.Properties"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="View.UsersView"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        WindowStyle="None"
+        Title="UsersView" Height="810" Width="1440">
+    
+    <Grid Background="Black">
+        <Image Source="/Img/UsersView_Background.jpg" Stretch="UniformToFill" Opacity="0.3">
+            <Image.Effect>
+                <BlurEffect Radius="1"/>
+            </Image.Effect>
+        </Image>
+
+        <Label Content="Buscar:" Foreground="White" FontSize="24" Margin="180,90,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
+        <TextBox x:Name="TextBox_Email" Width="900" Height="35" Background="#5F5F5F" Opacity="0.7" Foreground="White" FontSize="24" BorderThickness="0" Margin="0,100,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" TextChanged="Textbox_SearchUsers_Input"/>
+
+        <Border Background="White" Opacity="0.5" Height="500" Width="1300" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0">
+            <DataGrid Name="UsersTable"  AutoGenerateColumns="False" FontSize="20" ColumnWidth="*" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nombre" Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="Apellido" Binding="{Binding Lastname}"/>
+                    <DataGridTextColumn Header="Correo Electronico" Binding="{Binding Email}"/>
+                    <DataGridTextColumn Header="Telefono" Binding="{Binding PhoneNumber}"/>
+                    <DataGridTextColumn Header="Tipo de Usuario" Binding="{Binding UserType}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Border>
+        
+        <Button Cursor="Hand" x:Name="Button_Modify" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,70,50" Width="200" Height="45" Foreground="#f3f3f3" FontSize="20" FontWeight="DemiBold" Click="Button_ModifyUser_Click" IsDefault="True">
+            <Button.Template >
+                <ControlTemplate TargetType="{x:Type Button}" >
+                    <Border Background="#3F8C23"  CornerRadius="15">
+                        <ContentPresenter Content="Modificar" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <Button Cursor="Hand" x:Name="Button_Delete" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,300,50" Width="200" Height="45" Foreground="#f3f3f3" FontSize="20" FontWeight="DemiBold" Click="Button_DeleteUser_Click" IsDefault="True">
+            <Button.Template >
+                <ControlTemplate TargetType="{x:Type Button}" >
+                    <Border Background="Gray"  CornerRadius="15">
+                        <ContentPresenter Content="Eliminar" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <Button Cursor="Hand" x:Name="Button_Exit" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="70,0,0,50" Width="200" Height="45" Foreground="#f3f3f3" FontSize="20" FontWeight="DemiBold" Click="Button_Exit_Click" IsDefault="False">
+            <Button.Template >
+                <ControlTemplate TargetType="{x:Type Button}" >
+                    <Border Background="Red"  CornerRadius="15">
+                        <ContentPresenter Content="Salir" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+    </Grid>
+</Window>

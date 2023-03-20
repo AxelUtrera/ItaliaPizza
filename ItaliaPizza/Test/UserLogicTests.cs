@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Management.Instrumentation;
+using Model;
 
 namespace Logic.Tests
 {
@@ -66,6 +67,91 @@ namespace Logic.Tests
 
             Model.Worker workerResult = UserLogic.GetWorkerByUsername("J1000");
             Assert.AreNotEqual(workerExpected, workerResult);
+        }
+
+        [TestMethod()]
+        public void Test05_RegisterNewWorker_SuccesfulTest()
+        {
+            User userTest = new User()
+            {
+                Name = "Test",
+                Lastname = "Test",
+                PhoneNumber = "0000000000",
+                Email = "test@test.com",
+                IsActive = true
+            };
+
+            Worker workerTest = new Worker()
+            {
+                NSS = "00000000000",
+                RFC = "AAAAAAAAAAAAA",
+                WorkerNumber = "00000",
+                Username = "Test",
+                Password = "Test",
+                Role = "User test"
+            };
+
+            int expectedResult = 200;
+            int obtainedResult = UserLogic.RegisterNewWorker(userTest, workerTest);
+
+            Assert.AreEqual(expectedResult, obtainedResult);
+        }
+
+        //Cambiar
+        [TestMethod()]
+        public void Test06_RegisterNewWorker_FailTest()
+        {
+            User userTest = new User()
+            {
+                Name = "Test",
+                Lastname = "Test",
+                PhoneNumber = "0000000000",
+                Email = "test@test.com",
+                IsActive = true
+            };
+
+            Worker workerTest = new Worker()
+            {
+                NSS = "00000000000",
+                RFC = "AAAAAAAAAAAAA",
+                WorkerNumber = "00000",
+                Username = "Test",
+                Password = "Test",
+                Role = "User test"
+            };
+
+            int expectedResult = 200;
+            int obtainedResult = UserLogic.RegisterNewWorker(userTest, workerTest);
+
+            Assert.AreEqual(expectedResult, obtainedResult);
+        }
+
+        [TestMethod()]
+        public void Test07_RegisterNewCustomer_SuccesfullTest()
+        {
+            User userTest = new User()
+            {
+                Name = "Test 2",
+                Lastname = "Test 2",
+                PhoneNumber = "0000000001",
+                Email = "test@test.com",
+                IsActive = true
+            };
+
+            Address addressTest = new Address()
+            {
+                street = "Street Test",
+                city = "City Test",
+                number = "0",
+                zipcode = "00000",
+                neighborhood = "Test",
+                instructions = "Instructions test"
+            };
+
+            int expectedResult = 200;
+            int obtainedResult = UserLogic.RegisterNewCustomer(userTest, addressTest);
+
+            Assert.AreEqual(expectedResult, obtainedResult);
         }
     }
 }
