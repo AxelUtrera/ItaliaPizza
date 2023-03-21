@@ -4,11 +4,13 @@ using Syncfusion.SfSkinManager;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -53,27 +55,36 @@ namespace View
         }
 
         private void Button_DeleteUser_Click(object sender, RoutedEventArgs e)
-        {
-            if (UsersTable.SelectedItem != null)
-            {
-                Console.WriteLine("Eliminando Usuario");
-            }
-            else
-            {
-                MessageBox.Show("Por favor, Seleccione un usuario", "", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
+		{
+			if (UsersTable.SelectedItem != null)
+			{
+				int userId = ((User)UsersTable.SelectedItem).IdUser;
+				int statusCode = UserLogic.DeleteUser(userId);
 
-        private void Button_Exit_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
+				if (statusCode == 200)
+				{
+					MessageBox.Show("Usuario eliminado correctamente.");
+				}
+				else
+				{
+					MessageBox.Show("Ha ocurrido un error al intentar eliminar al usuario, inténtelo de nuevo.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+				}
+			}
+			else
+			{
+				MessageBox.Show("Por favor, seleccione un usuario.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+			}
+		}
 
-        private void Textbox_SearchUsers_Input(object sender, TextChangedEventArgs e)
-        {
-            var searchText = sender as TextBox;
-            if(searchText != null)
-            {
+		private void Button_Exit_Click(object sender, RoutedEventArgs e)
+		{
+			Close();
+		}
+		private void Textbox_SearchUsers_Input(object sender, TextChangedEventArgs e)
+		{
+			var searchText = sender as TextBox;
+			if(searchText != null)
+			{
                 var filteredList = activeUsers.Where(x => x.Name.Contains(searchText.Text));
                 UsersTable.ItemsSource = null;
                 UsersTable.ItemsSource = filteredList;

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Core;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -224,5 +225,31 @@ namespace Logic
             }
             return usersObtained;
         }
-    }
+
+        public static int DeleteUser(int userId)
+		{
+			int statusCode = 500;
+
+			try
+			{
+				using (var database = new ItaliaPizzaEntities())
+				{
+					var userToDelete = database.users.FirstOrDefault(u => u.idUser == userId);
+
+					if (userToDelete != null)
+					{
+						userToDelete.active = false;
+						database.SaveChanges();
+						statusCode = 200;
+					}
+				}
+			}
+			catch (ArgumentException ex)
+			{
+				statusCode = 500;
+			}
+
+			return statusCode;
+		}
+	}
 }
