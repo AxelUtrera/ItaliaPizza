@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Logic;
+using Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +22,40 @@ namespace View
     /// </summary>
     public partial class Products : Window
     {
+
+        public ObservableCollection<Product> products;
         public Products()
         {
             InitializeComponent();
+            SetItemsToProductsTable();
+        }
+
+        public void SetItemsToProductsTable()
+        {
+            List<Product> allProducts = ProductLogic.getAllProduct();
+            products = new ObservableCollection<Product>(allProducts);
+            ProductsTable.ItemsSource = products;
+        }
+        
+
+        private void Button_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void ProductsTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Button_DeleteProduct_Click(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void Button_EditProduct_Click(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

@@ -46,7 +46,6 @@ namespace View
             }
             else
             {
-                //internacionalizar.
                 MessageBox.Show("El usuario o contraseña no son validos, intentelo de nuevo");
             }
         }

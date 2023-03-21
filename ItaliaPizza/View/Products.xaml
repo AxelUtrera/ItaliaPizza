@@ -5,8 +5,89 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
-        Title="Products" Height="450" Width="800">
-    <Grid>
+        WindowState="Maximized"
+        WindowStyle="None"
+        Title="Products" Height="810" Width="1440">
+        <Window.Resources>
+            <Style TargetType="{x:Type DataGrid}">
+                <Setter Property="Background" Value="#0a0a0a"/>
+                <Setter Property="RowBackground" Value="#0a0a0a"/>
+                <Setter Property="BorderBrush" Value="#0a0a0a"/>
+                <Setter Property="FontWeight" Value="light"/>
+                <Setter Property="Foreground" Value="#f3f3f3"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+             </Style>
+            <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                <Setter Property="Background" Value="#0a0a0a" />
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            </Style>
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+                <Setter Property="Foreground" Value="#ffffff"></Setter>
+            </Style>
+        </Window.Resources>
+    
+    <Grid Background="black">
+        <Image Source="/Img/Background_ViewProduct.jpg" Stretch="UniformToFill" Opacity="0.3"/>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="40,40,40,0">
+                <Label Content="Productos" FontSize="30" Foreground="#f3f3f3"></Label>
+                <Button Width="35" Click="Button_Exit_Click" Cursor="Hand" Height="35" VerticalAlignment="Center" Margin="1180,0,0,0">
+                    <Button.Template>
+                        <ControlTemplate  TargetType="Button">
+                            <Border Background="Transparent">
+                                <Image Source="/Img/ExitIcon.png" Width="35" Height="35"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Width="880" HorizontalAlignment="Center">
+                <TextBox Width="750" Height="40" BorderBrush="Transparent" VerticalAlignment="Center">
+                    <TextBox.Background>
+                        <SolidColorBrush Color="#848484" Opacity=".5"/>
+                    </TextBox.Background>
+                </TextBox>
+                <Image Source="/Img/Icon_Search.png" Margin="10,0,0,0"/>
+                <Button Width="50" Click="Button_Exit_Click" Cursor="Hand" Height="50" VerticalAlignment="Center" Margin="40,0,0,0">
+                    <Button.Template>
+                        <ControlTemplate  TargetType="Button">
+                            <Border Background="#55B633" CornerRadius="30">
+                                <Image Source="/Img/Icon_AddNew.png" Width="40" Height="40"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+
+            <Border Background="#0A0A0A" Opacity="0.5" Height="600" Width="1300" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,0">
+                <DataGrid Name="ProductsTable"  AutoGenerateColumns="False" FontSize="20" ColumnWidth="*" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" SelectionChanged="ProductsTable_SelectionChanged">
+                    
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Codigo" Binding="{Binding ProductCode}"/>
+                        <DataGridTextColumn Header="Nombre" Binding="{Binding ProductoName}"/>
+                        <DataGridTextColumn Header="Descripción" Binding="{Binding Description}"/>
+                        <DataGridTextColumn Header="Precio" Binding="{Binding Price}"/>
+                        <DataGridTextColumn Header="Restricciones" Binding="{Binding Restrictions}"/>
+                        <DataGridTextColumn Header="¿Está activo?" Binding="{Binding Active}"/>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/Img/Icon_Edit.png" Margin="25,0,40,0" MouseLeftButtonDown="Button_EditProduct_Click"/>
+                                        <Image Source="/Img/Icon_Delete.png" Margin="0,0,25,0" MouseLeftButtonDown="Button_DeleteProduct_Click"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                    
+                </DataGrid>
+            </Border>
+        </StackPanel>
         
     </Grid>
 </Window>

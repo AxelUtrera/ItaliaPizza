@@ -41,7 +41,8 @@ namespace View
 
         private void Button_Product_Click(object sender, MouseButtonEventArgs e)
         {
-
+            Products productWindow = new Products();
+            productWindow.ShowDialog();
         }
 
         private void Button_Kitchen_Click(object sender, MouseButtonEventArgs e)
