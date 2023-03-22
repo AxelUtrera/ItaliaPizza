@@ -3,6 +3,7 @@ using Model;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace Logic
 {
     public class ProductLogic
     {
-        public static List<Product> getAllProduct()
+        public static List<Product> GetAllProduct()
         {
             List<Product> productsObtained = new List<Product>();
 
@@ -45,5 +46,59 @@ namespace Logic
             }
 
         }
-    }
+
+		public static int AddNewProduct(Product newProduct)
+		{
+			int responseCode;
+
+			using (var database = new ItaliaPizzaEntities())
+			{
+				try
+				{
+					if (string.IsNullOrEmpty(newProduct.ProductCode))
+					{
+						string productCode = GenerateProductCode();
+						newProduct.ProductCode = productCode;
+					}
+
+					database.product.Add(new product
+					{
+						productName = newProduct.Name,
+						description = newProduct.Description,
+						productCode = newProduct.ProductCode,
+						picture = newProduct.Picture,
+						price = newProduct.Price,
+						preparation = newProduct.Preparation,
+						restrictions = newProduct.Restrictions,
+						active = newProduct.Active
+					});
+
+					responseCode = 200;
+				}
+				catch (DbEntityValidationException ex)
+				{
+					foreach (var validationError in ex.EntityValidationErrors)
+					{
+						Console.WriteLine("Validation error for entity {0}:", validationError.Entry.Entity.GetType().Name);
+
+						foreach (var error in validationError.ValidationErrors)
+						{
+							Console.WriteLine("- Property: {0}, Error: {1}", error.PropertyName, error.ErrorMessage);
+						}
+					}
+					
+					responseCode = 500;
+				}
+
+			}
+
+			return responseCode;
+
+		}
+
+		private static string GenerateProductCode()
+		{
+			return "PROD" + new Random().Next(1000, 9999);
+		}
+	}
 }

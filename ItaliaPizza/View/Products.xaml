@@ -52,7 +52,7 @@
                     </TextBox.Background>
                 </TextBox>
                 <Image Source="/Img/Icon_Search.png" Margin="10,0,0,0"/>
-                <Button Width="50" Click="Button_Exit_Click" Cursor="Hand" Height="50" VerticalAlignment="Center" Margin="40,0,0,0">
+                <Button Width="50" Click="Button_Add_Click" Cursor="Hand" Height="50" VerticalAlignment="Center" Margin="40,0,0,0">
                     <Button.Template>
                         <ControlTemplate  TargetType="Button">
                             <Border Background="#55B633" CornerRadius="30">

@@ -32,7 +32,7 @@ namespace View
 
         public void SetItemsToProductsTable()
         {
-            List<Product> allProducts = ProductLogic.getAllProduct();
+            List<Product> allProducts = ProductLogic.GetAllProduct();
             products = new ObservableCollection<Product>(allProducts);
             ProductsTable.ItemsSource = products;
         }
@@ -43,7 +43,7 @@ namespace View
             this.Close();
         }
 
-        private void ProductsTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		private void ProductsTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
@@ -57,5 +57,19 @@ namespace View
         {
 
         }
-    }
+
+		private void Button_Add_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				AddProduct addProduct = new AddProduct();
+				addProduct.Show();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show($"Error: {ex.Message}");
+			}
+		}
+
+	}
 }

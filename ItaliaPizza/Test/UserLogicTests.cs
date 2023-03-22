@@ -9,6 +9,7 @@ using System.Management.Instrumentation;
 using Model;
 using static System.Net.Mime.MediaTypeNames;
 using System.Security.Cryptography;
+using System.IO;
 
 namespace Logic.Tests
 {
@@ -188,5 +189,6 @@ namespace Logic.Tests
 
             Assert.AreEqual(expectedStatusCode, actualStatusCode);
         }
-    }
+
+	}
 }
