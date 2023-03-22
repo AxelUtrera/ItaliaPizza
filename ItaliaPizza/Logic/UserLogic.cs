@@ -208,6 +208,18 @@ namespace Logic
 
                 foreach (var user in activeUsers)
                 {
+                    string _userType;
+
+                    var userType = database.worker.Where(x => x.idUser == user.idUser).Count();
+                    if(userType > 0)
+                    {
+                        _userType = "Trabajador";
+                    }
+                    else
+                    {
+                        _userType = "Cliente";
+                    }
+
                     User recoverUser = new User()
                     {
                         IdUser = user.idUser,
@@ -216,7 +228,7 @@ namespace Logic
                         PhoneNumber = user.phoneNumber,
                         Email = user.email,
                         IsActive = user.active,
-                        UserType = "Todavia Falta"
+                        UserType = _userType
                     };
 
                     usersObtained.Add(recoverUser);

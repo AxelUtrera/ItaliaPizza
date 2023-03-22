@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Management.Instrumentation;
 using Model;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Logic.Tests
 {
@@ -152,6 +153,15 @@ namespace Logic.Tests
             int obtainedResult = UserLogic.RegisterNewCustomer(userTest, addressTest);
 
             Assert.AreEqual(expectedResult, obtainedResult);
+        }
+
+        [TestMethod()]
+        public void Test08_RecoverActiveUsers_SuccesfulTest()
+        {
+            List<User> recoverUsers = new List<User>();
+            recoverUsers = UserLogic.RecoverActiveUsers();
+
+            Assert.IsNotNull(recoverUsers);
         }
     }
 }
