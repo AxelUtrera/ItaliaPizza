@@ -47,7 +47,6 @@
 
 
             <Button Cursor="Hand" x:Name="Button_Login" HorizontalAlignment="Center" Margin="0,80,0,0" Width="300" Height="43" Foreground="#f3f3f3" FontSize="16" FontWeight="DemiBold" Click="Button_Login_Click" IsDefault="True">
-
                 <Button.Template >
                     <ControlTemplate TargetType="{x:Type Button}" >
                         <Border Background="#3F8C23"  CornerRadius="30">

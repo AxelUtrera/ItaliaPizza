@@ -23,14 +23,14 @@ namespace View
     public partial class Products : Window
     {
 
-        public ObservableCollection<Product> products;
+        private ObservableCollection<Product> products;
         public Products()
         {
             InitializeComponent();
             SetItemsToProductsTable();
         }
 
-        public void SetItemsToProductsTable()
+        private void SetItemsToProductsTable()
         {
             List<Product> allProducts = ProductLogic.getAllProduct();
             products = new ObservableCollection<Product>(allProducts);
@@ -56,6 +56,21 @@ namespace View
         private void Button_EditProduct_Click(object sender, MouseButtonEventArgs e)
         {
 
+        }
+
+        private void Texbox_TextSearchChanged(object sender, TextChangedEventArgs e)
+        {
+            var searchTextbox = sender as TextBox;
+            if (searchTextbox.Text != "")
+            {
+                var filteredList = products.Where(x => x.Name.Contains(searchTextbox.Text));
+                ProductsTable.ItemsSource = null;
+                ProductsTable.ItemsSource = filteredList;
+            }
+            else
+            {
+                ProductsTable.ItemsSource = products;
+            }
         }
     }
 }
