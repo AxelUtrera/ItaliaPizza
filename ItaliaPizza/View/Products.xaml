@@ -18,12 +18,21 @@
                 <Setter Property="Foreground" Value="#f3f3f3"/>
                 <Setter Property="BorderThickness" Value="1"/>
                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
-             </Style>
-            <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
-                <Setter Property="Background" Value="#0a0a0a" />
+        </Style>
+            
+            
+        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="Background" Value="#0a0a0a" />
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            </Style>
-            <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Margin" Value="0,0,0,30"/>
+        </Style>
+
+
+        <Style BasedOn="{StaticResource {x:Type DataGridCellsPresenter}}" TargetType="{x:Type DataGridCellsPresenter}">
+            <Setter Property="Margin" Value="0,0,0,15"/>
+        </Style>
+
+        <Style TargetType="{x:Type TextBox}">
                 <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
                 <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
                 <Setter Property="Foreground" Value="#ffffff"></Setter>
@@ -54,7 +63,7 @@
                     </TextBox.Background>
                 </TextBox>
                 <Image Source="/Img/Icon_Search.png" Margin="10,0,0,0"/>
-                <Button Width="50" Click="Button_Exit_Click" Cursor="Hand" Height="50" VerticalAlignment="Center" Margin="40,0,0,0">
+                <Button Width="50" Click="Button_Add_Click" Cursor="Hand" Height="50" VerticalAlignment="Center" Margin="40,0,0,0">
                     <Button.Template>
                         <ControlTemplate  TargetType="Button">
                             <Border Background="#55B633" CornerRadius="30">
@@ -69,21 +78,29 @@
                 <Border.Background>
                     <SolidColorBrush Color="#0a0a0a" Opacity=".5"></SolidColorBrush>
                 </Border.Background>
-                <DataGrid Name="ProductsTable"  Foreground="#c3c3c3" AutoGenerateColumns="False" FontSize="20" ColumnWidth="*" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" SelectionChanged="ProductsTable_SelectionChanged">
+                <DataGrid Name="ProductsTable" Foreground="#c3c3c3" AutoGenerateColumns="False" FontSize="20" ColumnWidth="*" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" SelectionChanged="ProductsTable_SelectionChanged">
+                    
+                    <DataGrid.CellStyle>
+                        <Style>
+                            <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"></Setter>
+                            <Setter Property="FrameworkElement.VerticalAlignment" Value="Center"></Setter>
+                        </Style>
+                    </DataGrid.CellStyle>
 
+                    
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Codigo" Binding="{Binding ProductCode}"/>
-                        <DataGridTextColumn Header="Nombre" Binding="{Binding ProductoName}"/>
+                        <DataGridTextColumn Header="Nombre" Binding="{Binding Name}"/>
                         <DataGridTextColumn Header="Descripción" Binding="{Binding Description}"/>
-                        <DataGridTextColumn Header="Precio" Binding="{Binding Price}"/>
+                        <DataGridTextColumn Header="Precio (MXN)" Binding="{Binding Price}"/>
                         <DataGridTextColumn Header="Restricciones" Binding="{Binding Restrictions}"/>
                         <DataGridTextColumn Header="¿Está activo?" Binding="{Binding Active}"/>
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Image Source="/Img/Icon_Edit.png" Margin="25,0,40,0" MouseLeftButtonDown="Button_EditProduct_Click"/>
-                                        <Image Source="/Img/Icon_Delete.png" Margin="0,0,25,0" MouseLeftButtonDown="Button_DeleteProduct_Click"/>
+                                        <Image Source="/Img/Icon_Edit.png" Margin="25,0,40,0" Width="25" Height="25" Cursor="Hand" MouseLeftButtonDown="Button_EditProduct_Click"/>
+                                        <Image Source="/Img/Icon_Delete.png" Margin="0,0,25,0"  Width="25" Height="25"  Cursor="Hand" MouseLeftButtonDown="Button_DeleteProduct_Click"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>

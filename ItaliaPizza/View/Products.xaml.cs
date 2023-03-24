@@ -23,7 +23,8 @@ namespace View
     public partial class Products : Window
     {
 
-        private ObservableCollection<Product> products;
+        private ObservableCollection<ProductToView> products;
+
         public Products()
         {
             InitializeComponent();
@@ -32,8 +33,8 @@ namespace View
 
         private void SetItemsToProductsTable()
         {
-            List<Product> allProducts = ProductLogic.getAllProduct();
-            products = new ObservableCollection<Product>(allProducts);
+            List<ProductToView> allProducts = ProductLogic.GetAllProductToView();
+            products = new ObservableCollection<ProductToView>(allProducts);
             ProductsTable.ItemsSource = products;
         }
         
@@ -43,7 +44,7 @@ namespace View
             this.Close();
         }
 
-        private void ProductsTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		private void ProductsTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
@@ -57,6 +58,20 @@ namespace View
         {
 
         }
+
+		private void Button_Add_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				AddProduct addProduct = new AddProduct();
+				addProduct.Show();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show($"Error: {ex.Message}");
+			}
+		}
+
 
         private void Texbox_TextSearchChanged(object sender, TextChangedEventArgs e)
         {
@@ -72,5 +87,6 @@ namespace View
                 ProductsTable.ItemsSource = products;
             }
         }
+
     }
 }

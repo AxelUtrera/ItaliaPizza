@@ -33,16 +33,16 @@ namespace View
             if(UserLogic.AutenticateUser(TextBox_Username.Text, PasswordBox_PasswordUser.Password) == statusOK)
             {
                 Model.Worker worker = UserLogic.GetWorkerByUsername(TextBox_Username.Text); 
-                if (worker.Role == "Administrador")
+                if (worker.Role == "Administrador" && UserLogic.getUserById(worker.IdUser).IsActive)
                 {
-                    MainMenu m = new MainMenu();
-                    m.Show();
+                    MainMenu mainMenu = new MainMenu();
+                    mainMenu.Show();
                 }
                 else
                 {
-                    MainMenu mainMenu = new MainMenu();
-                    mainMenu.ShowDialog();
+                    MessageBox.Show("El usuario o contraseña no son validos, intentelo de nuevo");
                 }
+                //Agregar codigo de tipo de usuario no admin
             }
             else
             {

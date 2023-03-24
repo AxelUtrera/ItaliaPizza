@@ -1,14 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Logic;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Management.Instrumentation;
 using Model;
-using static System.Net.Mime.MediaTypeNames;
-using System.Security.Cryptography;
+
 
 namespace Logic.Tests
 {
@@ -188,5 +180,6 @@ namespace Logic.Tests
 
             Assert.AreEqual(expectedStatusCode, actualStatusCode);
         }
-    }
+
+	}
 }

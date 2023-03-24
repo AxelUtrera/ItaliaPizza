@@ -21,6 +21,8 @@ namespace DataAccess
         public int idCashbox { get; set; }
     
         public virtual cashbox cashbox { get; set; }
+        public virtual cashbox cashbox1 { get; set; }
         public virtual worker worker { get; set; }
+        public virtual worker worker1 { get; set; }
     }
 }
