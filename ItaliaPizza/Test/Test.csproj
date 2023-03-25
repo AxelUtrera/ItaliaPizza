@@ -58,7 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EncriptionTests.cs" />
-    <Compile Include="UserProductTests.cs" />
+    <Compile Include="ProductLogicTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserLogicTests.cs" />
   </ItemGroup>
@@ -68,7 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
-      <Project>{fd9ade36-772f-4ea6-8299-8f9f89e3641f}</Project>
+      <Project>{5d256bde-1cbe-43d4-8cf5-77b71b686cfa}</Project>
       <Name>DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\Logic\Logic.csproj">

@@ -69,10 +69,38 @@ namespace Logic
             {
 
             }
-
             return workerFounded;
             
         }
+
+
+        public static User getUserById(int idUser)
+        {
+            User userFound = new User();
+
+            try
+            {
+                using (var database = new ItaliaPizzaEntities())
+                {
+                    users user = database.users.Find(idUser);
+
+                    if (user != null)
+                    {
+                        userFound.IdUser = user.idUser;
+                        userFound.Email = user.email;
+                        userFound.Name = user.name;
+                        userFound.Lastname = user.lastname;
+                        userFound.PhoneNumber = user.phoneNumber;
+                        userFound.IsActive = user.active;
+                    }
+                }
+            }
+            catch (ArgumentException ex)
+            {
+
+            }
+            return userFound;
+
 
         public static Model.Worker GetWorkerById(int idUser)
         {
@@ -137,6 +165,7 @@ namespace Logic
             return addressObtained;
         }
 
+        }
         public static int RegisterNewWorker(User user, Worker worker)
         {
             int statusCode = 500;

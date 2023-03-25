@@ -8,6 +8,7 @@
         WindowState="Maximized"
         WindowStyle="None"
         Title="Products" Height="810" Width="1440">
+    
         <Window.Resources>
             <Style TargetType="{x:Type DataGrid}">
                 <Setter Property="Background" Value="#0a0a0a"/>
@@ -17,12 +18,21 @@
                 <Setter Property="Foreground" Value="#f3f3f3"/>
                 <Setter Property="BorderThickness" Value="1"/>
                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
-             </Style>
-            <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
-                <Setter Property="Background" Value="#0a0a0a" />
+        </Style>
+            
+            
+        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="Background" Value="#0a0a0a" />
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            </Style>
-            <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Margin" Value="0,0,0,30"/>
+        </Style>
+
+
+        <Style BasedOn="{StaticResource {x:Type DataGridCellsPresenter}}" TargetType="{x:Type DataGridCellsPresenter}">
+            <Setter Property="Margin" Value="0,0,0,15"/>
+        </Style>
+
+        <Style TargetType="{x:Type TextBox}">
                 <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
                 <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
                 <Setter Property="Foreground" Value="#ffffff"></Setter>
@@ -31,6 +41,7 @@
     
     <Grid Background="black">
         <Image Source="/Img/Background_ViewProduct.jpg" Stretch="UniformToFill" Opacity="0.3"/>
+        
         <StackPanel>
             <StackPanel Orientation="Horizontal" Margin="40,40,40,0">
                 <Label Content="Productos" FontSize="30" Foreground="#f3f3f3"></Label>
@@ -46,7 +57,7 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Width="880" HorizontalAlignment="Center">
-                <TextBox Width="750" Height="40" BorderBrush="Transparent" VerticalAlignment="Center">
+                <TextBox Name ="Textbox_Search" Width="750" Height="40" BorderBrush="Transparent" VerticalAlignment="Center" TextChanged="Texbox_TextSearchChanged">
                     <TextBox.Background>
                         <SolidColorBrush Color="#848484" Opacity=".5"/>
                     </TextBox.Background>
@@ -63,28 +74,38 @@
                 </Button>
             </StackPanel>
 
-            <Border Background="#0A0A0A" Opacity="0.5" Height="600" Width="1300" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,0">
-                <DataGrid Name="ProductsTable"  AutoGenerateColumns="False" FontSize="20" ColumnWidth="*" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" SelectionChanged="ProductsTable_SelectionChanged">
+            <Border Height="600" Width="1300" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,0">
+                <Border.Background>
+                    <SolidColorBrush Color="#0a0a0a" Opacity=".5"></SolidColorBrush>
+                </Border.Background>
+                <DataGrid Name="ProductsTable" Foreground="#c3c3c3" AutoGenerateColumns="False" FontSize="20" ColumnWidth="*" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" SelectionChanged="ProductsTable_SelectionChanged">
+                    
+                    <DataGrid.CellStyle>
+                        <Style>
+                            <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"></Setter>
+                            <Setter Property="FrameworkElement.VerticalAlignment" Value="Center"></Setter>
+                        </Style>
+                    </DataGrid.CellStyle>
+
                     
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Codigo" Binding="{Binding ProductCode}"/>
-                        <DataGridTextColumn Header="Nombre" Binding="{Binding ProductoName}"/>
+                        <DataGridTextColumn Header="Nombre" Binding="{Binding Name}"/>
                         <DataGridTextColumn Header="Descripción" Binding="{Binding Description}"/>
-                        <DataGridTextColumn Header="Precio" Binding="{Binding Price}"/>
+                        <DataGridTextColumn Header="Precio (MXN)" Binding="{Binding Price}"/>
                         <DataGridTextColumn Header="Restricciones" Binding="{Binding Restrictions}"/>
                         <DataGridTextColumn Header="¿Está activo?" Binding="{Binding Active}"/>
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Image Source="/Img/Icon_Edit.png" Margin="25,0,40,0" MouseLeftButtonDown="Button_EditProduct_Click"/>
-                                        <Image Source="/Img/Icon_Delete.png" Margin="0,0,25,0" MouseLeftButtonDown="Button_DeleteProduct_Click"/>
+                                        <Image Source="/Img/Icon_Edit.png" Margin="25,0,40,0" Width="25" Height="25" Cursor="Hand" MouseLeftButtonDown="Button_EditProduct_Click"/>
+                                        <Image Source="/Img/Icon_Delete.png" Margin="0,0,25,0"  Width="25" Height="25"  Cursor="Hand" MouseLeftButtonDown="Button_DeleteProduct_Click"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
-                    
                 </DataGrid>
             </Border>
         </StackPanel>

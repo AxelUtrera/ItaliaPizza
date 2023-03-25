@@ -1,16 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Logic;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Management.Instrumentation;
 using Model;
-using static System.Net.Mime.MediaTypeNames;
-using System.Security.Cryptography;
-using System.IO;
-using System.Security.Cryptography.X509Certificates;
+
 
 namespace Logic.Tests
 {
@@ -170,7 +160,7 @@ namespace Logic.Tests
         }
 
         [TestMethod()]
-        public void TestDeleteUser()
+        public void Test08_TestDeleteUser()
         {
             int userId = 1;
             int expectedStatusCode = 200;
@@ -181,7 +171,7 @@ namespace Logic.Tests
         }
 
         [TestMethod()]
-        public void TestDeleteUserWithInvalidUserId()
+        public void Test09_TestDeleteUser_WithInvalidUserId()
         {
             int userId = -1;
             int expectedStatusCode = 500;
@@ -192,7 +182,7 @@ namespace Logic.Tests
         }
 
         [TestMethod()]
-        public void TestDeleteUserWithNonExistingUserId()
+        public void Test10_TestDeleteUser_WithNonExistingUserId()
         {
             int userId = 100;
             int expectedStatusCode = 500;

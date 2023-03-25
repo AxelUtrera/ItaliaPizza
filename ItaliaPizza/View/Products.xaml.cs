@@ -23,17 +23,18 @@ namespace View
     public partial class Products : Window
     {
 
-        public ObservableCollection<Product> products;
+        private ObservableCollection<ProductToView> products;
+
         public Products()
         {
             InitializeComponent();
             SetItemsToProductsTable();
         }
 
-        public void SetItemsToProductsTable()
+        private void SetItemsToProductsTable()
         {
-            List<Product> allProducts = ProductLogic.GetAllProduct();
-            products = new ObservableCollection<Product>(allProducts);
+            List<ProductToView> allProducts = ProductLogic.GetAllProductToView();
+            products = new ObservableCollection<ProductToView>(allProducts);
             ProductsTable.ItemsSource = products;
         }
         
@@ -71,5 +72,21 @@ namespace View
 			}
 		}
 
-	}
+
+        private void Texbox_TextSearchChanged(object sender, TextChangedEventArgs e)
+        {
+            var searchTextbox = sender as TextBox;
+            if (searchTextbox.Text != "")
+            {
+                var filteredList = products.Where(x => x.Name.Contains(searchTextbox.Text));
+                ProductsTable.ItemsSource = null;
+                ProductsTable.ItemsSource = filteredList;
+            }
+            else
+            {
+                ProductsTable.ItemsSource = products;
+            }
+        }
+
+    }
 }
