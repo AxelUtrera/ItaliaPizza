@@ -16,7 +16,6 @@ namespace Model
 		public string ProductName { get; set; }
         public int IdRecipe { get; set; }
         public bool Active { get; set; }
-        public bool IsActive { get; set; }
         public byte[] Picture { get; set; }
         public string Restrictions { get; set; }
 

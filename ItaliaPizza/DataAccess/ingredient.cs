@@ -17,8 +17,10 @@ namespace DataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ingredient()
         {
+            this.recipeIngredient = new HashSet<recipeIngredient>();
+            this.recipeIngredient1 = new HashSet<recipeIngredient>();
             this.supplierIngredient = new HashSet<supplierIngredient>();
-            this.recipe = new HashSet<recipe>();
+            this.supplierIngredient1 = new HashSet<supplierIngredient>();
         }
     
         public int idIngredient { get; set; }
@@ -26,8 +28,13 @@ namespace DataAccess
         public double quantity { get; set; }
         public bool active { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<recipeIngredient> recipeIngredient { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<recipeIngredient> recipeIngredient1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<supplierIngredient> supplierIngredient { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<recipe> recipe { get; set; }
+        public virtual ICollection<supplierIngredient> supplierIngredient1 { get; set; }
     }
 }

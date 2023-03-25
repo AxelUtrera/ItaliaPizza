@@ -17,8 +17,10 @@ namespace DataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public product()
         {
+            this.orderProduct = new HashSet<orderProduct>();
+            this.orderProduct1 = new HashSet<orderProduct>();
             this.supplierProduct = new HashSet<supplierProduct>();
-            this.orders = new HashSet<orders>();
+            this.supplierProduct1 = new HashSet<supplierProduct>();
         }
     
         public string productCode { get; set; }
@@ -31,10 +33,15 @@ namespace DataAccess
         public int idRecipe { get; set; }
         public bool active { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<orderProduct> orderProduct { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<orderProduct> orderProduct1 { get; set; }
         public virtual recipe recipe { get; set; }
+        public virtual recipe recipe1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<supplierProduct> supplierProduct { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<orders> orders { get; set; }
+        public virtual ICollection<supplierProduct> supplierProduct1 { get; set; }
     }
 }

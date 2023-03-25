@@ -18,7 +18,9 @@ namespace DataAccess
         public users()
         {
             this.customer = new HashSet<customer>();
+            this.customer1 = new HashSet<customer>();
             this.worker = new HashSet<worker>();
+            this.worker1 = new HashSet<worker>();
         }
     
         public int idUser { get; set; }
@@ -31,6 +33,10 @@ namespace DataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<customer> customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<customer> customer1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<worker> worker { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<worker> worker1 { get; set; }
     }
 }

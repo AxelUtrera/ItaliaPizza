@@ -12,18 +12,14 @@ namespace DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class address
+    public partial class orderProduct
     {
-        public int idAddress { get; set; }
-        public string street { get; set; }
-        public string number { get; set; }
-        public string city { get; set; }
-        public string zipcode { get; set; }
-        public string neighborhood { get; set; }
-        public string instructions { get; set; }
-        public int idCustomer { get; set; }
+        public int idOrder { get; set; }
+        public string productCode { get; set; }
     
-        public virtual customer customer { get; set; }
-        public virtual customer customer1 { get; set; }
+        public virtual orders orders { get; set; }
+        public virtual orders orders1 { get; set; }
+        public virtual product product { get; set; }
+        public virtual product product1 { get; set; }
     }
 }

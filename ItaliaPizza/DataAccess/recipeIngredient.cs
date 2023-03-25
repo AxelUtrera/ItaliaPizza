@@ -12,18 +12,15 @@ namespace DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class address
+    public partial class recipeIngredient
     {
-        public int idAddress { get; set; }
-        public string street { get; set; }
-        public string number { get; set; }
-        public string city { get; set; }
-        public string zipcode { get; set; }
-        public string neighborhood { get; set; }
-        public string instructions { get; set; }
-        public int idCustomer { get; set; }
+        public int idIngredient { get; set; }
+        public int idRecipe { get; set; }
+        public int quantity { get; set; }
     
-        public virtual customer customer { get; set; }
-        public virtual customer customer1 { get; set; }
+        public virtual ingredient ingredient { get; set; }
+        public virtual ingredient ingredient1 { get; set; }
+        public virtual recipe recipe { get; set; }
+        public virtual recipe recipe1 { get; set; }
     }
 }

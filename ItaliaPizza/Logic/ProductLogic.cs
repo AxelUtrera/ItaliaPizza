@@ -13,9 +13,9 @@ namespace Logic
 {
     public class ProductLogic
     {
-        public static List<Product> GetAllProduct()
+        public static List<ProductToView> GetAllProductToView()
         {
-            List<Product> productsObtained = new List<Product>();
+            List<ProductToView> productsObtained = new List<ProductToView>();
 
             using (var database = new ItaliaPizzaEntities())
             {
@@ -25,18 +25,16 @@ namespace Logic
                 foreach (var product in allProducts)
                 {
                     {
-						Product recoverProduct = new Product()
+                        ProductToView recoverProduct = new ProductToView()
                         {
                             Name = product.productName,
                             Description = product.description,
                             ProductCode = product.productCode,
-                            Picture = product.picture,
-                            Price = product.price,
-                            Preparation = product.preparation,
-                            ProductName = product.productName,
+                            Price = "$"+product.price.ToString(),
                             Restrictions = product.restrictions,
 							IdRecipe = product.idRecipe,
-							Active = product.active
+							//Active = product.active
+                            Active = product.active == true ? "Si" : "No"
                         };
 
                         productsObtained.Add(recoverProduct);
@@ -45,12 +43,11 @@ namespace Logic
 
                 return productsObtained;
             }
-
         }
 
 		public static int AddNewProduct(Product newProduct)
 		{
-			int responseCode;
+			int responseCode = 500;
 
 			using (var database = new ItaliaPizzaEntities())
 			{
@@ -68,6 +65,10 @@ namespace Logic
 						idRecipe = newProduct.IdRecipe,
 						active = newProduct.Active
 					});
+                    
+					if(database.SaveChanges() > 0) {
+                        responseCode = 200;
+                    }
 
 					var recipe = database.recipe.Find(newProduct.IdRecipe);
 
