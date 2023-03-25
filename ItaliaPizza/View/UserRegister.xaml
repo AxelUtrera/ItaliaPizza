@@ -8,8 +8,7 @@
         WindowState="Maximized"
         WindowStyle="None"
         xmlns:p = "clr-namespace:View.Properties"
-        Title="Agregar Producto" Height="810" Width="1440">
-    <Grid Background="Black">
+        Title="{x:Static p:Resources.UserRegister_Title_Label}" Height="810" Width="1440">    <Grid Background="Black">
         <Image Source="/Img/UserRegisterBackground.jpg" Stretch="UniformToFill" Opacity="0.3">
             <Image.Effect>
                 <BlurEffect Radius="1"></BlurEffect>
