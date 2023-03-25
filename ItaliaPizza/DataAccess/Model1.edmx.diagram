@@ -11,7 +11,6 @@
         <EntityTypeShape EntityType="ItaliaPizzaModel.dailyBalance" Width="1.5" PointX="8.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="ItaliaPizzaModel.deliveryOrder" Width="1.5" PointX="7.5" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ItaliaPizzaModel.ingredient" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.inventory" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
         <EntityTypeShape EntityType="ItaliaPizzaModel.orders" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ItaliaPizzaModel.product" Width="1.5" PointX="7.5" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ItaliaPizzaModel.recipe" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />

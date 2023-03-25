@@ -29,10 +29,8 @@ namespace DataAccess
         public string productName { get; set; }
         public string restrictions { get; set; }
         public int idRecipe { get; set; }
-        public int idInventory { get; set; }
         public bool active { get; set; }
     
-        public virtual inventory inventory { get; set; }
         public virtual recipe recipe { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<supplierProduct> supplierProduct { get; set; }

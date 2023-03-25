@@ -25,36 +25,81 @@ namespace View
 		public AddProduct()
 		{
 			InitializeComponent();
+			string productCode = GenerateProductCode();
+			ProductCodeLabel.Content = productCode;
+		}
+
+		private string GenerateProductCode()
+		{
+			const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+			var random = new Random();
+			var result = new string(
+				Enumerable.Repeat(chars, 5)
+						  .Select(s => s[random.Next(s.Length)])
+						  .ToArray());
+			return result.Substring(0, 5);
 		}
 
 		private void AddProductButton_Click(object sender, RoutedEventArgs e)
 		{
-			string productCode = ProductCodeTextBox.Text;
+			string name = ProductNameTextBox.Text;
 			string productName = ProductNameTextBox.Text;
 			string description = DescriptionTextBox.Text;
-			double price = Convert.ToDouble(PriceTextBox.Text);
-			bool preparation = PreparationComboBox.SelectedItem.ToString() == "Cooked";
-			string restrictions = RestrictionsTextBox.Text;
-			bool active = ActiveComboBox.SelectedItem.ToString() == "Active";
+			string productCode = ProductCodeLabel.Content.ToString();
 			byte[] picture = GetPictureBytes();
+			double price = Convert.ToDouble(PriceTextBox.Text);
+			string restrictions = RestrictionsTextBox.Text;
+			string preparation2 = PreparationComboBox.SelectedItem.ToString();
+			string active2 = ActiveComboBox.SelectedItem.ToString();
+			bool active;
+			bool preparation;
+			int idRecipe;
+			
 
-			Product newProduct = new Product(productName, description, productCode, picture, price, preparation, productName, restrictions, 0, 0, active);
-
-			if (ProductLogic.AddNewProduct(newProduct) == 200)
+			if (active2 == "System.Windows.Controls.ComboBoxItem: Activo")
 			{
-				MessageBox.Show("Product added successfully!", "", MessageBoxButton.OK, MessageBoxImage.Information);
-				ClearInputFields();
+				active = true;
 			}
 			else
 			{
-				MessageBox.Show("Error adding product!");
+				active = false;
 			}
-		}
 
-		private static Product GetNewProduct(string productName, string description, double price, bool preparation, string restrictions, bool active, byte[] picture)
-		{
-			return new Product(productName, description, picture, price, preparation, productName, restrictions, 0, 0, active);
+			if (preparation2 == "System.Windows.Controls.ComboBoxItem: Sí")
+			{
+				preparation = true;
+				idRecipe = new Random().Next(2, 100);
+			}
+			else
+			{
+				preparation = false;
+				idRecipe = 1;
+			}
 
+			Product newProduct = new Product(name, description, productCode, picture, price, preparation, productName, restrictions, idRecipe, active); // set the 'preparation' and 'active' properties of newProduct
+
+			if (string.IsNullOrEmpty(ProductNameTextBox.Text) || string.IsNullOrEmpty(DescriptionTextBox.Text) || string.IsNullOrEmpty(PriceTextBox.Text) || PreparationComboBox.SelectedItem == null || ActiveComboBox.SelectedItem == null)
+			{
+				MessageBox.Show("Debe completar todos los campos para agregar un nuevo producto.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+				return;
+			}
+
+			if (price < 0 || !(price > 0))
+			{
+				Console.WriteLine("Invalid Price.");
+				MessageBox.Show("Precio inválido.", "", MessageBoxButton.OK, MessageBoxImage.Information);
+			}
+
+			if (ProductLogic.AddNewProduct(newProduct) == 200)
+			{
+				MessageBox.Show("Producto agregado correctamente!", "", MessageBoxButton.OK, MessageBoxImage.Information);
+				ClearInputFields();
+				Close();
+			}
+			else
+			{
+				MessageBox.Show("Error al agregar producto!");
+			}
 		}
 
 		private void SelectImage_Click(object sender, RoutedEventArgs e)
@@ -95,7 +140,7 @@ namespace View
 		private void ClearInputFields()
 		{
 			ProductNameTextBox.Clear();
-			ProductCodeTextBox.Clear();
+			ProductCodeLabel.Content = "";
 			DescriptionTextBox.Clear();
 			PriceTextBox.Clear();
 			PreparationComboBox.SelectedIndex = -1;
@@ -107,6 +152,11 @@ namespace View
 		private void CancelAddProductButton_Click(object sender, RoutedEventArgs e)
 		{
 			MessageBox.Show("¿Está seguro de cancelar el registro del nuevo producto?", "", MessageBoxButton.OK, MessageBoxImage.Information);
+			Close();
+		}
+
+		private void CloseButton_Click(object sender, RoutedEventArgs e)
+		{
 			Close();
 		}
 	}

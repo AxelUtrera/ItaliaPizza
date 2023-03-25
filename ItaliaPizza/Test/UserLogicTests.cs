@@ -158,7 +158,7 @@ namespace Logic.Tests
         }
 
         [TestMethod()]
-        public void TestDeleteUser()
+        public void Test08_TestDeleteUser()
         {
             int userId = 1;
             int expectedStatusCode = 200;
@@ -169,7 +169,7 @@ namespace Logic.Tests
         }
 
         [TestMethod()]
-        public void TestDeleteUserWithInvalidUserId()
+        public void Test09_TestDeleteUser_WithInvalidUserId()
         {
             int userId = -1;
             int expectedStatusCode = 500;
@@ -180,7 +180,7 @@ namespace Logic.Tests
         }
 
         [TestMethod()]
-        public void TestDeleteUserWithNonExistingUserId()
+        public void Test10_TestDeleteUser_WithNonExistingUserId()
         {
             int userId = 100;
             int expectedStatusCode = 500;

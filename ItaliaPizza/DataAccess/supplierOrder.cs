@@ -25,11 +25,8 @@ namespace DataAccess
         public System.DateTime arriveDate { get; set; }
         public double total { get; set; }
         public System.DateTime orderDate { get; set; }
-        public int idInventory { get; set; }
         public string status { get; set; }
     
-        public virtual inventory inventory { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<supplierIngredient> supplierIngredient { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<supplierProduct> supplierProduct { get; set; }

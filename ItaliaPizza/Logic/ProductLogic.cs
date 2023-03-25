@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,7 +25,7 @@ namespace Logic
                 foreach (var product in allProducts)
                 {
                     {
-                        Product recoverProduct = new Product()
+						Product recoverProduct = new Product()
                         {
                             Name = product.productName,
                             Description = product.description,
@@ -34,14 +35,14 @@ namespace Logic
                             Preparation = product.preparation,
                             ProductName = product.productName,
                             Restrictions = product.restrictions,
-                            IdInventory = product.idInventory,
-                            IdRecipe = product.idRecipe,
-                            Active = product.active
+							IdRecipe = product.idRecipe,
+							Active = product.active
                         };
 
                         productsObtained.Add(recoverProduct);
                     }
                 }
+
                 return productsObtained;
             }
 
@@ -55,12 +56,6 @@ namespace Logic
 			{
 				try
 				{
-					if (string.IsNullOrEmpty(newProduct.ProductCode))
-					{
-						string productCode = GenerateProductCode();
-						newProduct.ProductCode = productCode;
-					}
-
 					database.product.Add(new product
 					{
 						productName = newProduct.Name,
@@ -70,10 +65,35 @@ namespace Logic
 						price = newProduct.Price,
 						preparation = newProduct.Preparation,
 						restrictions = newProduct.Restrictions,
+						idRecipe = newProduct.IdRecipe,
 						active = newProduct.Active
 					});
 
+					var recipe = database.recipe.Find(newProduct.IdRecipe);
+
+					if (recipe == null && recipe != database.recipe.Find(1))
+					{
+						recipe = new recipe
+						{
+							idRecipe = newProduct.IdRecipe,
+							description = "Producto preparado", 
+							recipeName = newProduct.Name,
+							active = newProduct.Active
+						};
+
+						database.recipe.Add(recipe);
+
+						Console.WriteLine("Producto agregado correctamente.");
+
+						Console.WriteLine("New recipe created.");
+					}
+
+					Console.WriteLine("Product added to database.");
+
+					database.SaveChanges();
+
 					responseCode = 200;
+
 				}
 				catch (DbEntityValidationException ex)
 				{
@@ -86,19 +106,14 @@ namespace Logic
 							Console.WriteLine("- Property: {0}, Error: {1}", error.PropertyName, error.ErrorMessage);
 						}
 					}
-					
+
+					Console.WriteLine("Error al agregar producto.");
 					responseCode = 500;
 				}
-
 			}
 
 			return responseCode;
-
 		}
 
-		private static string GenerateProductCode()
-		{
-			return "PROD" + new Random().Next(1000, 9999);
-		}
 	}
 }

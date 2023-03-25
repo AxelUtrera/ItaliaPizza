@@ -24,11 +24,8 @@ namespace DataAccess
         public int idIngredient { get; set; }
         public string ingredientName { get; set; }
         public double quantity { get; set; }
-        public int idInventory { get; set; }
         public bool active { get; set; }
     
-        public virtual inventory inventory { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<supplierIngredient> supplierIngredient { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<recipe> recipe { get; set; }
