@@ -74,6 +74,69 @@ namespace Logic
             
         }
 
+        public static Model.Worker GetWorkerById(int idUser)
+        {
+            Model.Worker workerFounded = new Worker();
+
+            try
+            {
+                using (var database = new ItaliaPizzaEntities())
+                {
+                    
+                    worker worker = database.worker.Where(x => x.idUser == idUser).First();
+
+                    if (worker != null)
+                    {
+                        workerFounded.WorkerNumber = worker.workerNumber;
+                        workerFounded.NSS = worker.nss;
+                        workerFounded.Username = worker.username;
+                        workerFounded.Password = worker.password;
+                        workerFounded.Role = worker.role;
+                        workerFounded.RFC = worker.rfc;
+                    }
+                }
+            }
+            catch (ArgumentException ex)
+            {
+
+            }
+
+            return workerFounded;
+
+        }
+
+        public static Model.Address GetAddressByIdUser(int idUser)
+        {
+            Model.Address addressObtained = new Address();
+
+            try
+            {
+                using (var database = new ItaliaPizzaEntities())
+                {
+                    int idCustomer = (from Customer in database.customer where Customer.idUser== idUser select Customer.idCustomer).First();
+
+                    if(idCustomer != 0)
+                    {
+                        address address = database.address.Where(x => x.idCustomer == idCustomer).First();
+
+                        addressObtained.idAddress = address.idAddress;
+                        addressObtained.number = address.number;
+                        addressObtained.zipcode = address.zipcode;
+                        addressObtained.city = address.city;
+                        addressObtained.street = address.street;
+                        addressObtained.neighborhood = address.neighborhood;
+                        addressObtained.instructions = address.instructions;
+                    }
+                }
+            }
+            catch(ArgumentException e)
+            {
+
+            }
+
+            return addressObtained;
+        }
+
         public static int RegisterNewWorker(User user, Worker worker)
         {
             int statusCode = 500;
@@ -149,6 +212,7 @@ namespace Logic
                     }
                     
                     var idUser = (from Users in database.users where Users.phoneNumber.Equals(user.PhoneNumber) select Users.idUser).First();
+
                     if(idUser != 0)
                     {
                         var newCustomer = database.customer.Add(new customer()

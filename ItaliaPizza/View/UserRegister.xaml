@@ -28,11 +28,21 @@
         <Label Content="{x:Static p:Resources.UserRegister_Email_Label}" Margin="270,0,0,230" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="26"></Label>
         <TextBox x:Name="TextBox_Email" Width="650" Height="35" Background="#5F5F5F" Opacity="0.7" Foreground="White" FontSize="24" BorderThickness="0" BorderBrush="Red" Margin="0,0,50,150" VerticalAlignment="Center" HorizontalAlignment="Right"></TextBox>
         
-        <Button Cursor="Hand" x:Name="Button_Register" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,60,50" Width="200" Height="45" Foreground="#f3f3f3" FontSize="20" FontWeight="DemiBold" Click="Button_RegisterUser_Click" IsDefault="True">
+        <Button Cursor="Hand" x:Name="Button_Register" IsEnabled="True" Visibility="Visible" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,60,50" Width="200" Height="45" Foreground="#f3f3f3" FontSize="20" FontWeight="DemiBold" Click="Button_RegisterUser_Click" IsDefault="True">
             <Button.Template >
                 <ControlTemplate TargetType="{x:Type Button}" >
                     <Border Background="#3F8C23"  CornerRadius="15">
                         <ContentPresenter Content="{x:Static p:Resources.UserRegister_Register_Button}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <Button Cursor="Hand" x:Name="Button_Modify" HorizontalAlignment="Right" Visibility="Hidden" VerticalAlignment="Bottom" Margin="0,0,60,50" Width="200" Height="45" Foreground="#f3f3f3" FontSize="20" FontWeight="DemiBold" Click="Button_ModifyUser_Click" IsDefault="True">
+            <Button.Template >
+                <ControlTemplate TargetType="{x:Type Button}" >
+                    <Border Background="#3F8C23"  CornerRadius="15">
+                        <ContentPresenter Content="Actualizar" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                 </ControlTemplate>
             </Button.Template>
@@ -91,5 +101,6 @@
             <TextBox x:Name="TextBox_References" FontSize="24" Margin="0,70,50,0"  VerticalAlignment="Center" Width="420" Height="35" Background="#5F5F5F" Opacity="0.7" BorderThickness="0" BorderBrush="Red" Foreground="White" VerticalContentAlignment="Center" HorizontalAlignment="Right"/>
             <Rectangle HorizontalAlignment="Center" Height="1" Margin="0,90,0,0" Stroke="White" VerticalAlignment="Top" Width="2000" StrokeThickness="10"/>
         </Grid>
+        <TextBox x:Name="Textbox_IdUser" HorizontalAlignment="Center" Margin="0,0,0,0" Visibility="Hidden" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>

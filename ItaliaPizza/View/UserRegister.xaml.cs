@@ -126,6 +126,12 @@ namespace View
         }
 
 
+        private void Button_ModifyUser_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Actualizado");
+        }
+
+
         private void Button_CancelRegisterUser_Click(object sender, RoutedEventArgs e)
         {
             var buttonPressed = MessageBox.Show("¿Desea cancelar el registro de usuario?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -308,5 +314,55 @@ namespace View
             TextBox_References.BorderThickness = new Thickness(0);
         }
 
+
+        public void SetModifyUserForm(User userToModify)
+        {
+            Button_Register.IsEnabled = false;
+            Button_Register.Visibility = Visibility.Hidden;
+
+            Button_Modify.IsEnabled = true;
+            Button_Modify.Visibility = Visibility.Visible;
+
+            Textbox_IdUser.Text = userToModify.IdUser.ToString();
+            TextBox_Name.Text = userToModify.Name;
+            TextBox_Lastname.Text = userToModify.Lastname;
+            TextBox_PhoneNumber.Text = userToModify.PhoneNumber;
+            TextBox_Email.Text = userToModify.Email;
+
+            if (userToModify.UserType.Equals("Trabajador"))
+            {
+                WorkerGrid.Visibility = Visibility.Visible;
+                ComboBox_UserType.IsEnabled= false;
+                ComboBox_UserType.SelectedIndex = 0;
+
+                Worker workerInfo = UserLogic.GetWorkerById(Int32.Parse(Textbox_IdUser.Text));
+
+                if (workerInfo != null)
+                {
+                    TextBox_NSS.Text = workerInfo.NSS;
+                    TextBox_RFC.Text = workerInfo.RFC;
+                    TextBox_WorkerNumber.Text = workerInfo.WorkerNumber;
+                    TextBox_Username.Text = workerInfo.Username;
+                    PasswordBox_Password.IsEnabled = false;
+                    ComboBox_WorkerType.SelectedIndex = ComboBox_WorkerType.Items.IndexOf(workerInfo.Role);
+                }
+            }
+            else if (userToModify.UserType.Equals("Cliente"))
+            {
+                CustomerGrid.Visibility = Visibility.Visible;
+                ComboBox_UserType.IsEnabled = false;
+                ComboBox_UserType.SelectedIndex = 1;
+
+                Address addressInfo = UserLogic.GetAddressByIdUser(Int32.Parse(Textbox_IdUser.Text));
+
+                if (addressInfo != null)
+                {
+                    TextBox_Street.Text = addressInfo.street;
+                }
+            }
+            
+        }
+
+        
     }
 }

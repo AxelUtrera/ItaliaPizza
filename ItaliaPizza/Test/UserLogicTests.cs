@@ -130,6 +130,7 @@ namespace Logic.Tests
             Assert.AreEqual(expectedResult, obtainedResult);
         }
 
+
         [TestMethod()]
         public void Test07_RegisterNewCustomer_SuccesfullTest()
         {
@@ -156,6 +157,16 @@ namespace Logic.Tests
             int obtainedResult = UserLogic.RegisterNewCustomer(userTest, addressTest);
 
             Assert.AreEqual(expectedResult, obtainedResult);
+        }
+
+
+        [TestMethod()]
+        public void Test08_RecoverActiveUsers_SuccesfulTest()
+        {
+            List<User> recoverUsers = new List<User>();
+            recoverUsers = UserLogic.RecoverActiveUsers();
+
+            Assert.IsNotNull(recoverUsers);
         }
 
         [TestMethod()]
@@ -193,13 +204,5 @@ namespace Logic.Tests
 
 	}
 
-        [TestMethod()]
-        public void Test08_RecoverActiveUsers_SuccesfulTest()
-        {
-            List<User> recoverUsers = new List<User>();
-            recoverUsers = UserLogic.RecoverActiveUsers();
-
-            Assert.IsNotNull(recoverUsers);
-        }
     }
 }

@@ -46,13 +46,17 @@ namespace View
         {
             if(UsersTable.SelectedItem != null)
             {
-                Console.WriteLine("Modificando Usuario");
+                var userToModify = UsersTable.SelectedItem as User;
+                UserRegister userRegister = new UserRegister();
+                userRegister.SetModifyUserForm(userToModify);
+                userRegister.Show();
             }
             else
             {
                 MessageBox.Show("Por favor, Seleccione un usuario", "", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
 
         private void Button_DeleteUser_Click(object sender, RoutedEventArgs e)
 		{
@@ -64,6 +68,7 @@ namespace View
 				if (statusCode == 200)
 				{
 					MessageBox.Show("Usuario eliminado correctamente.");
+                    RecoverActiveUsers();
 				}
 				else
 				{
@@ -76,10 +81,13 @@ namespace View
 			}
 		}
 
+
 		private void Button_Exit_Click(object sender, RoutedEventArgs e)
 		{
 			Close();
 		}
+
+
 		private void Textbox_SearchUsers_Input(object sender, TextChangedEventArgs e)
 		{
 			var searchText = sender as TextBox;

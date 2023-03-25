@@ -49,7 +49,7 @@ namespace Logic
 
 		public static int AddNewProduct(Product newProduct)
 		{
-			int responseCode;
+			int responseCode = 500;
 
 			using (var database = new ItaliaPizzaEntities())
 			{
@@ -72,8 +72,12 @@ namespace Logic
 						restrictions = newProduct.Restrictions,
 						active = newProduct.Active
 					});
-
-					responseCode = 200;
+					var productisSaved = database.SaveChanges();
+					if (productisSaved!=0)
+					{
+                        responseCode = 200;
+                    }
+					
 				}
 				catch (DbEntityValidationException ex)
 				{
@@ -86,8 +90,6 @@ namespace Logic
 							Console.WriteLine("- Property: {0}, Error: {1}", error.PropertyName, error.ErrorMessage);
 						}
 					}
-					
-					responseCode = 500;
 				}
 
 			}
