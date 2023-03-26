@@ -615,7 +615,7 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
     FROM [dbo].[orderProduct] AS [orderProduct]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="recipeIngredient" EntityType="Self.recipeIngredient" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
+            <DefiningQuery>SELECT
     [recipeIngredient].[idIngredient] AS [idIngredient], 
     [recipeIngredient].[idRecipe] AS [idRecipe], 
     [recipeIngredient].[quantity] AS [quantity]
