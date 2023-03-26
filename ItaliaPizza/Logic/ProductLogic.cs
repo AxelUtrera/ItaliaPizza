@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -131,12 +132,6 @@ namespace Logic
 			{
 				try
 				{
-					if (string.IsNullOrEmpty(newProduct.ProductCode))
-					{
-						string productCode = GenerateProductCode();
-						newProduct.ProductCode = productCode;
-					}
-
 					database.product.Add(new product
 					{
 						productName = newProduct.Name,
@@ -154,7 +149,32 @@ namespace Logic
                         responseCode = 200;
                     }
 
-                }
+					var recipe = database.recipe.Find(newProduct.IdRecipe);
+
+					if (recipe == null && recipe != database.recipe.Find(1))
+					{
+						recipe = new recipe
+						{
+							idRecipe = newProduct.IdRecipe,
+							description = "Producto preparado", 
+							recipeName = newProduct.Name,
+							active = newProduct.Active
+						};
+
+						database.recipe.Add(recipe);
+
+						Console.WriteLine("Producto agregado correctamente.");
+
+						Console.WriteLine("New recipe created.");
+					}
+
+					Console.WriteLine("Product added to database.");
+
+					database.SaveChanges();
+
+					responseCode = 200;
+
+				}
 				catch (DbEntityValidationException ex)
 				{
 					foreach (var validationError in ex.EntityValidationErrors)
@@ -166,18 +186,14 @@ namespace Logic
 							Console.WriteLine("- Property: {0}, Error: {1}", error.PropertyName, error.ErrorMessage);
 						}
 					}
-					
-				}
 
+					Console.WriteLine("Error al agregar producto.");
+					responseCode = 500;
+				}
 			}
 
 			return responseCode;
-
 		}
 
-		private static string GenerateProductCode()
-		{
-			return "PROD" + new Random().Next(1000, 9999);
-		}
 	}
 }

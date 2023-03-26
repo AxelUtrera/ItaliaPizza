@@ -62,6 +62,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -241,6 +242,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\addPizza.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\addPizza.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\AddImage.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\Background_EditProduct.jpg" />

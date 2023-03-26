@@ -18,9 +18,10 @@ namespace DataAccess
         public ItaliaPizzaEntities()
             : base("name=ItaliaPizzaEntities")
         {
-        }
-    
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+			this.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
+		}
+
+		protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }

@@ -14,31 +14,94 @@ namespace View
 		public AddProduct()
 		{
 			InitializeComponent();
+			string productCode = GenerateProductCode();
+			ProductCodeLabel.Content = productCode;
+		}
+
+		private string GenerateProductCode()
+		{
+			const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+			var random = new Random();
+			var result = new string(
+				Enumerable.Repeat(chars, 5)
+						  .Select(s => s[random.Next(s.Length)])
+						  .ToArray());
+			return result.Substring(0, 5);
 		}
 
 		private void AddProductButton_Click(object sender, RoutedEventArgs e)
 		{
-			Product newProduct = new Product()
-			{
-				Name = ProductNameTextBox.Text,
-				Description = DescriptionTextBox.Text,
-                ProductCode = ProductCodeTextBox.Text,
-                Price = Double.Parse(PriceTextBox.Text),
-				Preparation = PreparationComboBox.SelectedItem == "Coocked" && PreparationComboBox.SelectedItem != null,
-				Active = ActiveComboBox.SelectedItem == "Active" && ActiveComboBox.SelectedItem != null,
-				IdRecipe = 1,
-				Picture = GetPictureBytes(),
-				Restrictions = RestrictionsTextBox.Text,
-			};
+			string name = ProductNameTextBox.Text;
+			string productName = ProductNameTextBox.Text;
+			string description = DescriptionTextBox.Text;
+			string productCode = ProductCodeLabel.Content.ToString();
+			byte[] picture = GetPictureBytes();
 
-			if (ProductLogic.AddNewProduct(newProduct) == 200)
+			if (!double.TryParse(PriceTextBox.Text, out double price))
 			{
-				MessageBox.Show("Product added successfully!", "", MessageBoxButton.OK, MessageBoxImage.Information);
-				ClearInputFields();
+				MessageBox.Show("El campo Precio debe contener sólo números positivos.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+				return;
+			}
+
+			if (!(price < 0))
+			{
+				string restrictions = RestrictionsTextBox.Text;
+				string preparation2 = PreparationComboBox.SelectedItem?.ToString();
+				string active2 = ActiveComboBox.SelectedItem?.ToString();
+
+				if (preparation2 == null || active2 == null)
+				{
+					MessageBox.Show("Debe seleccionar una opción para los campos Preparación y Estado.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+					return;
+				}
+
+				bool active;
+				bool preparation;
+				int idRecipe;
+
+				if (active2 == "System.Windows.Controls.ComboBoxItem: Activo")
+				{
+					active = true;
+				}
+				else
+				{
+					active = false;
+				}
+
+				if (preparation2 == "System.Windows.Controls.ComboBoxItem: Sí")
+				{
+					preparation = true;
+					idRecipe = new Random().Next(2, 100);
+				}
+				else
+				{
+					preparation = false;
+					idRecipe = 1;
+				}
+
+				Product newProduct = new Product(name, description, productCode, picture, price, preparation, productName, restrictions, idRecipe, active);
+
+				if (string.IsNullOrEmpty(ProductNameTextBox.Text) || string.IsNullOrEmpty(DescriptionTextBox.Text) || string.IsNullOrEmpty(PriceTextBox.Text) || PreparationComboBox.SelectedItem == null || ActiveComboBox.SelectedItem == null)
+				{
+					MessageBox.Show("Debe completar todos los campos para agregar un nuevo producto.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+					return;
+				}
+
+				if (ProductLogic.AddNewProduct(newProduct) == 200 && !(price < 0))
+				{
+					MessageBox.Show("Producto agregado correctamente!", "", MessageBoxButton.OK, MessageBoxImage.Information);
+					ClearInputFields();
+					Close();
+				}
+				else
+				{
+					MessageBox.Show("Error al agregar producto!");
+				}
 			}
 			else
 			{
-				MessageBox.Show("Error adding product!");
+				Console.WriteLine("Invalid Price.");
+				MessageBox.Show("Precio inválido.", "", MessageBoxButton.OK, MessageBoxImage.Information);
 			}
 		}
 
@@ -80,7 +143,7 @@ namespace View
 		private void ClearInputFields()
 		{
 			ProductNameTextBox.Clear();
-			ProductCodeTextBox.Clear();
+			ProductCodeLabel.Content = "";
 			DescriptionTextBox.Clear();
 			PriceTextBox.Clear();
 			PreparationComboBox.SelectedIndex = -1;
@@ -91,7 +154,20 @@ namespace View
 
 		private void CancelAddProductButton_Click(object sender, RoutedEventArgs e)
 		{
-			MessageBox.Show("¿Está seguro de cancelar el registro del nuevo producto?", "", MessageBoxButton.OK, MessageBoxImage.Information);
+			MessageBoxResult result = MessageBox.Show("¿Está seguro de cancelar el registro del nuevo producto?", "", MessageBoxButton.YesNo, MessageBoxImage.Information);
+
+			if (result == MessageBoxResult.Yes)
+			{
+				Close();
+			}
+			else
+			{
+
+			}
+		}
+
+		private void CloseButton_Click(object sender, RoutedEventArgs e)
+		{
 			Close();
 		}
 	}
