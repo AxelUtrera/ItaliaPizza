@@ -37,28 +37,28 @@
 					<Rectangle HorizontalAlignment="Left" Height="810" Stroke="Black" VerticalAlignment="Top" Width="1440" Fill="#A5000000"/>
 
 					<Label Content="Nombre:" Margin="80,171,1206,566" OpacityMask="Black" Foreground="#FFFFFEFE" FontSize="18" FontWeight="Bold" />
-					<TextBox x:Name="ProductNameTextBox" Margin="80,206,1048,534" BorderBrush="{x:Null}" Background="#7FFFFFFF" FontSize="20" />
-
+					<TextBox x:Name="ProductNameTextBox" Margin="80,206,1048,534" BorderBrush="{x:Null}" Background="#7FFFFFFF" FontSize="20" Width="312" Height="70" TextWrapping="Wrap" />
+					
 					<Label Content="Código:" Margin="80,413,1207,290" Background="{x:Null}" Foreground="#FFFFFEFE" FontSize="18" FontWeight="Bold" />
-					<Label x:Name="ProductCodeLabel" Content="" IsEnabled="False" HorizontalAlignment="Left" Margin="80,450,0,0" VerticalAlignment="Top" Width="312" Height="54" Background="#7FFFFFFF" Foreground="Black" FontSize="20" FontWeight="Bold"/>
+					<Label x:Name="ProductCodeLabel" Content="" IsEnabled="False" HorizontalAlignment="Left" Margin="80,450,0,0" VerticalAlignment="Top" Width="312" Height="70" Background="#7FFFFFFF" Foreground="Black" FontSize="20" FontWeight="Bold"/>
 
 					<Label Content="Descripción:" Margin="513,470,795,300" OpacityMask="Black" Background="{x:Null}" Foreground="#FFFFFEFE" FontSize="18" FontWeight="Bold" />
-					<TextBox x:Name="DescriptionTextBox" Margin="513,510,530,37" BorderBrush="{x:Null}" Background="#7FFFFFFF" FontSize="20" />
-
+					<TextBox x:Name="DescriptionTextBox" Margin="513,510,530,37" BorderBrush="{x:Null}" Background="#7FFFFFFF" FontSize="20" Width="397" Height="263" Grid.ColumnSpan="1" TextWrapping="Wrap" />
+					
 					<Label Content="Precio:" Margin="80,299,1241,409" OpacityMask="Black" Foreground="#FFFFFEFE" FontSize="18" FontWeight="Bold" />
-					<TextBox x:Name="PriceTextBox" Margin="80,331,1048,409" BorderBrush="{x:Null}" Background="#7FFFFFFF" FontSize="20" />
-
+					<TextBox x:Name="PriceTextBox" Margin="80,331,1048,409" BorderBrush="{x:Null}" Background="#7FFFFFFF" FontSize="20" Width="312" Height="70" TextWrapping="Wrap" />
+					
 					<Label Content="Preparación" Margin="513,299,767,431" Foreground="White" FontSize="18" FontWeight="Bold" />
-					<ComboBox x:Name="PreparationComboBox" Margin="513,336,693,404">
+					<ComboBox x:Name="PreparationComboBox" Margin="513,336,693,404" FontSize="24">
 						<ComboBoxItem Content="Sí"/>
 						<ComboBoxItem Content="No"/>
 					</ComboBox>
 
 					<Label Content="Restricciones:" Margin="80,534,1162,174" OpacityMask="Black" Foreground="#FFFFFEFE" FontSize="18" FontWeight="Bold" />
-					<TextBox x:Name="RestrictionsTextBox" Margin="80,571,1048,37" BorderBrush="{x:Null}" Background="#7FFFFFFF" FontSize="20" />
-
+					<TextBox x:Name="RestrictionsTextBox" Margin="80,571,1048,37" BorderBrush="{x:Null}" Background="#7FFFFFFF" FontSize="20" Width="312" Height="202" TextWrapping="Wrap" />
+					
 					<Label Content="Estado:" Margin="513,161,805,542" OpacityMask="Black" Foreground="#FFFFFEFE" FontSize="18" FontWeight="Bold" />
-					<ComboBox x:Name="ActiveComboBox" Margin="513,198,693,542" Background="White">
+					<ComboBox x:Name="ActiveComboBox" Margin="513,198,693,542" Background="White" FontSize="24">
 						<ComboBoxItem Content="Activo"/>
 						<ComboBoxItem Content="Inactivo"/>
 					</ComboBox>
