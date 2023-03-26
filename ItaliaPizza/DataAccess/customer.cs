@@ -18,9 +18,7 @@ namespace DataAccess
         public customer()
         {
             this.address = new HashSet<address>();
-            this.address1 = new HashSet<address>();
             this.deliveryOrder = new HashSet<deliveryOrder>();
-            this.deliveryOrder1 = new HashSet<deliveryOrder>();
         }
     
         public int idCustomer { get; set; }
@@ -28,13 +26,8 @@ namespace DataAccess
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<address> address { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<address> address1 { get; set; }
         public virtual users users { get; set; }
-        public virtual users users1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<deliveryOrder> deliveryOrder { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<deliveryOrder> deliveryOrder1 { get; set; }
     }
 }

@@ -34,12 +34,11 @@ namespace DataAccess
         public virtual DbSet<orders> orders { get; set; }
         public virtual DbSet<product> product { get; set; }
         public virtual DbSet<recipe> recipe { get; set; }
+        public virtual DbSet<recipeIngredient> recipeIngredient { get; set; }
         public virtual DbSet<supplier> supplier { get; set; }
         public virtual DbSet<supplierOrder> supplierOrder { get; set; }
         public virtual DbSet<users> users { get; set; }
         public virtual DbSet<worker> worker { get; set; }
-        public virtual DbSet<orderProduct> orderProduct { get; set; }
-        public virtual DbSet<recipeIngredient> recipeIngredient { get; set; }
         public virtual DbSet<supplierIngredient> supplierIngredient { get; set; }
         public virtual DbSet<supplierProduct> supplierProduct { get; set; }
     }

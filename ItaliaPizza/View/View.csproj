@@ -83,8 +83,20 @@
     <Compile Include="AddProduct.xaml.cs">
       <DependentUpon>AddProduct.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DeleteRecipe.xaml.cs">
+      <DependentUpon>DeleteRecipe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditRecipe.xaml.cs">
+      <DependentUpon>EditRecipe.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Products.xaml.cs">
       <DependentUpon>Products.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RecordRecipe.xaml.cs">
+      <DependentUpon>RecordRecipe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SeeRecipe.xaml.cs">
+      <DependentUpon>SeeRecipe.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserRegister.xaml.cs">
       <DependentUpon>UserRegister.xaml</DependentUpon>
@@ -96,6 +108,14 @@
       <DependentUpon>UsersView.xaml</DependentUpon>
     </Compile>
     <Page Include="AddProduct.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DeleteRecipe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditRecipe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -118,6 +138,14 @@
     <Page Include="Products.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RecordRecipe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SeeRecipe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserRegister.xaml">
       <SubType>Designer</SubType>
@@ -234,6 +262,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\addPizza.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\RecipesView.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

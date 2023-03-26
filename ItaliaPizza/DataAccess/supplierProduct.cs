@@ -19,8 +19,6 @@ namespace DataAccess
         public double quantity { get; set; }
     
         public virtual product product { get; set; }
-        public virtual product product1 { get; set; }
         public virtual supplierOrder supplierOrder { get; set; }
-        public virtual supplierOrder supplierOrder1 { get; set; }
     }
 }

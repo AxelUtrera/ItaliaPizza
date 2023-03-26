@@ -18,9 +18,7 @@ namespace DataAccess
         public recipe()
         {
             this.product = new HashSet<product>();
-            this.product1 = new HashSet<product>();
             this.recipeIngredient = new HashSet<recipeIngredient>();
-            this.recipeIngredient1 = new HashSet<recipeIngredient>();
         }
     
         public int idRecipe { get; set; }
@@ -31,10 +29,6 @@ namespace DataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<product> product { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<product> product1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<recipeIngredient> recipeIngredient { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<recipeIngredient> recipeIngredient1 { get; set; }
     }
 }
