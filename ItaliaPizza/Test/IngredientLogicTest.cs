@@ -4,6 +4,7 @@ using Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 
 namespace Logic.Tests
 {
@@ -42,17 +43,19 @@ namespace Logic.Tests
         [TestMethod]
         public void Test04_RegistRecipeIngredients_SuccessfulTes()
         {
-            int idRecipe = 1;
             Recipe recipe= new Recipe();
-            List<Ingredient> ingredientsSelected = new List<Ingredient>();
-            Ingredient ingredient = new Ingredient();
-            for (int i=1; i<=4; i++)
+            List<Ingredient> ingredientsSelected = new List<Ingredient>();            
+            for (int i=12; i<=21; i++)
             {
-                ingredient.IngredientName = "Test"+i;
-                ingredient.Quantity = i;
-                ingredient.IdIngredient = i;
+                var ingredient = new Ingredient()
+                {                    
+                    Quantity = i,
+                    IdIngredient = i
+                };                
                 ingredientsSelected.Add(ingredient);
             };
+            recipe.Ingredients = ingredientsSelected;
+            recipe.IdRecipe = 1;
             Assert.IsTrue(IngredientLogic.RegistRecipeIngredients(recipe));
             
         }
@@ -60,22 +63,55 @@ namespace Logic.Tests
         [TestMethod]
         public void Test05_RegistRecipeIngredients_NotValidTest()
         {
-            int idRecipe = 0;
-            Recipe recipe= new Recipe();
+            Recipe recipe = new Recipe();
             List<Ingredient> ingredientsSelected = new List<Ingredient>();
-            Ingredient ingredient = new Ingredient();
-            for (int i = 1; i <= 4; i++)
+            for (int i = 12; i <= 21; i++)
             {
-                ingredient.IngredientName = "Test" + i;
-                ingredient.Quantity = i;
+                var ingredient = new Ingredient()
+                {
+                    IngredientName = "Test" + i,
+                    Quantity = i,
+                    IdIngredient = i
+                };
                 ingredientsSelected.Add(ingredient);
             };
-            Assert.IsFalse(IngredientLogic.RegistRecipeIngredients(recipe));
+            recipe.Ingredients = ingredientsSelected;
+            recipe.IdRecipe = 0;
+            Assert.IsFalse(IngredientLogic.RegistRecipeIngredients(recipe));            
         }
+
         [TestMethod]
-        public void Test06_DeleteRecipeIngredients_Successfully()
+        public void Test06_GetRecipeIngredients_Succesfully()
         {
-            IngredientLogic.DeleteRecipeIngredients(4);
+            List<Ingredient> recipeIngrediens = new List<Ingredient>();
+            for (int i = 12; i <= 21; i++)
+            {
+                var ingredient = new Ingredient()
+                {        
+                    IngredientName="Test",
+                    Quantity = i,
+                    IdIngredient = i                    
+                };
+                recipeIngrediens.Add(ingredient);
+                MessageBox.Show(ingredient.IngredientName + ingredient.Quantity + ingredient.IdIngredient);
+            };
+            Assert.IsTrue(IngredientLogic.GetRecipeIngredients(1).Count==recipeIngrediens.Count);
+        }
+
+        [TestMethod]
+        public void Test07_GetRecipeIngredients_NotValidTest()
+        {
+            Assert.IsFalse(IngredientLogic.GetRecipeIngredients(1).Count == 0);
+        }
+
+        [TestMethod]
+        public void Test08_DeleteRecipeIngredients_Successfully()
+        {
+            Assert.IsTrue(IngredientLogic.DeleteRecipeIngredients(1));
+        }
+        public void Test09_DeleteRecipeIngredients_NotValidTest()
+        {
+            Assert.IsFalse(IngredientLogic.DeleteRecipeIngredients(0));
         }
     }
 }

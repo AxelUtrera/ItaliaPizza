@@ -99,9 +99,9 @@ namespace Logic
                     response = true;
                     
                 }
-            }catch (SqlException ex)
+            }catch (Exception)
             {                
-                throw ex;
+                response = false;
             }
             
             return response;
@@ -117,14 +117,15 @@ namespace Logic
                     context.recipeIngredient.RemoveRange(foundRecipeIngredients);
                     context.SaveChanges();
                 }
-                return response;
+                response= true;
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-                return response;
+                //MessageBox.Show(ex.Message);
+                
             }
+            return response;
         }
         public static List<Ingredient> GetRecipeIngredients(int idRecipe)
         {
@@ -143,6 +144,7 @@ namespace Logic
                             Quantity = aux.quantity
                         };
                         ingredients.Add(ingredient);
+                        MessageBox.Show(ingredient.IngredientName + ingredient.Quantity + ingredient.IdIngredient);
                     }
                 }
             }

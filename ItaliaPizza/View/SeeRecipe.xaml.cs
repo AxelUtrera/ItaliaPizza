@@ -27,19 +27,21 @@ namespace View
             InitializeComponent();
             recipes = new List<Recipe>();
             selectedIngredients = new List<Ingredient>();
-            setRecipeToComboBox();
+            SetRecipeToComboBox();
         }
 
         private void ComboBoxTituloSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Recipe recipe = new Recipe();
-            recipe = ComboBox_Recipes.SelectedItem as Recipe;
+            _ = new Recipe();
+            Recipe recipe = ComboBox_Recipes.SelectedItem as Recipe;
             selectedIngredients = Logic.IngredientLogic.GetRecipeIngredients(recipe.IdRecipe);
             ListBox_SelectedIngredients.ItemsSource = selectedIngredients;
-            TextRange textRange = new TextRange(RichTextBox_Description.Document.ContentStart, RichTextBox_Description.Document.ContentEnd);
-            textRange.Text = recipe.DescriptionRecipe;
+            _ = new TextRange(RichTextBox_Description.Document.ContentStart, RichTextBox_Description.Document.ContentEnd)
+            {
+                Text = recipe.DescriptionRecipe
+            };
         }
-        public void setRecipeToComboBox()
+        public void SetRecipeToComboBox()
         {
             recipes = Logic.RecipeLogic.GetRecipes();
             ComboBox_Recipes.ItemsSource = recipes;

@@ -152,11 +152,13 @@ namespace Logic
                     {
                         foreach (var aux in foundRecipes)
                         {
-                            Recipe recipe = new Recipe();
-                            recipe.IdRecipe = aux.idRecipe;
-                            recipe.NameRecipe = aux.recipeName;
-                            recipe.DescriptionRecipe = aux.description;
-                            recipe.IsActive = aux.active;
+                            Recipe recipe = new Recipe
+                            {
+                                IdRecipe = aux.idRecipe,
+                                NameRecipe = aux.recipeName,
+                                DescriptionRecipe = aux.description,
+                                IsActive = aux.active
+                            };
 
                             recipes.Add(recipe);
                         }
@@ -188,7 +190,7 @@ namespace Logic
             }
             catch (DbUpdateException ex)
             {
-                MessageBox.Show(ex.ToString(), "Error");
+                throw new DbUpdateException(ex.ToString());
             }
             return id;
         }
