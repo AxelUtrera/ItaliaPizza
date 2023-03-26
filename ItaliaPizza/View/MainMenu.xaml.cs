@@ -57,8 +57,8 @@ namespace View
 
         private void Button_User_Click(object sender, MouseButtonEventArgs e)
         {
-            UsersMenu usersMenu = new UsersMenu();
-            usersMenu.Show();
+            UsersView usersView = new UsersView();
+            usersView.Show();
         }
     }
 }

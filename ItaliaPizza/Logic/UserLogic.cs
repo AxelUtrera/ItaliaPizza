@@ -2,6 +2,7 @@
 using Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Core;
 using System.Linq;
 using System.Net;
@@ -74,7 +75,8 @@ namespace Logic
         }
 
 
-        public static User getUserById(int idUser)
+
+        public static User GetUserById(int idUser)
         {
             User userFound = new User();
 
@@ -101,6 +103,8 @@ namespace Logic
             }
             return userFound;
 
+        }
+
 
         public static Model.Worker GetWorkerById(int idUser)
         {
@@ -110,7 +114,7 @@ namespace Logic
             {
                 using (var database = new ItaliaPizzaEntities())
                 {
-                    
+
                     worker worker = database.worker.Where(x => x.idUser == idUser).First();
 
                     if (worker != null)
@@ -133,6 +137,7 @@ namespace Logic
 
         }
 
+
         public static Model.Address GetAddressByIdUser(int idUser)
         {
             Model.Address addressObtained = new Address();
@@ -141,9 +146,9 @@ namespace Logic
             {
                 using (var database = new ItaliaPizzaEntities())
                 {
-                    int idCustomer = (from Customer in database.customer where Customer.idUser== idUser select Customer.idCustomer).First();
+                    int idCustomer = (from Customer in database.customer where Customer.idUser == idUser select Customer.idCustomer).First();
 
-                    if(idCustomer != 0)
+                    if (idCustomer != 0)
                     {
                         address address = database.address.Where(x => x.idCustomer == idCustomer).First();
 
@@ -157,7 +162,7 @@ namespace Logic
                     }
                 }
             }
-            catch(ArgumentException e)
+            catch (ArgumentException e)
             {
 
             }
@@ -165,7 +170,6 @@ namespace Logic
             return addressObtained;
         }
 
-        }
         public static int RegisterNewWorker(User user, Worker worker)
         {
             int statusCode = 500;
@@ -291,6 +295,108 @@ namespace Logic
 
             return statusCode;
         }
+
+
+        public static int ModifyWorker(User updatedUser, Worker updatedWorker)
+        {
+            int statusCode = 500;
+            int resultObtained;
+
+            try
+            {
+                using (var database = new ItaliaPizzaEntities())
+                {
+                    var modifyUser = database.users.First(i => i.idUser == updatedUser.IdUser);
+                    if (modifyUser != null)
+                    {
+                        modifyUser.email = updatedUser.Email;
+                        modifyUser.name = updatedUser.Name;
+                        modifyUser.lastname = updatedUser.Lastname;
+                        modifyUser.phoneNumber = updatedUser.PhoneNumber;
+                    }
+                    resultObtained = database.SaveChanges();
+                    if (resultObtained != 0)
+                    {
+                        statusCode = 200;
+                    }
+
+                    var modifyWorker = database.worker.First(i => i.idUser == updatedUser.IdUser);
+                    if(modifyWorker != null)
+                    {
+                        modifyWorker.username = updatedWorker.Username;
+                        modifyWorker.nss = updatedWorker.NSS;
+                        modifyWorker.rfc = updatedWorker.RFC;
+                        modifyWorker.role = updatedWorker.Role;
+                        modifyWorker.workerNumber = updatedWorker.WorkerNumber;
+                    }
+                    resultObtained = database.SaveChanges();
+                    if (resultObtained != 0)
+                    {
+                        statusCode = 200;
+                    }
+                }
+            }
+            catch (ArgumentException)
+            {
+                statusCode = 500;
+            }
+
+            return statusCode;
+        }
+
+
+        public static int ModifyCustomer(User updatedUser, Address updatedAddress)
+        {
+            int statusCode = 500;
+            int resultObtained;
+
+            try
+            {
+                using (var database = new ItaliaPizzaEntities())
+                {
+                    var idCustomer = (from Customer in database.customer where Customer.idUser.Equals(updatedUser.IdUser) select Customer.idCustomer).First();
+
+                    var modifyUser = database.users.First(i => i.idUser == updatedUser.IdUser);
+                    if (modifyUser != null)
+                    {
+                        modifyUser.email = updatedUser.Email;
+                        modifyUser.name = updatedUser.Name;
+                        modifyUser.lastname = updatedUser.Lastname;
+                        modifyUser.phoneNumber = updatedUser.PhoneNumber;
+                    }
+                    resultObtained = database.SaveChanges();
+                    if (resultObtained != 0)
+                    {
+                        statusCode = 200;
+                    }
+
+                    var modifyAddress = database.address.First(i => i.idCustomer == idCustomer);
+                    if (modifyAddress != null)
+                    {
+                        modifyAddress.street = updatedAddress.street;
+                        modifyAddress.number = updatedAddress.number;
+                        modifyAddress.city = updatedAddress.city;
+                        modifyAddress.zipcode = updatedAddress.zipcode;
+                        modifyAddress.neighborhood = updatedAddress.neighborhood;
+                        modifyAddress.instructions = updatedAddress.instructions;
+                    }
+
+                    resultObtained = database.SaveChanges();
+                    if (resultObtained != 0)
+                    {
+                        statusCode = 200;
+                    }
+                }
+            }
+            catch(ArgumentException e)
+            {
+                statusCode = 500;
+            }
+
+            return statusCode;
+        }
+
+
 
         public static List<User> RecoverActiveUsers()
         {

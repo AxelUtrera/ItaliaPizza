@@ -33,7 +33,7 @@ namespace View
         Regex rfcFormat = new Regex("^[A-z0-9]{13,13}$");
         Regex usernameFormat = new Regex("^[a-zA-Z0-9]{4,16}$");
         Regex passwordFormat = new Regex("^[0-9]{6,6}$");
-        Regex stringFormat = new Regex("^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]{1,30}$");
+        Regex stringFormat = new Regex("^.{1,50}$");
         Regex streetFormat = new Regex("^.{1,50}$");
         Regex referencesFormat = new Regex("^.{1,100}$");
 
@@ -45,6 +45,36 @@ namespace View
 
 
         private void Button_RegisterUser_Click(object sender, RoutedEventArgs e)
+        {
+            AddModifyUser("Registrar");
+        }
+
+
+        private void Button_ModifyUser_Click(object sender, RoutedEventArgs e)
+        {
+            AddModifyUser("Modificar");
+        }
+
+
+        private void Button_CancelRegisterUser_Click(object sender, RoutedEventArgs e)
+        {
+            var buttonPressed = MessageBox.Show("¿Desea cancelar el registro de usuario?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if(buttonPressed == MessageBoxResult.Yes)
+            {
+                OpenUsersView();
+                Close();
+            }
+        }
+
+
+        private void Button_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            OpenUsersView();
+            Close();
+        }
+
+        private void AddModifyUser(string operationToDO)
         {
             ResetFields();
             if (ValidateFields())
@@ -68,7 +98,6 @@ namespace View
                 {
                     if (ValidateWorkerFields())
                     {
-                        Console.WriteLine("Campos trabajador validos");
                         string nss = TextBox_NSS.Text;
                         string rfc = TextBox_RFC.Text;
                         string workerNumber = TextBox_WorkerNumber.Text;
@@ -86,12 +115,30 @@ namespace View
                             Role = workerType
                         };
 
-                        if (UserLogic.RegisterNewWorker(newUser, newWorker) == 200)
+                        if (operationToDO.Equals("Registrar"))
                         {
-                            MessageBox.Show(itemsResource.GetString("UserRegister_WorkerSuccesfull_Message"), "", MessageBoxButton.OK, MessageBoxImage.Information);
-                            Close();
+                            if (UserLogic.RegisterNewWorker(newUser, newWorker) == 200)
+                            {
+                                MessageBox.Show(itemsResource.GetString("UserRegister_WorkerSuccesfull_Message"), "", MessageBoxButton.OK, MessageBoxImage.Information);
+                                OpenUsersView();
+                                Close();
+                            }
                         }
-                        
+                        else if (operationToDO.Equals("Modificar"))
+                        {
+                            newUser.IdUser = Int32.Parse(Textbox_IdUser.Text);
+                            if(UserLogic.ModifyWorker(newUser, newWorker) == 200)
+                            {
+                                MessageBox.Show("Usuario modificado con éxito", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                                OpenUsersView();
+                                Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Sin cambios en la infomacion", "", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
+                            
+                        }
                     }
                 }
                 else if (userTypeSelected.Equals(itemsResource.GetString("UserRegister_Customer_UserType")))
@@ -115,39 +162,33 @@ namespace View
                             instructions = references
                         };
 
-                        if (UserLogic.RegisterNewCustomer(newUser, newAddress) == 200)
+                        if (operationToDO.Equals("Registrar"))
                         {
-                            MessageBox.Show(itemsResource.GetString("UserRegister_CustomerSuccesfull_Message"), "", MessageBoxButton.OK, MessageBoxImage.Information);
-                            Close();
+                            if (UserLogic.RegisterNewCustomer(newUser, newAddress) == 200)
+                            {
+                                MessageBox.Show(itemsResource.GetString("UserRegister_CustomerSuccesfull_Message"), "", MessageBoxButton.OK, MessageBoxImage.Information);
+                                OpenUsersView();
+                                Close();
+                            }
+                        }
+                        else if (operationToDO.Equals("Modificar"))
+                        {
+                            newUser.IdUser = Int32.Parse(Textbox_IdUser.Text);
+                            if (UserLogic.ModifyCustomer(newUser, newAddress) == 200)
+                            {
+                                MessageBox.Show("Usuario modificado con éxito", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                                OpenUsersView();
+                                Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Sin cambios en la infomacion", "", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
                         }
                     }
                 }
             }
         }
-
-
-        private void Button_ModifyUser_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Actualizado");
-        }
-
-
-        private void Button_CancelRegisterUser_Click(object sender, RoutedEventArgs e)
-        {
-            var buttonPressed = MessageBox.Show("¿Desea cancelar el registro de usuario?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-            if(buttonPressed == MessageBoxResult.Yes)
-            {
-                Close();
-            }
-        }
-
-
-        private void Button_Exit_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
 
         private void UserData(object sender, SelectionChangedEventArgs e)
         {
@@ -218,6 +259,7 @@ namespace View
             return valid;
         }
 
+
         private bool ValidateWorkerFields()
         {
             bool isValid = true;
@@ -255,6 +297,7 @@ namespace View
 
             return isValid;
         }
+
 
         private bool ValidateCustomerFields()
         {
@@ -294,6 +337,7 @@ namespace View
             return isValid;
         }
 
+
         private void ResetFields()
         {
             ComboBox_UserType.BorderThickness = new Thickness(0);
@@ -317,6 +361,7 @@ namespace View
 
         public void SetModifyUserForm(User userToModify)
         {
+
             Button_Register.IsEnabled = false;
             Button_Register.Visibility = Visibility.Hidden;
 
@@ -328,6 +373,7 @@ namespace View
             TextBox_Lastname.Text = userToModify.Lastname;
             TextBox_PhoneNumber.Text = userToModify.PhoneNumber;
             TextBox_Email.Text = userToModify.Email;
+
 
             if (userToModify.UserType.Equals("Trabajador"))
             {
@@ -343,10 +389,13 @@ namespace View
                     TextBox_RFC.Text = workerInfo.RFC;
                     TextBox_WorkerNumber.Text = workerInfo.WorkerNumber;
                     TextBox_Username.Text = workerInfo.Username;
+                    TextBox_Username.IsEnabled = false;
+                    PasswordBox_Password.Password = "111111";
                     PasswordBox_Password.IsEnabled = false;
                     ComboBox_WorkerType.SelectedIndex = ComboBox_WorkerType.Items.IndexOf(workerInfo.Role);
                 }
             }
+
             else if (userToModify.UserType.Equals("Cliente"))
             {
                 CustomerGrid.Visibility = Visibility.Visible;
@@ -358,11 +407,20 @@ namespace View
                 if (addressInfo != null)
                 {
                     TextBox_Street.Text = addressInfo.street;
+                    TextBox_City.Text = addressInfo.city;
+                    TextBox_Colony.Text = addressInfo.neighborhood;
+                    TextBox_References.Text = addressInfo.instructions;
+                    TextBox_Zipcode.Text = addressInfo.zipcode;
+                    TextBox_Number.Text = addressInfo.number;
                 }
             }
-            
         }
 
-        
+        private void OpenUsersView()
+        {
+            UsersView usersView = new UsersView();
+            usersView.Show();
+        }
+
     }
 }

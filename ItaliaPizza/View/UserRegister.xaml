@@ -24,7 +24,7 @@
         <TextBox x:Name="TextBox_Lastname" Width="420" Height="35" Background="#5F5F5F" Opacity="0.7" Foreground="White" FontSize="24" BorderThickness="0" BorderBrush="Red" Margin="0,200,50,0" VerticalAlignment="Top" HorizontalAlignment="Right"></TextBox>
         <Label Content="{x:Static p:Resources.UserRegister_PhoneNumber_Label}" Margin="30,0,0,230" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="26" Foreground="White"></Label>
         <TextBox x:Name="TextBox_PhoneNumber" Width="650" Height="35" Background="#5F5F5F" Opacity="0.7" Foreground="White" FontSize="24" BorderThickness="0" BorderBrush="Red" Margin="30,0,0,150" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBox>
-        <Label Content="{x:Static p:Resources.UserRegister_Email_Label}" Margin="270,0,0,230" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="26"></Label>
+        <Label Content="{x:Static p:Resources.UserRegister_Email_Label}" Margin="0,0,470,230" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" FontSize="26"></Label>
         <TextBox x:Name="TextBox_Email" Width="650" Height="35" Background="#5F5F5F" Opacity="0.7" Foreground="White" FontSize="24" BorderThickness="0" BorderBrush="Red" Margin="0,0,50,150" VerticalAlignment="Center" HorizontalAlignment="Right"></TextBox>
         
         <Button Cursor="Hand" x:Name="Button_Register" IsEnabled="True" Visibility="Visible" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,60,50" Width="200" Height="45" Foreground="#f3f3f3" FontSize="20" FontWeight="DemiBold" Click="Button_RegisterUser_Click" IsDefault="True">
@@ -79,6 +79,7 @@
             <TextBox x:Name="TextBox_Username" Width="420" Height="35" Background="#5F5F5F" Opacity="0.7" Foreground="White" FontSize="24" BorderThickness="0" BorderBrush="Red" Margin="30,70,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBox>
             <Label Content="{x:Static p:Resources.UserRegister_Password_Label}" FontSize="26" Foreground="White" Margin="0,0,300,10" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
             <PasswordBox Name="PasswordBox_Password" VerticalContentAlignment="Center" Opacity=".7" Background="#5F5F5F" BorderThickness="0" BorderBrush="Red" HorizontalAlignment="Center" Margin="0,70,25,0" Width="420" Height="35" Foreground="#f3f3f3" FontSize="24"></PasswordBox>
+            <Label Content="La contraseña debe tener 6 números" Margin="0,0,190,140" Foreground="White" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center"></Label>
             <Label Content="{x:Static p:Resources.UserRegister_WorkerType_Label}" Foreground="White" FontSize="26" Margin="0,0,240,10" HorizontalAlignment="Right" VerticalAlignment="Center"></Label>
             <ComboBox x:Name="ComboBox_WorkerType" FontSize="24" Margin="0,70,50,0"  VerticalAlignment="Center" Width="420" Height="35" Background="#5F5F5F" Opacity="0.7" BorderThickness="0" BorderBrush="Red"  Foreground="Black" VerticalContentAlignment="Center" HorizontalAlignment="Right"/>
             <Rectangle HorizontalAlignment="Center" Height="1" Margin="0,90,0,0" Stroke="White" VerticalAlignment="Top" Width="2000" StrokeThickness="10"/>

@@ -10,8 +10,39 @@
         WindowState="Maximized"
         WindowStyle="None"
         Title="UsersView" Height="810" Width="1440">
-    
+
+    <Window.Resources>
+        <Style TargetType="{x:Type DataGrid}">
+            <Setter Property="Background" Value="#0a0a0a"/>
+            <Setter Property="RowBackground" Value="#0a0a0a"/>
+            <Setter Property="BorderBrush" Value="#0a0a0a"/>
+            <Setter Property="FontWeight" Value="light"/>
+            <Setter Property="Foreground" Value="#f3f3f3"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="Background" Value="#0a0a0a" />
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,0,0,30"/>
+        </Style>
+
+        <Style BasedOn="{StaticResource {x:Type DataGridCellsPresenter}}" TargetType="{x:Type DataGridCellsPresenter}">
+            <Setter Property="Margin" Value="0,0,0,15"/>
+        </Style>
+
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Foreground" Value="#ffffff"></Setter>
+        </Style>
+
+        <SolidColorBrush x:Key="WhiteGridLine" Color="White" />
+    </Window.Resources>
+
     <Grid Background="Black">
+        
         <Image Source="/Img/UsersView_Background.jpg" Stretch="UniformToFill" Opacity="0.3">
             <Image.Effect>
                 <BlurEffect Radius="1"/>
@@ -19,10 +50,20 @@
         </Image>
 
         <Label Content="Buscar:" Foreground="White" FontSize="24" Margin="180,90,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
-        <TextBox x:Name="TextBox_Email" Width="900" Height="35" Background="#5F5F5F" Opacity="0.7" Foreground="White" FontSize="24" BorderThickness="0" Margin="0,100,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" TextChanged="Textbox_SearchUsers_Input"/>
+        <TextBox x:Name="TextBox_Search" Width="900" Height="35" Background="#5F5F5F" Opacity="0.7" Foreground="White" FontSize="24" BorderThickness="0" Margin="0,100,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" TextChanged="Textbox_SearchUsers_Input"/>
+        <Button Width="50" Click="Button_UserRegister_Click" Cursor="Hand" Height="50" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,90,200,0">
+            <Button.Template>
+                <ControlTemplate  TargetType="Button">
+                    <Border Background="#55B633" CornerRadius="30">
+                        <Image Source="/Img/Icon_AddNew.png" Width="40" Height="40"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
 
         <Border Background="White" Opacity="0.5" Height="500" Width="1300" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0">
-            <DataGrid Name="UsersTable"  AutoGenerateColumns="False" FontSize="20" ColumnWidth="*" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True">
+
+            <DataGrid Name="UsersTable"  AutoGenerateColumns="False" FontSize="20" ColumnWidth="*" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" VerticalGridLinesBrush="{StaticResource WhiteGridLine}" HorizontalGridLinesBrush="{StaticResource WhiteGridLine}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Nombre" Binding="{Binding Name}" />
                     <DataGridTextColumn Header="Apellido" Binding="{Binding Lastname}"/>

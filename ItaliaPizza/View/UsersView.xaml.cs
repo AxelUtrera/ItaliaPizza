@@ -50,6 +50,7 @@ namespace View
                 UserRegister userRegister = new UserRegister();
                 userRegister.SetModifyUserForm(userToModify);
                 userRegister.Show();
+                Close();
             }
             else
             {
@@ -101,6 +102,13 @@ namespace View
             {
                 UsersTable.ItemsSource = activeUsers;
             }
+        }
+
+        private void Button_UserRegister_Click(object sender, RoutedEventArgs e)
+        {
+            UserRegister userRegister = new UserRegister();
+            userRegister.Show();
+            Close();
         }
     }
 }

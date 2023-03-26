@@ -13,6 +13,7 @@ namespace Logic
 {
     public class ProductLogic
     {
+
         public static List<ProductToView> GetAllProductToView()
         {
             List<ProductToView> productsObtained = new List<ProductToView>();
@@ -32,7 +33,7 @@ namespace Logic
                             ProductCode = product.productCode,
                             Price = "$"+product.price.ToString(),
                             Restrictions = product.restrictions,
-							IdRecipe = product.idRecipe,
+							IdRecipe = product.idRecipe.ToString(),
 							//Active = product.active
                             Active = product.active == true ? "Si" : "No"
                         };

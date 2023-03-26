@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using Model;
 
 namespace Test
 {
@@ -56,9 +59,8 @@ namespace Test
 
 
 }
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
-using Model;
+
+
 namespace Logic.Tests
 {
     [TestClass()]

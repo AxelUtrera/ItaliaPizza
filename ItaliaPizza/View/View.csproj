@@ -90,9 +90,6 @@
     <Compile Include="UserRegister.xaml.cs">
       <DependentUpon>UserRegister.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsersMenu.xaml.cs">
-      <DependentUpon>UsersMenu.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UsersView.xaml.cs">
       <DependentUpon>UsersView.xaml</DependentUpon>
     </Compile>
@@ -121,10 +118,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserRegister.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UsersMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

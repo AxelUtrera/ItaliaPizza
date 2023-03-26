@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Model;
-
+using System;
+using System.Collections.Generic;
 
 namespace Logic.Tests
 {
@@ -91,38 +92,9 @@ namespace Logic.Tests
             Assert.AreEqual(expectedResult, obtainedResult);
         }
 
-        //Cambiar
-        [TestMethod()]
-        public void Test06_RegisterNewWorker_FailTest()
-        {
-            User userTest = new User()
-            {
-                Name = "Test",
-                Lastname = "Test",
-                PhoneNumber = "0000000000",
-                Email = "test@test.com",
-                IsActive = true
-            };
-
-            Worker workerTest = new Worker()
-            {
-                NSS = "00000000000",
-                RFC = "AAAAAAAAAAAAA",
-                WorkerNumber = "00000",
-                Username = "Test",
-                Password = "Test",
-                Role = "User test"
-            };
-
-            int expectedResult = 200;
-            int obtainedResult = UserLogic.RegisterNewWorker(userTest, workerTest);
-
-            Assert.AreEqual(expectedResult, obtainedResult);
-        }
-
 
         [TestMethod()]
-        public void Test07_RegisterNewCustomer_SuccesfullTest()
+        public void Test06_RegisterNewCustomer_SuccesfullTest()
         {
             User userTest = new User()
             {
@@ -151,13 +123,14 @@ namespace Logic.Tests
 
 
         [TestMethod()]
-        public void Test08_RecoverActiveUsers_SuccesfulTest()
+        public void Test07_RecoverActiveUsers_SuccesfulTest()
         {
             List<User> recoverUsers = new List<User>();
             recoverUsers = UserLogic.RecoverActiveUsers();
 
             Assert.IsNotNull(recoverUsers);
         }
+
 
         [TestMethod()]
         public void Test08_TestDeleteUser()
@@ -170,6 +143,7 @@ namespace Logic.Tests
             Assert.AreEqual(expectedStatusCode, actualStatusCode);
         }
 
+
         [TestMethod()]
         public void Test09_TestDeleteUser_WithInvalidUserId()
         {
@@ -180,6 +154,7 @@ namespace Logic.Tests
 
             Assert.AreEqual(expectedStatusCode, actualStatusCode);
         }
+
 
         [TestMethod()]
         public void Test10_TestDeleteUser_WithNonExistingUserId()
@@ -192,7 +167,235 @@ namespace Logic.Tests
             Assert.AreEqual(expectedStatusCode, actualStatusCode);
         }
 
-	}
+
+        [TestMethod()]
+        public void Test11_GetUserById_SuccesfullTest()
+        {
+            int userId = 7;
+
+            User userExpected = new User()
+            {
+                IdUser = 7,
+                Name = "Test",
+                Lastname = "Test",
+                PhoneNumber = "0000000000",
+                Email = "test@test.com",
+                IsActive = true
+            };
+
+            User userObtained = UserLogic.GetUserById(userId);
+
+            Assert.AreEqual(userExpected, userObtained);
+        }
+
+
+        [TestMethod()]
+        public void Test12_GetUserById_FailTest()
+        {
+            int userId = 0;
+
+            User userExpected = new User()
+            {
+                IdUser = 7,
+                Name = "Test",
+                Lastname = "Test",
+                PhoneNumber = "0000000000",
+                Email = "test@test.com",
+                IsActive = true
+            };
+
+            User userObtained = UserLogic.GetUserById(userId);
+
+            Assert.AreNotEqual(userExpected, userObtained);
+        }
+
+
+        [TestMethod()]
+        public void Test13_GetWorkerById_SuccesfullTest()
+        {
+            int idWorker = 7;
+
+            Worker workerExpected = new Worker()
+            {
+                Username = "Test",
+                NSS = "00000000000",
+                Password = "532eaabd9574880dbf76b9b8cc00832c20a6ec113d682299550d7a6e0f345e25",
+                RFC = "AAAAAAAAAAAAA",
+                Role = "User test",
+                WorkerNumber = "00000"
+            };
+
+            Worker workerObtained = UserLogic.GetWorkerById(idWorker);
+
+            Assert.AreEqual(workerExpected, workerObtained);
+        }
+
+
+        [TestMethod()]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void Test14_GetWorkerById_FailTest()
+        {
+            int idWorker = 0;
+
+            Worker workerObtained = UserLogic.GetWorkerById(idWorker);
+
+        }
+
+
+        [TestMethod()]
+        public void Test15_GetAddressById_SuccesfullTest()
+        {
+            int idUser = 6;
+
+            Address addressExpected = new Address()
+            {
+                idAddress = 4,
+                street = "Street Test",
+                city = "City Test",
+                number = "0",
+                zipcode = "00000",
+                neighborhood = "Test",
+                instructions = "Instructions test"
+            };
+
+            Address addressObtained = UserLogic.GetAddressByIdUser(idUser);
+
+            Assert.AreEqual (addressExpected, addressObtained);
+        }
+
+
+        [TestMethod()]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void Test16_GetAddressById_FailTest()
+        {
+            int idUser = 0;
+
+            Address addressObtained = UserLogic.GetAddressByIdUser(idUser);
+        }
+
+
+        [TestMethod()]
+        public void Test17_ModifyWorker_SuccesfullTest()
+        {
+            int resultExpected = 200;
+
+            User userTest = new User()
+            {
+                IdUser = 7,
+                Name = "Test",
+                Lastname = "Test",
+                PhoneNumber = "0000000000",
+                Email = "test@test.com",
+                IsActive = true
+            };
+
+            Worker workerTest = new Worker()
+            {
+                NSS = "00000000000",
+                RFC = "AAAAAAAAAAAAA",
+                WorkerNumber = "00001",
+                Username = "Test",
+                Password = "Test",
+                Role = "User test"
+            };
+
+            int resultObtained = UserLogic.ModifyWorker(userTest, workerTest);
+
+            Assert.AreEqual(resultExpected, resultObtained);
+        }
+
+
+        [TestMethod()]
+        public void Test18_ModifyWorker_FailTest()
+        {
+            int resultExpected = 500;
+
+            User userTest = new User()
+            {
+                IdUser = 7,
+                Name = "Test",
+                Lastname = "Test",
+                PhoneNumber = "0000000000",
+                Email = "test@test.com",
+                IsActive = true
+            };
+
+            Worker workerTest = new Worker()
+            {
+                NSS = "00000000000",
+                RFC = "AAAAAAAAAAAAA",
+                WorkerNumber = "00001",
+                Username = "Test",
+                Password = "Test",
+                Role = "User test"
+            };
+
+            int resultObtained = UserLogic.ModifyWorker(userTest, workerTest);
+
+            Assert.AreEqual(resultExpected, resultObtained);
+        }
+
+
+        [TestMethod()]
+        public void Test19_ModifyCustomer_SuccesfullTest()
+        {
+            int resultExpected = 200;
+
+            User userTest = new User()
+            {
+                IdUser = 6,
+                Name = "Test 2",
+                Lastname = "Test 2",
+                PhoneNumber = "0000000001",
+                Email = "test@test.com",
+                IsActive = true
+            };
+
+            Address addressTest = new Address()
+            {
+                street = "Street Test",
+                city = "City Test",
+                number = "0",
+                zipcode = "00001",
+                neighborhood = "Test",
+                instructions = "Instructions test"
+            };
+
+            int resultObtained = UserLogic.ModifyCustomer(userTest, addressTest);
+
+            Assert.AreEqual(resultExpected, resultObtained);
+        }
+
+
+        [TestMethod()]
+        public void Test20_ModifyCustomer_FailTest()
+        {
+            int resultExpected = 500;
+
+            User userTest = new User()
+            {
+                IdUser = 6,
+                Name = "Test 2",
+                Lastname = "Test 2",
+                PhoneNumber = "0000000001",
+                Email = "test@test.com",
+                IsActive = true
+            };
+
+            Address addressTest = new Address()
+            {
+                street = "Street Test",
+                city = "City Test",
+                number = "0",
+                zipcode = "00001",
+                neighborhood = "Test",
+                instructions = "Instructions test"
+            };
+
+            int resultObtained = UserLogic.ModifyCustomer(userTest, addressTest);
+
+            Assert.AreEqual(resultExpected, resultObtained);
+        }
+    }
 
     }
-}
