@@ -95,6 +95,15 @@
                         <DataGridTextColumn Header="Precio (MXN)" Binding="{Binding Price}"/>
                         <DataGridTextColumn Header="Restricciones" Binding="{Binding Restrictions}"/>
                         <DataGridTextColumn Header="¿Está activo?" Binding="{Binding Active}"/>
+                        <DataGridTextColumn Header="¿Se prepára?" Binding="{Binding Preparation}" Visibility="Collapsed"/>
+                        <DataGridTextColumn Header="ID receta" Binding="{Binding IdRecipe}" Visibility="Collapsed"/>
+                        <DataGridTemplateColumn Visibility="Collapsed">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding Path=Image}"></Image>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

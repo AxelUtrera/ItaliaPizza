@@ -10,7 +10,6 @@ namespace Logic.Tests
         public void Test01_GetAllProductToView_SuccessFulTest()
         {
             List<ProductToView> listProductResult = ProductLogic.GetAllProductToView();
-
             Assert.IsNotNull(listProductResult);
         }
     }

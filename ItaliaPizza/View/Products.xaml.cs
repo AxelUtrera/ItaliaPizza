@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace View
 {
@@ -31,7 +32,7 @@ namespace View
             SetItemsToProductsTable();
         }
 
-        private void SetItemsToProductsTable()
+        public void SetItemsToProductsTable()
         {
             List<ProductToView> allProducts = ProductLogic.GetAllProductToView();
             products = new ObservableCollection<ProductToView>(allProducts);
@@ -41,6 +42,8 @@ namespace View
 
         private void Button_Exit_Click(object sender, RoutedEventArgs e)
         {
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.Show();
             this.Close();
         }
 
@@ -54,10 +57,45 @@ namespace View
 
         }
 
+
+        private T FindInTable<T>(DependencyObject current) where T : DependencyObject
+        {
+            T objectObtained = null;
+            do
+            {
+                if (current is T ancestor)
+                {
+                    objectObtained = ancestor;
+                }
+                current = VisualTreeHelper.GetParent(current);
+            }
+            while (current != null);
+            return objectObtained;
+        }
+
+
         private void Button_EditProduct_Click(object sender, MouseButtonEventArgs e)
         {
+            ProductToView productSelected = new ProductToView();
 
+            var row = FindInTable<DataGridRow>((DependencyObject)e.OriginalSource);
+            if (row != null)
+            {
+                // Obtener el objeto asociado a la fila
+                var item = row.DataContext;
+                productSelected = (ProductToView)item;
+            }
+
+            EditProduct.productToView = productSelected;
+
+            if (productSelected != null)
+            {
+                EditProduct ed = new EditProduct();
+                ed.ShowDialog();
+            }
+            this.Close();
         }
+
 
 		private void Button_Add_Click(object sender, RoutedEventArgs e)
 		{

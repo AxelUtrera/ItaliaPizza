@@ -10,36 +10,118 @@ using System.Threading.Tasks;
 
 namespace Logic
 {
-    public class ProductLogic
-    {
-        public static List<ProductToView> GetAllProductToView()
-        {
-            List<ProductToView> productsObtained = new List<ProductToView>();
+	public class ProductLogic
+	{
+		public static List<ProductToView> GetAllProductToView()
+		{
+			List<ProductToView> productsObtained = new List<ProductToView>();
 
-            using (var database = new ItaliaPizzaEntities())
-            {
-                var allProducts = from product in database.product
-                                  select product;
+			try
+			{
+				using (var database = new ItaliaPizzaEntities())
+				{
+					var allProducts = from product in database.product
+									  select product;
 
-                foreach (var product in allProducts)
-                {
+					foreach (var product in allProducts)
+					{
+						{
+							ProductToView recoverProduct = new ProductToView()
+							{
+								Name = product.productName,
+								Description = product.description,
+								ProductCode = product.productCode,
+								Price = "$" + product.price.ToString(),
+								Restrictions = product.restrictions,
+								Active = product.active == true ? "Si" : "No",
+								Image = ImageLogic.ConvertToBitMapImage(product.picture),
+								Preparation = product.preparation
+							};
+
+							productsObtained.Add(recoverProduct);
+						}
+					}
+				}
+			}
+			catch (ArgumentNullException ex)
+			{
+
+			}
+			catch (DbEntityValidationException ex)
+			{
+
+			}
+			return productsObtained;
+		
+        }
+
+
+		
+
+		public static int ModifiExistentProduct(ProductToView productToModify)
+		{
+			int operationResult = 500;
+			Product productToModifyConverted = ProductLogic.ConvertToProduct(productToModify);
+
+			if (productToModify != null)
+			{
+				try
+				{
+                    using (var dataBase = new ItaliaPizzaEntities())
                     {
-                        ProductToView recoverProduct = new ProductToView()
-                        {
-                            Name = product.productName,
-                            Description = product.description,
-                            ProductCode = product.productCode,
-                            Price = "$"+product.price.ToString(),
-                            Restrictions = product.restrictions,
-                            Active = product.active == true ? "Si" : "No"
-                        };
+                        var updatedProduct = dataBase.product.First(p => p.productCode == productToModify.ProductCode);
+                        updatedProduct.productCode = productToModifyConverted.ProductCode;
+                        updatedProduct.productName = productToModifyConverted.Name;
+                        updatedProduct.price = productToModifyConverted.Price;
+                        updatedProduct.description = productToModifyConverted.Description;
+                        updatedProduct.restrictions = productToModifyConverted.Restrictions;
+                        updatedProduct.picture = productToModifyConverted.Picture;
+                        updatedProduct.active = productToModifyConverted.Active;
+                        updatedProduct.idRecipe = productToModifyConverted.IdRecipe;
+                        updatedProduct.preparation = productToModifyConverted.Preparation;
 
-                        productsObtained.Add(recoverProduct);
+                        int returnValue = dataBase.SaveChanges();
+                        if (returnValue > 0)
+                        {
+                            operationResult = 200;
+                        }
                     }
                 }
-                return productsObtained;
-            }
-        }
+                catch(ArgumentException ex)
+				{
+
+				}
+				catch (DbEntityValidationException ex)
+				{
+
+				}
+			}
+			return operationResult;
+		}
+
+		private static Product ConvertToProduct(ProductToView productViewToConvert)
+		{
+
+			Product productResultant = null;
+
+            if (productViewToConvert != null)
+			{
+				productResultant = new Product()
+				{
+					Name = productViewToConvert.Name,
+					Description = productViewToConvert.Description,
+					ProductCode = productViewToConvert.ProductCode,
+					Price = Double.Parse(productViewToConvert.Price),
+					Preparation = productViewToConvert.Preparation,
+					IdRecipe = Int32.Parse(productViewToConvert.IdRecipe),
+					Active = productViewToConvert.Active.Equals("Si") ? true : false,
+					Picture = ImageLogic.ConvertToBytes(productViewToConvert.Image),
+					Restrictions = productViewToConvert.Restrictions
+				};
+			}
+
+			return productResultant;
+		}
 
 		public static int AddNewProduct(Product newProduct)
 		{
