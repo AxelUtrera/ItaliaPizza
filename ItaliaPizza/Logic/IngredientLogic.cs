@@ -61,6 +61,7 @@ namespace Logic
                 };
                 try
                 {
+                    //hola
                     context.ingredient.Add(ingredients);                   
                     context.SaveChanges();
                     registered= true;
