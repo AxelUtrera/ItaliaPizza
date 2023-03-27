@@ -160,13 +160,23 @@ namespace View
 
 		private void CancelAddProductButton_Click(object sender, RoutedEventArgs e)
 		{
-			MessageBox.Show("¿Está seguro de cancelar el registro del nuevo producto?", "", MessageBoxButton.OK, MessageBoxImage.Information);
-			Close();
+			MessageBoxResult result = MessageBox.Show("¿Está seguro de cancelar el registro del nuevo producto?", "", MessageBoxButton.YesNo, MessageBoxImage.Information);
+
+			if (result == MessageBoxResult.Yes)
+			{
+				Close();
+			}
+			else
+			{
+			
+			}
 		}
+
 
 		private void CloseButton_Click(object sender, RoutedEventArgs e)
 		{
 			Close();
 		}
+
 	}
 }

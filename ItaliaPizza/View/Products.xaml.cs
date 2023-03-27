@@ -87,6 +87,5 @@ namespace View
 				MessageBox.Show($"Error: {ex.Message}");
 			}
 		}
-
 	}
 }

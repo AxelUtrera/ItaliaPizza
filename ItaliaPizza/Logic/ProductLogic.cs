@@ -50,7 +50,7 @@ namespace Logic
 
 		public static int AddNewProduct(Product newProduct)
 		{
-			int responseCode;
+			int responseCode = 500;
 
 			using (var database = new ItaliaPizzaEntities())
 			{
@@ -90,10 +90,14 @@ namespace Logic
 
 					Console.WriteLine("Product added to database.");
 
-					database.SaveChanges();
+					//database.SaveChanges();
 
-					responseCode = 200;
+					var productisSaved = database.SaveChanges();
 
+					if (productisSaved != 0)
+					{
+						responseCode = 200;
+					}
 				}
 				catch (DbEntityValidationException ex)
 				{
