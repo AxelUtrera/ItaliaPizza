@@ -52,16 +52,25 @@ namespace View
         {
 			if (ProductsTable.SelectedItem != null)
 			{
-				string productCode = ((Product)ProductsTable.SelectedItem).ProductCode;
-				int statusCode = ProductLogic.DeleteProduct(productCode);
+				MessageBoxResult result = MessageBox.Show("¿Está seguro de cancelar la eliminación del producto?", "", MessageBoxButton.YesNo, MessageBoxImage.Information);
 
-				if (statusCode == 200)
+				if (result == MessageBoxResult.Yes)
 				{
-					MessageBox.Show("Producto eliminado correctamente.");
+					string productCode = ((Product)ProductsTable.SelectedItem).ProductCode;
+					int statusCode = ProductLogic.DeleteProduct(productCode);
+
+					if (statusCode == 200)
+					{
+						MessageBox.Show("Producto eliminado correctamente.");
+					}
+					else
+					{
+						MessageBox.Show("Ha ocurrido un error, inténtelo de nuevo.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+					}
 				}
 				else
 				{
-					MessageBox.Show("Ha ocurrido un error, inténtelo de nuevo.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+					Close();
 				}
 			}
 			else

@@ -58,16 +58,26 @@ namespace View
 		{
 			if (UsersTable.SelectedItem != null)
 			{
-				int userId = ((User)UsersTable.SelectedItem).IdUser;
-				int statusCode = UserLogic.DeleteUser(userId);
+				MessageBoxResult result = MessageBox.Show("¿Está seguro de cancelar la eliminación del usuario?", "", MessageBoxButton.YesNo, MessageBoxImage.Information);
 
-				if (statusCode == 200)
+				if (result == MessageBoxResult.Yes)
 				{
-					MessageBox.Show("Usuario eliminado correctamente.");
+					int userId = ((User)UsersTable.SelectedItem).IdUser;
+					int statusCode = UserLogic.DeleteUser(userId);
+
+					if (statusCode == 200)
+					{
+						MessageBox.Show("Usuario eliminado correctamente.");
+					}
+					else
+					{
+						MessageBox.Show("Ha ocurrido un error al intentar eliminar al usuario, inténtelo de nuevo.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+					}
+
 				}
 				else
 				{
-					MessageBox.Show("Ha ocurrido un error al intentar eliminar al usuario, inténtelo de nuevo.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+					Close();
 				}
 			}
 			else
