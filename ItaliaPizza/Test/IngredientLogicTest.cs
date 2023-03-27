@@ -28,7 +28,7 @@ namespace Logic.Tests
             };
             Assert.IsTrue( IngredientLogic.RegistIngredient(ingredient));
         }
-
+      
         public void Test03_RegistIngredient_NotValidTest()
         {
             Ingredient ingredient = new Ingredient()
@@ -92,8 +92,7 @@ namespace Logic.Tests
                     Quantity = i,
                     IdIngredient = i                    
                 };
-                recipeIngrediens.Add(ingredient);
-                MessageBox.Show(ingredient.IngredientName + ingredient.Quantity + ingredient.IdIngredient);
+                recipeIngrediens.Add(ingredient);                
             };
             Assert.IsTrue(IngredientLogic.GetRecipeIngredients(1).Count==recipeIngrediens.Count);
         }
@@ -109,6 +108,7 @@ namespace Logic.Tests
         {
             Assert.IsTrue(IngredientLogic.DeleteRecipeIngredients(1));
         }
+        [TestMethod]
         public void Test09_DeleteRecipeIngredients_NotValidTest()
         {
             Assert.IsFalse(IngredientLogic.DeleteRecipeIngredients(0));

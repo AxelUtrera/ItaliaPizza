@@ -109,22 +109,23 @@ namespace Logic
         public static bool DeleteRecipeIngredients(int idRecipe)
         {
             bool response = false;
-            try
+            using (var context = new ItaliaPizzaEntities())
             {
-                using (var context = new ItaliaPizzaEntities())
+                try
                 {
-                    var foundRecipeIngredients = context.recipeIngredient.Where(x => x.idRecipe.Equals(idRecipe));
-                    context.recipeIngredient.RemoveRange(foundRecipeIngredients);
-                    context.SaveChanges();
+                    var foundRecipeIngredients = context.recipeIngredient.Where(x => x.idRecipe.Equals(idRecipe));                   
+                    if (foundRecipeIngredients.FirstOrDefault() != null)
+                    {                        
+                        context.recipeIngredient.RemoveRange(foundRecipeIngredients);
+                        context.SaveChanges();
+                        response = true;
+                    }
                 }
-                response= true;
-
-            }
-            catch (Exception ex)
-            {
-                //MessageBox.Show(ex.Message);
-                
-            }
+                catch (Exception)
+                {
+                    response = false;
+                }
+            }            
             return response;
         }
         public static List<Ingredient> GetRecipeIngredients(int idRecipe)
@@ -143,14 +144,13 @@ namespace Logic
                             IngredientName = aux.ingredient.ingredientName,
                             Quantity = aux.quantity
                         };
-                        ingredients.Add(ingredient);
-                        MessageBox.Show(ingredient.IngredientName + ingredient.Quantity + ingredient.IdIngredient);
+                        ingredients.Add(ingredient);                        
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.ToString());
+                
             }
             return ingredients;
         }
