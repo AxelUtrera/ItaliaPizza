@@ -50,10 +50,27 @@ namespace View
 
         private void Button_DeleteProduct_Click(object sender, MouseButtonEventArgs e)
         {
+			if (ProductsTable.SelectedItem != null)
+			{
+				string productCode = ((Product)ProductsTable.SelectedItem).ProductCode;
+				int statusCode = ProductLogic.DeleteProduct(productCode);
 
-        }
+				if (statusCode == 200)
+				{
+					MessageBox.Show("Producto eliminado correctamente.");
+				}
+				else
+				{
+					MessageBox.Show("Ha ocurrido un error, inténtelo de nuevo.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+				}
+			}
+			else
+			{
+				MessageBox.Show("Por favor seleccione un producto.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+			}
+		}
 
-        private void Button_EditProduct_Click(object sender, MouseButtonEventArgs e)
+		private void Button_EditProduct_Click(object sender, MouseButtonEventArgs e)
         {
 
         }

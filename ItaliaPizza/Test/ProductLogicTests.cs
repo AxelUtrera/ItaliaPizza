@@ -19,7 +19,7 @@ namespace Test
 			{
 				Name = "Margherita Pizza",
 				Description = "Pizza:3",
-				ProductCode = "124KP",
+				ProductCode = "12KKP",
 				Picture = new byte[] { 0x12, 0x34, 0x56 },
 				Price = 10.99,
 				Preparation = true,
@@ -50,6 +50,38 @@ namespace Test
 			var responseCode = ProductLogic.AddNewProduct(newProduct);
 
 			Assert.AreEqual(500, responseCode);
+		}
+
+		[TestMethod]
+		public void Test03_DeleteProduct_WithValidProductCode()
+		{
+			Product testProduct = new Product
+			{
+				Name = "Test Product",
+				Description = "Test Description",
+				ProductCode = "312IO",
+				Picture = new byte[] { 0x12, 0x34, 0x56 },
+				Restrictions = "I cannot do a merge without break things :(",
+				Price = 9.99,
+				Active = true,
+			};
+			
+			int addStatusCode = ProductLogic.AddNewProduct(testProduct);
+			Assert.AreEqual(200, addStatusCode, "Failed to add test product to the database.");
+
+			int deleteStatusCode = ProductLogic.DeleteProduct(testProduct.ProductCode);
+
+			Assert.AreEqual(200, deleteStatusCode, "Failed to delete the test product from the database.");
+		}
+
+		[TestMethod]
+		public void DeleteProduct_WithNonexistentProductCode_ReturnsNotFound()
+		{
+			string nonexistentProductCode = ":P";
+
+			int statusCode = ProductLogic.DeleteProduct(nonexistentProductCode);
+
+			Assert.AreEqual(404, statusCode, "Something goes wrong...");
 		}
 
 	}

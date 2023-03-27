@@ -167,6 +167,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resource.es-MX.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -235,9 +236,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\addPizza.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\addPizza.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\AddImage.png" />

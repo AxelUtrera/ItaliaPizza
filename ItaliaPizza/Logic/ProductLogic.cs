@@ -115,5 +115,39 @@ namespace Logic
 			return responseCode;
 		}
 
+		public static int DeleteProduct(string productCode)
+		{
+			int responseCode;
+
+			using (var database = new ItaliaPizzaEntities())
+			{
+				try
+				{
+					var productToDelete = database.product.SingleOrDefault(p => p.productCode == productCode);
+
+					if (productToDelete != null)
+					{
+						database.product.Remove(productToDelete);
+						database.SaveChanges();
+
+						Console.WriteLine("Product deleted successfully.");
+						responseCode = 200;
+					}
+					else
+					{
+						Console.WriteLine("Product not found.");
+						responseCode = 404;
+					}
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine("Error while deleting product: {0}", ex.Message);
+					responseCode = 500;
+				}
+			}
+
+			return responseCode;
+		}
+
 	}
 }
