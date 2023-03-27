@@ -19,7 +19,7 @@ namespace Test
 			{
 				Name = "Margherita Pizza",
 				Description = "Pizza:3",
-				ProductCode = "123AP",
+				ProductCode = "124KP",
 				Picture = new byte[] { 0x12, 0x34, 0x56 },
 				Price = 10.99,
 				Preparation = true,
