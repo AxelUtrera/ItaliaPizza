@@ -80,7 +80,7 @@
 		</Grid>
 		<Grid>
 
-			<Image x:Name="ProductImage" Margin="1260,215,32,483" Source="/Img/AddImage.png" />
+			<Image x:Name="ProductImage" Margin="1022,185,94,378" Source="/Img/AddImage.png" />
 
 		</Grid>
 
