@@ -96,7 +96,10 @@ namespace View
 				{
 					MessageBox.Show("Producto agregado correctamente!", "", MessageBoxButton.OK, MessageBoxImage.Information);
 					ClearInputFields();
-					Close();
+					this.Close();
+					Products productsWindow = new Products();
+					productsWindow.ShowDialog();
+
 				}
 				else
 				{

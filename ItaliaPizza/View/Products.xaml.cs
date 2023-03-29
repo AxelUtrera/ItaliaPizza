@@ -62,6 +62,9 @@ namespace View
 					if (statusCode == 200)
 					{
 						MessageBox.Show("Producto eliminado correctamente.");
+						this.Close();
+						Products productsWindow = new Products();
+						productsWindow.ShowDialog();
 					}
 					else
 					{
@@ -90,6 +93,7 @@ namespace View
 			{
 				AddProduct addProduct = new AddProduct();
 				addProduct.Show();
+				this.Close();
 			}
 			catch (Exception ex)
 			{
