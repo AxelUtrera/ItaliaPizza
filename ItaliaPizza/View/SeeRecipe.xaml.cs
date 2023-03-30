@@ -15,17 +15,14 @@ using Model;
 
 namespace View
 {
-    /// <summary>
-    /// Lógica de interacción para SeeRecipe.xaml
-    /// </summary>
     public partial class SeeRecipe : Window
     {
-        List<Recipe> recipes;
+        List<Recipe> recipesList;
         List<Ingredient> selectedIngredients;
         public SeeRecipe()
         {
             InitializeComponent();
-            recipes = new List<Recipe>();
+            List<Recipe> recipesList = new List<Recipe>();
             selectedIngredients = new List<Ingredient>();
             SetRecipeToComboBox();
         }
@@ -41,10 +38,18 @@ namespace View
                 Text = recipe.DescriptionRecipe
             };
         }
+
         public void SetRecipeToComboBox()
         {
-            recipes = Logic.RecipeLogic.GetRecipes();
-            ComboBox_Recipes.ItemsSource = recipes;
+            recipesList = Logic.RecipeLogic.GetRecipes();
+            ComboBox_Recipes.ItemsSource = recipesList;
+        }
+
+        private void Button_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            KitchenMenu kitchenMenuWindow = new KitchenMenu();
+            Close();
+            kitchenMenuWindow.Show();
         }
     }
 }

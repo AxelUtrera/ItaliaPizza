@@ -123,6 +123,7 @@ namespace View
         private void ListBox_Ingredients_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TextBox_IngredientSelected.Text = ListBox_Ingredients.SelectedItem.ToString();
+            TextBox_Amount.Focus();
         }
 
         private void Button_Edit_Click(object sender, RoutedEventArgs e)
@@ -189,6 +190,14 @@ namespace View
             }
             return result;
         }
+
+        private void Button_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            KitchenMenu kitchenMenuWindow = new KitchenMenu();
+            Close();
+            kitchenMenuWindow.Show();
+        }
     }
 }
+
 

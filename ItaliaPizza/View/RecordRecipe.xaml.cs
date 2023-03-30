@@ -19,9 +19,6 @@ using System.Windows.Shapes;
 
 namespace View
 {
-    /// <summary>
-    /// Lógica de interacción para RecordRecipe.xaml
-    /// </summary>
     public partial class RecordRecipe : Window
     {
         private readonly List<Ingredient> selectedIngredients;
@@ -58,6 +55,8 @@ namespace View
         private void ListBox_Ingredients_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TextBox_IngredientSelected.Text = ListBox_Ingredients.SelectedItem.ToString();
+            TextBox_Amount.Focus();
+            TextBox_Amount.Text = "";
         }
 
         private void Button_Add_Click(object sender, RoutedEventArgs e)
@@ -125,31 +124,35 @@ namespace View
                 int idRecipe;
                 switch (Logic.RecipeLogic.AllreadyExist(recipe.NameRecipe))
                 {
-                    case "exist":                        
-                        MessageBox.Show("Ya se encuentra una receta registrada con este mismo nombre","Receta Registrada",MessageBoxButton.OK, MessageBoxImage.Information);
+                    case "exist":
+                        MessageBox.Show("Ya se encuentra una receta registrada con este mismo nombre", "Receta Registrada", MessageBoxButton.OK, MessageBoxImage.Information);
                         break;
 
                     case "doesNotExist":
-                        Logic.RecipeLogic.RegistRecipe(recipe);
-                        idRecipe = Logic.RecipeLogic.GetIdRecipe(recipe.NameRecipe);
-                        recipe.Ingredients = selectedIngredients;
-
-                        if (idRecipe > 0)
+                        if (Logic.RecipeLogic.RegistRecipe(recipe))
                         {
-                            if (IngredientLogic.RegistRecipeIngredients(recipe))
+                            idRecipe = Logic.RecipeLogic.GetIdRecipe(recipe.NameRecipe);
+                            recipe.Ingredients = selectedIngredients;
+                            recipe.IdRecipe = idRecipe;
+
+                            if (idRecipe > 0)
                             {
-                                MessageBox.Show("Registro Exitoso");
+                                if (IngredientLogic.RegistRecipeIngredients(recipe))
+                                {
+                                    MessageBox.Show("Registro Exitoso");
+                                }
+                                else
+                                {
+                                    MessageBox.Show("El registro no pudo ser realizado", "Registro", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                                }
                             }
                             else
                             {
                                 MessageBox.Show("El registro no pudo ser realizado", "Registro", MessageBoxButton.OK, MessageBoxImage.Warning);
                             }
                         }
-                        else
-                        {
-                            MessageBox.Show("El registro no pudo ser realizado", "Registro", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        }
-                        break;                       
+                        break;
 
                     case "idle":
                         idRecipe = RecipeLogic.GetIdRecipe(recipe.NameRecipe);
@@ -172,12 +175,12 @@ namespace View
             }
             else if (validateResult == 0)
             {
-                MessageBox.Show("Por favor, no ingreses caracteres extraños","Caracteres invalidos",MessageBoxButton.OK,MessageBoxImage.Warning);
+                MessageBox.Show("Por favor, no ingreses caracteres extraños", "Caracteres invalidos", MessageBoxButton.OK, MessageBoxImage.Warning);
                 RichTextBox_Description.Focus();
             }
             else
             {
-                MessageBox.Show("Por favor, llena todos los campos","Campos vacios",MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Por favor, llena todos los campos", "Campos vacios", MessageBoxButton.OK, MessageBoxImage.Warning);
                 RichTextBox_Description.Focus();
             }
         }
@@ -185,13 +188,13 @@ namespace View
         {
             TextRange textRange = new TextRange(RichTextBox_Description.Document.ContentStart,
                RichTextBox_Description.Document.ContentEnd);
-            int result=0;
-            if (!string.IsNullOrWhiteSpace(TextBox_Tittle.Text) && !string.IsNullOrWhiteSpace(textRange.Text) && selectedIngredients!=null)
+            int result = 0;
+
+            if (!string.IsNullOrWhiteSpace(TextBox_Tittle.Text) && !string.IsNullOrWhiteSpace(textRange.Text) && selectedIngredients.FirstOrDefault() != null)
             {
-                Regex regex = new Regex(@"^(?=.?[#?!@$%^&-])");
-                Match match = regex.Match(textRange.Text);
-                Match match1 = regex.Match(TextBox_Tittle.Text);
-                if (!match.Success && !match1.Success)
+                Regex regex = new Regex(@"^[a-zA-Z0-9\s!?\(\)\n]+$");
+
+                if (regex.IsMatch(textRange.Text) || regex.IsMatch(TextBox_Tittle.Text))
                 {
                     result = 1;
                 }
@@ -201,6 +204,13 @@ namespace View
                 result = 2;
             }
             return result;
+        }
+
+        private void Button_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            KitchenMenu kitchenMenuWindow = new KitchenMenu();
+            Close();
+            kitchenMenuWindow.Show();
         }
     }
 }

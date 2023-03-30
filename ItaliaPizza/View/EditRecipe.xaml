@@ -7,73 +7,82 @@
         mc:Ignorable="d"
         WindowState="Maximized"
         WindowStyle="None"
+        
+        
         Title="RecordRecipe" Height="810" Width="1440">
 
-    <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/Img/RecipesView.jpg"/>
-        </Grid.Background>
+    <Viewbox Stretch="Fill" StretchDirection="Both">
+        <Grid Width="1440" Height="810">
+            <Grid.Background>
+                <ImageBrush ImageSource="/Img/RecipesView.jpg"/>
+            </Grid.Background>
 
-        <StackPanel Orientation="Horizontal" Height="50" VerticalAlignment="Top" Margin="20">
-            <Label Margin="25,0,0,0" Content="Menu principal" Foreground="#f3f3f3" FontSize="30" FontWeight="Bold"></Label>
-
-
-        </StackPanel>
-
-        <Label Content="Titulo" HorizontalAlignment="Left" Margin="48,89,0,0" VerticalAlignment="Top" Foreground="White" FontSize="20" FontWeight="Bold" Width="206" Height="38" Background="{x:Null}" Opacity="0.9"/>
-        <Button x:Name="Button_Edit" Content="Modificar" HorizontalAlignment="Left" Margin="1115,675,0,0" VerticalAlignment="Top" Height="37" Width="113" FontSize="20" Background="#3F8C23" Foreground="White" IsDefault="True" VerticalContentAlignment="Stretch" Click="Button_Edit_Click"/>
-
-        <StackPanel Margin="688,150,115,558" Orientation="Horizontal">
-            <TextBox x:Name="TextBox_IngredientSelected" TextWrapping="Wrap" Width="165" Height="37" Margin="6, 0" FontSize="20" IsEnabled="False" Background="#5F5F5F"  BorderThickness="0" Foreground="#f3f3f3" Opacity="0.6"/>
-            <TextBox x:Name="TextBox_Amount" TextWrapping="Wrap" Width="39" Height="37" Margin="0,0" FontSize="20" Background="#5F5F5F"  BorderThickness="0" Foreground="#f3f3f3" Opacity="0.6"/>
-            <Button x:Name="Button_Add" Content="+" Height="37" Width="37" FontSize="18" Margin="5,0" Background="#5F5F5F" Click="Button_Add_Click"/>
-            <Button x:Name="Botton_Empty" Content="Vaciar" Height="37" Width="115" FontSize="18" Margin="20,0" Background="#5F5F5F" Click="Botton_Empty_Click" />
-            <Button x:Name="Button_Delete" Content="Eliminar" Height="37" Width="115" FontSize="18" Margin="6,0" Background="#5F5F5F" Click="Button_Delete_Click"  />
-
-        </StackPanel>
-        <Rectangle HorizontalAlignment="Left" Height="439" Margin="48,209,0,0" Stroke="#5F5F5F" VerticalAlignment="Top" Width="606" Opacity="0.6" Fill="#5F5F5F"/>
-        <StackPanel Margin="48,202,-48,116" Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Height="50" VerticalAlignment="Top" Margin="20">
+                <Label Margin="25,0,0,0" Content="Menu principal" Foreground="#f3f3f3" FontSize="30" FontWeight="Bold"></Label>
+                <Button Width="35" Click="Button_Exit_Click" Cursor="Hand" Height="35" VerticalAlignment="Center" Margin="1100,0,0,0">
+                    <Button.Template>
+                        <ControlTemplate  TargetType="Button">
+                            <Border Background="Transparent">
+                                <Image Source="/Img/ExitIcon.png" Width="35" Height="35" VerticalAlignment="Top"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+            <Rectangle HorizontalAlignment="Left" Margin="726,120,0,68" Stroke="#5F5F5F"  Width="576" Opacity="0.3" Fill="#5F5F5F"/>
+            <Label Content="Titulo" HorizontalAlignment="Left" Margin="48,89,0,0" VerticalAlignment="Top" Foreground="White" FontSize="20" FontWeight="Bold" Width="206" Height="38" Background="{x:Null}" Opacity="0.9"/>
+            <Button x:Name="Button_Edit" Content="Modificar" HorizontalAlignment="Left" Margin="1177,692,0,0" VerticalAlignment="Top" Height="36" Width="113" FontSize="20" Background="#3F8C23" Foreground="White" IsDefault="True" VerticalContentAlignment="Stretch" Click="Button_Edit_Click"/>
 
 
-            <RichTextBox x:Name="RichTextBox_Description" Height="430" Width="601" Background="{x:Null}"  BorderThickness="0" Foreground="#f3f3f3">
+            <TextBox x:Name="TextBox_IngredientSelected" TextWrapping="Wrap" Height="37" Margin="737,132,523,640" FontSize="20" IsEnabled="False" Background="#5F5F5F"  BorderThickness="0" Foreground="#f3f3f3" Opacity="0.6"/>
+            <TextBox x:Name="TextBox_Amount" TextWrapping="Wrap" Width="39" Height="37" Margin="925,132,476,640" FontSize="20" Background="#5F5F5F"  BorderThickness="0" Foreground="#f3f3f3" Opacity="0.6"/>
+            <Button x:Name="Button_Add" Content="+" Height="37" Width="37" FontSize="18" Margin="970,132,433,641" Background="#5F5F5F" Click="Button_Add_Click"/>
+            <Button x:Name="Botton_Empty" Content="Vaciar" Height="37" Width="125" FontSize="18" Margin="1030,132,285,640" Background="#5F5F5F" Click="Botton_Empty_Click" />
+            <Button x:Name="Button_Delete" Content="Eliminar" Height="37" Width="125" FontSize="18" Margin="1165,132,150,640" Background="#5F5F5F" Click="Button_Delete_Click"  />
+
+
+            <Rectangle HorizontalAlignment="Left" Height="474" Margin="48,196,0,0" Stroke="#5F5F5F" VerticalAlignment="Top" Width="606" Opacity="0.6" Fill="#5F5F5F"/>
+
+            <RichTextBox x:Name="RichTextBox_Description" Width="601" Background="{x:Null}"  BorderThickness="0" Foreground="#f3f3f3" Margin="48,196,791,140" FontSize="16">
                 <FlowDocument>
                     <Paragraph>
                         <Run Text=""/>
                     </Paragraph>
                 </FlowDocument>
             </RichTextBox>
-            <StackPanel Orientation="Horizontal" Height="468" Width="567" Margin="40,0">
-                <ListBox x:Name="ListBox_Ingredients" Height="450" Width="260" Margin="0,0" Background="#5F5F5F"  BorderThickness="0" Foreground="#f3f3f3" Opacity="0.6" HorizontalAlignment="Stretch" SelectionChanged="ListBox_Ingredients_SelectionChanged">
+            <ListBox x:Name="ListBox_Ingredients" Width="270" Margin="737,196,433,140" Background="#5F5F5F"  BorderThickness="0" Foreground="#f3f3f3" Opacity="0.6" SelectionChanged="ListBox_Ingredients_SelectionChanged" FontSize="16">
 
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="3">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="{Binding IngredientName}"></TextBlock>
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-                <ListBox x:Name="ListBox_SelectedIngredients" Width="260" Height="450" Margin="20,0" Background="#5F5F5F"  BorderThickness="0" Foreground="#f3f3f3" Opacity="0.6">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="3">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="200"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="{Binding IngredientName}"></TextBlock>
-                                <TextBlock Grid.Column="1" Text="{Binding Quantity}"></TextBlock>
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </StackPanel>
-        </StackPanel>
-        <Label x:Name="labelDescription" Content="Ingresa la Descripcion:" HorizontalAlignment="Left" Margin="48,166,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Foreground="White"/>
-        <ComboBox x:Name="ComboBox_Recipes" HorizontalAlignment="Left" Margin="48,132,0,0" VerticalAlignment="Top" Width="316" Height="37" Background="#5F5F5F" BorderBrush="#5F5F5F" SelectionChanged="ComboBoxTituloSelectionChanged"/>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding IngredientName}"></TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <ListBox x:Name="ListBox_SelectedIngredients" Margin="1030,196,150,140" Background="#5F5F5F"  BorderThickness="0" Foreground="#f3f3f3" Opacity="0.6" FontSize="16">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding IngredientName}"></TextBlock>
+                            <TextBlock Grid.Column="1" Text="{Binding Quantity}"></TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
 
-    </Grid>
+
+            <Label x:Name="labelDescription" Content="Ingresa la Descripcion:" HorizontalAlignment="Left" Margin="48,154,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Foreground="White"/>
+            <ComboBox x:Name="ComboBox_Recipes" HorizontalAlignment="Left" Margin="48,120,0,0" VerticalAlignment="Top" Width="316" Height="37" Background="#5F5F5F" BorderBrush="#5F5F5F" SelectionChanged="ComboBoxTituloSelectionChanged" FontSize="14"/>
+
+        </Grid>
+    </Viewbox>
 </Window>
+
