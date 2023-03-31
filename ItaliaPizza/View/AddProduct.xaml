@@ -4,54 +4,86 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
-        mc:Ignorable="d"      
-        Title="Add Product" Height="810" Width="1440">
+        mc:Ignorable="d"
+        Title="Add Product" Height="810" Width="1440"
+        WindowState="Maximized" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Icon="/Img/addPizza.jpg" Grid.IsSharedSizeScope="True" WindowStyle="None">
 
-	<Grid Background="#FF676767">
-		<Image HorizontalAlignment="Left" Height="810" VerticalAlignment="Top" Width="1440" Source="/Img/addPizza.jpg" Stretch="Fill"/>
-		<Rectangle HorizontalAlignment="Left" Height="810" Stroke="Black" VerticalAlignment="Top" Width="1440" Fill="#A5000000"/>
 
-		<Label Content="Product Name:" Margin="80,171,1206,566" OpacityMask="Black" Foreground="#FFFFFEFE" FontSize="18" FontWeight="Bold" />
-		<TextBox x:Name="ProductNameTextBox" Margin="80,206,1048,534" BorderBrush="{x:Null}" Background="#7FFFFFFF" />
+	<Grid>
 
-		<Label Content="Product Code:" Margin="80,413,1207,290" Background="{x:Null}" Foreground="#FFFFFEFE" FontSize="18" FontWeight="Bold" />
-		<TextBox x:Name="ProductCodeTextBox" Margin="80,450,1048,290" BorderBrush="{x:Null}" Background="#80FFFFFF" />
+		<Grid Background="Black">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="125"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
 
-		<Label Content="Description:" Margin="603,450,705,273" OpacityMask="Black" Background="{x:Null}" Foreground="#FFFFFEFE" FontSize="18" FontWeight="Bold" />
-		<TextBox x:Name="DescriptionTextBox" Margin="603,482,525,115" BorderBrush="{x:Null}" Background="#7FFFFFFF" />
+			<Viewbox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Stretch="Uniform" Grid.RowSpan="3">
 
-		<Label Content="Price:" Margin="80,299,1241,409" OpacityMask="Black" Foreground="#FFFFFEFE" FontSize="18" FontWeight="Bold" />
-		<TextBox x:Name="PriceTextBox" Margin="80,331,1048,409" BorderBrush="{x:Null}" Background="#7FFFFFFF" />
+				<Grid>
 
-		<Label Content="Preparation:" Margin="603,307,677,423" Foreground="White" FontSize="18" FontWeight="Bold" />
-		<ComboBox x:Name="PreparationComboBox" Margin="603,344,603,396">
-			<ComboBoxItem>Raw</ComboBoxItem>
-			<ComboBoxItem>Cooked</ComboBoxItem>
-		</ComboBox>
+					<Rectangle HorizontalAlignment="Center" Height="810" Stroke="Black" VerticalAlignment="Top" Width="1440" Grid.RowSpan="3" Grid.Column="1">
+						<Rectangle.Fill>
+							<ImageBrush ImageSource="/Img/addPizza.jpg" Stretch="UniformToFill" Opacity="0.3"/>
+						</Rectangle.Fill>
+					</Rectangle>
 
-		<Label Content="Restrictions:" Margin="80,534,1162,174" OpacityMask="Black" Foreground="#FFFFFEFE" FontSize="18" FontWeight="Bold" />
-		<TextBox x:Name="RestrictionsTextBox" Margin="80,571,1048,37" BorderBrush="{x:Null}" Background="#7FFFFFFF" />
+					<Image HorizontalAlignment="Left" Height="810" VerticalAlignment="Top" Width="1440" Source="/Img/addPizza.jpg" Stretch="Fill"/>
+					<Rectangle HorizontalAlignment="Left" Height="810" Stroke="Black" VerticalAlignment="Top" Width="1440" Fill="#A5000000"/>
 
-		<Label Content="Active:" Margin="603,169,715,534" OpacityMask="Black" Foreground="#FFFFFEFE" FontSize="18" FontWeight="Bold" />
-		<ComboBox x:Name="ActiveComboBox" Margin="603,206,603,534" Background="White">
-			<ComboBoxItem>Active</ComboBoxItem>
-			<ComboBoxItem>Inactive</ComboBoxItem>
-		</ComboBox>
+					<Label Content="Nombre:" Margin="80,171,1206,566" OpacityMask="Black" Foreground="#FFFFFEFE" FontSize="18" FontWeight="Bold" />
+					<TextBox x:Name="ProductNameTextBox" Margin="80,206,1048,534" BorderBrush="{x:Null}" Background="#7FFFFFFF" FontSize="20" Width="312" Height="70" TextWrapping="Wrap" />
+					
+					<Label Content="Código:" Margin="80,413,1207,290" Background="{x:Null}" Foreground="#FFFFFEFE" FontSize="18" FontWeight="Bold" />
+					<Label x:Name="ProductCodeLabel" Content="" IsEnabled="False" HorizontalAlignment="Left" Margin="80,450,0,0" VerticalAlignment="Top" Width="312" Height="70" Background="#7FFFFFFF" Foreground="Black" FontSize="20" FontWeight="Bold"/>
 
-		<Button x:Name="SelectImageButton" Content="Seleccionar Imagen" Margin="1090,486,0,239" Click="SelectImage_Click" FontSize="20" HorizontalAlignment="Left" Width="202" Background="#BFFFFFFF" BorderBrush="#00707070" />
-		<Image x:Name="ProductImage" Margin="995,163,53,322" >
-			<Image.OpacityMask>
-				<ImageBrush ImageSource="/Img/addPizza.jpg" Stretch="Fill"/>
-			</Image.OpacityMask>
-		</Image>
+					<Label Content="Descripción:" Margin="513,470,795,300" OpacityMask="Black" Background="{x:Null}" Foreground="#FFFFFEFE" FontSize="18" FontWeight="Bold" />
+					<TextBox x:Name="DescriptionTextBox" Margin="513,510,530,37" BorderBrush="{x:Null}" Background="#7FFFFFFF" FontSize="20" Width="397" Height="263" Grid.ColumnSpan="1" TextWrapping="Wrap" />
+					
+					<Label Content="Precio:" Margin="80,299,1241,409" OpacityMask="Black" Foreground="#FFFFFEFE" FontSize="18" FontWeight="Bold" />
+					<TextBox x:Name="PriceTextBox" Margin="80,331,1048,409" BorderBrush="{x:Null}" Background="#7FFFFFFF" FontSize="20" Width="312" Height="70" TextWrapping="Wrap" />
+					
+					<Label Content="Preparación" Margin="513,299,767,431" Foreground="White" FontSize="18" FontWeight="Bold" />
+					<ComboBox x:Name="PreparationComboBox" Margin="513,336,693,404" FontSize="24">
+						<ComboBoxItem Content="Sí"/>
+						<ComboBoxItem Content="No"/>
+					</ComboBox>
 
-		<Button x:Name="AddProductButton" Content="Agregar" Margin="1249,680,31,37" Click="AddProductButton_Click" FontSize="20" Background="#FFC5FFB9" BorderBrush="#00707070" />
+					<Label Content="Restricciones:" Margin="80,534,1162,174" OpacityMask="Black" Foreground="#FFFFFEFE" FontSize="18" FontWeight="Bold" />
+					<TextBox x:Name="RestrictionsTextBox" Margin="80,571,1048,37" BorderBrush="{x:Null}" Background="#7FFFFFFF" FontSize="20" Width="312" Height="202" TextWrapping="Wrap" />
+					
+					<Label Content="Estado:" Margin="513,161,805,542" OpacityMask="Black" Foreground="#FFFFFEFE" FontSize="18" FontWeight="Bold" />
+					<ComboBox x:Name="ActiveComboBox" Margin="513,198,693,542" Background="White" FontSize="24">
+						<ComboBoxItem Content="Activo"/>
+						<ComboBoxItem Content="Inactivo"/>
+					</ComboBox>
 
-		<Border  Width="1440" Height="125" Background="#ff1c1c1c" BorderBrush="#ff707070" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
-		<Canvas  Width="315" Height="62" Margin="39.25,37.13330078125,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-		<TextBlock  Text="Agregar Producto" TextAlignment="left" FontFamily="Corbel"  FontSize="45" Foreground="#ffffffff" Margin="1054,35,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
-		<Button x:Name="CancelAddProductButton" Content="Cancelar" HorizontalAlignment="Left" Margin="1060,680,0,0" VerticalAlignment="Top" Height="77" Width="160" FontSize="20" Background="#FFFF9999" BorderBrush="#00707070" Click="CancelAddProductButton_Click"/>
+					<Button x:Name="SelectImageButton" Content="Seleccionar Imagen" Margin="1088,483,0,242" Click="SelectImage_Click" FontSize="20" HorizontalAlignment="Left" Width="202" Background="#BFFFFFFF" BorderBrush="#00707070" />
+
+					<Button x:Name="AddProductButton" Content="Agregar" Margin="1249,705,31,28" Click="AddProductButton_Click" FontSize="20" Background="#FFC5FFB9" BorderBrush="#00707070" />
+
+					<Border  Width="1440" Height="125" Background="#ff1c1c1c" BorderBrush="#ff707070" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+					<Canvas  Width="315" Height="62" Margin="39.25,37.13330078125,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+					<TextBlock  Text="Agregar Producto" TextAlignment="left" FontFamily="Corbel"  FontSize="50" Foreground="#ffffffff" Margin="39,32,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+					<Button x:Name="CancelAddProductButton" Content="Cancelar" HorizontalAlignment="Left" Margin="1060,705,0,0" VerticalAlignment="Top" Height="77" Width="160" FontSize="20" Background="#FFFF9999" BorderBrush="#00707070" Click="CancelAddProductButton_Click"/>
+					<Button x:Name="CloseButton" Content="X" Grid.Row="0" Grid.Column="2" Margin="0,12,31,0" FontSize="36" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FF1C1C1C" Foreground="#FFFCFCFC" BorderBrush="{x:Null}" Click="CloseButton_Click" Height="50" Width="53" FontWeight="Bold" />
+
+				</Grid>
+
+			</Viewbox>
+
+		</Grid>
+		<Grid>
+
+			<Image x:Name="ProductImage" Margin="1022,185,94,378" Source="/Img/AddImage.png" />
+
+		</Grid>
 
 	</Grid>
-</Window>
 
+</Window>

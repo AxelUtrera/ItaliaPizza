@@ -5,6 +5,7 @@ using Logic;
 using Microsoft.Win32;
 using Model;
 using System.IO;
+using System.Linq;
 
 namespace View
 {
@@ -14,32 +15,93 @@ namespace View
 		public AddProduct()
 		{
 			InitializeComponent();
+			string productCode = GenerateProductCode();
+			ProductCodeLabel.Content = productCode;
+		}
+
+		private string GenerateProductCode()
+		{
+			const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+			var random = new Random();
+			var result = new string(
+				Enumerable.Repeat(chars, 5)
+						  .Select(s => s[random.Next(s.Length)])
+						  .ToArray());
+			return result.Substring(0, 5);
 		}
 
 		private void AddProductButton_Click(object sender, RoutedEventArgs e)
 		{
-			Product newProduct = new Product()
+			if (string.IsNullOrEmpty(ProductNameTextBox?.Text) || string.IsNullOrEmpty(DescriptionTextBox?.Text) || string.IsNullOrEmpty(PriceTextBox?.Text) || string.IsNullOrEmpty(PreparationComboBox?.Text) || string.IsNullOrEmpty(ActiveComboBox?.Text))
 			{
-				Name = ProductNameTextBox.Text,
-				Description = DescriptionTextBox.Text,
-                ProductCode = ProductCodeTextBox.Text,
-                Price = Double.Parse(PriceTextBox.Text),
-				Preparation = PreparationComboBox.SelectedItem == "Coocked" && PreparationComboBox.SelectedItem != null,
-				Active = ActiveComboBox.SelectedItem == "Active" && ActiveComboBox.SelectedItem != null,
-				IdRecipe = 1,
-				Picture = GetPictureBytes(),
-				Restrictions = RestrictionsTextBox.Text,
-			};
+				MessageBox.Show("Debe completar todos los campos obligatorios para agregar un nuevo producto.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+				return;
+			}
 
-			if (ProductLogic.AddNewProduct(newProduct) == 200)
+			string name = ProductNameTextBox.Text;
+			string productName = ProductNameTextBox.Text;
+			string description = DescriptionTextBox.Text;
+			string productCode = ProductCodeLabel.Content.ToString();
+			byte[] picture = GetPictureBytes();
+
+			if (!double.TryParse(PriceTextBox.Text, out double price))
 			{
-				MessageBox.Show("Product added successfully!", "", MessageBoxButton.OK, MessageBoxImage.Information);
-				ClearInputFields();
+				MessageBox.Show("El campo Precio es requerido y debe contener solo números.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+				return;
+			}
+
+			string preparation2 = PreparationComboBox.SelectedItem.ToString();
+			string active2 = ActiveComboBox.SelectedItem.ToString();
+
+			string restrictions = RestrictionsTextBox.Text;
+			bool active;
+			bool preparation;
+			int idRecipe;
+
+			if (price > 0)
+			{
+				if (active2 == "System.Windows.Controls.ComboBoxItem: Activo")
+				{
+					active = true;
+				}
+				else
+				{
+					active = false;
+				}
+
+				if (preparation2 == "System.Windows.Controls.ComboBoxItem: Sí")
+				{
+					preparation = true;
+					idRecipe = new Random().Next(2, 100);
+				}
+				else
+				{
+					preparation = false;
+					idRecipe = 1;
+				}
+
+				Product newProduct = new Product(name, description, productCode, picture, price, preparation, productName, restrictions, idRecipe, active); // set the 'preparation' and 'active' properties of newProduct
+
+				if (ProductLogic.AddNewProduct(newProduct) == 200)
+				{
+					MessageBox.Show("Producto agregado correctamente!", "", MessageBoxButton.OK, MessageBoxImage.Information);
+					ClearInputFields();
+					this.Close();
+					Products productsWindow = new Products();
+					productsWindow.ShowDialog();
+
+				}
+				else
+				{
+					MessageBox.Show("Error al agregar producto!");
+				}
+
 			}
 			else
 			{
-				MessageBox.Show("Error adding product!");
+				MessageBox.Show("El precio debe ser un número positivo.", "", MessageBoxButton.OK, MessageBoxImage.Information);
 			}
+
 		}
 
 		private void SelectImage_Click(object sender, RoutedEventArgs e)
@@ -80,7 +142,7 @@ namespace View
 		private void ClearInputFields()
 		{
 			ProductNameTextBox.Clear();
-			ProductCodeTextBox.Clear();
+			ProductCodeLabel.Content = "";
 			DescriptionTextBox.Clear();
 			PriceTextBox.Clear();
 			PreparationComboBox.SelectedIndex = -1;
@@ -91,8 +153,23 @@ namespace View
 
 		private void CancelAddProductButton_Click(object sender, RoutedEventArgs e)
 		{
-			MessageBox.Show("¿Está seguro de cancelar el registro del nuevo producto?", "", MessageBoxButton.OK, MessageBoxImage.Information);
+			MessageBoxResult result = MessageBox.Show("¿Está seguro de cancelar el registro del nuevo producto?", "", MessageBoxButton.YesNo, MessageBoxImage.Information);
+
+			if (result == MessageBoxResult.Yes)
+			{
+				Close();
+			}
+			else
+			{
+			
+			}
+		}
+
+
+		private void CloseButton_Click(object sender, RoutedEventArgs e)
+		{
 			Close();
 		}
+
 	}
 }

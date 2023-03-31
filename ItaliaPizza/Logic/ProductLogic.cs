@@ -7,6 +7,7 @@ using System.Data.Entity.Core;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +15,7 @@ namespace Logic
 {
     public class ProductLogic
     {
+
         public static List<ProductToView> GetAllProductToView()
         {
             List<ProductToView> productsObtained = new List<ProductToView>();
@@ -24,32 +26,27 @@ namespace Logic
                     var allProducts = from product in context.product
                                       select product;
 
-                    foreach (var product in allProducts)
+                foreach (var product in allProducts)
+                {
                     {
+                        ProductToView recoverProduct = new ProductToView()
                         {
-                            ProductToView recoverProduct = new ProductToView()
-                            {
-                                Name = product.productName,
-                                Description = product.description,
-                                ProductCode = product.productCode,
-                                Price = "$" + product.price.ToString(),
-                                Restrictions = product.restrictions,
-                                Active = product.active == true ? "Si" : "No"
-                            };
+                            Name = product.productName,
+                            Description = product.description,
+                            ProductCode = product.productCode,
+                            Price = "$"+product.price.ToString(),
+                            Restrictions = product.restrictions,
+							IdRecipe = product.idRecipe.ToString(),
+							//Active = product.active
+                            Active = product.active == true ? "Si" : "No"
+                        };
 
-                            productsObtained.Add(recoverProduct);
-                        }
+                        productsObtained.Add(recoverProduct);
                     }
-                    
                 }
 
-
-			}
-			catch (DbUpdateException ex)
-			{
-
-			}
-            return productsObtained;
+                return productsObtained;
+            }
         }
 
 		public static int AddNewProduct(Product newProduct)
@@ -60,12 +57,6 @@ namespace Logic
 			{
 				try
 				{
-					if (string.IsNullOrEmpty(newProduct.ProductCode))
-					{
-						string productCode = GenerateProductCode();
-						newProduct.ProductCode = productCode;
-					}
-
 					database.product.Add(new product
 					{
 						productName = newProduct.Name,
@@ -78,12 +69,37 @@ namespace Logic
 						idRecipe = newProduct.IdRecipe,
 						active = newProduct.Active
 					});
-                    
-					if(database.SaveChanges() > 0) {
-                        responseCode = 200;
-                    }
 
-                }
+					var recipe = database.recipe.Find(newProduct.IdRecipe);
+
+					if (recipe == null && recipe != database.recipe.Find(1))
+					{
+						recipe = new recipe
+						{
+							idRecipe = newProduct.IdRecipe,
+							description = "Producto preparado",
+							recipeName = newProduct.Name,
+							active = newProduct.Active
+						};
+
+						database.recipe.Add(recipe);
+
+						Console.WriteLine("Producto agregado correctamente.");
+
+						Console.WriteLine("New recipe created.");
+					}
+
+					Console.WriteLine("Product added to database.");
+
+					//database.SaveChanges();
+
+					var productisSaved = database.SaveChanges();
+
+					if (productisSaved != 0)
+					{
+						responseCode = 200;
+					}
+				}
 				catch (DbEntityValidationException ex)
 				{
 					foreach (var validationError in ex.EntityValidationErrors)
@@ -95,18 +111,48 @@ namespace Logic
 							Console.WriteLine("- Property: {0}, Error: {1}", error.PropertyName, error.ErrorMessage);
 						}
 					}
-					
-				}
 
+					Console.WriteLine("Error al agregar producto.");
+					responseCode = 500;
+				}
 			}
 
 			return responseCode;
-
 		}
 
-		private static string GenerateProductCode()
+		public static int DeleteProduct(string productCode)
 		{
-			return "PROD" + new Random().Next(1000, 9999);
+			int responseCode;
+
+			using (var database = new ItaliaPizzaEntities())
+			{
+				try
+				{
+					var productToDelete = database.product.SingleOrDefault(p => p.productCode == productCode);
+
+					if (productToDelete != null)
+					{
+						database.product.Remove(productToDelete);
+						database.SaveChanges();
+
+						Console.WriteLine("Product deleted successfully.");
+						responseCode = 200;
+					}
+					else
+					{
+						Console.WriteLine("Product not found.");
+						responseCode = 404;
+					}
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine("Error while deleting product: {0}", ex.Message);
+					responseCode = 500;
+				}
+			}
+
+			return responseCode;
 		}
+
 	}
 }
