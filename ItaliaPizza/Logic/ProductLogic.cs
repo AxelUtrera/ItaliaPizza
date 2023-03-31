@@ -66,10 +66,6 @@ namespace Logic
 						idRecipe = newProduct.IdRecipe,
 						active = newProduct.Active
 					});
-                    
-					if(database.SaveChanges() > 0) {
-                        responseCode = 200;
-                    }
 
 					var recipe = database.recipe.Find(newProduct.IdRecipe);
 
@@ -78,7 +74,7 @@ namespace Logic
 						recipe = new recipe
 						{
 							idRecipe = newProduct.IdRecipe,
-							description = "Producto preparado", 
+							description = "Producto preparado",
 							recipeName = newProduct.Name,
 							active = newProduct.Active
 						};
