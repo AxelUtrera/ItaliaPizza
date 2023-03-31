@@ -49,15 +49,15 @@ namespace View
 
         }
 
-        private void Button_DeleteProduct_Click(object sender, MouseButtonEventArgs e)
-        {
+		private void Button_DeleteProduct_Click(object sender, MouseButtonEventArgs e)
+		{
 			if (ProductsTable.SelectedItem != null)
 			{
 				MessageBoxResult result = MessageBox.Show("¿Está seguro de cancelar la eliminación del producto?", "", MessageBoxButton.YesNo, MessageBoxImage.Information);
 
 				if (result == MessageBoxResult.Yes)
 				{
-					string productCode = ((Product)ProductsTable.SelectedItem).ProductCode;
+					string productCode = ((ProductToView)ProductsTable.SelectedItem).ProductCode;
 					int statusCode = ProductLogic.DeleteProduct(productCode);
 
 					if (statusCode == 200)
