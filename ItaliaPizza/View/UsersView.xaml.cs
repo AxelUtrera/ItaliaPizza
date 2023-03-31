@@ -32,7 +32,7 @@ namespace View
         {
             InitializeComponent();
             RecoverActiveUsers();
-            
+
         }
 
         private void RecoverActiveUsers()
@@ -44,7 +44,7 @@ namespace View
 
         private void Button_ModifyUser_Click(object sender, RoutedEventArgs e)
         {
-            if(UsersTable.SelectedItem != null)
+            if (UsersTable.SelectedItem != null)
             {
                 var userToModify = UsersTable.SelectedItem as User;
                 UserRegister userRegister = new UserRegister();
@@ -60,32 +60,34 @@ namespace View
 
 
         private void Button_DeleteUser_Click(object sender, RoutedEventArgs e)
-		{
-			if (UsersTable.SelectedItem != null)
-			{
-				MessageBoxResult result = MessageBox.Show("¿Está seguro de cancelar la eliminación del usuario?", "", MessageBoxButton.YesNo, MessageBoxImage.Information);
+        {
+            if (UsersTable.SelectedItem != null)
+            {
+                MessageBoxResult result = MessageBox.Show("¿Está seguro de cancelar la eliminación del usuario?", "", MessageBoxButton.YesNo, MessageBoxImage.Information);
 
-				if (result == MessageBoxResult.Yes)
-				{
-					int userId = ((User)UsersTable.SelectedItem).IdUser;
-					int statusCode = UserLogic.DeleteUser(userId);
+                if (result == MessageBoxResult.Yes)
+                {
+                    int userId = ((User)UsersTable.SelectedItem).IdUser;
+                    int statusCode = UserLogic.DeleteUser(userId);
 
-				if (statusCode == 200)
-				{
-					MessageBox.Show("Usuario eliminado correctamente.");
-                    RecoverActiveUsers();
-				}
-				else
-				{
-					MessageBox.Show("Ha ocurrido un error al intentar eliminar al usuario, inténtelo de nuevo.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
-				}
-			}
-			else
-			{
-				MessageBox.Show("Por favor, seleccione un usuario.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
-			}
-		}
+                    if (statusCode == 200)
+                    {
+                        MessageBox.Show("Usuario eliminado correctamente.");
+                        RecoverActiveUsers();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ha ocurrido un error al intentar eliminar al usuario, inténtelo de nuevo.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, seleccione un usuario.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
 
+
+        }
 
 		private void Button_Exit_Click(object sender, RoutedEventArgs e)
 		{
@@ -96,23 +98,24 @@ namespace View
 		private void Textbox_SearchUsers_Input(object sender, TextChangedEventArgs e)
 		{
 			var searchText = sender as TextBox;
-			if(searchText != null)
+			if (searchText != null)
 			{
-                var filteredList = activeUsers.Where(x => x.Name.Contains(searchText.Text));
-                UsersTable.ItemsSource = null;
-                UsersTable.ItemsSource = filteredList;
-            }
-            else
-            {
-                UsersTable.ItemsSource = activeUsers;
-            }
-        }
+				var filteredList = activeUsers.Where(x => x.Name.Contains(searchText.Text));
+				UsersTable.ItemsSource = null;
+				UsersTable.ItemsSource = filteredList;
+			}
+			else
+			{
+				UsersTable.ItemsSource = activeUsers;
+			}
+		}
 
-        private void Button_UserRegister_Click(object sender, RoutedEventArgs e)
-        {
-            UserRegister userRegister = new UserRegister();
-            userRegister.Show();
-            Close();
-        }
-    }
+		private void Button_UserRegister_Click(object sender, RoutedEventArgs e)
+		{
+			UserRegister userRegister = new UserRegister();
+			userRegister.Show();
+			Close();
+		}
+
+	}
 }
