@@ -3,6 +3,8 @@ using Model;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
@@ -15,30 +17,39 @@ namespace Logic
         public static List<ProductToView> GetAllProductToView()
         {
             List<ProductToView> productsObtained = new List<ProductToView>();
-
-            using (var database = new ItaliaPizzaEntities())
-            {
-                var allProducts = from product in database.product
-                                  select product;
-
-                foreach (var product in allProducts)
+			try
+			{
+                using (var context = new ItaliaPizzaEntities())
                 {
-                    {
-                        ProductToView recoverProduct = new ProductToView()
-                        {
-                            Name = product.productName,
-                            Description = product.description,
-                            ProductCode = product.productCode,
-                            Price = "$"+product.price.ToString(),
-                            Restrictions = product.restrictions,
-                            Active = product.active == true ? "Si" : "No"
-                        };
+                    var allProducts = from product in context.product
+                                      select product;
 
-                        productsObtained.Add(recoverProduct);
+                    foreach (var product in allProducts)
+                    {
+                        {
+                            ProductToView recoverProduct = new ProductToView()
+                            {
+                                Name = product.productName,
+                                Description = product.description,
+                                ProductCode = product.productCode,
+                                Price = "$" + product.price.ToString(),
+                                Restrictions = product.restrictions,
+                                Active = product.active == true ? "Si" : "No"
+                            };
+
+                            productsObtained.Add(recoverProduct);
+                        }
                     }
+                    
                 }
-                return productsObtained;
-            }
+
+
+			}
+			catch (DbUpdateException ex)
+			{
+
+			}
+            return productsObtained;
         }
 
 		public static int AddNewProduct(Product newProduct)

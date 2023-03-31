@@ -83,6 +83,15 @@
     <Compile Include="AddProduct.xaml.cs">
       <DependentUpon>AddProduct.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DeleteRecipe.xaml.cs">
+      <DependentUpon>DeleteRecipe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditRecipe.xaml.cs">
+      <DependentUpon>EditRecipe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="KitchenMenu.xaml.cs">
+      <DependentUpon>KitchenMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Products.xaml.cs">
       <DependentUpon>Products.xaml</DependentUpon>
     </Compile>
@@ -96,6 +105,18 @@
       <DependentUpon>UsersView.xaml</DependentUpon>
     </Compile>
     <Page Include="AddProduct.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DeleteRecipe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditRecipe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="KitchenMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -234,6 +255,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\addPizza.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\RecipesView.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\VisualizeKitchen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\DeleteKitchen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\EditKitchen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\RecordKitchen.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

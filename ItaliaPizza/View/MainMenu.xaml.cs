@@ -47,7 +47,9 @@ namespace View
 
         private void Button_Kitchen_Click(object sender, MouseButtonEventArgs e)
         {
-
+            KitchenMenu kitchenMenu = new KitchenMenu();
+            Close();
+            kitchenMenu.ShowDialog();
         }
 
         private void Button_Suplier_Click(object sender, MouseButtonEventArgs e)
