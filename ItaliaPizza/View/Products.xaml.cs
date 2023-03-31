@@ -51,10 +51,39 @@ namespace View
 
         private void Button_DeleteProduct_Click(object sender, MouseButtonEventArgs e)
         {
+			if (ProductsTable.SelectedItem != null)
+			{
+				MessageBoxResult result = MessageBox.Show("¿Está seguro de cancelar la eliminación del producto?", "", MessageBoxButton.YesNo, MessageBoxImage.Information);
 
-        }
+				if (result == MessageBoxResult.Yes)
+				{
+					string productCode = ((Product)ProductsTable.SelectedItem).ProductCode;
+					int statusCode = ProductLogic.DeleteProduct(productCode);
 
-        private void Button_EditProduct_Click(object sender, MouseButtonEventArgs e)
+					if (statusCode == 200)
+					{
+						MessageBox.Show("Producto eliminado correctamente.");
+						this.Close();
+						Products productsWindow = new Products();
+						productsWindow.ShowDialog();
+					}
+					else
+					{
+						MessageBox.Show("Ha ocurrido un error, inténtelo de nuevo.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+					}
+				}
+				else
+				{
+					Close();
+				}
+			}
+			else
+			{
+				MessageBox.Show("Por favor seleccione un producto.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+			}
+		}
+
+		private void Button_EditProduct_Click(object sender, MouseButtonEventArgs e)
         {
 
         }
@@ -65,6 +94,7 @@ namespace View
 			{
 				AddProduct addProduct = new AddProduct();
 				addProduct.Show();
+				this.Close();
 			}
 			catch (Exception ex)
 			{

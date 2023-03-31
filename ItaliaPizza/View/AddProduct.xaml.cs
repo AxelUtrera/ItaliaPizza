@@ -32,6 +32,12 @@ namespace View
 
 		private void AddProductButton_Click(object sender, RoutedEventArgs e)
 		{
+			if (string.IsNullOrEmpty(ProductNameTextBox?.Text) || string.IsNullOrEmpty(DescriptionTextBox?.Text) || string.IsNullOrEmpty(PriceTextBox?.Text) || string.IsNullOrEmpty(PreparationComboBox?.Text) || string.IsNullOrEmpty(ActiveComboBox?.Text))
+			{
+				MessageBox.Show("Debe completar todos los campos obligatorios para agregar un nuevo producto.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+				return;
+			}
+
 			string name = ProductNameTextBox.Text;
 			string productName = ProductNameTextBox.Text;
 			string description = DescriptionTextBox.Text;
@@ -40,26 +46,20 @@ namespace View
 
 			if (!double.TryParse(PriceTextBox.Text, out double price))
 			{
-				MessageBox.Show("El campo Precio debe contener sólo números positivos.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+				MessageBox.Show("El campo Precio es requerido y debe contener solo números.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
 				return;
 			}
 
-			if (!(price < 0))
+			string preparation2 = PreparationComboBox.SelectedItem.ToString();
+			string active2 = ActiveComboBox.SelectedItem.ToString();
+
+			string restrictions = RestrictionsTextBox.Text;
+			bool active;
+			bool preparation;
+			int idRecipe;
+
+			if (price > 0)
 			{
-				string restrictions = RestrictionsTextBox.Text;
-				string preparation2 = PreparationComboBox.SelectedItem?.ToString();
-				string active2 = ActiveComboBox.SelectedItem?.ToString();
-
-				if (preparation2 == null || active2 == null)
-				{
-					MessageBox.Show("Debe seleccionar una opción para los campos Preparación y Estado.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
-					return;
-				}
-
-				bool active;
-				bool preparation;
-				int idRecipe;
-
 				if (active2 == "System.Windows.Controls.ComboBoxItem: Activo")
 				{
 					active = true;
@@ -80,30 +80,28 @@ namespace View
 					idRecipe = 1;
 				}
 
-				Product newProduct = new Product(name, description, productCode, picture, price, preparation, productName, restrictions, idRecipe, active);
+				Product newProduct = new Product(name, description, productCode, picture, price, preparation, productName, restrictions, idRecipe, active); // set the 'preparation' and 'active' properties of newProduct
 
-				if (string.IsNullOrEmpty(ProductNameTextBox.Text) || string.IsNullOrEmpty(DescriptionTextBox.Text) || string.IsNullOrEmpty(PriceTextBox.Text) || PreparationComboBox.SelectedItem == null || ActiveComboBox.SelectedItem == null)
-				{
-					MessageBox.Show("Debe completar todos los campos para agregar un nuevo producto.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
-					return;
-				}
-
-				if (ProductLogic.AddNewProduct(newProduct) == 200 && !(price < 0))
+				if (ProductLogic.AddNewProduct(newProduct) == 200)
 				{
 					MessageBox.Show("Producto agregado correctamente!", "", MessageBoxButton.OK, MessageBoxImage.Information);
 					ClearInputFields();
-					Close();
+					this.Close();
+					Products productsWindow = new Products();
+					productsWindow.ShowDialog();
+
 				}
 				else
 				{
 					MessageBox.Show("Error al agregar producto!");
 				}
+
 			}
 			else
 			{
-				Console.WriteLine("Invalid Price.");
-				MessageBox.Show("Precio inválido.", "", MessageBoxButton.OK, MessageBoxImage.Information);
+				MessageBox.Show("El precio debe ser un número positivo.", "", MessageBoxButton.OK, MessageBoxImage.Information);
 			}
+
 		}
 
 		private void SelectImage_Click(object sender, RoutedEventArgs e)
@@ -163,13 +161,15 @@ namespace View
 			}
 			else
 			{
-
+			
 			}
 		}
+
 
 		private void CloseButton_Click(object sender, RoutedEventArgs e)
 		{
 			Close();
 		}
+
 	}
 }

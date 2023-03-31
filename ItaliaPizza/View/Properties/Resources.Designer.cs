@@ -61,16 +61,6 @@ namespace View.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap addPizza {
-            get {
-                object obj = ResourceManager.GetObject("addPizza", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Cancelar.
         /// </summary>
         public static string Global_Cancel_Button {
@@ -330,11 +320,11 @@ namespace View.Properties {
                 return ResourceManager.GetString("UserRegister_Title_Label", resourceCulture);
             }
         }
-
-		/// <summary>
-		///   Looks up a localized string similar to Nombre de usuario:.
-		/// </summary>
-		public static string UserRegister_Username_Label {
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nombre de usuario:.
+        /// </summary>
+        public static string UserRegister_Username_Label {
             get {
                 return ResourceManager.GetString("UserRegister_Username_Label", resourceCulture);
             }

@@ -63,8 +63,12 @@ namespace View
 		{
 			if (UsersTable.SelectedItem != null)
 			{
-				int userId = ((User)UsersTable.SelectedItem).IdUser;
-				int statusCode = UserLogic.DeleteUser(userId);
+				MessageBoxResult result = MessageBox.Show("¿Está seguro de cancelar la eliminación del usuario?", "", MessageBoxButton.YesNo, MessageBoxImage.Information);
+
+				if (result == MessageBoxResult.Yes)
+				{
+					int userId = ((User)UsersTable.SelectedItem).IdUser;
+					int statusCode = UserLogic.DeleteUser(userId);
 
 				if (statusCode == 200)
 				{
