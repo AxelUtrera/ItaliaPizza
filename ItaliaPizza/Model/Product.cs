@@ -13,7 +13,6 @@ namespace Model
         public string ProductCode { get; set; }
         public double Price { get; set; }
 		public bool Preparation { get; set; }
-		public string ProductName { get; set; }
         public int IdRecipe { get; set; }
         public bool Active { get; set; }
         public byte[] Picture { get; set; }
@@ -27,7 +26,6 @@ namespace Model
 			this.Picture = picture;
 			this.Price = price;
 			this.Preparation = preparation;
-			this.ProductName = productName ?? throw new ArgumentNullException(nameof(productName));
 			this.Restrictions = restrictions ?? throw new ArgumentNullException(nameof(restrictions));
 			this.IdRecipe = idRecipe;
 			this.Active = active;
@@ -36,5 +34,9 @@ namespace Model
 		public Product()
         {
         }
-	}
+
+       
+
+        
+    }
 }

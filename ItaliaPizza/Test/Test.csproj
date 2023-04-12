@@ -57,6 +57,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EditProductViewTests.cs" />
     <Compile Include="EncriptionTests.cs" />
     <Compile Include="ProductLogicTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

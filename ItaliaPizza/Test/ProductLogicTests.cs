@@ -3,9 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Model;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
-using System.Linq;
+
 
 namespace Test
 {
@@ -52,23 +50,33 @@ namespace Test
 			Assert.AreEqual(500, responseCode);
 		}
 
-	}
 
-
-}
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
-using Model;
-namespace Logic.Tests
-{
-    [TestClass()]
-    public class ProductLogicTests
-    {
         [TestMethod()]
-        public void Test01_GetAllProductToView_SuccessFulTest()
+        public void Test03_GetAllProductToView_SuccessFulTest()
         {
             List<ProductToView> listProductResult = ProductLogic.GetAllProductToView();
             Assert.IsNotNull(listProductResult);
         }
+
+		[TestMethod()]
+		public void Test04_EditProduct_SuccessfulTest()
+		{
+			List<ProductToView> listProductResult = ProductLogic.GetAllProductToView();
+			ProductToView productToViewForTest = listProductResult[1];
+			productToViewForTest.Name = "Coca 2.0";
+            ProductLogic productLogic = new ProductLogic();
+            Assert.AreEqual(productLogic.ModifyExistentProduct(productToViewForTest),200);
+        }
+
+        [TestMethod()]
+        public void Test05_ConvertToProduct_SuccessfulTest()
+        {
+            List<ProductToView> listProductResult = ProductLogic.GetAllProductToView();
+            ProductToView productToViewForTest = listProductResult[1];
+			ProductLogic product = new ProductLogic();
+
+            Assert.IsInstanceOfType(product.ConvertToProduct(productToViewForTest), typeof(Product));
+        }
+
     }
 }

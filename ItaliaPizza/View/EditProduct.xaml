@@ -38,10 +38,10 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" HorizontalAlignment ="Center">
                     <Label Content="Nombre" Foreground="#ffff" FontSize="20"/>
-                    <TextBox Name ="Textbox_Name" VerticalContentAlignment="Center" FontSize="20" Background="#D9D9D9" Height="45" Width="285" HorizontalAlignment="Left" Margin="0,0,0,55">
+                    <TextBox Name ="Textbox_Name" VerticalContentAlignment="Center" FontSize="20" Background="#D9D9D9" Height="45" Width="285" HorizontalAlignment="Left" Margin="0,0,0,5" BorderBrush="Red" BorderThickness="0">
                         
                     </TextBox>
-
+                    <Label Name="Label_Name_Error" Visibility="Hidden" Content="Solo debe contener letras" Margin="0,0,0,10" Foreground="Red"></Label>
 
                     <Label Content="Código" Foreground="#ffff" FontSize="20"/>
                     <TextBox Name="Textbox_ProductCode" IsEnabled="False"  VerticalContentAlignment="Center" Background="#D9D9D9" FontSize="20" Height="45" Width="285" HorizontalAlignment="Left" Margin="0,0,0,55">
@@ -50,34 +50,50 @@
                     
 
                     <Label Content="Preparacion" Foreground="#ffff" FontSize="20"/>
-                    <ComboBox Name="ComboBox_Preparation" Height="45" VerticalContentAlignment="Center" Background="#D9D9D9" Margin="0,0,0,55" FontSize="20" SelectionChanged="ComboBox_SelectionChanged">
+                    <ComboBox Name="ComboBox_Preparation" Height="45" VerticalContentAlignment="Center" Background="#D9D9D9" Margin="0,0,0,5" FontSize="20"  SelectionChanged="ComboBox_SelectionChanged">
                         <ComboBoxItem FontSize="20" Margin="10,10">Si</ComboBoxItem>
                         <ComboBoxItem FontSize="20" Margin="10,10">No</ComboBoxItem>
                     </ComboBox>
                     
+                    <Label Name="Label_Preparation_Error" Visibility="Hidden"  Content="Seleccione un valor" Margin="0,0,0,10" Foreground="Red"></Label>
+
+
+                    <Label Content="Receta" Foreground="#ffff" FontSize="20" Visibility="Collapsed"/>
+                    <ComboBox Name="ComboBox_Recipe" Visibility="Collapsed" Height="45" VerticalContentAlignment="Center" Background="#D9D9D9" Margin="0,0,0,5" FontSize="20"  SelectionChanged="ComboBox_SelectionChanged">
+                        <ComboBoxItem FontSize="20" Margin="10,10">Si</ComboBoxItem>
+                        <ComboBoxItem FontSize="20" Margin="10,10">No</ComboBoxItem>
+                    </ComboBox>
+
+                    <Label Name="Label_Recipe_Error" Visibility="Hidden"  Content="Seleccione un valor" Margin="0,0,0,10" Foreground="Red"></Label>
+
 
                     <Label Content="Estado" Foreground="#ffff" FontSize="20"/>
                     <ComboBox Name="ComboBox_State" Height="45"  VerticalContentAlignment="Center" FontSize="20" Background="#D9D9D9">
                         <ComboBoxItem FontSize="20" Margin="10,10">Activo</ComboBoxItem>
                         <ComboBoxItem FontSize="20" Margin="10,10">Inactivo</ComboBoxItem>
                     </ComboBox>
+                    <Label Name="Label_State_Error" Visibility="Hidden"  Content="Seleccione un valor" Margin="0,0,0,30" Foreground="Red"></Label>
+
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Margin="50,0" HorizontalAlignment="Center">
                     <Label Content="Precio" Foreground="#ffff" FontSize="20"/>
-                    <TextBox Name="Textbox_Price" Height="45" VerticalContentAlignment="Center" FontSize="20" Background="#D9D9D9" Width="285" HorizontalAlignment="Left" Margin="0,0,0 40">
+                    <TextBox Name="Textbox_Price" Height="45" VerticalContentAlignment="Center" FontSize="20" Background="#D9D9D9" Width="285" HorizontalAlignment="Left" BorderBrush="Red" BorderThickness="0" Margin="0,0,0,5">
                         
                     </TextBox>
+                    <Label Name="Label_Price_Error" Visibility="Hidden" Content="Ingrese solo numeros" Margin="0,0,0,20" Foreground="Red"></Label>
 
                     <Label Content="Descripción" Foreground="#ffff" FontSize="20"/>
-                    <TextBox Name="Textbox_Description" Height="130" FontSize="20"  Background="#D9D9D9" Width="350" HorizontalAlignment="Left" Margin="0,0,0,40">
+                    <TextBox Name="Textbox_Description" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Height="130" FontSize="20"  Background="#D9D9D9" Width="350" HorizontalAlignment="Left" BorderBrush="Red" BorderThickness="0" Margin="0,0,0,5">
                         
                     </TextBox>
+                    <Label Name="Label_Description_Error" Visibility="Hidden"  Content="El numero de caracteres fue excedido" Margin="0,0,0,20" Foreground="Red"></Label>
 
                     <Label Content="Restricciones" Foreground="#ffff" FontSize="20"/>
-                    <TextBox Name="Textbox_Restrictions"  Height="130" VerticalContentAlignment="Stretch" Background="#D9D9D9" Width="350" FontSize="20" HorizontalAlignment="Left" Margin="0,0,0,55">
+                    <TextBox Name="Textbox_Restrictions" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Height="130" VerticalContentAlignment="Stretch" Background="#D9D9D9" Width="350" FontSize="20" HorizontalAlignment="Left" Margin="0,0,0,5" BorderBrush="Red" BorderThickness="0">
                         
                     </TextBox>
+                    <Label Name="Label_Restrictions_Error" Visibility="Hidden"  Content="El numero de caracteres fue excedido" Margin="0,0,0,0" Foreground="Red"></Label>
 
 
                 </StackPanel>

@@ -91,9 +91,9 @@ namespace View
             if (productSelected != null)
             {
                 EditProduct ed = new EditProduct();
-                ed.ShowDialog();
+                ed.Show();
+                this.Close();
             }
-            this.Close();
         }
 
 

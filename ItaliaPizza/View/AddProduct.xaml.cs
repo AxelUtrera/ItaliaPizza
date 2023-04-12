@@ -5,6 +5,7 @@ using Logic;
 using Microsoft.Win32;
 using Model;
 using System.IO;
+using System.Linq;
 
 namespace View
 {

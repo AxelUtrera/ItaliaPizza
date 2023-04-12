@@ -2,12 +2,8 @@
 using Model;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
-using System.Runtime.Remoting.Contexts;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Logic
 {
@@ -26,21 +22,20 @@ namespace Logic
 
 					foreach (var product in allProducts)
 					{
+						ProductToView recoverProduct = new ProductToView()
 						{
-							ProductToView recoverProduct = new ProductToView()
-							{
-								Name = product.productName,
-								Description = product.description,
-								ProductCode = product.productCode,
-								Price = "$" + product.price.ToString(),
-								Restrictions = product.restrictions,
-								Active = product.active == true ? "Si" : "No",
-								Image = ImageLogic.ConvertToBitMapImage(product.picture),
-								Preparation = product.preparation
-							};
+							Name = product.productName,
+							Description = product.description,
+							ProductCode = product.productCode,
+							Price = "$" + product.price.ToString(),
+							Restrictions = product.restrictions,
+							Active = product.active == true ? "Si" : "No",
+							Image = ImageLogic.ConvertToBitMapImage(product.picture),
+							Preparation = product.preparation,
+							IdRecipe = product.idRecipe 
+						};
 
-							productsObtained.Add(recoverProduct);
-						}
+						productsObtained.Add(recoverProduct);
 					}
 				}
 			}
@@ -59,10 +54,10 @@ namespace Logic
 
 		
 
-		public static int ModifiExistentProduct(ProductToView productToModify)
+		public int ModifyExistentProduct(ProductToView productToModify)
 		{
 			int operationResult = 500;
-			Product productToModifyConverted = ProductLogic.ConvertToProduct(productToModify);
+			Product productToModifyConverted = ConvertToProduct(productToModify);
 
 			if (productToModify != null)
 			{
@@ -80,8 +75,9 @@ namespace Logic
                         updatedProduct.active = productToModifyConverted.Active;
                         updatedProduct.idRecipe = productToModifyConverted.IdRecipe;
                         updatedProduct.preparation = productToModifyConverted.Preparation;
-
+	
                         int returnValue = dataBase.SaveChanges();
+
                         if (returnValue > 0)
                         {
                             operationResult = 200;
@@ -100,7 +96,8 @@ namespace Logic
 			return operationResult;
 		}
 
-		private static Product ConvertToProduct(ProductToView productViewToConvert)
+
+		public Product ConvertToProduct(ProductToView productViewToConvert)
 		{
 
 			Product productResultant = null;
@@ -112,9 +109,10 @@ namespace Logic
 					Name = productViewToConvert.Name,
 					Description = productViewToConvert.Description,
 					ProductCode = productViewToConvert.ProductCode,
-					Price = Double.Parse(productViewToConvert.Price),
+					Price = Double.Parse(productViewToConvert.Price.Replace("$","")),
 					Preparation = productViewToConvert.Preparation,
-					IdRecipe = Int32.Parse(productViewToConvert.IdRecipe),
+
+					IdRecipe = productViewToConvert.IdRecipe,
 					Active = productViewToConvert.Active.Equals("Si") ? true : false,
 					Picture = ImageLogic.ConvertToBytes(productViewToConvert.Image),
 					Restrictions = productViewToConvert.Restrictions
@@ -123,6 +121,7 @@ namespace Logic
 
 			return productResultant;
 		}
+
 
 		public static int AddNewProduct(Product newProduct)
 		{
