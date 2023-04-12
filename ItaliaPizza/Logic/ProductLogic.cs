@@ -127,72 +127,106 @@ namespace Logic
 		{
 			int responseCode = 500;
 
-			using (var database = new ItaliaPizzaEntities())
-			{
-				try
-				{
-					database.product.Add(new product
-					{
-						productName = newProduct.Name,
-						description = newProduct.Description,
-						productCode = newProduct.ProductCode,
-						picture = newProduct.Picture,
-						price = newProduct.Price,
-						preparation = newProduct.Preparation,
-						restrictions = newProduct.Restrictions,
-						idRecipe = newProduct.IdRecipe,
-						active = newProduct.Active
-					});
-                    
-					if(database.SaveChanges() > 0) {
-                        responseCode = 200;
+            using (var database = new ItaliaPizzaEntities())
+            {
+                try
+                {
+                    database.product.Add(new product
+                    {
+                        productName = newProduct.Name,
+                        description = newProduct.Description,
+                        productCode = newProduct.ProductCode,
+                        picture = newProduct.Picture,
+                        price = newProduct.Price,
+                        preparation = newProduct.Preparation,
+                        restrictions = newProduct.Restrictions,
+                        idRecipe = newProduct.IdRecipe,
+                        active = newProduct.Active
+                    });
+
+                    var recipe = database.recipe.Find(newProduct.IdRecipe);
+
+                    if (recipe == null && recipe != database.recipe.Find(1))
+                    {
+                        recipe = new recipe
+                        {
+                            idRecipe = newProduct.IdRecipe,
+                            description = "Producto preparado",
+                            recipeName = newProduct.Name,
+                            active = newProduct.Active
+                        };
+
+                        database.recipe.Add(recipe);
+
+                        Console.WriteLine("Producto agregado correctamente.");
+
+                        Console.WriteLine("New recipe created.");
                     }
 
-					var recipe = database.recipe.Find(newProduct.IdRecipe);
+                    Console.WriteLine("Product added to database.");
 
-					if (recipe == null && recipe != database.recipe.Find(1))
-					{
-						recipe = new recipe
-						{
-							idRecipe = newProduct.IdRecipe,
-							description = "Producto preparado", 
-							recipeName = newProduct.Name,
-							active = newProduct.Active
-						};
+                    //database.SaveChanges();
 
-						database.recipe.Add(recipe);
+                    var productisSaved = database.SaveChanges();
 
-						Console.WriteLine("Producto agregado correctamente.");
+                    if (productisSaved != 0)
+                    {
+                        responseCode = 200;
+                    }
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationError in ex.EntityValidationErrors)
+                    {
+                        Console.WriteLine("Validation error for entity {0}:", validationError.Entry.Entity.GetType().Name);
 
-						Console.WriteLine("New recipe created.");
-					}
+                        foreach (var error in validationError.ValidationErrors)
+                        {
+                            Console.WriteLine("- Property: {0}, Error: {1}", error.PropertyName, error.ErrorMessage);
+                        }
+                    }
 
-					Console.WriteLine("Product added to database.");
+                    Console.WriteLine("Error al agregar producto.");
+                    responseCode = 500;
+                }
+            }
 
-					database.SaveChanges();
+            return responseCode;
+        }
 
-					responseCode = 200;
+        public static int DeleteProduct(string productCode)
+        {
+            int responseCode;
 
-				}
-				catch (DbEntityValidationException ex)
-				{
-					foreach (var validationError in ex.EntityValidationErrors)
-					{
-						Console.WriteLine("Validation error for entity {0}:", validationError.Entry.Entity.GetType().Name);
+            using (var database = new ItaliaPizzaEntities())
+            {
+                try
+                {
+                    var productToDelete = database.product.SingleOrDefault(p => p.productCode == productCode);
 
-						foreach (var error in validationError.ValidationErrors)
-						{
-							Console.WriteLine("- Property: {0}, Error: {1}", error.PropertyName, error.ErrorMessage);
-						}
-					}
+                    if (productToDelete != null)
+                    {
+                        database.product.Remove(productToDelete);
+                        database.SaveChanges();
 
-					Console.WriteLine("Error al agregar producto.");
-					responseCode = 500;
-				}
-			}
+                        Console.WriteLine("Product deleted successfully.");
+                        responseCode = 200;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Product not found.");
+                        responseCode = 404;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error while deleting product: {0}", ex.Message);
+                    responseCode = 500;
+                }
+            }
 
-			return responseCode;
-		}
+            return responseCode;
+        }
 
-	}
+    }
 }

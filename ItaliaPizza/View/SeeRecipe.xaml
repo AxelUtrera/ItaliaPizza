@@ -1,0 +1,63 @@
+﻿<Window x:Class="View.SeeRecipe"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:View"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        WindowStyle="None"
+        
+        Title="See Recipe" Height="810" Width="1440">
+
+    <Viewbox Stretch="fill" StretchDirection="Both" >
+        <Grid Width="1440" Height="810">
+
+            <Grid.Background>
+                <ImageBrush ImageSource="/Img/RecipesView.jpg"/>
+            </Grid.Background>
+
+            <StackPanel Orientation="Horizontal" Height="50" VerticalAlignment="Top" Margin="20">
+                <Label Margin="25,0,0,0" Content="Menu principal" Foreground="#f3f3f3" FontSize="30" FontWeight="Bold"></Label>
+                <Button Width="35" Click="Button_Exit_Click" Cursor="Hand" Height="35" VerticalAlignment="Center" Margin="1100,0,0,0">
+                    <Button.Template>
+                        <ControlTemplate  TargetType="Button">
+                            <Border Background="Transparent">
+                                <Image Source="/Img/ExitIcon.png" Width="35" Height="35" VerticalAlignment="Top"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+            </StackPanel>
+            <Image Source="/Img/Icon_Search.png" Margin="360,128,1006,638"/>
+
+            <Label Content="Titulo" HorizontalAlignment="Left" Margin="48,89,0,0" VerticalAlignment="Top" Foreground="White" FontSize="20" FontWeight="Bold" Width="206" Height="38" Background="{x:Null}" Opacity="0.9"/>
+            <Rectangle HorizontalAlignment="Left" Height="513" Margin="48,209,0,0" Stroke="#5F5F5F" VerticalAlignment="Top" Width="606" Opacity="0.6" Fill="#5F5F5F"/>
+            <RichTextBox x:Name="RichTextBox_Description" Width="601" Background="{x:Null}"  BorderThickness="0" Foreground="#f3f3f3" IsEnabled="False" FontSize="18" Margin="53,218,786,88">
+                <FlowDocument>
+                    <Paragraph>
+                        <Run Text=""/>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+            <ListBox x:Name="ListBox_SelectedIngredients" Margin="738,209,150,88" Background="#5F5F5F"  BorderThickness="0" Foreground="#f3f3f3" Opacity="0.6" d:ItemsSource="{d:SampleData ItemCount=5}" FontSize="18" FontWeight="Bold">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="430"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding IngredientName}"></TextBlock>
+                            <TextBlock Grid.Column="1" Text="{Binding Quantity}"></TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Label x:Name="labelDescription" Content="Ingresa la Descripcion:" HorizontalAlignment="Left" Margin="48,166,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Foreground="White"/>
+            <ComboBox x:Name="ComboBox_Recipes" HorizontalAlignment="Left" Margin="48,132,0,0" VerticalAlignment="Top" Width="316" Height="37" Background="#5F5F5F" BorderBrush="#5F5F5F" SelectionChanged="ComboBoxTituloSelectionChanged" FontSize="18" />
+            <Label Content="Ingredientes Seleccionados:" HorizontalAlignment="Left" Margin="738,163,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold"/>
+        </Grid>
+    </Viewbox>
+</Window>

@@ -84,6 +84,15 @@
     <Compile Include="AddProduct.xaml.cs">
       <DependentUpon>AddProduct.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DeleteRecipe.xaml.cs">
+      <DependentUpon>DeleteRecipe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditRecipe.xaml.cs">
+      <DependentUpon>EditRecipe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="KitchenMenu.xaml.cs">
+      <DependentUpon>KitchenMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditProduct.xaml.cs">
       <DependentUpon>EditProduct.xaml</DependentUpon>
     </Compile>
@@ -93,13 +102,22 @@
     <Compile Include="UserRegister.xaml.cs">
       <DependentUpon>UserRegister.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsersMenu.xaml.cs">
-      <DependentUpon>UsersMenu.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UsersView.xaml.cs">
       <DependentUpon>UsersView.xaml</DependentUpon>
     </Compile>
     <Page Include="AddProduct.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DeleteRecipe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditRecipe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="KitchenMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -128,10 +146,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserRegister.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UsersMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -174,6 +188,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resource.es-MX.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -244,7 +259,19 @@
     <Resource Include="Img\addPizza.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\addPizza.jpg" />
+    <Resource Include="Img\RecipesView.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\VisualizeKitchen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\DeleteKitchen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\EditKitchen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\RecordKitchen.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\AddImage.png" />

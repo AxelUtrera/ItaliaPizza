@@ -32,7 +32,7 @@ namespace View
             if(UserLogic.AutenticateUser(TextBox_Username.Text, PasswordBox_PasswordUser.Password) == statusOK)
             {
                 Model.Worker worker = UserLogic.GetWorkerByUsername(TextBox_Username.Text); 
-                if (worker.Role == "Administrador" && UserLogic.getUserById(worker.IdUser).IsActive)
+                if (worker.Role == "Administrador" && UserLogic.GetUserById(worker.IdUser).IsActive)
                 {
                     MainMenu mainMenu = new MainMenu();
                     mainMenu.Show();
