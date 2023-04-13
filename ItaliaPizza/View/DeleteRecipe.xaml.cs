@@ -70,5 +70,13 @@ namespace View
                 textRange.Text = recipe.DescriptionRecipe;
             }
         }
+
+        private void Button_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            KitchenMenu kitchenMenuWindow = new KitchenMenu();
+            Close();
+            kitchenMenuWindow.Show();
+          
+        }
     }
 }

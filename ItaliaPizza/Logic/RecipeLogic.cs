@@ -15,8 +15,9 @@ namespace Logic
 {
     public class RecipeLogic
     {
-        public static void RegistRecipe(Recipe recipe)
+        public static bool RegistRecipe(Recipe recipe)
         {
+            bool result = false;
             using (ItaliaPizzaEntities context = new ItaliaPizzaEntities())
             {
                 var recipes = new DataAccess.recipe
@@ -29,12 +30,15 @@ namespace Logic
                 {
                     context.recipe.Add(recipes);
                     context.SaveChanges();
+                    result = true;
                 }
                 catch (DbUpdateException ex)
                 {
                                       
                 }
+               
             }
+            return result;
         }
 
         public static bool ActivateRecipe(int idRecipe)
