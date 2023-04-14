@@ -18,9 +18,7 @@ namespace DataAccess
         public worker()
         {
             this.dailyBalance = new HashSet<dailyBalance>();
-            this.dailyBalance1 = new HashSet<dailyBalance>();
             this.orders = new HashSet<orders>();
-            this.orders1 = new HashSet<orders>();
         }
     
         public string username { get; set; }
@@ -34,12 +32,7 @@ namespace DataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<dailyBalance> dailyBalance { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<dailyBalance> dailyBalance1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<orders> orders { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<orders> orders1 { get; set; }
         public virtual users users { get; set; }
-        public virtual users users1 { get; set; }
     }
 }

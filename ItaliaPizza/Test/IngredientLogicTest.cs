@@ -14,7 +14,7 @@ namespace Logic.Tests
         [TestMethod]
         public void Test01_GetIngredients_SuccessfulTest()
         {
-            List <Ingredient> allIngredients= IngredientLogic.GetIngredients();
+            List<Ingredient> allIngredients = IngredientLogic.GetIngredients();
             Assert.IsNotNull(allIngredients);
         }
         [TestMethod]
@@ -26,9 +26,9 @@ namespace Logic.Tests
                 IngredientName = "Test",
                 Quantity = 1,
             };
-            Assert.IsTrue( IngredientLogic.RegistIngredient(ingredient));
+            Assert.IsTrue(IngredientLogic.RegistIngredient(ingredient));
         }
-      
+
         public void Test03_RegistIngredient_NotValidTest()
         {
             Ingredient ingredient = new Ingredient()
@@ -43,21 +43,21 @@ namespace Logic.Tests
         [TestMethod]
         public void Test04_RegistRecipeIngredients_SuccessfulTest()
         {
-            Recipe recipe= new Recipe();
-            List<Ingredient> ingredientsSelected = new List<Ingredient>();            
-            for (int i=12; i<=21; i++)
+            Recipe recipe = new Recipe();
+            List<Ingredient> ingredientsSelected = new List<Ingredient>();
+            for (int i = 12; i <= 21; i++)
             {
                 var ingredient = new Ingredient()
-                {                    
+                {
                     Quantity = i,
                     IdIngredient = i
-                };                
+                };
                 ingredientsSelected.Add(ingredient);
             };
             recipe.Ingredients = ingredientsSelected;
             recipe.IdRecipe = 1;
             Assert.IsTrue(IngredientLogic.RegistRecipeIngredients(recipe));
-            
+
         }
 
         [TestMethod]
@@ -77,7 +77,7 @@ namespace Logic.Tests
             };
             recipe.Ingredients = ingredientsSelected;
             recipe.IdRecipe = 0;
-            Assert.IsFalse(IngredientLogic.RegistRecipeIngredients(recipe));            
+            Assert.IsFalse(IngredientLogic.RegistRecipeIngredients(recipe));
         }
 
         [TestMethod]
@@ -87,14 +87,14 @@ namespace Logic.Tests
             for (int i = 12; i <= 21; i++)
             {
                 var ingredient = new Ingredient()
-                {        
-                    IngredientName="Test",
+                {
+                    IngredientName = "Test",
                     Quantity = i,
-                    IdIngredient = i                    
+                    IdIngredient = i
                 };
-                recipeIngrediens.Add(ingredient);                
+                recipeIngrediens.Add(ingredient);
             };
-            Assert.IsTrue(IngredientLogic.GetRecipeIngredients(1).Count==recipeIngrediens.Count);
+            Assert.IsTrue(IngredientLogic.GetRecipeIngredients(1).Count == recipeIngrediens.Count);
         }
 
         [TestMethod]

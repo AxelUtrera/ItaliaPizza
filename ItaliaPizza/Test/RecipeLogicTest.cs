@@ -10,7 +10,7 @@ namespace Logic.Test
     {
         [TestMethod]
         public void Test01_GetRecipes_SuccessfulTest()
-        {            
+        {
             List<Recipe> recipesList = Logic.RecipeLogic.GetRecipes();
             bool response = recipesList.Count > 0;
             Assert.IsTrue(response);
@@ -24,7 +24,7 @@ namespace Logic.Test
             Assert.IsFalse(response);
         }
 
-        [TestMethod] 
+        [TestMethod]
         public void Test03_RegistRecipe_SuccessfulTest()
         {
             List<Ingredient> ingredientsList = new List<Ingredient>();
@@ -34,7 +34,7 @@ namespace Logic.Test
                 {
                     IngredientName = "TestName:" + i.ToString(),
                     IsActive = true,
-                    IdIngredient= i,
+                    IdIngredient = i,
                     Quantity = 1,
 
                 };
@@ -43,11 +43,11 @@ namespace Logic.Test
 
             Recipe recipe = new Recipe()
             {
-                NameRecipe="TestReceta4",
-                DescriptionRecipe="TestDescription",
-                IsActive=false,
-                Ingredients= ingredientsList
-                
+                NameRecipe = "TestReceta4",
+                DescriptionRecipe = "TestDescription",
+                IsActive = false,
+                Ingredients = ingredientsList
+
             };
             Assert.IsTrue(Logic.RecipeLogic.RegistRecipe(recipe));
         }
@@ -103,7 +103,7 @@ namespace Logic.Test
             Assert.IsFalse(RecipeLogic.EditRecipe(recipe));
         }
 
-        [TestMethod]   
+        [TestMethod]
         public void Test10_AllreadyExist_Exist()
         {
             string response = "exist";

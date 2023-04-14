@@ -76,6 +76,7 @@ namespace View
             KitchenMenu kitchenMenuWindow = new KitchenMenu();
             Close();
             kitchenMenuWindow.Show();
+          
         }
     }
 }

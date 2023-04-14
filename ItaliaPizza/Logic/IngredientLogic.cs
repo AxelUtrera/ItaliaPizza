@@ -60,12 +60,13 @@ namespace Logic
                     active = ingredient.IsActive
                 };
                 try
-                {                    
+                {
+                    //hola
                     context.ingredient.Add(ingredients);                   
                     context.SaveChanges();
                     registered= true;
                 }
-                catch (DbUpdateException ex)
+                catch (EntityException ex)
                 {                    
                     throw new EntityException (ex.ToString());
                 }
@@ -82,9 +83,11 @@ namespace Logic
                 {    
                     
                     foreach (var ingredient in recipe.Ingredients)
-                    {                        
+                    {
+                        
                         var recipeIngredient = new DataAccess.recipeIngredient
-                        {                            
+                        {
+                            
                             idRecipe = recipe.IdRecipe,
                             idIngredient = ingredient.IdIngredient,
                             quantity = (int)ingredient.Quantity

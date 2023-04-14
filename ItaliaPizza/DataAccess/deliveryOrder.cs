@@ -19,8 +19,6 @@ namespace DataAccess
         public int idCustomer { get; set; }
     
         public virtual customer customer { get; set; }
-        public virtual customer customer1 { get; set; }
         public virtual orders orders { get; set; }
-        public virtual orders orders1 { get; set; }
     }
 }
