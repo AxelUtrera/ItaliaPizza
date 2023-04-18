@@ -35,7 +35,7 @@ namespace Logic
                 }
                 catch (DbUpdateException ex)
                 {
-                                      
+                    throw new DbUpdateException(ex.Message);
                 }
                
             }
@@ -98,9 +98,10 @@ namespace Logic
 
         public static bool EditRecipe(Recipe recipe1)
         {
+            bool response = false;
             using (ItaliaPizzaEntities context = new ItaliaPizzaEntities())
             {
-                bool response=false;
+                
                 var foudRecipe = (from recipe in context.recipe
                                   where recipe.idRecipe.Equals(recipe1.IdRecipe)
                                   select recipe).FirstOrDefault();
@@ -118,11 +119,10 @@ namespace Logic
                 {
                         response = false;
                 }
-            }
-                
-                return response;
+            }                
+            return response;
         }
-        }
+        
         public static string AllreadyExist(string nameRecipe)
         {
             string state="doesNotExist";
@@ -173,10 +173,8 @@ namespace Logic
                     }
                 }
             }
-            catch (EntityException ex)
             catch (Exception ex)
-            {
-                         
+            {                         
                 throw new Exception(ex.ToString());                
             }
             return recipes;
