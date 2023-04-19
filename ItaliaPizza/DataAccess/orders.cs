@@ -18,9 +18,7 @@ namespace DataAccess
         public orders()
         {
             this.deliveryOrder = new HashSet<deliveryOrder>();
-            this.deliveryOrder1 = new HashSet<deliveryOrder>();
-            this.orderProduct = new HashSet<orderProduct>();
-            this.orderProduct1 = new HashSet<orderProduct>();
+            this.product = new HashSet<product>();
         }
     
         public int idOrder { get; set; }
@@ -31,13 +29,8 @@ namespace DataAccess
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<deliveryOrder> deliveryOrder { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<deliveryOrder> deliveryOrder1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<orderProduct> orderProduct { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<orderProduct> orderProduct1 { get; set; }
         public virtual worker worker { get; set; }
-        public virtual worker worker1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<product> product { get; set; }
     }
 }

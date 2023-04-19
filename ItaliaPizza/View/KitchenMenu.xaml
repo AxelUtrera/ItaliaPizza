@@ -11,7 +11,7 @@
     <Viewbox Stretch="Fill" StretchDirection="Both">
         <Grid Width="1440" Height="810" Background="#000">
 
-            <Grid>
+            <Grid Cursor="Hand">
                 <Grid.Background>
                     <ImageBrush ImageSource="/Img/MainMenu_Background.jpg" Stretch="UniformToFill" Opacity=".7"></ImageBrush>
                 </Grid.Background>
@@ -42,7 +42,7 @@
                     </Grid.RowDefinitions>
 
                     <Label Grid.Row="0" Content="Ver Recetas" FontSize="20" Foreground="White" HorizontalAlignment="Center" Margin="0,-3,0,3"/>
-                    <Image Width="250" Height="250" Grid.Row="0" Grid.Column="0" Source="Img/VisualizeKitchen.png" Stretch="UniformToFill" Cursor="Hand" MouseLeftButtonDown="Image_SeeRecipe_Click" Opacity=".9" />
+                    <Image Width="250" Height="250" Grid.Row="0" Grid.Column="0" Source="/Img/VisualizeKitchen.png" Stretch="UniformToFill" Cursor="Hand" MouseLeftButtonDown="Image_SeeRecipe_Click" Opacity=".9" />
 
                     <Label Grid.Row="0" Grid.Column="1" Content="Resgistrar Receta" FontSize="20" Foreground="White" HorizontalAlignment="Center" Margin="0,-3,0,3"></Label>
                     <Image Width="250" Height="250" Grid.Row="0" Grid.Column="2" Source="/Img/RecordKitchen.png" Stretch="UniformToFill" Cursor="Hand" MouseLeftButtonDown="Image_RecordRecipe_Click" />

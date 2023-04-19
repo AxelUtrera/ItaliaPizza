@@ -112,7 +112,7 @@ namespace View
             TextRange textRange = new TextRange(RichTextBox_Description.Document.ContentStart,
                 RichTextBox_Description.Document.ContentEnd);
             int validateResult = ValidateText();
-            if (validateResult == 1 )
+            if (validateResult == 1)
             {
 
                 Recipe recipe = new Recipe()
@@ -124,8 +124,8 @@ namespace View
                 int idRecipe;
                 switch (Logic.RecipeLogic.AllreadyExist(recipe.NameRecipe))
                 {
-                    case "exist":                        
-                        MessageBox.Show("Ya se encuentra una receta registrada con este mismo nombre","Receta Registrada",MessageBoxButton.OK, MessageBoxImage.Information);
+                    case "exist":
+                        MessageBox.Show("Ya se encuentra una receta registrada con este mismo nombre", "Receta Registrada", MessageBoxButton.OK, MessageBoxImage.Information);
                         break;
 
                     case "doesNotExist":
@@ -151,8 +151,8 @@ namespace View
                             {
                                 MessageBox.Show("El registro no pudo ser realizado", "Registro", MessageBoxButton.OK, MessageBoxImage.Warning);
                             }
-                        }                                               
-                        break;                       
+                        }
+                        break;
 
                     case "idle":
                         idRecipe = RecipeLogic.GetIdRecipe(recipe.NameRecipe);
@@ -175,12 +175,12 @@ namespace View
             }
             else if (validateResult == 0)
             {
-                MessageBox.Show("Por favor, no ingreses caracteres extraños","Caracteres invalidos",MessageBoxButton.OK,MessageBoxImage.Warning);
+                MessageBox.Show("Por favor, no ingreses caracteres extraños", "Caracteres invalidos", MessageBoxButton.OK, MessageBoxImage.Warning);
                 RichTextBox_Description.Focus();
             }
             else
             {
-                MessageBox.Show("Por favor, llena todos los campos","Campos vacios",MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Por favor, llena todos los campos", "Campos vacios", MessageBoxButton.OK, MessageBoxImage.Warning);
                 RichTextBox_Description.Focus();
             }
         }
@@ -188,13 +188,14 @@ namespace View
         {
             TextRange textRange = new TextRange(RichTextBox_Description.Document.ContentStart,
                RichTextBox_Description.Document.ContentEnd);
-            int result=0;
+            int result = 0;
 
-            if (!string.IsNullOrWhiteSpace(TextBox_Tittle.Text) && !string.IsNullOrWhiteSpace(textRange.Text) && selectedIngredients.FirstOrDefault()!=null)
+            if (!string.IsNullOrWhiteSpace(TextBox_Tittle.Text) && !string.IsNullOrWhiteSpace(textRange.Text) && selectedIngredients.FirstOrDefault() != null)
             {
                 Regex regex = new Regex(@"^[a-zA-Z0-9\s!?\(\)\n]+$");
 
-                if (regex.IsMatch(textRange.Text) || regex.IsMatch(TextBox_Tittle.Text)){
+                if (regex.IsMatch(textRange.Text) || regex.IsMatch(TextBox_Tittle.Text))
+                {
                     result = 1;
                 }
             }

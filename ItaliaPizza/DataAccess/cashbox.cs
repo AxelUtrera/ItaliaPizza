@@ -18,7 +18,6 @@ namespace DataAccess
         public cashbox()
         {
             this.dailyBalance = new HashSet<dailyBalance>();
-            this.dailyBalance1 = new HashSet<dailyBalance>();
         }
     
         public int idCashbox { get; set; }
@@ -28,7 +27,5 @@ namespace DataAccess
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<dailyBalance> dailyBalance { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<dailyBalance> dailyBalance1 { get; set; }
     }
 }

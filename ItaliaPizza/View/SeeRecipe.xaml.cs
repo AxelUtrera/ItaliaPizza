@@ -30,7 +30,7 @@ namespace View
         private void ComboBoxTituloSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _ = new Recipe();
-            Recipe recipe = ComboBox_Recipes.SelectedItem as Recipe;            
+            Recipe recipe = ComboBox_Recipes.SelectedItem as Recipe;
             selectedIngredients = Logic.IngredientLogic.GetRecipeIngredients(recipe.IdRecipe);
             ListBox_SelectedIngredients.ItemsSource = selectedIngredients;
             _ = new TextRange(RichTextBox_Description.Document.ContentStart, RichTextBox_Description.Document.ContentEnd)
@@ -50,6 +50,6 @@ namespace View
             KitchenMenu kitchenMenuWindow = new KitchenMenu();
             Close();
             kitchenMenuWindow.Show();
-        }        
+        }
     }
 }

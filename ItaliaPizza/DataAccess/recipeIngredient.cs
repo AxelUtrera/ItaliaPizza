@@ -14,13 +14,12 @@ namespace DataAccess
     
     public partial class recipeIngredient
     {
+        public int idRecipeIngredient { get; set; }
         public int idIngredient { get; set; }
         public int idRecipe { get; set; }
         public int quantity { get; set; }
     
         public virtual ingredient ingredient { get; set; }
-        public virtual ingredient ingredient1 { get; set; }
         public virtual recipe recipe { get; set; }
-        public virtual recipe recipe1 { get; set; }
     }
 }

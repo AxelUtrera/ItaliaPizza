@@ -18,9 +18,7 @@ namespace DataAccess
         public supplierOrder()
         {
             this.supplierIngredient = new HashSet<supplierIngredient>();
-            this.supplierIngredient1 = new HashSet<supplierIngredient>();
             this.supplierProduct = new HashSet<supplierProduct>();
-            this.supplierProduct1 = new HashSet<supplierProduct>();
         }
     
         public string orderNumber { get; set; }
@@ -32,10 +30,6 @@ namespace DataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<supplierIngredient> supplierIngredient { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<supplierIngredient> supplierIngredient1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<supplierProduct> supplierProduct { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<supplierProduct> supplierProduct1 { get; set; }
     }
 }

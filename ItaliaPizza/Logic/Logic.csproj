@@ -41,6 +41,7 @@
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -54,7 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ImageLogic.cs" />
+    <Compile Include="IngredientLogic.cs" />
     <Compile Include="ProductLogic.cs" />
+    <Compile Include="RecipeLogic.cs" />
     <Compile Include="UserLogic.cs" />
     <Compile Include="Encription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

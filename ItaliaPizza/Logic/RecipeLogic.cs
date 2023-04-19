@@ -18,7 +18,7 @@ namespace Logic
     {
         public static bool RegistRecipe(Recipe recipe)
         {
-            bool response =false;
+            bool result = false;
             using (ItaliaPizzaEntities context = new ItaliaPizzaEntities())
             {
                 var recipes = new DataAccess.recipe
@@ -31,18 +31,15 @@ namespace Logic
                 {
                     context.recipe.Add(recipes);
                     context.SaveChanges();
-                    response = true;    
+                    result = true;
                 }
-                catch (EntityException )
+                catch (DbUpdateException ex)
                 {
-                    response = false;     
+                    throw new DbUpdateException(ex.Message);
                 }
-                catch (DbUpdateException )
-                {
-                    response=false;
-                }
+               
             }
-            return response;
+            return result;
         }
 
         public static bool ActivateRecipe(int idRecipe)
@@ -85,20 +82,26 @@ namespace Logic
                         context.SaveChanges();
                         result = true;
                     }
-                    catch (DbUpdateException )
+                    catch (DbUpdateException ex)
                     {
-                        
+                        MessageBox.Show(ex.ToString());
                     }
                 }
+                else
+                {
+                    MessageBox.Show("No se encontro esta receta");
+                }
+
             }
             return result;
         }
 
         public static bool EditRecipe(Recipe recipe1)
         {
+            bool response = false;
             using (ItaliaPizzaEntities context = new ItaliaPizzaEntities())
             {
-                bool response=false;
+                
                 var foudRecipe = (from recipe in context.recipe
                                   where recipe.idRecipe.Equals(recipe1.IdRecipe)
                                   select recipe).FirstOrDefault();
@@ -106,20 +109,20 @@ namespace Logic
                 if (foudRecipe != null)
                 {
                     foudRecipe.description = recipe1.DescriptionRecipe;
-                    try
-                    {
-                        context.SaveChanges();
-                        response = true;
-                    }
-                    catch (DbUpdateException)
-                    {
-                        response = false;
-                    }
                 }
-                
-                return response;
-            }
+                try
+                {
+                    context.SaveChanges();
+                        response = true;
+                }
+                catch (DbUpdateException)
+                {
+                        response = false;
+                }
+            }                
+            return response;
         }
+        
         public static string AllreadyExist(string nameRecipe)
         {
             string state="doesNotExist";
@@ -137,9 +140,9 @@ namespace Logic
                     }
                 }
             }
-            catch (EntityException )
+            catch (DbUpdateException ex)
             {
-                
+                throw new DbUpdateException(ex.ToString());
             }
             return state;
         }
@@ -170,9 +173,9 @@ namespace Logic
                     }
                 }
             }
-            catch (EntityException ex)
-            {
-                         
+            catch (Exception ex)
+            {                         
+                throw new Exception(ex.ToString());                
             }
             return recipes;
         }
@@ -193,9 +196,9 @@ namespace Logic
                     }
                 }
             }
-            catch (EntityException)
+            catch (DbUpdateException ex)
             {
-                
+                throw new DbUpdateException(ex.ToString());
             }
             return id;
         }
