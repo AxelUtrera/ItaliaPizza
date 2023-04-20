@@ -18,7 +18,7 @@ namespace Model
         public double Quantity { get { return quantity; } set { quantity = value; } }
         public bool IsActive { get { return isActive; } set { isActive = value; } }
 
-        public Ingredient() { }
+		public Ingredient() { }
 
         public override string ToString()
         {

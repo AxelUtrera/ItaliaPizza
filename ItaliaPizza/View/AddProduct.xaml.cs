@@ -6,6 +6,7 @@ using Microsoft.Win32;
 using Model;
 using System.IO;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace View
 {
@@ -17,6 +18,10 @@ namespace View
 			InitializeComponent();
 			string productCode = GenerateProductCode();
 			ProductCodeLabel.Content = productCode;
+
+			RecipeComboBox.Items.Clear();
+			RecipeComboBox.ItemsSource = ProductLogic.GetRecipesFromDatabase();
+			RecipeComboBox.DisplayMemberPath = "NameRecipe";
 		}
 		
 		private string GenerateProductCode()
@@ -63,7 +68,14 @@ namespace View
 			string restrictions = RestrictionsTextBox.Text;
 			bool active;
 			bool preparation;
-			int idRecipe;
+			int idRecipe = -1;
+
+			Recipe selectedRecipe = RecipeComboBox.SelectedItem as Recipe;
+
+			if (selectedRecipe != null)
+			{
+				idRecipe = selectedRecipe.IdRecipe;
+			}
 
 			if (price > 0)
 			{
@@ -79,23 +91,19 @@ namespace View
 				if (preparation2 == "System.Windows.Controls.ComboBoxItem: Sí")
 				{
 					preparation = true;
-					idRecipe = new Random().Next(2, 100);
 				}
 				else
 				{
 					preparation = false;
-					idRecipe = 1;
 				}
 
 				Product newProduct = new Product(name, description, productCode, picture, price, preparation, productName, restrictions, idRecipe, active, quantity);
 
 				if (ProductLogic.AddNewProduct(newProduct) == 200)
 				{
-					Console.WriteLine(newProduct.Quantity);
-
 					MessageBox.Show("Producto agregado correctamente!", "", MessageBoxButton.OK, MessageBoxImage.Information);
 					ClearInputFields();
-					this.Close();
+					Close();
 					AddProduct addNewProduct = new AddProduct();
 					addNewProduct.ShowDialog();
 					
@@ -184,5 +192,9 @@ namespace View
 			Close();
 		}
 
+		private void RecipeComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+		{
+
+		}
 	}
 }

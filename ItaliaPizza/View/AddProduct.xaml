@@ -45,11 +45,10 @@
 						Background="#7FFFFFFF">
 						<TextBox x:Name="ProductNameTextBox"
 						BorderThickness="0"
-						Width="312"
 						Height="70"
 						FontSize="24"
 						TextWrapping="Wrap"
-						SelectionBrush="#FF0078D7" Background="Transparent"/>
+						SelectionBrush="#FF0078D7" Background="Transparent" Margin="3,0,0,0" MaxWidth="306"/>
 					</Border>
 
 
@@ -71,17 +70,16 @@
 
 
 
-					<Label Content="Descripción:" Margin="513,534,795,236" OpacityMask="Black" Background="{x:Null}" Foreground="#FFFFFEFE" FontSize="18" FontWeight="Bold" />
+					<Label Content="Descripción:" Margin="462,482,846,288" OpacityMask="Black" Background="{x:Null}" Foreground="#FFFFFEFE" FontSize="18" FontWeight="Bold" />
 
 					<Border CornerRadius="10"
-						Margin="513,571,530,37"
+						Margin="465,522,466,37"
 						Background="#7FFFFFFF">
 						<TextBox x:Name="DescriptionTextBox"
 						BorderThickness="0"
-						Width="397"
 						FontSize="24"
 						TextWrapping="Wrap"
-						SelectionBrush="#FF0078D7" Background="Transparent"/>
+						SelectionBrush="#FF0078D7" Background="Transparent" Margin="4,0,0,0" MaxWidth="503"/>
 					</Border>
 
 					<Label Content="Precio:" Margin="80,299,1241,409" OpacityMask="Black" Foreground="#FFFFFEFE" FontSize="18" FontWeight="Bold" />
@@ -91,16 +89,15 @@
 						Background="#7FFFFFFF">
 						<TextBox x:Name="PriceTextBox"
 						BorderThickness="0"
-						Width="312"
 						Height="70"
 						FontSize="24"
 						TextWrapping="Wrap"
-						SelectionBrush="#FF0078D7" Background="Transparent"/>
+						SelectionBrush="#FF0078D7" Background="Transparent" Margin="5,0,0,0" MaxWidth="306"/>
 					</Border>
 
-					<Label Content="Preparación:" Margin="513,299,767,431" Foreground="White" FontSize="18" FontWeight="Bold" />
+					<Label Content="Preparación:" Margin="462,171,818,559" Foreground="White" FontSize="18" FontWeight="Bold" />
 					<Border CornerRadius="10"
-						Margin="513,336,693,404"
+						Margin="462,208,744,532"
 						Background="#7FFFFFFF">
 						<ComboBox x:Name="PreparationComboBox" FontSize="24" Background="#7FFFFFFF" BorderBrush="{x:Null}" Opacity="0.5" Margin="10,10,10,10">
 							<ComboBoxItem Content="Sí"/>
@@ -115,18 +112,17 @@
 						Background="#7FFFFFFF">
 						<TextBox x:Name="RestrictionsTextBox"
 						BorderThickness="0"
-						Width="312"
 						Height="202"
 						FontSize="24"
 						TextWrapping="Wrap"
-						SelectionBrush="#FF0078D7" Background="Transparent"/>
+						SelectionBrush="#FF0078D7" Background="Transparent" Margin="2,2,0,2" MaxWidth="306"/>
 					</Border>
 
 
-					<Label Content="Estado:" Margin="513,171,805,532" OpacityMask="Black" Foreground="#FFFFFEFE" FontSize="18" FontWeight="Bold" />
+					<Label Content="Estado:" Margin="740,171,578,532" OpacityMask="Black" Foreground="#FFFFFEFE" FontSize="18" FontWeight="Bold" />
 
 					<Border CornerRadius="10"
-						Margin="513,208,693,532"
+						Margin="740,208,466,532"
 						Background="#7FFFFFFF">
 						<ComboBox x:Name="ActiveComboBox" FontSize="24" Background="#7FFFFFFF" BorderBrush="{x:Null}" Opacity="0.5" Margin="10,10,10,10">
 							<ComboBoxItem Content="Activo"/>
@@ -168,7 +164,7 @@
 					<TextBlock  Text="Agregar Producto" TextAlignment="left" FontFamily="Corbel"  FontSize="50" Foreground="#ffffffff" Margin="39,32,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" />
 
 					<Border CornerRadius="20"
-						Margin="1005,696,275,37"
+						Margin="1035,696,245,37"
 						Height="77"
 						Width="160"
 						Background="#FFFF9999">
@@ -183,7 +179,7 @@
 					</Border>
 
 					<Border CornerRadius="10"
-						Margin="513,455,0,0"
+						Margin="462,366,0,0"
 						Height="70"
 						Width="234"
 						VerticalAlignment="Top"
@@ -192,25 +188,40 @@
 						<xctk:DecimalUpDown x:Name="DecimalUpDownControl" BorderThickness="0"
                         Margin="10,8,10,8"
                         Background="Transparent"
-                        Value="{Binding Path=SelectedDecimal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="36" FontWeight="Bold" MaxLength="8"/>
+                        Value="{Binding Path=SelectedDecimal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="36" MaxLength="8" MaxWidth="213"/>
 					</Border>
 
 					<Button x:Name="CloseButton" Content="X" Grid.Row="0" Grid.Column="2" Margin="0,12,31,0" FontSize="36" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FF1C1C1C" Foreground="#FFFCFCFC" BorderBrush="{x:Null}" Click="CloseButton_Click" Height="50" Width="53" FontWeight="Bold" />
-					<Label Content="Cantidad:" Margin="513,423,767,307" Foreground="White" FontSize="18" FontWeight="Bold" />
+					<Label Content="Cantidad:" Margin="462,334,818,396" Foreground="White" FontSize="18" FontWeight="Bold" />
+
+					<Border CornerRadius="10"
+						Margin="740,366,466,374"
+						Background="#7FFFFFFF">
+						<ComboBox x:Name="RecipeComboBox" FontSize="36" Background="#7FFFFFFF" BorderBrush="{x:Null}" Opacity="0.5" Margin="10,10,10,10" SelectionChanged="RecipeComboBox_SelectionChanged" MaxWidth="213">
+							<ComboBoxItem Content="Activo"/>
+							<ComboBoxItem Content="Inactivo"/>
+						</ComboBox>
+					</Border>
+					<Label Content="Receta:" Margin="740,334,578,369" OpacityMask="Black" Foreground="#FFFFFEFE" FontSize="18" FontWeight="Bold" />
 
 
 				</Grid>
 
-			</Viewbox>
 
-		</Grid>
-		<Grid>
-
-			<Viewbox Grid.Row="0" Grid.Column="0" Margin="1067,180,143,365">
-
-				<Image x:Name="ProductImage" Margin="100,200,100,378" Source="/Img/AddImage.png" Height="2000" Width="2000" Stretch="Fill" />
 
 			</Viewbox>
+
+			<Grid Margin="85,51,115,52" Grid.Row="1" Grid.Column="2">
+				<Border x:Name="imageBorder"
+				CornerRadius="20
+						"
+				Background="#4C000000">
+					<Image x:Name="ProductImage" 
+				Source="/Img/AddImage.png"
+				Clip="{Binding Clip, ElementName=imageBorder}" Margin="32,12,32,12"/>
+				</Border>
+			</Grid>
+
 
 		</Grid>
 

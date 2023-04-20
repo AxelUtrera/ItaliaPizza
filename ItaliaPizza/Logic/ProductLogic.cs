@@ -2,6 +2,7 @@
 using Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
 
@@ -145,37 +146,16 @@ namespace Logic
                         quantity = newProduct.Quantity
                     });
 
-                    var recipe = database.recipe.Find(newProduct.IdRecipe);
-
-                    if (recipe == null && recipe != database.recipe.Find(1))
-                    {
-                        recipe = new recipe
-                        {
-                            idRecipe = newProduct.IdRecipe,
-                            description = "Producto preparado",
-                            recipeName = newProduct.Name,
-                            active = newProduct.Active
-                        };
-
-                        database.recipe.Add(recipe);
-
-                        Console.WriteLine("Producto agregado correctamente.");
-
-                        Console.WriteLine("New recipe created.");
-                    }
-
                     Console.WriteLine("Product added to database.");
 
-                    //database.SaveChanges();
+                    var productIsSaved = database.SaveChanges();
 
-                    var productisSaved = database.SaveChanges();
-
-                    if (productisSaved != 0)
+                    if (productIsSaved != 0)
                     {
                         responseCode = 200;
                     }
-                }
-                catch (DbEntityValidationException ex)
+				}
+				catch (DbEntityValidationException ex)
                 {
                     foreach (var validationError in ex.EntityValidationErrors)
                     {
@@ -195,7 +175,27 @@ namespace Logic
             return responseCode;
         }
 
-        public static int DeleteProduct(string productCode)
+		public static List<Recipe> GetRecipesFromDatabase()
+		{
+			List<Recipe> recipes = new List<Recipe>();
+
+			using (var context = new ItaliaPizzaEntities())
+			{
+				var dbRecipes = context.recipe.Select(r => new { r.idRecipe, r.recipeName }).ToList();
+
+				foreach (var dbRecipe in dbRecipes)
+				{
+					Recipe recipe = new Recipe();
+					recipe.IdRecipe = dbRecipe.idRecipe;
+					recipe.NameRecipe = dbRecipe.recipeName;
+					recipes.Add(recipe);
+				}
+			}
+
+			return recipes;
+		}
+
+		public static int DeleteProduct(string productCode)
         {
             int responseCode;
 
