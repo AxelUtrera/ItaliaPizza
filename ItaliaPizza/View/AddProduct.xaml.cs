@@ -18,7 +18,7 @@ namespace View
 			string productCode = GenerateProductCode();
 			ProductCodeLabel.Content = productCode;
 		}
-
+		
 		private string GenerateProductCode()
 		{
 			const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -32,9 +32,9 @@ namespace View
 
 		private void AddProductButton_Click(object sender, RoutedEventArgs e)
 		{
-			if (string.IsNullOrEmpty(ProductNameTextBox?.Text) || string.IsNullOrEmpty(DescriptionTextBox?.Text) || string.IsNullOrEmpty(PriceTextBox?.Text) || string.IsNullOrEmpty(PreparationComboBox?.Text) || string.IsNullOrEmpty(ActiveComboBox?.Text))
+			if (string.IsNullOrEmpty(ProductNameTextBox?.Text) || string.IsNullOrEmpty(DescriptionTextBox?.Text) || string.IsNullOrEmpty(PriceTextBox?.Text) || string.IsNullOrEmpty(PreparationComboBox?.Text) || string.IsNullOrEmpty(ActiveComboBox?.Text) || string.IsNullOrEmpty(DecimalUpDownControl?.Text))
 			{
-				MessageBox.Show("Debe completar todos los campos obligatorios para agregar un nuevo producto.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+				MessageBox.Show("Debe completar todos los campos para agregar un nuevo producto.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
 				return;
 			}
 
@@ -43,6 +43,13 @@ namespace View
 			string description = DescriptionTextBox.Text;
 			string productCode = ProductCodeLabel.Content.ToString();
 			byte[] picture = GetPictureBytes();
+			double UpDownBox = (double)DecimalUpDownControl.Value;
+
+			if (!double.TryParse(DecimalUpDownControl.Text, out double quantity) || UpDownBox < 0)
+			{
+				MessageBox.Show("El campo Cantidad es requerido y debe contener solo números positivos.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+				return;
+			}
 
 			if (!double.TryParse(PriceTextBox.Text, out double price))
 			{
@@ -80,27 +87,33 @@ namespace View
 					idRecipe = 1;
 				}
 
-				Product newProduct = new Product(name, description, productCode, picture, price, preparation, productName, restrictions, idRecipe, active); // set the 'preparation' and 'active' properties of newProduct
+				Product newProduct = new Product(name, description, productCode, picture, price, preparation, productName, restrictions, idRecipe, active, quantity);
 
 				if (ProductLogic.AddNewProduct(newProduct) == 200)
 				{
+					Console.WriteLine(newProduct.Quantity);
+
 					MessageBox.Show("Producto agregado correctamente!", "", MessageBoxButton.OK, MessageBoxImage.Information);
 					ClearInputFields();
 					this.Close();
-					Products productsWindow = new Products();
-					productsWindow.ShowDialog();
-
+					AddProduct addNewProduct = new AddProduct();
+					addNewProduct.ShowDialog();
+					
 				}
 				else
 				{
 					MessageBox.Show("Error al agregar producto!");
 				}
-
 			}
 			else
 			{
 				MessageBox.Show("El precio debe ser un número positivo.", "", MessageBoxButton.OK, MessageBoxImage.Information);
 			}
+
+		}
+
+		private void DecimalUpDownControl_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+		{
 
 		}
 
@@ -149,6 +162,7 @@ namespace View
 			RestrictionsTextBox.Clear();
 			ActiveComboBox.SelectedIndex = -1;
 			ProductImage.Source = null;
+			DecimalUpDownControl.Text = "0";
 		}
 
 		private void CancelAddProductButton_Click(object sender, RoutedEventArgs e)
@@ -164,7 +178,6 @@ namespace View
 			
 			}
 		}
-
 
 		private void CloseButton_Click(object sender, RoutedEventArgs e)
 		{

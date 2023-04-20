@@ -32,7 +32,7 @@ namespace Logic
 							Active = product.active == true ? "Si" : "No",
 							Image = ImageLogic.ConvertToBitMapImage(product.picture),
 							Preparation = product.preparation,
-							IdRecipe = product.idRecipe 
+							IdRecipe = product.idRecipe
 						};
 
 						productsObtained.Add(recoverProduct);
@@ -141,7 +141,8 @@ namespace Logic
                         preparation = newProduct.Preparation,
                         restrictions = newProduct.Restrictions,
                         idRecipe = newProduct.IdRecipe,
-                        active = newProduct.Active
+                        active = newProduct.Active,
+                        quantity = newProduct.Quantity
                     });
 
                     var recipe = database.recipe.Find(newProduct.IdRecipe);

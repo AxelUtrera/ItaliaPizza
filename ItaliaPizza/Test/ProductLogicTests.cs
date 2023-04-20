@@ -22,7 +22,8 @@ namespace Test
 				Price = 10.99,
 				Preparation = true,
 				Restrictions = "For classy people only haha",
-				Active = true
+				Active = true,
+				Quantity = 1
 			};
 
 			var responseCode = ProductLogic.AddNewProduct(newProduct);
@@ -59,7 +60,7 @@ namespace Test
 				Description = "Test Description",
 				ProductCode = "312IO",
 				Picture = new byte[] { 0x12, 0x34, 0x56 },
-				Restrictions = "I cannot do a merge without break things :(",
+				Restrictions = ":(",
 				Price = 9.99,
 				Active = true,
 			};
@@ -89,7 +90,7 @@ namespace Test
             Assert.IsNotNull(listProductResult);
         }
 
-	}
+	
 		[TestMethod()]
 		public void Test04_EditProduct_SuccessfulTest()
 		{
