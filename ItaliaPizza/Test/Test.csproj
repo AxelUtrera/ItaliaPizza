@@ -58,6 +58,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EditProductViewTests.cs" />
     <Compile Include="EncriptionTests.cs" />
     <Compile Include="IngredientLogicTest.cs" />
     <Compile Include="ProductLogicTests.cs" />

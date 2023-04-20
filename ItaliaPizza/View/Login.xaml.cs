@@ -28,7 +28,6 @@ namespace View
 
         private void Button_Login_Click(object sender, RoutedEventArgs e)
         {
-            
             int statusOK = 200;
             if(UserLogic.AutenticateUser(TextBox_Username.Text, PasswordBox_PasswordUser.Password) == statusOK)
             {
@@ -43,6 +42,7 @@ namespace View
                     MessageBox.Show("El usuario o contraseña no son validos, intentelo de nuevo");
                 }
                 //Agregar codigo de tipo de usuario no admin
+                this.Close();
             }
             else
             {
@@ -54,7 +54,12 @@ namespace View
 
         private void Button_Exit_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            MessageBoxResult response = MessageBox.Show( "¿Esta seguro de cerrar el sistema?", "Cerrar sistema", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (response == MessageBoxResult.Yes)
+            {
+                this.Close();
+            }
         }
     }
 }

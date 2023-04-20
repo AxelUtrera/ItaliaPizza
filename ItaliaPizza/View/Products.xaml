@@ -91,10 +91,43 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Codigo" Binding="{Binding ProductCode}"/>
                         <DataGridTextColumn Header="Nombre" Binding="{Binding Name}"/>
-                        <DataGridTextColumn Header="Descripción" Binding="{Binding Description}"/>
+                        <DataGridTextColumn Header="Descripción"  Binding="{Binding Description}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                            <DataGridTextColumn.EditingElementStyle>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="AcceptsReturn" Value="true" />
+                                </Style>
+                            </DataGridTextColumn.EditingElementStyle>
+                        </DataGridTextColumn>
                         <DataGridTextColumn Header="Precio (MXN)" Binding="{Binding Price}"/>
-                        <DataGridTextColumn Header="Restricciones" Binding="{Binding Restrictions}"/>
+                        <DataGridTextColumn Header="Restricciones" Binding="{Binding Restrictions}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                            <DataGridTextColumn.EditingElementStyle>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="AcceptsReturn" Value="true" />
+                                </Style>
+                            </DataGridTextColumn.EditingElementStyle>
+                        </DataGridTextColumn>
                         <DataGridTextColumn Header="¿Está activo?" Binding="{Binding Active}"/>
+                        <DataGridTextColumn Header="¿Se prepára?" Binding="{Binding Preparation}" Visibility="Collapsed"/>
+                        <DataGridTextColumn Header="ID receta" Binding="{Binding IdRecipe}" Visibility="Collapsed"/>
+                        <DataGridTemplateColumn Visibility="Collapsed">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding Path=Image}"></Image>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

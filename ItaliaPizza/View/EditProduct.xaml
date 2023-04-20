@@ -5,8 +5,135 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
-        Title="EditProduct" Height="450" Width="800">
-    <Grid>
+        WindowState="Maximized"
+        WindowStyle="None"
+        Title="EditProduct" Height="810" Width="1440">
+    
+    <Grid Background="#000">
+        <Image Source="/Img/Background_EditProduct.jpg" Stretch="UniformToFill" Opacity=".3"/>
+
+        <StackPanel>
+            
         
+            <StackPanel Orientation="Horizontal" Margin="40,40,40,0">
+                <Label Content="Editar Producto" FontSize="30" Foreground="#f3f3f3"></Label>
+                <Button Width="35" Click="Button_Exit_Click" Cursor="Hand" Height="35" VerticalAlignment="Center" Margin="1180,0,0,0">
+                    <Button.Template>
+                        <ControlTemplate  TargetType="Button">
+                            <Border Background="Transparent">
+                                <Image Source="/Img/ExitIcon.png" Width="35" Height="35"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+
+            <Grid Margin="80,40,80,70" Height="601" >
+                <Grid.ColumnDefinitions>
+                
+                    <ColumnDefinition Width="330"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="330"></ColumnDefinition>
+                
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" HorizontalAlignment ="Center">
+                    <Label Content="Nombre" Foreground="#ffff" FontSize="20"/>
+                    <TextBox Name ="Textbox_Name" VerticalContentAlignment="Center" FontSize="20" Background="#D9D9D9" Height="45" Width="285" HorizontalAlignment="Left" Margin="0,0,0,5" BorderBrush="Red" BorderThickness="0">
+                        
+                    </TextBox>
+                    <Label Name="Label_Name_Error" Visibility="Hidden" Content="Solo debe contener letras" Margin="0,0,0,10" Foreground="Red"></Label>
+
+                    <Label Content="Código" Foreground="#ffff" FontSize="20"/>
+                    <TextBox Name="Textbox_ProductCode" IsEnabled="False"  VerticalContentAlignment="Center" Background="#D9D9D9" FontSize="20" Height="45" Width="285" HorizontalAlignment="Left" Margin="0,0,0,55">
+                        
+                    </TextBox>
+                    
+
+                    <Label Content="Preparacion" Foreground="#ffff" FontSize="20"/>
+                    <ComboBox Name="ComboBox_Preparation" Height="45" VerticalContentAlignment="Center" Background="#D9D9D9" Margin="0,0,0,5" FontSize="20"  SelectionChanged="ComboBox_SelectionChanged">
+                        <ComboBoxItem FontSize="20" Margin="10,10">Si</ComboBoxItem>
+                        <ComboBoxItem FontSize="20" Margin="10,10">No</ComboBoxItem>
+                    </ComboBox>
+                    
+                    <Label Name="Label_Preparation_Error" Visibility="Hidden"  Content="Seleccione un valor" Margin="0,0,0,10" Foreground="Red"></Label>
+
+
+                    <Label Content="Receta" Foreground="#ffff" FontSize="20" Visibility="Collapsed"/>
+                    <ComboBox Name="ComboBox_Recipe" Visibility="Collapsed" Height="45" VerticalContentAlignment="Center" Background="#D9D9D9" Margin="0,0,0,5" FontSize="20"  SelectionChanged="ComboBox_SelectionChanged">
+                        <ComboBoxItem FontSize="20" Margin="10,10">Si</ComboBoxItem>
+                        <ComboBoxItem FontSize="20" Margin="10,10">No</ComboBoxItem>
+                    </ComboBox>
+
+                    <Label Name="Label_Recipe_Error" Visibility="Hidden"  Content="Seleccione un valor" Margin="0,0,0,10" Foreground="Red"></Label>
+
+
+                    <Label Content="Estado" Foreground="#ffff" FontSize="20"/>
+                    <ComboBox Name="ComboBox_State" Height="45"  VerticalContentAlignment="Center" FontSize="20" Background="#D9D9D9">
+                        <ComboBoxItem FontSize="20" Margin="10,10">Activo</ComboBoxItem>
+                        <ComboBoxItem FontSize="20" Margin="10,10">Inactivo</ComboBoxItem>
+                    </ComboBox>
+                    <Label Name="Label_State_Error" Visibility="Hidden"  Content="Seleccione un valor" Margin="0,0,0,30" Foreground="Red"></Label>
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Margin="50,0" HorizontalAlignment="Center">
+                    <Label Content="Precio" Foreground="#ffff" FontSize="20"/>
+                    <TextBox Name="Textbox_Price" Height="45" VerticalContentAlignment="Center" FontSize="20" Background="#D9D9D9" Width="285" HorizontalAlignment="Left" BorderBrush="Red" BorderThickness="0" Margin="0,0,0,5">
+                        
+                    </TextBox>
+                    <Label Name="Label_Price_Error" Visibility="Hidden" Content="Ingrese solo numeros" Margin="0,0,0,20" Foreground="Red"></Label>
+
+                    <Label Content="Descripción" Foreground="#ffff" FontSize="20"/>
+                    <TextBox Name="Textbox_Description" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Height="130" FontSize="20"  Background="#D9D9D9" Width="350" HorizontalAlignment="Left" BorderBrush="Red" BorderThickness="0" Margin="0,0,0,5">
+                        
+                    </TextBox>
+                    <Label Name="Label_Description_Error" Visibility="Hidden"  Content="El numero de caracteres fue excedido" Margin="0,0,0,20" Foreground="Red"></Label>
+
+                    <Label Content="Restricciones" Foreground="#ffff" FontSize="20"/>
+                    <TextBox Name="Textbox_Restrictions" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Height="130" VerticalContentAlignment="Stretch" Background="#D9D9D9" Width="350" FontSize="20" HorizontalAlignment="Left" Margin="0,0,0,5" BorderBrush="Red" BorderThickness="0">
+                        
+                    </TextBox>
+                    <Label Name="Label_Restrictions_Error" Visibility="Hidden"  Content="El numero de caracteres fue excedido" Margin="0,0,0,0" Foreground="Red"></Label>
+
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="45"></RowDefinition>
+                            <RowDefinition Height="300"></RowDefinition>
+                            <RowDefinition Height="45"></RowDefinition>
+                        </Grid.RowDefinitions>
+                
+                        <Label Content="Imagen" Grid.Row="0" Foreground="#f3f3f3" Margin="0,0,0,0" FontSize="20"></Label>
+                        <Border Grid.Row="1" BorderBrush="#f3f3f3" BorderThickness="1" Margin="0,0,0,20">
+                            <Image  Name="Image_ProductImage" Stretch="Uniform"  Width="330"/>
+                        </Border>
+
+                        <Button Grid.Row="2" Content="Seleccionar Imagen" Margin="0,0,0,0" Click="Button_SelectImage_Click" FontSize="20" HorizontalAlignment="Left" Width="202" Background="#BFFFFFFF">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border CornerRadius= "25" Background="#f3f3f3" >
+                                        <ContentPresenter Content="Seleccionar imagen" HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+                <Button Grid.Column="3" Height="40" Click="Button_SaveChanges_Click" VerticalAlignment="Bottom" HorizontalAlignment="Right" Foreground="#f3f3f3" FontSize="20" Width="145">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius= "25" Background="#55B633" >
+                                <ContentPresenter Content="Guardar" HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+
+            </Grid>
+        </StackPanel>
     </Grid>
 </Window>

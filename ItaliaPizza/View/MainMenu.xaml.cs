@@ -26,6 +26,8 @@ namespace View
 
         private void Button_Exit_Click(object sender, RoutedEventArgs e)
         {
+            Login loginView = new Login();
+            loginView.Show();
             this.Close();
         }
 
@@ -42,7 +44,8 @@ namespace View
         private void Button_Product_Click(object sender, MouseButtonEventArgs e)
         {
             Products productWindow = new Products();
-            productWindow.ShowDialog();
+            productWindow.Show();
+            this.Close();
         }
 
         private void Button_Kitchen_Click(object sender, MouseButtonEventArgs e)
