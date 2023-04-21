@@ -103,9 +103,9 @@ namespace View
 				{
 					MessageBox.Show("Producto agregado correctamente!", "", MessageBoxButton.OK, MessageBoxImage.Information);
 					ClearInputFields();
-					Close();
 					AddProduct addNewProduct = new AddProduct();
 					addNewProduct.ShowDialog();
+					Close();
 					
 				}
 				else
@@ -179,7 +179,10 @@ namespace View
 
 			if (result == MessageBoxResult.Yes)
 			{
+				Products productW = new Products();
+				productW.ShowDialog();
 				Close();
+
 			}
 			else
 			{
@@ -189,7 +192,11 @@ namespace View
 
 		private void CloseButton_Click(object sender, RoutedEventArgs e)
 		{
+			Products productW = new Products();
+			productW.ShowDialog();
 			Close();
+
+
 		}
 
 		private void RecipeComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
