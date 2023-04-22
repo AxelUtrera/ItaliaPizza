@@ -181,8 +181,8 @@ namespace Logic
 
 			using (var context = new ItaliaPizzaEntities())
 			{
-				var dbRecipes = context.recipe.Select(r => new { r.idRecipe, r.recipeName }).ToList();
-
+				var dbRecipes = context.recipe.Where(r => r.active == true).Select(r => new { r.idRecipe, r.recipeName }).ToList();
+				
 				foreach (var dbRecipe in dbRecipes)
 				{
 					Recipe recipe = new Recipe();
@@ -190,6 +190,8 @@ namespace Logic
 					recipe.NameRecipe = dbRecipe.recipeName;
 					recipes.Add(recipe);
 				}
+
+				
 			}
 
 			return recipes;
