@@ -6,7 +6,6 @@ using Microsoft.Win32;
 using Model;
 using System.IO;
 using System.Linq;
-using System.Collections.Generic;
 
 namespace View
 {

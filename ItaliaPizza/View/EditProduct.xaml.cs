@@ -30,7 +30,21 @@ namespace View
         {
             InitializeComponent();
             SetDataToWindow();
+            ComboBox_Recipe.ItemsSource = GetRecipeNames();
         }
+
+        private List<String> GetRecipeNames()
+        {
+            List<String> recipeNames = new List<string>();
+            List<Recipe> dataBaseRecipes = ProductLogic.GetRecipesFromDatabase();
+            foreach(Recipe recipe in dataBaseRecipes)
+            {
+                recipeNames.Add(recipe.NameRecipe);
+            }
+
+            return recipeNames;
+        }
+
 
         public void SetDataToWindow()
         {
@@ -38,13 +52,19 @@ namespace View
             {
                 Textbox_Name.Text = productToView.Name;
                 Textbox_ProductCode.Text = productToView.ProductCode;
-                ComboBox_Preparation.SelectedIndex= productToView.Preparation ? 0 : 1;
+                ComboBox_Preparation.SelectedIndex = productToView.Preparation ? 0 : 1;
                 ComboBox_State.SelectedIndex = productToView.Active.Equals("Si") ? 0 : 1;
                 Textbox_Price.Text = productToView.Price.Replace("$", "");
                 Textbox_Description.Text = productToView.Description;
                 Textbox_Restrictions.Text = productToView.Restrictions;
                 Image_ProductImage.Source = productToView.Image;
-                
+                Textbox_Quantity.Text = productToView.Quantity.ToString();
+                if(productToView.Preparation)
+                {
+                    ComboBox_Recipe.SelectedItem = RecipeLogic.getNameRecipeById(productToView.IdRecipe);
+                    Label_Recipe.Visibility = Visibility.Visible;
+                    ComboBox_Recipe.Visibility = Visibility.Visible;
+                }
             }
         }
 
@@ -54,6 +74,14 @@ namespace View
             bool isValid = true;
             Regex nameFormat = new Regex("^[A-Za-z0-9 ]+$");
             Regex onlyNumbersFormat = new Regex("^([1-9]\\d*|0)(\\.\\d+)?$");
+            Regex onlyIntegers = new Regex("^[1-9][0-9]*$");
+
+            if (Textbox_Quantity.Text.Equals(string.Empty) || !(onlyIntegers.IsMatch(Textbox_Quantity.Text)))
+            {
+                Textbox_Quantity.BorderThickness = new Thickness(2);
+                Label_Quantity_Error.Visibility = Visibility.Visible;
+                isValid = false;
+            }
 
             if (Textbox_Name.Text.Equals(string.Empty) || !(nameFormat.IsMatch(Textbox_Name.Text)))
             {
@@ -109,7 +137,9 @@ namespace View
             Label_Restrictions_Error.Visibility = Visibility.Hidden;
             Textbox_Name.BorderThickness = new Thickness(0);
             Label_Name_Error.Visibility = Visibility.Hidden;
-            
+            Textbox_Quantity.BorderThickness = new Thickness(0);
+            Label_Quantity_Error.Visibility = Visibility.Hidden;
+
         }
 
 
@@ -122,10 +152,10 @@ namespace View
                 Description = Textbox_Description.Text,
                 Restrictions = Textbox_Restrictions.Text,
                 Active = ComboBox_State.SelectedIndex == 0 ? "Si" : "No",
-                //Al agregar un combobox debo asignarle su id de receta
-                IdRecipe = 1 /*ComboBox_Preparation.SelectedValue.Equals("Si") ? 1 : */,
+                IdRecipe = ComboBox_Recipe.SelectedIndex != -1 ? RecipeLogic.GetIdRecipe(ComboBox_Recipe.Text) : 1,
                 Image = ImageLogic.ConvertToBitMapImage(Image_ProductImage.Source),
-                Preparation  = ComboBox_Preparation.SelectedIndex == 0 ? true : false,
+                Preparation = ComboBox_Preparation.SelectedIndex == 0 ? true : false,
+                Quantity = Double.Parse(Textbox_Quantity.Text)
             };
 
             return productToEdit;
@@ -178,9 +208,22 @@ namespace View
         }
 
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBoxPreparation_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+            ComboBoxItem selectedItem = (ComboBoxItem)ComboBox_Preparation.SelectedItem;
+            string selectedPreparation = selectedItem.Content.ToString();
+
+            if (selectedPreparation == "Si")
+            {
+                Label_Recipe.Visibility = Visibility.Visible;
+                ComboBox_Recipe.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Label_Recipe.Visibility = Visibility.Collapsed;
+                ComboBox_Recipe.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

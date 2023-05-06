@@ -33,7 +33,8 @@ namespace Logic
 							Active = product.active == true ? "Si" : "No",
 							Image = ImageLogic.ConvertToBitMapImage(product.picture),
 							Preparation = product.preparation,
-							IdRecipe = product.idRecipe
+							IdRecipe = product.idRecipe,
+							Quantity = product.quantity	
 						};
 
 						productsObtained.Add(recoverProduct);
@@ -76,6 +77,7 @@ namespace Logic
                         updatedProduct.active = productToModifyConverted.Active;
                         updatedProduct.idRecipe = productToModifyConverted.IdRecipe;
                         updatedProduct.preparation = productToModifyConverted.Preparation;
+						updatedProduct.quantity = productToModifyConverted.Quantity;
 	
                         int returnValue = dataBase.SaveChanges();
 
@@ -116,7 +118,9 @@ namespace Logic
 					IdRecipe = productViewToConvert.IdRecipe,
 					Active = productViewToConvert.Active.Equals("Si") ? true : false,
 					Picture = ImageLogic.ConvertToBytes(productViewToConvert.Image),
-					Restrictions = productViewToConvert.Restrictions
+					Restrictions = productViewToConvert.Restrictions,
+					Quantity = productViewToConvert.Quantity
+					
 				};
 			}
 

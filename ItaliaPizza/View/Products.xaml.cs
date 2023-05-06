@@ -42,8 +42,6 @@ namespace View
 
         private void Button_Exit_Click(object sender, RoutedEventArgs e)
         {
-            MainMenu mainMenu = new MainMenu();
-            mainMenu.Show();
             this.Close();
         }
 
@@ -116,6 +114,8 @@ namespace View
             }
 
             EditProduct.productToView = productSelected;
+            Console.WriteLine(productSelected.IdRecipe);
+            Console.WriteLine(productSelected.Preparation);
 
             if (productSelected != null)
             {

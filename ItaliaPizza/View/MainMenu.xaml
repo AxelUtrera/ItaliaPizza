@@ -45,7 +45,7 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Caja registradora" FontSize="20" Foreground="White" HorizontalAlignment="Center"></Label>
-                <Image Width="250" Height="250" Grid.Row="0" Grid.Column="0" Source="Img/Image_Cashbox.jpg" Stretch="UniformToFill" Cursor="Hand" MouseLeftButtonDown="Button_CashBox_Click">
+                <Image Name ="ImageCashBox" Width="250" Height="250" Grid.Row="0" Grid.Column="0" Source="Img/Image_Cashbox.jpg" Stretch="UniformToFill" Cursor="Hand" MouseLeftButtonDown="Button_CashBox_Click">
                     
                 </Image>
 
@@ -53,25 +53,25 @@
 
 
                 <Label Grid.Row="0" Grid.Column="1"  Content="Pedidos" FontSize="20" Foreground="White" HorizontalAlignment="Center"></Label>
-                <Image Width="250" Height="250" Grid.Row="0" Grid.Column="1" Source="/Img/Image_Order.jpg" Stretch="UniformToFill" Cursor="Hand" MouseLeftButtonDown="Button_Order_Click"/>
+                <Image Name ="ImageOrders" Width="250" Height="250" Grid.Row="0" Grid.Column="1" Source="/Img/Image_Order.jpg" Stretch="UniformToFill" Cursor="Hand" MouseLeftButtonDown="Button_Order_Click"/>
 
 
                 <Label Grid.Row="0" Grid.Column="2" Content="Productos" FontSize="20" Foreground="White" HorizontalAlignment="Center"></Label>
-                <Image Width="250" Height="250" Grid.Row="0" Grid.Column="2" Source="/Img/Image_Products.jpg" Stretch="UniformToFill" Cursor="Hand" MouseLeftButtonDown="Button_Product_Click"/>
+                <Image Name ="ImageProducts" Width="250" Height="250" Grid.Row="0" Grid.Column="2" Source="/Img/Image_Products.jpg" Stretch="UniformToFill" Cursor="Hand" MouseLeftButtonDown="Button_Product_Click"/>
 
 
                 <Label Grid.Row="1" Grid.Column="0" Content="Cocina" FontSize="20" Foreground="White" HorizontalAlignment="Center"></Label>
-                <Image Width="250" Height="250" Grid.Row="1" Grid.Column="0" Source="/Img/Image_Kitchen.jpg" Stretch="UniformToFill" Cursor="Hand" MouseLeftButtonDown="Button_Kitchen_Click"/>
+                <Image Name ="ImageKitchen" Width="250" Height="250" Grid.Row="1" Grid.Column="0" Source="/Img/Image_Kitchen.jpg" Stretch="UniformToFill" Cursor="Hand" MouseLeftButtonDown="Button_Kitchen_Click"/>
 
 
 
                 <Label Grid.Row="1" Grid.Column="1" Content="Proveedores" FontSize="20" Foreground="White" HorizontalAlignment="Center"></Label>
-                <Image Width="250" Height="250" Grid.Row="1" Grid.Column="1" Source="/Img/Image_Suplier.jpg" Stretch="UniformToFill" Cursor="Hand" MouseLeftButtonDown="Button_Suplier_Click"/>
+                <Image Name ="ImageSuplier" Width="250" Height="250" Grid.Row="1" Grid.Column="1" Source="/Img/Image_Suplier.jpg" Stretch="UniformToFill" Cursor="Hand" MouseLeftButtonDown="Button_Suplier_Click"/>
 
 
 
                 <Label Grid.Row="1" Grid.Column="2"  Content="Usuarios" FontSize="20" Foreground="White" HorizontalAlignment="Center"></Label>
-                <Image Width="250" Height="250" Grid.Row="1" Grid.Column="2" Source="/Img/Image_Users.jpg" Stretch="UniformToFill" Cursor="Hand" MouseLeftButtonDown="Button_User_Click"/>
+                <Image Name ="ImageUsers" Width="250" Height="250" Grid.Row="1" Grid.Column="2" Source="/Img/Image_Users.jpg" Stretch="UniformToFill" Cursor="Hand" MouseLeftButtonDown="Button_User_Click"/>
 
   
             </Grid>

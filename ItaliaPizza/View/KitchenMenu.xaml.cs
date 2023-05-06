@@ -26,9 +26,7 @@ namespace View
 
         private void Button_Exit_Click(object sender, RoutedEventArgs e)
         {
-            MainMenu mainMenu = new MainMenu();
             Close();
-            mainMenu.ShowDialog();
         }
 
         private void Image_SeeRecipe_Click(object sender, MouseButtonEventArgs e)
