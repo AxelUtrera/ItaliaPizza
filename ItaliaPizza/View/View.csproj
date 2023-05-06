@@ -163,6 +163,15 @@
     <Compile Include="SeeRecipe.xaml.cs">
       <DependentUpon>SeeRecipe.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SupplierRegister.xaml.cs">
+      <DependentUpon>SupplierRegister.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SuppliersMenu.xaml.cs">
+      <DependentUpon>SuppliersMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SuppliersView.xaml.cs">
+      <DependentUpon>SuppliersView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserRegister.xaml.cs">
       <DependentUpon>UserRegister.xaml</DependentUpon>
     </Compile>
@@ -214,6 +223,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SeeRecipe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SupplierRegister.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SuppliersMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SuppliersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -350,6 +371,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\Background_EditProduct.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\Suppliers_Background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\SupplierRegister_Background.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
