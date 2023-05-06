@@ -50,19 +50,17 @@
                     
 
                     <Label Content="Preparacion" Foreground="#ffff" FontSize="20"/>
-                    <ComboBox Name="ComboBox_Preparation" Height="45" VerticalContentAlignment="Center" Background="#D9D9D9" Margin="0,0,0,5" FontSize="20"  SelectionChanged="ComboBox_SelectionChanged">
-                        <ComboBoxItem FontSize="20" Margin="10,10">Si</ComboBoxItem>
-                        <ComboBoxItem FontSize="20" Margin="10,10">No</ComboBoxItem>
+                    <ComboBox Name="ComboBox_Preparation" Height="45" VerticalContentAlignment="Center" Background="#D9D9D9" Margin="0,0,0,5" FontSize="20"  SelectionChanged="ComboBoxPreparation_SelectionChanged">
+                        <ComboBoxItem FontSize="20" Margin="10,10" Content="Si"></ComboBoxItem>
+                        <ComboBoxItem FontSize="20" Margin="10,10" Content="No"></ComboBoxItem>
                     </ComboBox>
                     
                     <Label Name="Label_Preparation_Error" Visibility="Hidden"  Content="Seleccione un valor" Margin="0,0,0,10" Foreground="Red"></Label>
 
 
-                    <Label Content="Receta" Foreground="#ffff" FontSize="20" Visibility="Collapsed"/>
-                    <ComboBox Name="ComboBox_Recipe" Visibility="Collapsed" Height="45" VerticalContentAlignment="Center" Background="#D9D9D9" Margin="0,0,0,5" FontSize="20"  SelectionChanged="ComboBox_SelectionChanged">
-                        <ComboBoxItem FontSize="20" Margin="10,10">Si</ComboBoxItem>
-                        <ComboBoxItem FontSize="20" Margin="10,10">No</ComboBoxItem>
-                    </ComboBox>
+                    <Label Name="Label_Recipe" Content="Receta" Foreground="#ffff" FontSize="20" Visibility="Collapsed"/>
+                    <ComboBox Name="ComboBox_Recipe" Visibility="Collapsed" Height="45" VerticalContentAlignment="Center" Background="#D9D9D9" Margin="0,0,0,5" FontSize="20"/>
+
 
                     <Label Name="Label_Recipe_Error" Visibility="Hidden"  Content="Seleccione un valor" Margin="0,0,0,10" Foreground="Red"></Label>
 
@@ -99,13 +97,19 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Grid>
+                    <Label Content="Cantidad" Foreground="#ffff" FontSize="20"/>
+                    <TextBox Name="Textbox_Quantity" VerticalContentAlignment="Center" Background="#f3f3f3" FontSize="20" Height="45" Width="285" HorizontalAlignment="Left" Margin="0,0,0,5"/>
+                    <Label Name="Label_Quantity_Error" Visibility="Hidden"  Content="Ingrese una cantidad valida" Margin="0,0,0,0" Foreground="Red"></Label>
+
+                    <Grid Margin="0,0,0,30">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="45"></RowDefinition>
                             <RowDefinition Height="300"></RowDefinition>
                             <RowDefinition Height="45"></RowDefinition>
                         </Grid.RowDefinitions>
-                
+                        
+                        
+
                         <Label Content="Imagen" Grid.Row="0" Foreground="#f3f3f3" Margin="0,0,0,0" FontSize="20"></Label>
                         <Border Grid.Row="1" BorderBrush="#f3f3f3" BorderThickness="1" Margin="0,0,0,20">
                             <Image  Name="Image_ProductImage" Stretch="Uniform"  Width="330"/>
@@ -122,7 +126,7 @@
                         </Button>
                     </Grid>
                 </StackPanel>
-                <Button Grid.Column="3" Height="40" Click="Button_SaveChanges_Click" VerticalAlignment="Bottom" HorizontalAlignment="Right" Foreground="#f3f3f3" FontSize="20" Width="145">
+                <Button Grid.Column="3" Cursor="Hand" Height="40" Click="Button_SaveChanges_Click" VerticalAlignment="Bottom" HorizontalAlignment="Right" Foreground="#f3f3f3" FontSize="20" Width="145">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border CornerRadius= "25" Background="#55B633" >

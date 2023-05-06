@@ -121,6 +121,7 @@
                         <DataGridTextColumn Header="¿Está activo?" Binding="{Binding Active}"/>
                         <DataGridTextColumn Header="¿Se prepára?" Binding="{Binding Preparation}" Visibility="Collapsed"/>
                         <DataGridTextColumn Header="ID receta" Binding="{Binding IdRecipe}" Visibility="Collapsed"/>
+                        <DataGridTextColumn Header="Cantidad" Binding="{Binding Quantity}" Visibility="Collapsed"/>
                         <DataGridTemplateColumn Visibility="Collapsed">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

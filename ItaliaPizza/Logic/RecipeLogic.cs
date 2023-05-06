@@ -42,6 +42,7 @@ namespace Logic
             return result;
         }
 
+
         public static bool ActivateRecipe(int idRecipe)
         {
             bool result = false;
@@ -65,6 +66,8 @@ namespace Logic
             }
             return result;
         }
+
+
         public static bool DeleteRecipe(int idRecipe)
         {
             bool result = false;
@@ -96,6 +99,7 @@ namespace Logic
             return result;
         }
 
+
         public static bool EditRecipe(Recipe recipe1)
         {
             bool response = false;
@@ -123,6 +127,7 @@ namespace Logic
             return response;
         }
         
+
         public static string AllreadyExist(string nameRecipe)
         {
             string state="doesNotExist";
@@ -146,6 +151,8 @@ namespace Logic
             }
             return state;
         }
+
+
         public static List<Recipe> GetRecipes()
         {
             List<Recipe> recipes = new List<Recipe>();
@@ -179,6 +186,8 @@ namespace Logic
             }
             return recipes;
         }
+
+
         public static int GetIdRecipe(string nameRecipe)
         {
             int id = 0;
@@ -201,6 +210,31 @@ namespace Logic
                 throw new DbUpdateException(ex.ToString());
             }
             return id;
+        }
+
+
+        public static String getNameRecipeById(int idRecipe)
+        {
+            String nameRecipe = "";
+            try
+            {
+                using (ItaliaPizzaEntities context = new ItaliaPizzaEntities())
+                {
+                    var foundRecipe = (from recipe in context.recipe
+                                       where
+                                       recipe.idRecipe.Equals(idRecipe)
+                                       select recipe).FirstOrDefault();
+                    if (foundRecipe != null)
+                    {
+                        nameRecipe = foundRecipe.recipeName;
+                    }
+                }
+            }
+            catch (DbUpdateException ex)
+            {
+                throw new DbUpdateException(ex.ToString());
+            }
+            return nameRecipe;
         }
     }
 }

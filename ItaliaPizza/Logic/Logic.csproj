@@ -122,6 +122,8 @@
     <Compile Include="IngredientLogic.cs" />
     <Compile Include="ProductLogic.cs" />
     <Compile Include="RecipeLogic.cs" />
+    <Compile Include="SupplierLogic.cs" />
+    <Compile Include="SupplierOrderLogic.cs" />
     <Compile Include="ShowPendingOrdersLogic.cs" />
     <Compile Include="UserLogic.cs" />
     <Compile Include="Encription.cs" />

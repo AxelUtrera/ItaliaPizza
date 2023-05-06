@@ -29,19 +29,59 @@ namespace View
         private void Button_Login_Click(object sender, RoutedEventArgs e)
         {
             int statusOK = 200;
-            if(UserLogic.AutenticateUser(TextBox_Username.Text, PasswordBox_PasswordUser.Password) == statusOK)
+            Model.Worker worker = UserLogic.GetWorkerByUsername(TextBox_Username.Text);
+            int resultAutenticationUser = UserLogic.AutenticateUser(TextBox_Username.Text, PasswordBox_PasswordUser.Password);
+
+            if (resultAutenticationUser == statusOK && UserLogic.GetUserById(worker.IdUser).IsActive)
             {
-                Model.Worker worker = UserLogic.GetWorkerByUsername(TextBox_Username.Text); 
-                if (worker.Role == "Administrador" && UserLogic.GetUserById(worker.IdUser).IsActive)
+                MainMenu mainMenu = new MainMenu();
+
+                if(worker.Role == "Administrador")
                 {
-                    MainMenu mainMenu = new MainMenu();
-                    mainMenu.Show();
+                    mainMenu.ImageOrders.IsEnabled = false;
+                    mainMenu.ImageOrders.Opacity = .7;
+                    mainMenu.ImageCashBox.IsEnabled = false;
+                    mainMenu.ImageCashBox.Opacity = .7;
                 }
-                else
+
+                if (worker.Role == "Cocinero")
                 {
-                    MessageBox.Show("El usuario o contraseña no son validos, intentelo de nuevo");
+                    mainMenu.ImageCashBox.IsEnabled = false;
+                    mainMenu.ImageCashBox.Opacity = .7;
+                    mainMenu.ImageSuplier.IsEnabled = false;
+                    mainMenu.ImageSuplier.Opacity = .7;
+                    mainMenu.ImageUsers.IsEnabled = false;
+                    mainMenu.ImageUsers.Opacity = .7;
+                    mainMenu.ImageProducts.IsEnabled = false;
+                    mainMenu.ImageProducts.Opacity = .7;
                 }
-                //Agregar codigo de tipo de usuario no admin
+
+                if(worker.Role == "Mesero")
+                {
+                    mainMenu.ImageProducts.IsEnabled = false;
+                    mainMenu.ImageProducts.Opacity = .7;
+                    mainMenu.ImageCashBox.IsEnabled = false;
+                    mainMenu.ImageCashBox.Opacity = .7;
+                    mainMenu.ImageSuplier.IsEnabled = false;
+                    mainMenu.ImageSuplier.Opacity = .7;
+                    mainMenu.ImageUsers.IsEnabled = false;
+                    mainMenu.ImageUsers.Opacity = .7;
+                    mainMenu.ImageKitchen.IsEnabled = false;
+                    mainMenu.ImageKitchen.Opacity = .7;
+                }
+
+                if(worker.Role == "Cajero")
+                {
+                    mainMenu.ImageProducts.IsEnabled = false;
+                    mainMenu.ImageProducts.Opacity = .7;
+                    mainMenu.ImageSuplier.IsEnabled = false;
+                    mainMenu.ImageSuplier.Opacity = .7;
+                    mainMenu.ImageUsers.IsEnabled = false;
+                    mainMenu.ImageUsers.Opacity = .7;
+                    mainMenu.ImageKitchen.IsEnabled = false;
+                    mainMenu.ImageKitchen.Opacity = .7;
+                }
+                mainMenu.Show();
                 this.Close();
             }
             else
