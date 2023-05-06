@@ -1,0 +1,214 @@
+﻿<Window 
+	
+	x:Class="View.ShowPendingOrders"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:View"
+    mc:Ignorable="d"
+    Title="ShowPendingOrders"
+    Width="Auto"
+    Height="Auto"
+    WindowState="Maximized"
+    HorizontalContentAlignment="Stretch"
+    VerticalContentAlignment="Stretch"
+    Icon="/Img/addPizza.jpg"
+    Grid.IsSharedSizeScope="True"
+    WindowStyle="None">
+	
+	<Grid>
+		
+		<Rectangle 
+			
+			x:Name="Background"
+            Width="Auto"
+            Height="Auto"
+            Stroke="Black">
+			
+			<Rectangle.Fill>
+				
+				<ImageBrush ImageSource="/Img/showPendingOrdersBackground.jpg" Opacity="0.3" Stretch="UniformToFill"/>
+				
+			</Rectangle.Fill>
+			
+		</Rectangle>
+		
+		<Rectangle 
+			
+			x:Name="BackgroundRectangle"
+            Width="Auto"
+            Height="Auto"
+            Stroke="Black"
+            Fill="#CC000000"
+            Margin="0">
+			
+		</Rectangle>
+		
+		<Grid>
+			
+			<Grid.ColumnDefinitions>
+
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="*"/>
+				
+			</Grid.ColumnDefinitions>
+			
+			<Border 
+				
+				Grid.Column="0"
+                BorderThickness="20"
+                CornerRadius="10"
+                BorderBrush="#6C000000"
+                Margin="100, 72, 100, 72">
+				
+				<ListView 
+					
+					x:Name="AllOrders"
+                    Width="Auto"
+                    Height="Auto"
+                    FontSize="22"
+                    Background="#6C000000"
+                    Foreground="White"
+                    BorderBrush="Black"
+                    ItemsSource="{Binding PendingProducts}">
+					
+					<ListView.ItemTemplate>
+						
+						<DataTemplate>
+							
+							<StackPanel Orientation="Horizontal">
+
+								<Border CornerRadius="15" Background="Transparent">
+									<Image Source="{Binding Picture}"
+										Width="200"
+										Height="200"
+										ClipToBounds="True"
+										>
+										<Image.Effect>
+											<DropShadowEffect ShadowDepth="5" BlurRadius="5" Opacity="0.5" />
+										</Image.Effect>
+									</Image>
+								</Border>
+								
+								<StackPanel>
+									
+									<StackPanel Orientation="Horizontal">
+										
+										<TextBlock Text="  Código: "
+												   
+                                           FontWeight="Bold"
+                                           Foreground="White" />
+										
+										<TextBlock Text="{Binding ProductCode}" />
+										
+									</StackPanel>
+									
+									<StackPanel Orientation="Horizontal">
+										
+										<TextBlock Text="  Nombre: "
+												   
+                                           FontWeight="Bold"
+                                           Foreground="White" />
+										
+										<TextBlock Text="{Binding Name}" />
+									</StackPanel>
+									
+									<StackPanel Orientation="Horizontal">
+										<TextBlock Text="  Cantidad: "
+                                           FontWeight="Bold"
+                                           Foreground="White" />
+										<TextBlock Text="{Binding Quantity}" />
+									</StackPanel>
+									<StackPanel Orientation="Horizontal">
+										<TextBlock Text="  ID de Receta: "
+                                           FontWeight="Bold"
+                                           Foreground="White" />
+										<TextBlock Text="{Binding IdRecipe}" />
+									</StackPanel>
+									<StackPanel Orientation="Horizontal">
+										<TextBlock Text="  Nombre de Receta: "
+                                           FontWeight="Bold"
+                                           Foreground="White" />
+										<TextBlock Text="{Binding NameRecipe}" />
+									</StackPanel>
+								</StackPanel>
+							</StackPanel>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+			</Border>
+
+			<GridSplitter 
+				
+				Grid.Column="1"
+				Width="1"
+				VerticalAlignment="Stretch"
+				Background="White"
+				ShowsPreview="True"
+				ResizeBehavior="PreviousAndNext"
+				
+			/>
+
+			<Border 
+				
+				Grid.Column="2"
+                BorderThickness="20"
+                CornerRadius="10"
+                BorderBrush="#6C000000"
+                Margin="300, 72, -600, 100"
+				VerticalAlignment="Center"> 
+				
+				<StackPanel Background="#6B000000">
+					<TextBlock Text="Producto en curso"
+                               FontWeight="Bold"
+                               Width="105"
+                               Foreground="White"/>
+					<Image Source="{Binding HighestProduct.Picture}"
+                           Width="200"
+                           Height="196"
+                           Margin="10,5,10,10"/>
+					<TextBlock Text="Nombre:"
+                               FontWeight="Bold"
+                               Foreground="White" />
+					<TextBlock Text="{Binding HighestProduct.Name}"
+                               Margin="10,10,10,5"
+                               Foreground="White"
+                               FontSize="36"
+                               Width="390"
+                               TextWrapping="Wrap"
+                               FontWeight="Bold"/>
+					<TextBlock Text="Receta:"
+                               FontWeight="Bold"
+                               Foreground="White" />
+
+					<TextBlock Text="{Binding HighestProduct.NameRecipe}"
+                               Margin="10,5,10,10"
+                               Foreground="White"
+                               FontSize="36"
+                               Width="410"
+                               TextWrapping="Wrap"
+                               FontWeight="Bold"/>
+				</StackPanel>
+			</Border>
+			<Button 
+				
+				x:Name="CloseButton"
+                Grid.Column="3"
+                Width="54"
+                Height="50"
+                FontSize="36"
+                Content="X"
+                Margin="0,12,50,0"
+                Background="{x:Null}"
+                Foreground="#FFFCFCFC"
+                BorderBrush="{x:Null}"
+                Click="CloseButton_Click"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+            />
+		</Grid>
+	</Grid>
+</Window>

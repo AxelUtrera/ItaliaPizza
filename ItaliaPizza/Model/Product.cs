@@ -20,6 +20,7 @@ namespace Model
 		public double Quantity { get; set; }
 
 
+
 		public Product(string name, string description, string productCode, byte[] picture, double price, bool preparation, string productName, string restrictions, int idRecipe, bool active, double quantity)
 		{
 			this.Name = name;

@@ -195,8 +195,6 @@ namespace View
 			Products productW = new Products();
 			productW.ShowDialog();
 			Close();
-
-
 		}
 
 		private void RecipeComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
