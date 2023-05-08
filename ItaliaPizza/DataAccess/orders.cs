@@ -17,7 +17,8 @@ namespace DataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public orders()
         {
-            this.product = new HashSet<product>();
+            this.deliveryOrder = new HashSet<deliveryOrder>();
+            this.orderProduct = new HashSet<orderProduct>();
         }
     
         public int idOrder { get; set; }
@@ -27,9 +28,10 @@ namespace DataAccess
         public string idWorker { get; set; }
         public string typeOrder { get; set; }
     
-        public virtual deliveryOrder deliveryOrder { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<deliveryOrder> deliveryOrder { get; set; }
         public virtual worker worker { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<product> product { get; set; }
+        public virtual ICollection<orderProduct> orderProduct { get; set; }
     }
 }

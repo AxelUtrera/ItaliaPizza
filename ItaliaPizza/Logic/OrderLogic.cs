@@ -44,8 +44,9 @@ namespace Logic
                     date = toConvert.date,
                     hour = toConvert.hour,
                     idWorker = toConvert.idWorker,
-                    typeOrder = toConvert.typeOrder,                    
-                    nameClient =""
+                    typeOrder = toConvert.typeOrder,
+                    //cambiar el valor de nameclient en el momento en que se utilice.
+                    nameClient = ""
                 });
             }
 

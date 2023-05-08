@@ -18,7 +18,7 @@ namespace DataAccess
         public product()
         {
             this.supplierProduct = new HashSet<supplierProduct>();
-            this.orders = new HashSet<orders>();
+            this.orderProduct = new HashSet<orderProduct>();
         }
     
         public string productCode { get; set; }
@@ -36,6 +36,6 @@ namespace DataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<supplierProduct> supplierProduct { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<orders> orders { get; set; }
+        public virtual ICollection<orderProduct> orderProduct { get; set; }
     }
 }

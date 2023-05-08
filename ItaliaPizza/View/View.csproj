@@ -154,6 +154,9 @@
     <Compile Include="EditProduct.xaml.cs">
       <DependentUpon>EditProduct.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MessageNameClient.xaml.cs">
+      <DependentUpon>MessageNameClient.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Orders.xaml.cs">
       <DependentUpon>Orders.xaml</DependentUpon>
     </Compile>
@@ -208,6 +211,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MainMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MessageNameClient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -299,10 +306,6 @@
     <Resource Include="Img\ExitIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
-      <Project>{d3da8293-10e7-4c03-82d4-d570d7438a13}</Project>
-      <Name>DataAccess</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Logic\Logic.csproj">
       <Project>{cdcd6208-556e-41c9-978c-94039dc0d753}</Project>
       <Name>Logic</Name>
@@ -377,6 +380,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\Icon_Minus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\Icon_Quit.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

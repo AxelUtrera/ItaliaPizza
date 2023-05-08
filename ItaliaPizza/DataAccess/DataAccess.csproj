@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D3DA8293-10E7-4C03-82D4-D570D7438A13}</ProjectGuid>
+    <ProjectGuid>{64D197DD-2FF5-481B-BB57-3291B733B280}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DataAccess</RootNamespace>
@@ -56,7 +56,6 @@
     <Compile Include="cashbox.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Class1.cs" />
     <Compile Include="customer.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -83,6 +82,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="orderProduct.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="orders.cs">
       <DependentUpon>Model1.tt</DependentUpon>

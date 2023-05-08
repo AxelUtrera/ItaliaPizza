@@ -13,10 +13,9 @@
         <Style TargetType="{x:Type DataGrid}">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="RowBackground" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="FontWeight" Value="light"/>
             <Setter Property="Foreground" Value="#f3f3f3"/>
-            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderThickness" Value="0"></Setter>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
         </Style>
 
@@ -29,7 +28,7 @@
 
 
         <Style BasedOn="{StaticResource {x:Type DataGridCellsPresenter}}" TargetType="{x:Type DataGridCellsPresenter}">
-            <Setter Property="Margin" Value="0,0,0,10"/>
+            <Setter Property="Margin" Value="0,0,0,15"/>
             <Setter Property="Foreground" Value="#f3f3f3"/>
         </Style>
 
@@ -50,6 +49,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
     </Window.Resources>
 
 
@@ -142,29 +142,30 @@
 
                         <Label Content="Pedido del cliente" Foreground="#f3f3f3" FontSize="22" HorizontalAlignment="Center" Margin="0,20,0,0"/>
 
-                        <DataGrid Name="OrderClientTable" Margin="15,15,15,0" Foreground="#c3c3c3" AutoGenerateColumns="False" FontSize="18" ColumnWidth="*" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" SelectionChanged="ClientOrderTable_SelectionChanged" Height="440">
+                        <DataGrid Name="OrderClientTable" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#c3c3c3" Margin="15,15,15,0" Foreground="#c3c3c3" AutoGenerateColumns="False" FontSize="18" ColumnWidth="*" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" SelectionChanged="ClientOrderTable_SelectionChanged" Height="440">
 
                             <DataGrid.CellStyle>
                                 <Style>
                                     <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"></Setter>
                                     <Setter Property="FrameworkElement.VerticalAlignment" Value="Center"></Setter>
+                                    <Setter Property="TextBlock.TextDecorations" Value="None" />
                                 </Style>
+                                
                             </DataGrid.CellStyle>
 
 
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Unidades" Binding="{Binding units}"/>
-
-                                <DataGridTextColumn Header="Producto" Binding="{Binding productName}"/>
-                                <!--Agregar referencia para los atributos del order -->
-                                <DataGridTextColumn Header="Precio unitario"  Binding="{Binding pricePerUnit}"/>
-                                <DataGridTextColumn Header="Subtotal"  Binding="{Binding subTotal}"/>
+                                <DataGridTextColumn Header="Unidades" Binding="{Binding Quantity}"/>
+                                <DataGridTextColumn Header="Producto" Binding="{Binding Name}"/>
+                                <DataGridTextColumn Header="Precio unitario"  Binding="{Binding Price}"/>
+                                <DataGridTextColumn Header="Subtotal"  Binding="{Binding Subtotal}"/>
 
                                 <DataGridTemplateColumn>
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
-                                                <Image Source="/Img/Icon_Minus.png" HorizontalAlignment="Center" Width="25" Height="25" Cursor="Hand" MouseLeftButtonDown="Button_AddProduct_Click"/>
+                                                <Image Source="/Img/Icon_Quit.png" HorizontalAlignment="Center" Margin="0,0,35,0" Width="20" Height="20" Cursor="Hand" MouseLeftButtonDown="Button_QuitProductOfOrder_Click"/>
+                                                <Image Source="/Img/Icon_Minus.png" HorizontalAlignment="Center" Width="20" Height="20"  Cursor="Hand" MouseLeftButtonDown="Button_MinusProductOfOrder_Click"/>
                                             </StackPanel>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
@@ -186,7 +187,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Height="38">
                                     <Label Content="Total:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Foreground="#f3f3f3"/>
-                                    <Label Name="Label_Total" Content="$0" Margin ="39,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Foreground="#f3f3f3"/>
+                                    <Label Name="Label_Total" Content="$0" Margin ="39,0,0,0" HorizontalAlignment="Center" FontSize="20" Foreground="#f3f3f3"/>
                                 </StackPanel>
                             </StackPanel>
                         </Grid>
@@ -198,7 +199,7 @@
                         </StackPanel.Background>
 
                         <Label Content="Cliente:" Margin="10,0,0,0"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Foreground="#f3f3f3"/>
-                        <Label Name="Label_ClientName" Content="Client name" Margin ="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Foreground="#f3f3f3"/>
+                        <Label Name="Label_ClientName"  Margin ="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Foreground="#f3f3f3"/>
 
                     </StackPanel>
 

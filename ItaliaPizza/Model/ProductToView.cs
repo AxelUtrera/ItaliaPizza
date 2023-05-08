@@ -21,6 +21,8 @@ namespace Model
         public BitmapImage Image { get; set; }
         public double Quantity { get; set; }
 
+        public String Subtotal { get; set; }
+
 
         public ProductToView()
         {

@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{7225153A-CCAA-4585-8D31-C37A32B6182F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{D3DA8293-10E7-4C03-82D4-D570D7438A13}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{64D197DD-2FF5-481B-BB57-3291B733B280}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{7225153A-CCAA-4585-8D31-C37A32B6182F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7225153A-CCAA-4585-8D31-C37A32B6182F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7225153A-CCAA-4585-8D31-C37A32B6182F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D3DA8293-10E7-4C03-82D4-D570D7438A13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D3DA8293-10E7-4C03-82D4-D570D7438A13}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D3DA8293-10E7-4C03-82D4-D570D7438A13}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D3DA8293-10E7-4C03-82D4-D570D7438A13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64D197DD-2FF5-481B-BB57-3291B733B280}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64D197DD-2FF5-481B-BB57-3291B733B280}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64D197DD-2FF5-481B-BB57-3291B733B280}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64D197DD-2FF5-481B-BB57-3291B733B280}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
