@@ -75,72 +75,75 @@
             </StackPanel>
 
             <Border Height="600" Width="1300" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,0">
-                <Border.Background>
-                    <SolidColorBrush Color="#0a0a0a" Opacity=".5"></SolidColorBrush>
-                </Border.Background>
-                <DataGrid Name="ProductsTable" Foreground="#c3c3c3" AutoGenerateColumns="False" FontSize="20" ColumnWidth="*" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" SelectionChanged="ProductsTable_SelectionChanged">
-                    
-                    <DataGrid.CellStyle>
-                        <Style>
-                            <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"></Setter>
-                            <Setter Property="FrameworkElement.VerticalAlignment" Value="Center"></Setter>
-                        </Style>
-                    </DataGrid.CellStyle>
+                <StackPanel >
+                    <StackPanel.Background>
+                        <SolidColorBrush Color="#0a0a0a" Opacity=".5"></SolidColorBrush>
+                    </StackPanel.Background>
 
-                    
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Codigo" Binding="{Binding ProductCode}"/>
-                        <DataGridTextColumn Header="Nombre" Binding="{Binding Name}"/>
-                        <DataGridTextColumn Header="Descripción"  Binding="{Binding Description}">
-                            <DataGridTextColumn.ElementStyle>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="TextWrapping" Value="Wrap" />
-                                </Style>
-                            </DataGridTextColumn.ElementStyle>
-                            <DataGridTextColumn.EditingElementStyle>
-                                <Style TargetType="TextBox">
-                                    <Setter Property="TextWrapping" Value="Wrap" />
-                                    <Setter Property="AcceptsReturn" Value="true" />
-                                </Style>
-                            </DataGridTextColumn.EditingElementStyle>
-                        </DataGridTextColumn>
-                        <DataGridTextColumn Header="Precio (MXN)" Binding="{Binding Price}"/>
-                        <DataGridTextColumn Header="Restricciones" Binding="{Binding Restrictions}">
-                            <DataGridTextColumn.ElementStyle>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="TextWrapping" Value="Wrap" />
-                                </Style>
-                            </DataGridTextColumn.ElementStyle>
-                            <DataGridTextColumn.EditingElementStyle>
-                                <Style TargetType="TextBox">
-                                    <Setter Property="TextWrapping" Value="Wrap" />
-                                    <Setter Property="AcceptsReturn" Value="true" />
-                                </Style>
-                            </DataGridTextColumn.EditingElementStyle>
-                        </DataGridTextColumn>
-                        <DataGridTextColumn Header="¿Está activo?" Binding="{Binding Active}"/>
-                        <DataGridTextColumn Header="¿Se prepára?" Binding="{Binding Preparation}" Visibility="Collapsed"/>
-                        <DataGridTextColumn Header="ID receta" Binding="{Binding IdRecipe}" Visibility="Collapsed"/>
-                        <DataGridTextColumn Header="Cantidad" Binding="{Binding Quantity}" Visibility="Collapsed"/>
-                        <DataGridTemplateColumn Visibility="Collapsed">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Image Source="{Binding Path=Image}"></Image>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTemplateColumn>
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="/Img/Icon_Edit.png" Margin="25,0,40,0" Width="25" Height="25" Cursor="Hand" MouseLeftButtonDown="Button_EditProduct_Click"/>
-                                        <Image Source="/Img/Icon_Delete.png" Margin="0,0,25,0"  Width="25" Height="25"  Cursor="Hand" MouseLeftButtonDown="Button_DeleteProduct_Click"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
+                    <DataGrid Name="ProductsTable" Foreground="#c3c3c3" AutoGenerateColumns="False" FontSize="20" ColumnWidth="*" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" SelectionChanged="ProductsTable_SelectionChanged">
+
+                        <DataGrid.CellStyle>
+                            <Style>
+                                <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"></Setter>
+                                <Setter Property="FrameworkElement.VerticalAlignment" Value="Center"></Setter>
+                            </Style>
+                        </DataGrid.CellStyle>
+
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Codigo" Binding="{Binding ProductCode}"/>
+                            <DataGridTextColumn Header="Nombre" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Descripción"  Binding="{Binding Description}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                                <DataGridTextColumn.EditingElementStyle>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                        <Setter Property="AcceptsReturn" Value="true" />
+                                    </Style>
+                                </DataGridTextColumn.EditingElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Precio (MXN)" Binding="{Binding Price}"/>
+                            <DataGridTextColumn Header="Restricciones" Binding="{Binding Restrictions}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                                <DataGridTextColumn.EditingElementStyle>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                        <Setter Property="AcceptsReturn" Value="true" />
+                                    </Style>
+                                </DataGridTextColumn.EditingElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="¿Está activo?" Binding="{Binding Active}"/>
+                            <DataGridTextColumn Header="¿Se prepára?" Binding="{Binding Preparation}" Visibility="Collapsed"/>
+                            <DataGridTextColumn Header="ID receta" Binding="{Binding IdRecipe}" Visibility="Collapsed"/>
+                            <DataGridTextColumn Header="Cantidad" Binding="{Binding Quantity}" Visibility="Collapsed"/>
+                            <DataGridTemplateColumn Visibility="Collapsed">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Source="{Binding Path=Image}"></Image>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="/Img/Icon_Edit.png" Margin="25,0,40,0" Width="25" Height="25" Cursor="Hand" MouseLeftButtonDown="Button_EditProduct_Click"/>
+                                            <Image Source="/Img/Icon_Delete.png" Margin="0,0,25,0"  Width="25" Height="25"  Cursor="Hand" MouseLeftButtonDown="Button_DeleteProduct_Click"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
             </Border>
         </StackPanel>
         

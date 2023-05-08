@@ -110,6 +110,7 @@
   <ItemGroup>
     <Compile Include="Address.cs" />
     <Compile Include="Ingredient.cs" />
+    <Compile Include="Order.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="ProductToView.cs" />
     <Compile Include="Recipe.cs" />

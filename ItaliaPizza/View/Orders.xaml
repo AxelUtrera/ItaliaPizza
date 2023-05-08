@@ -7,13 +7,13 @@
         mc:Ignorable="d"
         WindowState="Maximized"
         WindowStyle="None"
-        Title="Pedidos" Height="810" Width="1440">
+        Title="Pedidos" Height="870" Width="1550">
     
     <Window.Resources>
         <Style TargetType="{x:Type DataGrid}">
-            <Setter Property="Background" Value="#0a0a0a"/>
-            <Setter Property="RowBackground" Value="#0a0a0a"/>
-            <Setter Property="BorderBrush" Value="#0a0a0a"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="RowBackground" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="FontWeight" Value="light"/>
             <Setter Property="Foreground" Value="#f3f3f3"/>
             <Setter Property="BorderThickness" Value="1"/>
@@ -37,6 +37,18 @@
             <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
             <Setter Property="Foreground" Value="#ffffff"></Setter>
         </Style>
+
+        <Style TargetType="{x:Type DataGridRowHeader}">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridRowHeader}">
+                        <Grid Background="{TemplateBinding Background}" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
 
     <Grid Background="black">
@@ -45,7 +57,7 @@
         <StackPanel>
             <StackPanel Orientation="Horizontal" Margin="40,40,40,0">
                 <Label Content="Pedidos" FontSize="30" Foreground="#f3f3f3"></Label>
-                <Button Width="35" Click="Button_Exit_Click" Cursor="Hand" Height="35" VerticalAlignment="Center" Margin="1180,0,0,0">
+                <Button Width="35" Click="Button_Exit_Click" Cursor="Hand" Height="35" VerticalAlignment="Center" Margin="1280,0,0,0">
                     <Button.Template>
                         <ControlTemplate  TargetType="Button">
                             <Border Background="Transparent">
@@ -74,51 +86,55 @@
                 </Button>
             </StackPanel>
 
-            <Border Height="600" Width="1300" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,0">
-                <Border.Background>
-                    <SolidColorBrush Color="#0a0a0a" Opacity=".5"></SolidColorBrush>
-                </Border.Background>
-                <DataGrid Name="OrdersTable" Foreground="#c3c3c3" AutoGenerateColumns="False" FontSize="20" ColumnWidth="*" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" SelectionChanged="OrdersTable_SelectionChanged">
+            <Border Height="650" Width="1340" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,15,0,0">
+                <StackPanel>
+                    <StackPanel.Background>
+                        <SolidColorBrush Color="#0a0a0a" Opacity=".5"></SolidColorBrush>
+                    </StackPanel.Background>
+               
 
-                    <DataGrid.CellStyle>
-                        <Style>
-                            <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"></Setter>
-                            <Setter Property="FrameworkElement.VerticalAlignment" Value="Center"></Setter>
-                        </Style>
-                    </DataGrid.CellStyle>
+                <DataGrid Name="OrdersTable" Foreground="#c3c3c3" AutoGenerateColumns="False" FontSize="20" ColumnWidth="*" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" SelectionChanged="OrdersTable_SelectionChanged" Height="652">
+
+                        <DataGrid.CellStyle>
+                            <Style>
+                                <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"></Setter>
+                                <Setter Property="FrameworkElement.VerticalAlignment" Value="Center"></Setter>
+                            </Style>
+                        </DataGrid.CellStyle>
 
 
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Número de pedido" Binding="{Binding idOrder}"/>
-                        <!--Agregar referencia para los atributos del order -->
-                        <DataGridTextColumn Header="Cliente" Binding="{Binding client}"/>
-                        <DataGridTextColumn Header="Tipo de pedido"  Binding="{Binding Description}">
-                            <DataGridTextColumn.ElementStyle>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="TextWrapping" Value="Wrap" />
-                                </Style>
-                            </DataGridTextColumn.ElementStyle>
-                            <DataGridTextColumn.EditingElementStyle>
-                                <Style TargetType="TextBox">
-                                    <Setter Property="TextWrapping" Value="Wrap" />
-                                    <Setter Property="AcceptsReturn" Value="true" />
-                                </Style>
-                            </DataGridTextColumn.EditingElementStyle>
-                        </DataGridTextColumn>
-                        <DataGridTextColumn Header="Status" Binding="{Binding status}"/>
-                        <DataGridTemplateColumn>
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="/Img/Icon_Update.png" Margin="25,0,40,0" Width="25" Height="25" Cursor="Hand" MouseLeftButtonDown="Button_Update_Click"/>
-                                        <Image Source="/Img/Icon_Edit.png" Margin="25,0,40,0" Width="25" Height="25" Cursor="Hand" MouseLeftButtonDown="Button_Edit_Click"/>
-                                        <Image Source="/Img/Icon_Delete.png" Margin="0,0,25,0"  Width="25" Height="25"  Cursor="Hand" MouseLeftButtonDown="Button_Cancel_Click"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Número de pedido" Binding="{Binding idOrder}"/>
+                            <!--Agregar referencia para los atributos del order -->
+                            <DataGridTextColumn Header="Cliente" Binding="{Binding client}"/>
+                            <DataGridTextColumn Header="Tipo de pedido"  Binding="{Binding typeOrder}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                                <DataGridTextColumn.EditingElementStyle>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                        <Setter Property="AcceptsReturn" Value="true" />
+                                    </Style>
+                                </DataGridTextColumn.EditingElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Estado" Binding="{Binding status}"/>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="/Img/Icon_Update.png" Margin="25,0,40,0" Width="25" Height="25" Cursor="Hand" MouseLeftButtonDown="Button_Update_Click"/>
+                                            <Image Source="/Img/Icon_Edit.png" Margin="25,0,40,0" Width="25" Height="25" Cursor="Hand" MouseLeftButtonDown="Button_Edit_Click"/>
+                                            <Image Source="/Img/Icon_Delete.png" Margin="0,0,25,0"  Width="25" Height="25"  Cursor="Hand" MouseLeftButtonDown="Button_Cancel_Click"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
             </Border>
         </StackPanel>
 

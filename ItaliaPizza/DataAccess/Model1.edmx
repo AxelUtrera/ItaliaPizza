@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ItaliaPizzaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ItaliaPizzaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="address">
           <Key>
             <PropertyRef Name="idAddress" />
@@ -48,9 +48,10 @@
           <Key>
             <PropertyRef Name="idDeliveryOrder" />
           </Key>
-          <Property Name="idDeliveryOrder" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idDeliveryOrder" Type="int" Nullable="false" />
           <Property Name="idOrder" Type="int" Nullable="false" />
           <Property Name="idCustomer" Type="int" Nullable="false" />
+          <Property Name="idAddress" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ingredient">
           <Key>
@@ -61,8 +62,8 @@
           <Property Name="quantity" Type="float" Nullable="false" />
           <Property Name="active" Type="bit" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ItaliaPizza.dbo.orderProduct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.orderProduct' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="orderProduct">
           <Key>
             <PropertyRef Name="idOrder" />
@@ -80,6 +81,7 @@ warning 6002: The table/view 'ItaliaPizza.dbo.orderProduct' does not have a prim
           <Property Name="hour" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="status" Type="varchar" MaxLength="15" />
           <Property Name="idWorker" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="typeOrder" Type="varchar" MaxLength="17" />
         </EntityType>
         <EntityType Name="product">
           <Key>
@@ -127,8 +129,8 @@ warning 6002: The table/view 'ItaliaPizza.dbo.orderProduct' does not have a prim
           <Property Name="supplierName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="active" Type="bit" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ItaliaPizza.dbo.supplierIngredient' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierIngredient' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="supplierIngredient">
           <Key>
             <PropertyRef Name="idSupplierOrder" />
@@ -149,8 +151,8 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierIngredient' does not have 
           <Property Name="orderDate" Type="date" Nullable="false" />
           <Property Name="status" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="supplierProduct">
           <Key>
             <PropertyRef Name="idSupplierOrder" />
@@ -184,7 +186,7 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
           <Property Name="workerNumber" Type="varchar" MaxLength="5" Nullable="false" />
           <Property Name="idUser" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK__address__idCusto__656C112C">
+        <Association Name="FK__address__idCusto__52593CB8">
           <End Role="customer" Type="Self.customer" Multiplicity="1" />
           <End Role="address" Type="Self.address" Multiplicity="*" />
           <ReferentialConstraint>
@@ -196,7 +198,7 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__customer__idUser__66603565">
+        <Association Name="FK__customer__idUser__534D60F1">
           <End Role="users" Type="Self.users" Multiplicity="1" />
           <End Role="customer" Type="Self.customer" Multiplicity="*" />
           <ReferentialConstraint>
@@ -208,7 +210,7 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__dailyBala__idCas__68487DD7">
+        <Association Name="FK__dailyBala__idCas__5535A963">
           <End Role="cashbox" Type="Self.cashbox" Multiplicity="1" />
           <End Role="dailyBalance" Type="Self.dailyBalance" Multiplicity="*" />
           <ReferentialConstraint>
@@ -220,7 +222,7 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__dailyBala__idWor__6754599E">
+        <Association Name="FK__dailyBala__idWor__5441852A">
           <End Role="worker" Type="Self.worker" Multiplicity="1" />
           <End Role="dailyBalance" Type="Self.dailyBalance" Multiplicity="*" />
           <ReferentialConstraint>
@@ -232,31 +234,7 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__deliveryO__idCus__6A30C649">
-          <End Role="customer" Type="Self.customer" Multiplicity="1" />
-          <End Role="deliveryOrder" Type="Self.deliveryOrder" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="customer">
-              <PropertyRef Name="idCustomer" />
-            </Principal>
-            <Dependent Role="deliveryOrder">
-              <PropertyRef Name="idCustomer" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__deliveryO__idOrd__693CA210">
-          <End Role="orders" Type="Self.orders" Multiplicity="1" />
-          <End Role="deliveryOrder" Type="Self.deliveryOrder" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="orders">
-              <PropertyRef Name="idOrder" />
-            </Principal>
-            <Dependent Role="deliveryOrder">
-              <PropertyRef Name="idOrder" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__orderProd__idOrd__6B24EA82">
+        <Association Name="FK__orderProd__idOrd__5812160E">
           <End Role="orders" Type="Self.orders" Multiplicity="1" />
           <End Role="orderProduct" Type="Self.orderProduct" Multiplicity="*" />
           <ReferentialConstraint>
@@ -280,7 +258,7 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__orders__idWorker__6D0D32F4">
+        <Association Name="FK__orders__idWorker__59FA5E80">
           <End Role="worker" Type="Self.worker" Multiplicity="1" />
           <End Role="orders" Type="Self.orders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -304,7 +282,7 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__recipeIng__idIng__6EF57B66">
+        <Association Name="FK__recipeIng__idIng__5BE2A6F2">
           <End Role="ingredient" Type="Self.ingredient" Multiplicity="1" />
           <End Role="recipeIngredient" Type="Self.recipeIngredient" Multiplicity="*" />
           <ReferentialConstraint>
@@ -316,7 +294,7 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__recipeIng__idRec__6FE99F9F">
+        <Association Name="FK__recipeIng__idRec__5CD6CB2B">
           <End Role="recipe" Type="Self.recipe" Multiplicity="1" />
           <End Role="recipeIngredient" Type="Self.recipeIngredient" Multiplicity="*" />
           <ReferentialConstraint>
@@ -328,7 +306,7 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__supplierI__idIng__71D1E811">
+        <Association Name="FK__supplierI__idIng__5EBF139D">
           <End Role="ingredient" Type="Self.ingredient" Multiplicity="1" />
           <End Role="supplierIngredient" Type="Self.supplierIngredient" Multiplicity="*" />
           <ReferentialConstraint>
@@ -340,7 +318,7 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__supplierI__idSup__70DDC3D8">
+        <Association Name="FK__supplierI__idSup__5DCAEF64">
           <End Role="supplierOrder" Type="Self.supplierOrder" Multiplicity="1" />
           <End Role="supplierIngredient" Type="Self.supplierIngredient" Multiplicity="*" />
           <ReferentialConstraint>
@@ -352,7 +330,7 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__supplierP__idSup__72C60C4A">
+        <Association Name="FK__supplierP__idSup__5FB337D6">
           <End Role="supplierOrder" Type="Self.supplierOrder" Multiplicity="1" />
           <End Role="supplierProduct" Type="Self.supplierProduct" Multiplicity="*" />
           <ReferentialConstraint>
@@ -376,7 +354,7 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__worker__idUser__74AE54BC">
+        <Association Name="FK__worker__idUser__619B8048">
           <End Role="users" Type="Self.users" Multiplicity="1" />
           <End Role="worker" Type="Self.worker" Multiplicity="*" />
           <ReferentialConstraint>
@@ -385,6 +363,42 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
             </Principal>
             <Dependent Role="worker">
               <PropertyRef Name="idUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_deliveryOrder_address">
+          <End Role="address" Type="Self.address" Multiplicity="1" />
+          <End Role="deliveryOrder" Type="Self.deliveryOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="idAddress" />
+            </Principal>
+            <Dependent Role="deliveryOrder">
+              <PropertyRef Name="idAddress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_deliveryOrder_customer">
+          <End Role="customer" Type="Self.customer" Multiplicity="1" />
+          <End Role="deliveryOrder" Type="Self.deliveryOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="idCustomer" />
+            </Principal>
+            <Dependent Role="deliveryOrder">
+              <PropertyRef Name="idCustomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_deliveryOrder_orders">
+          <End Role="orders" Type="Self.orders" Multiplicity="1" />
+          <End Role="deliveryOrder" Type="Self.deliveryOrder" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="idOrder" />
+            </Principal>
+            <Dependent Role="deliveryOrder">
+              <PropertyRef Name="idDeliveryOrder" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -423,31 +437,23 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
     [supplierProduct].[quantity] AS [quantity]
     FROM [dbo].[supplierProduct] AS [supplierProduct]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__address__idCusto__656C112C" Association="Self.FK__address__idCusto__656C112C">
+          <AssociationSet Name="FK__address__idCusto__52593CB8" Association="Self.FK__address__idCusto__52593CB8">
             <End Role="customer" EntitySet="customer" />
             <End Role="address" EntitySet="address" />
           </AssociationSet>
-          <AssociationSet Name="FK__customer__idUser__66603565" Association="Self.FK__customer__idUser__66603565">
+          <AssociationSet Name="FK__customer__idUser__534D60F1" Association="Self.FK__customer__idUser__534D60F1">
             <End Role="users" EntitySet="users" />
             <End Role="customer" EntitySet="customer" />
           </AssociationSet>
-          <AssociationSet Name="FK__dailyBala__idCas__68487DD7" Association="Self.FK__dailyBala__idCas__68487DD7">
+          <AssociationSet Name="FK__dailyBala__idCas__5535A963" Association="Self.FK__dailyBala__idCas__5535A963">
             <End Role="cashbox" EntitySet="cashbox" />
             <End Role="dailyBalance" EntitySet="dailyBalance" />
           </AssociationSet>
-          <AssociationSet Name="FK__dailyBala__idWor__6754599E" Association="Self.FK__dailyBala__idWor__6754599E">
+          <AssociationSet Name="FK__dailyBala__idWor__5441852A" Association="Self.FK__dailyBala__idWor__5441852A">
             <End Role="worker" EntitySet="worker" />
             <End Role="dailyBalance" EntitySet="dailyBalance" />
           </AssociationSet>
-          <AssociationSet Name="FK__deliveryO__idCus__6A30C649" Association="Self.FK__deliveryO__idCus__6A30C649">
-            <End Role="customer" EntitySet="customer" />
-            <End Role="deliveryOrder" EntitySet="deliveryOrder" />
-          </AssociationSet>
-          <AssociationSet Name="FK__deliveryO__idOrd__693CA210" Association="Self.FK__deliveryO__idOrd__693CA210">
-            <End Role="orders" EntitySet="orders" />
-            <End Role="deliveryOrder" EntitySet="deliveryOrder" />
-          </AssociationSet>
-          <AssociationSet Name="FK__orderProd__idOrd__6B24EA82" Association="Self.FK__orderProd__idOrd__6B24EA82">
+          <AssociationSet Name="FK__orderProd__idOrd__5812160E" Association="Self.FK__orderProd__idOrd__5812160E">
             <End Role="orders" EntitySet="orders" />
             <End Role="orderProduct" EntitySet="orderProduct" />
           </AssociationSet>
@@ -455,7 +461,7 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
             <End Role="product" EntitySet="product" />
             <End Role="orderProduct" EntitySet="orderProduct" />
           </AssociationSet>
-          <AssociationSet Name="FK__orders__idWorker__6D0D32F4" Association="Self.FK__orders__idWorker__6D0D32F4">
+          <AssociationSet Name="FK__orders__idWorker__59FA5E80" Association="Self.FK__orders__idWorker__59FA5E80">
             <End Role="worker" EntitySet="worker" />
             <End Role="orders" EntitySet="orders" />
           </AssociationSet>
@@ -463,23 +469,23 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
             <End Role="recipe" EntitySet="recipe" />
             <End Role="product" EntitySet="product" />
           </AssociationSet>
-          <AssociationSet Name="FK__recipeIng__idIng__6EF57B66" Association="Self.FK__recipeIng__idIng__6EF57B66">
+          <AssociationSet Name="FK__recipeIng__idIng__5BE2A6F2" Association="Self.FK__recipeIng__idIng__5BE2A6F2">
             <End Role="ingredient" EntitySet="ingredient" />
             <End Role="recipeIngredient" EntitySet="recipeIngredient" />
           </AssociationSet>
-          <AssociationSet Name="FK__recipeIng__idRec__6FE99F9F" Association="Self.FK__recipeIng__idRec__6FE99F9F">
+          <AssociationSet Name="FK__recipeIng__idRec__5CD6CB2B" Association="Self.FK__recipeIng__idRec__5CD6CB2B">
             <End Role="recipe" EntitySet="recipe" />
             <End Role="recipeIngredient" EntitySet="recipeIngredient" />
           </AssociationSet>
-          <AssociationSet Name="FK__supplierI__idIng__71D1E811" Association="Self.FK__supplierI__idIng__71D1E811">
+          <AssociationSet Name="FK__supplierI__idIng__5EBF139D" Association="Self.FK__supplierI__idIng__5EBF139D">
             <End Role="ingredient" EntitySet="ingredient" />
             <End Role="supplierIngredient" EntitySet="supplierIngredient" />
           </AssociationSet>
-          <AssociationSet Name="FK__supplierI__idSup__70DDC3D8" Association="Self.FK__supplierI__idSup__70DDC3D8">
+          <AssociationSet Name="FK__supplierI__idSup__5DCAEF64" Association="Self.FK__supplierI__idSup__5DCAEF64">
             <End Role="supplierOrder" EntitySet="supplierOrder" />
             <End Role="supplierIngredient" EntitySet="supplierIngredient" />
           </AssociationSet>
-          <AssociationSet Name="FK__supplierP__idSup__72C60C4A" Association="Self.FK__supplierP__idSup__72C60C4A">
+          <AssociationSet Name="FK__supplierP__idSup__5FB337D6" Association="Self.FK__supplierP__idSup__5FB337D6">
             <End Role="supplierOrder" EntitySet="supplierOrder" />
             <End Role="supplierProduct" EntitySet="supplierProduct" />
           </AssociationSet>
@@ -487,12 +493,25 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
             <End Role="product" EntitySet="product" />
             <End Role="supplierProduct" EntitySet="supplierProduct" />
           </AssociationSet>
-          <AssociationSet Name="FK__worker__idUser__74AE54BC" Association="Self.FK__worker__idUser__74AE54BC">
+          <AssociationSet Name="FK__worker__idUser__619B8048" Association="Self.FK__worker__idUser__619B8048">
             <End Role="users" EntitySet="users" />
             <End Role="worker" EntitySet="worker" />
           </AssociationSet>
+          <AssociationSet Name="FK_deliveryOrder_address" Association="Self.FK_deliveryOrder_address">
+            <End Role="address" EntitySet="address" />
+            <End Role="deliveryOrder" EntitySet="deliveryOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_deliveryOrder_customer" Association="Self.FK_deliveryOrder_customer">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="deliveryOrder" EntitySet="deliveryOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_deliveryOrder_orders" Association="Self.FK_deliveryOrder_orders">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="deliveryOrder" EntitySet="deliveryOrder" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ItaliaPizzaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -509,6 +528,7 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
           <Property Name="instructions" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="idCustomer" Type="Int32" Nullable="false" />
           <NavigationProperty Name="customer" Relationship="Self.FK__address__idCusto__52593CB8" FromRole="address" ToRole="customer" />
+          <NavigationProperty Name="deliveryOrder" Relationship="Self.FK_deliveryOrder_address" FromRole="address" ToRole="deliveryOrder" />
         </EntityType>
         <EntityType Name="cashbox">
           <Key>
@@ -528,7 +548,7 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
           <Property Name="idUser" Type="Int32" Nullable="false" />
           <NavigationProperty Name="address" Relationship="Self.FK__address__idCusto__52593CB8" FromRole="customer" ToRole="address" />
           <NavigationProperty Name="users" Relationship="Self.FK__customer__idUser__534D60F1" FromRole="customer" ToRole="users" />
-          <NavigationProperty Name="deliveryOrder" Relationship="Self.FK__deliveryO__idCus__571DF1D5" FromRole="customer" ToRole="deliveryOrder" />
+          <NavigationProperty Name="deliveryOrder" Relationship="Self.FK_deliveryOrder_customer" FromRole="customer" ToRole="deliveryOrder" />
         </EntityType>
         <EntityType Name="dailyBalance">
           <Key>
@@ -546,11 +566,13 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
           <Key>
             <PropertyRef Name="idDeliveryOrder" />
           </Key>
-          <Property Name="idDeliveryOrder" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idDeliveryOrder" Type="Int32" Nullable="false" />
           <Property Name="idOrder" Type="Int32" Nullable="false" />
           <Property Name="idCustomer" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="customer" Relationship="Self.FK__deliveryO__idCus__571DF1D5" FromRole="deliveryOrder" ToRole="customer" />
-          <NavigationProperty Name="orders" Relationship="Self.FK__deliveryO__idOrd__5629CD9C" FromRole="deliveryOrder" ToRole="orders" />
+          <Property Name="idAddress" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="address" Relationship="Self.FK_deliveryOrder_address" FromRole="deliveryOrder" ToRole="address" />
+          <NavigationProperty Name="customer" Relationship="Self.FK_deliveryOrder_customer" FromRole="deliveryOrder" ToRole="customer" />
+          <NavigationProperty Name="orders" Relationship="Self.FK_deliveryOrder_orders" FromRole="deliveryOrder" ToRole="orders" />
         </EntityType>
         <EntityType Name="ingredient">
           <Key>
@@ -572,7 +594,8 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
           <Property Name="hour" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="status" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="idWorker" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="deliveryOrder" Relationship="Self.FK__deliveryO__idOrd__5629CD9C" FromRole="orders" ToRole="deliveryOrder" />
+          <Property Name="typeOrder" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="deliveryOrder" Relationship="Self.FK_deliveryOrder_orders" FromRole="orders" ToRole="deliveryOrder" />
           <NavigationProperty Name="worker" Relationship="Self.FK__orders__idWorker__59FA5E80" FromRole="orders" ToRole="worker" />
           <NavigationProperty Name="product" Relationship="Self.orderProduct" FromRole="orders" ToRole="product" />
         </EntityType>
@@ -589,10 +612,10 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
           <Property Name="restrictions" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="idRecipe" Type="Int32" Nullable="false" />
           <Property Name="active" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="recipe" Relationship="Self.FK__product__idRecip__5AEE82B9" FromRole="product" ToRole="recipe" />
-          <NavigationProperty Name="supplierProduct" Relationship="Self.FK__supplierP__produ__60A75C0F" FromRole="product" ToRole="supplierProduct" />
-          <NavigationProperty Name="orders" Relationship="Self.orderProduct" FromRole="product" ToRole="orders" />
           <Property Name="quantity" Type="Double" Nullable="false" />
+          <NavigationProperty Name="recipe" Relationship="Self.FK__product__idRecip__6E01572D" FromRole="product" ToRole="recipe" />
+          <NavigationProperty Name="supplierProduct" Relationship="Self.FK__supplierP__produ__73BA3083" FromRole="product" ToRole="supplierProduct" />
+          <NavigationProperty Name="orders" Relationship="Self.orderProduct" FromRole="product" ToRole="orders" />
         </EntityType>
         <EntityType Name="recipe">
           <Key>
@@ -602,7 +625,7 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
           <Property Name="description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="recipeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="active" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="product" Relationship="Self.FK__product__idRecip__5AEE82B9" FromRole="recipe" ToRole="product" />
+          <NavigationProperty Name="product" Relationship="Self.FK__product__idRecip__6E01572D" FromRole="recipe" ToRole="product" />
           <NavigationProperty Name="recipeIngredient" Relationship="Self.FK__recipeIng__idRec__5CD6CB2B" FromRole="recipe" ToRole="recipeIngredient" />
         </EntityType>
         <EntityType Name="recipeIngredient">
@@ -690,7 +713,7 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
           <Property Name="idSupplierOrder" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="productCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="quantity" Type="Double" Nullable="false" />
-          <NavigationProperty Name="product" Relationship="Self.FK__supplierP__produ__60A75C0F" FromRole="supplierProduct" ToRole="product" />
+          <NavigationProperty Name="product" Relationship="Self.FK__supplierP__produ__73BA3083" FromRole="supplierProduct" ToRole="product" />
           <NavigationProperty Name="supplierOrder" Relationship="Self.FK__supplierP__idSup__5FB337D6" FromRole="supplierProduct" ToRole="supplierOrder" />
         </EntityType>
         <Association Name="FK__address__idCusto__52593CB8">
@@ -702,6 +725,18 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
             </Principal>
             <Dependent Role="address">
               <PropertyRef Name="idCustomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_deliveryOrder_address">
+          <End Role="address" Type="Self.address" Multiplicity="1" />
+          <End Role="deliveryOrder" Type="Self.deliveryOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="idAddress" />
+            </Principal>
+            <Dependent Role="deliveryOrder">
+              <PropertyRef Name="idAddress" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -729,7 +764,7 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__deliveryO__idCus__571DF1D5">
+        <Association Name="FK_deliveryOrder_customer">
           <End Role="customer" Type="Self.customer" Multiplicity="1" />
           <End Role="deliveryOrder" Type="Self.deliveryOrder" Multiplicity="*" />
           <ReferentialConstraint>
@@ -753,15 +788,15 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__deliveryO__idOrd__5629CD9C">
+        <Association Name="FK_deliveryOrder_orders">
           <End Role="orders" Type="Self.orders" Multiplicity="1" />
-          <End Role="deliveryOrder" Type="Self.deliveryOrder" Multiplicity="*" />
+          <End Role="deliveryOrder" Type="Self.deliveryOrder" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="orders">
               <PropertyRef Name="idOrder" />
             </Principal>
             <Dependent Role="deliveryOrder">
-              <PropertyRef Name="idOrder" />
+              <PropertyRef Name="idDeliveryOrder" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -801,7 +836,7 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__product__idRecip__5AEE82B9">
+        <Association Name="FK__product__idRecip__6E01572D">
           <End Role="recipe" Type="Self.recipe" Multiplicity="1" />
           <End Role="product" Type="Self.product" Multiplicity="*" />
           <ReferentialConstraint>
@@ -813,7 +848,7 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__supplierP__produ__60A75C0F">
+        <Association Name="FK__supplierP__produ__73BA3083">
           <End Role="product" Type="Self.product" Multiplicity="1" />
           <End Role="supplierProduct" Type="Self.supplierProduct" Multiplicity="*" />
           <ReferentialConstraint>
@@ -898,6 +933,10 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
             <End Role="customer" EntitySet="customer" />
             <End Role="address" EntitySet="address" />
           </AssociationSet>
+          <AssociationSet Name="FK_deliveryOrder_address" Association="Self.FK_deliveryOrder_address">
+            <End Role="address" EntitySet="address" />
+            <End Role="deliveryOrder" EntitySet="deliveryOrder" />
+          </AssociationSet>
           <AssociationSet Name="FK__dailyBala__idCas__5535A963" Association="Self.FK__dailyBala__idCas__5535A963">
             <End Role="cashbox" EntitySet="cashbox" />
             <End Role="dailyBalance" EntitySet="dailyBalance" />
@@ -906,7 +945,7 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
             <End Role="users" EntitySet="users" />
             <End Role="customer" EntitySet="customer" />
           </AssociationSet>
-          <AssociationSet Name="FK__deliveryO__idCus__571DF1D5" Association="Self.FK__deliveryO__idCus__571DF1D5">
+          <AssociationSet Name="FK_deliveryOrder_customer" Association="Self.FK_deliveryOrder_customer">
             <End Role="customer" EntitySet="customer" />
             <End Role="deliveryOrder" EntitySet="deliveryOrder" />
           </AssociationSet>
@@ -914,7 +953,7 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
             <End Role="worker" EntitySet="worker" />
             <End Role="dailyBalance" EntitySet="dailyBalance" />
           </AssociationSet>
-          <AssociationSet Name="FK__deliveryO__idOrd__5629CD9C" Association="Self.FK__deliveryO__idOrd__5629CD9C">
+          <AssociationSet Name="FK_deliveryOrder_orders" Association="Self.FK_deliveryOrder_orders">
             <End Role="orders" EntitySet="orders" />
             <End Role="deliveryOrder" EntitySet="deliveryOrder" />
           </AssociationSet>
@@ -930,11 +969,11 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
             <End Role="worker" EntitySet="worker" />
             <End Role="orders" EntitySet="orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__product__idRecip__5AEE82B9" Association="Self.FK__product__idRecip__5AEE82B9">
+          <AssociationSet Name="FK__product__idRecip__6E01572D" Association="Self.FK__product__idRecip__6E01572D">
             <End Role="recipe" EntitySet="recipe" />
             <End Role="product" EntitySet="product" />
           </AssociationSet>
-          <AssociationSet Name="FK__supplierP__produ__60A75C0F" Association="Self.FK__supplierP__produ__60A75C0F">
+          <AssociationSet Name="FK__supplierP__produ__73BA3083" Association="Self.FK__supplierP__produ__73BA3083">
             <End Role="product" EntitySet="product" />
             <End Role="supplierProduct" EntitySet="supplierProduct" />
           </AssociationSet>
@@ -1014,6 +1053,7 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
                 <ScalarProperty Name="idDeliveryOrder" ColumnName="idDeliveryOrder" />
                 <ScalarProperty Name="idOrder" ColumnName="idOrder" />
                 <ScalarProperty Name="idCustomer" ColumnName="idCustomer" />
+                <ScalarProperty Name="idAddress" ColumnName="idAddress" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1035,13 +1075,13 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
                 <ScalarProperty Name="hour" ColumnName="hour" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="idWorker" ColumnName="idWorker" />
+                <ScalarProperty Name="typeOrder" ColumnName="typeOrder" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="product">
             <EntityTypeMapping TypeName="ItaliaPizzaModel.product">
               <MappingFragment StoreEntitySet="product">
-                <ScalarProperty Name="quantity" ColumnName="quantity" />
                 <ScalarProperty Name="productCode" ColumnName="productCode" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="picture" ColumnName="picture" />
@@ -1051,6 +1091,7 @@ warning 6002: The table/view 'ItaliaPizza.dbo.supplierProduct' does not have a p
                 <ScalarProperty Name="restrictions" ColumnName="restrictions" />
                 <ScalarProperty Name="idRecipe" ColumnName="idRecipe" />
                 <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
