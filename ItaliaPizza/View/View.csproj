@@ -163,11 +163,17 @@
     <Compile Include="SeeRecipe.xaml.cs">
       <DependentUpon>SeeRecipe.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SupplierOrderRegister.xaml.cs">
+      <DependentUpon>SupplierOrderRegister.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SupplierRegister.xaml.cs">
       <DependentUpon>SupplierRegister.xaml</DependentUpon>
     </Compile>
     <Compile Include="SuppliersMenu.xaml.cs">
       <DependentUpon>SuppliersMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SuppliersOrderView.xaml.cs">
+      <DependentUpon>SuppliersOrderView.xaml</DependentUpon>
     </Compile>
     <Compile Include="SuppliersView.xaml.cs">
       <DependentUpon>SuppliersView.xaml</DependentUpon>
@@ -226,11 +232,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SupplierOrderRegister.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SupplierRegister.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SuppliersMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SuppliersOrderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -377,6 +391,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\SupplierRegister_Background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\Icon_AddProduct.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

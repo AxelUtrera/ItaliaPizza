@@ -49,6 +49,8 @@ namespace View
 
         private void Button_Exit_Click(object sender, RoutedEventArgs e)
         {
+            SuppliersMenu suppliersMenu = new SuppliersMenu();
+            suppliersMenu.Show();
             Close();
         }
 

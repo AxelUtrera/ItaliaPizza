@@ -86,9 +86,8 @@ namespace View
         {
             ComboBox_SupplierType.ItemsSource = new string[]
             {
-                "Bebidas",
-                "Frutas y verduras",
-                "Carnes"
+                "Productos Finales",
+                "Ingredientes"
             };
         }
 
