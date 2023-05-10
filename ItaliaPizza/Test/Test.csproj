@@ -150,7 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
-      <Project>{e7600569-57ab-470c-8752-37ac6c56873b}</Project>
+      <Project>{1c38e313-9fec-4a53-9cb7-474658b1c92f}</Project>
       <Name>DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\Logic\Logic.csproj">

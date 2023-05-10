@@ -3,8 +3,10 @@ using Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection.Emit;
+using System.Security.RightsManagement;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -17,12 +19,13 @@ namespace View
     /// </summary>
     public partial class RegisterOrder : Window
     {
-        
+        public static Worker workerLogged { get; set; }
         private ObservableCollection<ProductToView> productsOnTable;
-
+        
         //los siguientes 2 son los atributos que se envian al metodo que guarda la orden en la base de datos.
         private List<ProductToView> productsInOrder = new List<ProductToView>();
         public Address addressOrder = new Address();
+        public Order orderToCreate = new Order();
 
         public RegisterOrder()
         {
@@ -30,7 +33,7 @@ namespace View
             AddProductsToTable();
         }
 
-      
+
         private void AddProductsToTable()
         {
             List<ProductToView> listProducts = ProductLogic.GetAllProductToView();
@@ -163,9 +166,42 @@ namespace View
 
         private void Button_RegisterOrder_Click(object sender, RoutedEventArgs e)
         {
+
             if (productsInOrder.Count != 0 && Label_ClientName.Content != null)
             {
-                //Agregar codigo para enviar a la siguiente pantalla.
+                orderToCreate.typeOrder = addressOrder.idCustomer != 0 ? "Domicilio" : "Local";
+                orderToCreate.status = "Pendiente";
+                DateTime actualDateTime = DateTime.Now;
+                orderToCreate.date = actualDateTime.ToString("dd/MM/yyyy");
+                orderToCreate.hour = actualDateTime.ToString("HH:mm:ss");
+                orderToCreate.idWorker = workerLogged.Username;
+                orderToCreate.nameCustomer = Label_ClientName.Content.ToString();
+
+                if (addressOrder.idCustomer != 0) {
+                    if (OrderLogic.AddOrder(orderToCreate, productsInOrder, addressOrder) == 200)
+                    {
+                        MessageBox.Show("Se agrego un nuevo pedido!", "Exito", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ocurrio un error al registrar la orden.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    if (OrderLogic.AddOrder(orderToCreate, productsInOrder) == 200)
+                    {
+                        MessageBox.Show("Se agrego un nuevo pedido!", "Exito", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ocurrio un error al registrar la orden.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                Orders ordersView = new Orders();
+                ordersView.ShowDialog();
+                this.Close();
+
 
             }
             else
@@ -178,6 +214,7 @@ namespace View
         private void Button_LocalOrder_Click(object sender, RoutedEventArgs e)
         {
             MessageNameClient nameClient = new MessageNameClient();
+            addressOrder.idCustomer = 0;
             nameClient.Closed += MessageNameClient_Closed;
             nameClient.ShowDialog();
         }

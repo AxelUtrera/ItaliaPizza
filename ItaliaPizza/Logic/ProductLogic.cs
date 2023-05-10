@@ -34,7 +34,7 @@ namespace Logic
 							Image = ImageLogic.ConvertToBitMapImage(product.picture),
 							Preparation = product.preparation,
 							IdRecipe = product.idRecipe,
-							Quantity = product.quantity	
+							Quantity = (int)product.quantity	
 						};
 
 						productsObtained.Add(recoverProduct);

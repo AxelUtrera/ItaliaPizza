@@ -155,7 +155,7 @@ namespace View
                 IdRecipe = ComboBox_Recipe.SelectedIndex != -1 ? RecipeLogic.GetIdRecipe(ComboBox_Recipe.Text) : 1,
                 Image = ImageLogic.ConvertToBitMapImage(Image_ProductImage.Source),
                 Preparation = ComboBox_Preparation.SelectedIndex == 0 ? true : false,
-                Quantity = Double.Parse(Textbox_Quantity.Text)
+                Quantity = Int32.Parse(Textbox_Quantity.Text)
             };
 
             return productToEdit;

@@ -19,7 +19,7 @@ namespace Model
         public string Active { get; set; }
         public string Restrictions { get; set; }
         public BitmapImage Image { get; set; }
-        public double Quantity { get; set; }
+        public int Quantity { get; set; }
 
         public String SubtotalProduct { get; set; }
 

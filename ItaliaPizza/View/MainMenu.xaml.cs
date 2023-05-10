@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +21,8 @@ namespace View
     /// </summary>
     public partial class MainMenu : Window
     {
+        public static Worker workerLogged { get; set; } 
+        
         public MainMenu()
         {
             InitializeComponent();
@@ -40,8 +44,9 @@ namespace View
 
         private void Button_Order_Click(object sender, MouseButtonEventArgs e)
         {
-            RegisterOrder order = new RegisterOrder();
-            order.ShowDialog();
+            Orders orders = new Orders();
+            Orders.workerLogged = workerLogged;
+            orders.ShowDialog();
         }
 
 

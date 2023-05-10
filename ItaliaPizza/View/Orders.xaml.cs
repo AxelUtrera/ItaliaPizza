@@ -1,5 +1,6 @@
 ﻿using Logic;
 using Model;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace View
     /// </summary>
     public partial class Orders : Window
     {
-
+        public static Worker workerLogged { get; set; }
         private ObservableCollection<Order> ordersToTable;
 
         public Orders()
@@ -26,6 +27,7 @@ namespace View
         private void Button_Add_Click(object sender, RoutedEventArgs e)
         {
             RegisterOrder newOrderView = new RegisterOrder();
+            RegisterOrder.workerLogged = workerLogged;
             newOrderView.Show();
             this.Close();
         }

@@ -1,4 +1,5 @@
 ﻿using Logic;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace View
     /// </summary>
     public partial class Login : Window
     {
+
         public Login()
         {
             InitializeComponent();
@@ -30,13 +32,14 @@ namespace View
         {
             int statusOK = 200;
             Model.Worker worker = UserLogic.GetWorkerByUsername(TextBox_Username.Text);
+
             int resultAutenticationUser = UserLogic.AutenticateUser(TextBox_Username.Text, PasswordBox_PasswordUser.Password);
 
             if (resultAutenticationUser == statusOK && UserLogic.GetUserById(worker.IdUser).IsActive)
             {
                 MainMenu mainMenu = new MainMenu();
-
-                if(worker.Role == "Administrador")
+                MainMenu.workerLogged = worker;
+                if (worker.Role == "Administrador")
                 {
                     mainMenu.ImageOrders.IsEnabled = false;
                     mainMenu.ImageOrders.Opacity = .7;

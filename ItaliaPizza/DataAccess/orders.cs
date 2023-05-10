@@ -31,8 +31,8 @@ namespace DataAccess
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<deliveryOrder> deliveryOrder { get; set; }
-        public virtual worker worker { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<orderProduct> orderProduct { get; set; }
+        public virtual worker worker { get; set; }
     }
 }
