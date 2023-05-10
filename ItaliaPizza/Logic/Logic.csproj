@@ -118,6 +118,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddressLogic.cs" />
     <Compile Include="ImageLogic.cs" />
     <Compile Include="IngredientLogic.cs" />
     <Compile Include="OrderLogic.cs" />
@@ -129,7 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
-      <Project>{64d197dd-2ff5-481b-bb57-3291b733b280}</Project>
+      <Project>{e7600569-57ab-470c-8752-37ac6c56873b}</Project>
       <Name>DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">

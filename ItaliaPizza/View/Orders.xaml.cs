@@ -42,7 +42,7 @@ namespace View
             var searchTextbox = sender as TextBox;
             if (searchTextbox.Text != "")
             {
-                var filteredList = ordersToTable.Where(x => x.nameClient.ToLower().Contains(searchTextbox.Text.ToLower()));
+                var filteredList = ordersToTable.Where(x => x.nameCustomer.ToLower().Contains(searchTextbox.Text.ToLower()));
                 OrdersTable.ItemsSource = null;
                 OrdersTable.ItemsSource = filteredList;
             }

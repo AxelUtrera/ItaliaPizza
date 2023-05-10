@@ -12,7 +12,7 @@ namespace Logic
     public class OrderLogic
     {
 
-       
+
         public static List<Order> GetOrders()
         {
             List<Order> orders = new List<Order>();
@@ -21,7 +21,7 @@ namespace Logic
             {
                 var ordersDataBase = database.orders.Where(o => !o.status.Equals("Entregado")).ToList();
 
-                if(ordersDataBase != null)
+                if (ordersDataBase != null)
                 {
                     orders = ConvertToOrderModel(ordersDataBase);
                 }
@@ -31,11 +31,11 @@ namespace Logic
         }
 
 
-       public static List<Order> ConvertToOrderModel(List<orders> ordersToConvert)
-       {
+        public static List<Order> ConvertToOrderModel(List<orders> ordersToConvert)
+        {
             List<Order> ordersConverted = new List<Order>();
 
-            foreach(orders toConvert in ordersToConvert)
+            foreach (orders toConvert in ordersToConvert)
             {
                 ordersConverted.Add(new Order()
                 {
@@ -45,13 +45,17 @@ namespace Logic
                     hour = toConvert.hour,
                     idWorker = toConvert.idWorker,
                     typeOrder = toConvert.typeOrder,
-                    //cambiar el valor de nameclient en el momento en que se utilice.
-                    nameClient = ""
+                    nameCustomer = toConvert.nameCustomer
                 });
             }
 
             return ordersConverted;
-       }
+        }
 
+        /*public static int AddNewOrder(List<ProductToView> productsInOrder,)
+        {
+
+        }*/
+        
     }
 }

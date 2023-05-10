@@ -1,11 +1,10 @@
 ﻿using Logic;
 using Model;
-using Syncfusion.Windows.Forms.Tools;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
+using System.Reflection.Emit;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -20,7 +19,10 @@ namespace View
     {
         
         private ObservableCollection<ProductToView> productsOnTable;
+
+        //los siguientes 2 son los atributos que se envian al metodo que guarda la orden en la base de datos.
         private List<ProductToView> productsInOrder = new List<ProductToView>();
+        public Address addressOrder = new Address();
 
         public RegisterOrder()
         {
@@ -28,8 +30,7 @@ namespace View
             AddProductsToTable();
         }
 
-       
-
+      
         private void AddProductsToTable()
         {
             List<ProductToView> listProducts = ProductLogic.GetAllProductToView();
@@ -71,7 +72,7 @@ namespace View
             Label_IVA.Content = "$"+SetIVA().ToString("N2");
             Label_Total.Content = "$" + SetTotal().ToString("N2");
         }
-
+       
 
         private void AddToOrder(ProductToView product)
         {
@@ -80,31 +81,34 @@ namespace View
             if (productInOrder != null)
             {
                 productInOrder.Quantity += 1;
-                product.Subtotal = "$"+(Double.Parse(product.Price.Replace("$", "")) * product.Quantity).ToString();
+                product.SubtotalProduct = "$"+(Double.Parse(product.Price.Replace("$", "")) * product.Quantity).ToString();
 
             }
             else
             {
                 product.Quantity = 1;
-                product.Subtotal = "$"+(Double.Parse(product.Price.Replace("$", "")) * product.Quantity).ToString();
+                product.SubtotalProduct = "$"+(Double.Parse(product.Price.Replace("$", "")) * product.Quantity).ToString();
                 productsInOrder.Add(product);
             }
         }
+
 
         private double SetSubtotal()
         {
             double subtotal = 0;
             foreach(ProductToView item in productsInOrder)
             {
-                subtotal += Double.Parse(item.Subtotal.Replace("$", ""));
+                subtotal += Double.Parse(item.SubtotalProduct.Replace("$", ""));
             }
             return subtotal;
         }
+
 
         private double SetTotal()
         {
             return SetSubtotal() + SetIVA();
         }
+
 
         private double SetIVA()
         {
@@ -113,11 +117,13 @@ namespace View
             return IVA;
         }
 
+
         private void ReloadOrderTable()
         {
             OrderClientTable.ItemsSource = null;
             OrderClientTable.ItemsSource = productsInOrder;
         }
+
 
         private void Texbox_TextSearchChanged(object sender, TextChangedEventArgs e)
         {
@@ -134,6 +140,7 @@ namespace View
             }
         }
 
+
         private void Button_Exit_Click(object sender, RoutedEventArgs e)
         {
             Orders orderView = new Orders();
@@ -141,20 +148,32 @@ namespace View
             this.Close();
         }
 
+
         private void ProductsTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
+
 
         private void ClientOrderTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
 
-        private void Button_PayOrder_Click(object sender, RoutedEventArgs e)
-        {
 
+        private void Button_RegisterOrder_Click(object sender, RoutedEventArgs e)
+        {
+            if (productsInOrder.Count != 0 && Label_ClientName.Content != null)
+            {
+                //Agregar codigo para enviar a la siguiente pantalla.
+
+            }
+            else
+            {
+                MessageBox.Show("Por favor agregue poroductos y el cliente a la orden.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
+
 
         private void Button_LocalOrder_Click(object sender, RoutedEventArgs e)
         {
@@ -163,18 +182,31 @@ namespace View
             nameClient.ShowDialog();
         }
 
+
         private void MessageNameClient_Closed(object sender, EventArgs e)
         {
             MessageNameClient messageNameClient = (MessageNameClient)sender;
             string nombreCliente = messageNameClient.nameClient;
             Label_ClientName.Content = nombreCliente;
-           
         }
+
 
         private void Button_OrderToAddress_Click(object sender, RoutedEventArgs e)
         {
-
+            CustomerView customerView = new CustomerView();
+            customerView.Closed += CustomerView_Closed;
+            customerView.ShowDialog();
         }
+
+
+        private void CustomerView_Closed(object sender, EventArgs e)
+        {
+            CustomerView customerView = (CustomerView)sender;
+            Address customerData = customerView.addressSelected;
+            addressOrder = customerData;
+            Label_ClientName.Content = customerData.nameCustomer;
+        }
+
 
         private void Button_QuitProductOfOrder_Click(object sender, MouseButtonEventArgs e)
         {
@@ -206,7 +238,6 @@ namespace View
             var row = FindInTable<DataGridRow>((DependencyObject)e.OriginalSource);
             if (row != null)
             {
-                // Obtener el objeto asociado a la fila
                 var item = row.DataContext;
                 productSelected = (ProductToView)item;
             }

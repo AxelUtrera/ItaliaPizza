@@ -106,7 +106,7 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Número de pedido" Binding="{Binding idOrder}"/>
                             <!--Agregar referencia para los atributos del order -->
-                            <DataGridTextColumn Header="Cliente" Binding="{Binding client}"/>
+                            <DataGridTextColumn Header="Cliente" Binding="{Binding nameCustomer}"/>
                             <DataGridTextColumn Header="Tipo de pedido"  Binding="{Binding typeOrder}">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
@@ -127,7 +127,21 @@
                                         <StackPanel Orientation="Horizontal">
                                             <Image Source="/Img/Icon_Update.png" Margin="25,0,40,0" Width="25" Height="25" Cursor="Hand" MouseLeftButtonDown="Button_Update_Click"/>
                                             <Image Source="/Img/Icon_Edit.png" Margin="25,0,40,0" Width="25" Height="25" Cursor="Hand" MouseLeftButtonDown="Button_Edit_Click"/>
-                                            <Image Source="/Img/Icon_Delete.png" Margin="0,0,25,0"  Width="25" Height="25"  Cursor="Hand" MouseLeftButtonDown="Button_Cancel_Click"/>
+                                            <Image Source="/Img/Icon_Delete.png" Margin="0,0,25,0"  Width="25" Height="25"  Cursor="Hand" MouseLeftButtonDown="Button_Cancel_Click">
+                                                <Image.Style>
+                                                    <Style TargetType="Image">
+                                                        <Setter Property="IsEnabled" Value="True" />
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding status}" Value="Preparado">
+                                                                <Setter Property="Visibility" Value="Hidden" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding status}" Value="En preparacion">
+                                                                <Setter Property="Visibility" Value="Hidden" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                            </Image>
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>

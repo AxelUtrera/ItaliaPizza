@@ -24,6 +24,7 @@ namespace View
             InitializeComponent();
         }
 
+
         private void Button_Exit_Click(object sender, RoutedEventArgs e)
         {
             Login loginView = new Login();
@@ -36,10 +37,13 @@ namespace View
 
         }
 
+
         private void Button_Order_Click(object sender, MouseButtonEventArgs e)
         {
-
+            RegisterOrder order = new RegisterOrder();
+            order.ShowDialog();
         }
+
 
         private void Button_Product_Click(object sender, MouseButtonEventArgs e)
         {
@@ -47,16 +51,19 @@ namespace View
             productWindow.ShowDialog();
         }
 
+
         private void Button_Kitchen_Click(object sender, MouseButtonEventArgs e)
         {
             KitchenMenu kitchenMenu = new KitchenMenu();
             kitchenMenu.ShowDialog();
         }
 
+
         private void Button_Suplier_Click(object sender, MouseButtonEventArgs e)
         {
 
         }
+
 
         private void Button_User_Click(object sender, MouseButtonEventArgs e)
         {

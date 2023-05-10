@@ -233,11 +233,11 @@
                         </Button.Template>
                     </Button>
 
-                    <Button Cursor="Hand" Height="40" Margin="0,470" Click="Button_PayOrder_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="#f3f3f3" FontSize="20" Width="140">
+                    <Button Cursor="Hand" Height="40" Margin="0,470" Click="Button_RegisterOrder_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="#f3f3f3" FontSize="20" Width="140">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius= "15" Background="#55B633" >
-                                    <ContentPresenter Content="Pagar" HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                                    <ContentPresenter Content="Registrar" HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>

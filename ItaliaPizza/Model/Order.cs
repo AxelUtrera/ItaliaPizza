@@ -14,6 +14,11 @@ namespace Model
         public string status { get; set; }
         public string idWorker { get; set; }
         public string typeOrder { get; set; }
-        public string nameClient { get; set; }
+        public string nameCustomer { get; set; }
+
+        List<ProductToView> listProducts { get; set; }
+        public double subtotalOrder { get; set; }
+        public double IVA { get; set; }
+        public double total { set; get; }
     }
 }

@@ -84,6 +84,7 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.orderProduct' no tiene defin
           <Property Name="status" Type="varchar" MaxLength="15" />
           <Property Name="idWorker" Type="varchar" MaxLength="16" Nullable="false" />
           <Property Name="typeOrder" Type="varchar" MaxLength="17" />
+          <Property Name="nameCustomer" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="product">
           <Key>
@@ -598,6 +599,7 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
           <Property Name="status" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="idWorker" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="typeOrder" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
+          <Property Name="nameCustomer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="deliveryOrder" Relationship="Self.FK_deliveryOrder_orders" FromRole="orders" ToRole="deliveryOrder" />
           <NavigationProperty Name="worker" Relationship="Self.FK__orders__idWorker__59FA5E80" FromRole="orders" ToRole="worker" />
           <NavigationProperty Name="orderProduct" Relationship="Self.FK_orderProduct_orders" FromRole="orders" ToRole="orderProduct" />
@@ -1116,6 +1118,7 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="idWorker" ColumnName="idWorker" />
                 <ScalarProperty Name="typeOrder" ColumnName="typeOrder" />
+                <ScalarProperty Name="nameCustomer" ColumnName="nameCustomer" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
