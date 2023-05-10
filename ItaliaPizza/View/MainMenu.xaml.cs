@@ -66,7 +66,9 @@ namespace View
 
         private void Button_Suplier_Click(object sender, MouseButtonEventArgs e)
         {
-
+            SuppliersMenu suppliersMenu = new SuppliersMenu();
+            suppliersMenu.Show();
+            Close();
         }
 
 

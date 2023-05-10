@@ -53,9 +53,6 @@ namespace Logic
 		
         }
 
-
-		
-
 		public int ModifyExistentProduct(ProductToView productToModify)
 		{
 			int operationResult = 500;
@@ -99,7 +96,6 @@ namespace Logic
 			return operationResult;
 		}
 
-
 		public Product ConvertToProduct(ProductToView productViewToConvert)
 		{
 
@@ -126,7 +122,6 @@ namespace Logic
 
 			return productResultant;
 		}
-
 
 		public static int AddNewProduct(Product newProduct)
 		{
