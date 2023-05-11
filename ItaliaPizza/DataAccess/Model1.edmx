@@ -61,6 +61,7 @@
           <Property Name="ingredientName" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="quantity" Type="float" Nullable="false" />
           <Property Name="active" Type="bit" Nullable="false" />
+          <Property Name="warningTreshold" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="orderProduct">
           <Key>
@@ -97,6 +98,7 @@
           <Property Name="idRecipe" Type="int" Nullable="false" />
           <Property Name="active" Type="bit" Nullable="false" />
           <Property Name="quantity" Type="float" Nullable="false" />
+          <Property Name="warningTreshold" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="recipe">
           <Key>
@@ -234,7 +236,7 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__orders__idWorker__59FA5E80">
+        <Association Name="FK__orders__idWorker__5AEE82B9">
           <End Role="worker" Type="Self.worker" Multiplicity="1" />
           <End Role="orders" Type="Self.orders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -258,7 +260,7 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__recipeIng__idIng__5BE2A6F2">
+        <Association Name="FK__recipeIng__idIng__6FE99F9F">
           <End Role="ingredient" Type="Self.ingredient" Multiplicity="1" />
           <End Role="recipeIngredient" Type="Self.recipeIngredient" Multiplicity="*" />
           <ReferentialConstraint>
@@ -282,7 +284,7 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__supplierI__idIng__5EBF139D">
+        <Association Name="FK__supplierI__idIng__72C60C4A">
           <End Role="ingredient" Type="Self.ingredient" Multiplicity="1" />
           <End Role="supplierIngredient" Type="Self.supplierIngredient" Multiplicity="*" />
           <ReferentialConstraint>
@@ -294,7 +296,7 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__supplierI__idSup__5DCAEF64">
+        <Association Name="FK__supplierI__idSup__5EBF139D">
           <End Role="supplierOrder" Type="Self.supplierOrder" Multiplicity="1" />
           <End Role="supplierIngredient" Type="Self.supplierIngredient" Multiplicity="*" />
           <ReferentialConstraint>
@@ -306,7 +308,7 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__supplierP__idSup__5FB337D6">
+        <Association Name="FK__supplierP__idSup__60A75C0F">
           <End Role="supplierOrder" Type="Self.supplierOrder" Multiplicity="1" />
           <End Role="supplierProduct" Type="Self.supplierProduct" Multiplicity="*" />
           <ReferentialConstraint>
@@ -330,7 +332,7 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__worker__idUser__619B8048">
+        <Association Name="FK__worker__idUser__628FA481">
           <End Role="users" Type="Self.users" Multiplicity="1" />
           <End Role="worker" Type="Self.worker" Multiplicity="*" />
           <ReferentialConstraint>
@@ -448,7 +450,7 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
             <End Role="worker" EntitySet="worker" />
             <End Role="dailyBalance" EntitySet="dailyBalance" />
           </AssociationSet>
-          <AssociationSet Name="FK__orders__idWorker__59FA5E80" Association="Self.FK__orders__idWorker__59FA5E80">
+          <AssociationSet Name="FK__orders__idWorker__5AEE82B9" Association="Self.FK__orders__idWorker__5AEE82B9">
             <End Role="worker" EntitySet="worker" />
             <End Role="orders" EntitySet="orders" />
           </AssociationSet>
@@ -456,7 +458,7 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
             <End Role="recipe" EntitySet="recipe" />
             <End Role="product" EntitySet="product" />
           </AssociationSet>
-          <AssociationSet Name="FK__recipeIng__idIng__5BE2A6F2" Association="Self.FK__recipeIng__idIng__5BE2A6F2">
+          <AssociationSet Name="FK__recipeIng__idIng__6FE99F9F" Association="Self.FK__recipeIng__idIng__6FE99F9F">
             <End Role="ingredient" EntitySet="ingredient" />
             <End Role="recipeIngredient" EntitySet="recipeIngredient" />
           </AssociationSet>
@@ -464,15 +466,15 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
             <End Role="recipe" EntitySet="recipe" />
             <End Role="recipeIngredient" EntitySet="recipeIngredient" />
           </AssociationSet>
-          <AssociationSet Name="FK__supplierI__idIng__5EBF139D" Association="Self.FK__supplierI__idIng__5EBF139D">
+          <AssociationSet Name="FK__supplierI__idIng__72C60C4A" Association="Self.FK__supplierI__idIng__72C60C4A">
             <End Role="ingredient" EntitySet="ingredient" />
             <End Role="supplierIngredient" EntitySet="supplierIngredient" />
           </AssociationSet>
-          <AssociationSet Name="FK__supplierI__idSup__5DCAEF64" Association="Self.FK__supplierI__idSup__5DCAEF64">
+          <AssociationSet Name="FK__supplierI__idSup__5EBF139D" Association="Self.FK__supplierI__idSup__5EBF139D">
             <End Role="supplierOrder" EntitySet="supplierOrder" />
             <End Role="supplierIngredient" EntitySet="supplierIngredient" />
           </AssociationSet>
-          <AssociationSet Name="FK__supplierP__idSup__5FB337D6" Association="Self.FK__supplierP__idSup__5FB337D6">
+          <AssociationSet Name="FK__supplierP__idSup__60A75C0F" Association="Self.FK__supplierP__idSup__60A75C0F">
             <End Role="supplierOrder" EntitySet="supplierOrder" />
             <End Role="supplierProduct" EntitySet="supplierProduct" />
           </AssociationSet>
@@ -480,7 +482,7 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
             <End Role="product" EntitySet="product" />
             <End Role="supplierProduct" EntitySet="supplierProduct" />
           </AssociationSet>
-          <AssociationSet Name="FK__worker__idUser__619B8048" Association="Self.FK__worker__idUser__619B8048">
+          <AssociationSet Name="FK__worker__idUser__628FA481" Association="Self.FK__worker__idUser__628FA481">
             <End Role="users" EntitySet="users" />
             <End Role="worker" EntitySet="worker" />
           </AssociationSet>
@@ -577,8 +579,9 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
           <Property Name="ingredientName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="quantity" Type="Double" Nullable="false" />
           <Property Name="active" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="recipeIngredient" Relationship="Self.FK__recipeIng__idIng__5CD6CB2B" FromRole="ingredient" ToRole="recipeIngredient" />
-          <NavigationProperty Name="supplierIngredient" Relationship="Self.FK__supplierI__idIng__5FB337D6" FromRole="ingredient" ToRole="supplierIngredient" />
+          <Property Name="warningTreshold" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="recipeIngredient" Relationship="Self.FK__recipeIng__idIng__6FE99F9F" FromRole="ingredient" ToRole="recipeIngredient" />
+          <NavigationProperty Name="supplierIngredient" Relationship="Self.FK__supplierI__idIng__72C60C4A" FromRole="ingredient" ToRole="supplierIngredient" />
         </EntityType>
         <EntityType Name="orderProduct">
           <Key>
@@ -604,7 +607,7 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
           <Property Name="nameCustomer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="deliveryOrder" Relationship="Self.FK_deliveryOrder_orders" FromRole="orders" ToRole="deliveryOrder" />
           <NavigationProperty Name="orderProduct" Relationship="Self.FK_orderProduct_orders" FromRole="orders" ToRole="orderProduct" />
-          <NavigationProperty Name="worker" Relationship="Self.FK__orders__idWorker__59FA5E80" FromRole="orders" ToRole="worker" />
+          <NavigationProperty Name="worker" Relationship="Self.FK__orders__idWorker__5AEE82B9" FromRole="orders" ToRole="worker" />
         </EntityType>
         <EntityType Name="product">
           <Key>
@@ -620,6 +623,7 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
           <Property Name="idRecipe" Type="Int32" Nullable="false" />
           <Property Name="active" Type="Boolean" Nullable="false" />
           <Property Name="quantity" Type="Double" Nullable="false" />
+          <Property Name="warningTreshold" Type="Int32" Nullable="false" />
           <NavigationProperty Name="orderProduct" Relationship="Self.FK_orderProduct_product" FromRole="product" ToRole="orderProduct" />
           <NavigationProperty Name="recipe" Relationship="Self.FK__product__idRecip__6E01572D" FromRole="product" ToRole="recipe" />
           <NavigationProperty Name="supplierProduct" Relationship="Self.FK__supplierP__produ__73BA3083" FromRole="product" ToRole="supplierProduct" />
@@ -643,8 +647,8 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
           <Property Name="idIngredient" Type="Int32" Nullable="false" />
           <Property Name="idRecipe" Type="Int32" Nullable="false" />
           <Property Name="quantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ingredient" Relationship="Self.FK__recipeIng__idIng__5CD6CB2B" FromRole="recipeIngredient" ToRole="ingredient" />
-          <NavigationProperty Name="recipe" Relationship="Self.FK__recipeIng__idRec__5DCAEF64" FromRole="recipeIngredient" ToRole="recipe" />
+          <NavigationProperty Name="ingredient" Relationship="Self.FK__recipeIng__idIng__6FE99F9F" FromRole="recipeIngredient" ToRole="ingredient" />
+          <NavigationProperty Name="recipe" Relationship="Self.FK__recipeIng__idRec__5CD6CB2B" FromRole="recipeIngredient" ToRole="recipe" />
         </EntityType>
         <EntityType Name="supplier">
           <Key>
@@ -665,11 +669,11 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
           </Key>
           <Property Name="orderNumber" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="arriveDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="total" Type="Double" Nullable="false" />
           <Property Name="orderDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="supplierIngredient" Relationship="Self.FK__supplierI__idSup__5EBF139D" FromRole="supplierOrder" ToRole="supplierIngredient" />
           <NavigationProperty Name="supplierProduct" Relationship="Self.FK__supplierP__idSup__60A75C0F" FromRole="supplierOrder" ToRole="supplierProduct" />
-          <Property Name="idSupplier" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="users">
           <Key>
@@ -699,18 +703,6 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
           <NavigationProperty Name="orders" Relationship="Self.FK__orders__idWorker__5AEE82B9" FromRole="worker" ToRole="orders" />
           <NavigationProperty Name="users" Relationship="Self.FK__worker__idUser__628FA481" FromRole="worker" ToRole="users" />
         </EntityType>
-        <EntityType Name="orderProduct">
-          <Key>
-            <PropertyRef Name="idOrder" />
-            <PropertyRef Name="idProduct" />
-            <PropertyRef Name="quantity" />
-          </Key>
-          <Property Name="idOrder" Type="Int32" Nullable="false" />
-          <Property Name="idProduct" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="quantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="orders" Relationship="Self.FK_orderProduct_orders" FromRole="orderProduct" ToRole="orders" />
-          <NavigationProperty Name="product" Relationship="Self.FK_orderProduct_product" FromRole="orderProduct" ToRole="product" />
-        </EntityType>
         <EntityType Name="supplierIngredient">
           <Key>
             <PropertyRef Name="idSupplierOrder" />
@@ -720,7 +712,7 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
           <Property Name="idSupplierOrder" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="idIngredient" Type="Int32" Nullable="false" />
           <Property Name="quantity" Type="Double" Nullable="false" />
-          <NavigationProperty Name="ingredient" Relationship="Self.FK__supplierI__idIng__5FB337D6" FromRole="supplierIngredient" ToRole="ingredient" />
+          <NavigationProperty Name="ingredient" Relationship="Self.FK__supplierI__idIng__72C60C4A" FromRole="supplierIngredient" ToRole="ingredient" />
           <NavigationProperty Name="supplierOrder" Relationship="Self.FK__supplierI__idSup__5EBF139D" FromRole="supplierIngredient" ToRole="supplierOrder" />
         </EntityType>
         <EntityType Name="supplierProduct">
@@ -733,7 +725,7 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
           <Property Name="productCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="quantity" Type="Double" Nullable="false" />
           <NavigationProperty Name="product" Relationship="Self.FK__supplierP__produ__73BA3083" FromRole="supplierProduct" ToRole="product" />
-          <NavigationProperty Name="supplierOrder" Relationship="Self.FK__supplierP__idSup__5FB337D6" FromRole="supplierProduct" ToRole="supplierOrder" />
+          <NavigationProperty Name="supplierOrder" Relationship="Self.FK__supplierP__idSup__60A75C0F" FromRole="supplierProduct" ToRole="supplierOrder" />
         </EntityType>
         <Association Name="FK__address__idCusto__52593CB8">
           <End Role="customer" Type="Self.customer" Multiplicity="1" />
@@ -819,7 +811,7 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__recipeIng__idIng__5CD6CB2B">
+        <Association Name="FK__recipeIng__idIng__6FE99F9F">
           <End Role="ingredient" Type="Self.ingredient" Multiplicity="1" />
           <End Role="recipeIngredient" Type="Self.recipeIngredient" Multiplicity="*" />
           <ReferentialConstraint>
@@ -831,7 +823,7 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__supplierI__idIng__5FB337D6">
+        <Association Name="FK__supplierI__idIng__72C60C4A">
           <End Role="ingredient" Type="Self.ingredient" Multiplicity="1" />
           <End Role="supplierIngredient" Type="Self.supplierIngredient" Multiplicity="*" />
           <ReferentialConstraint>
@@ -867,7 +859,7 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__orders__idWorker__59FA5E80">
+        <Association Name="FK__orders__idWorker__5AEE82B9">
           <End Role="worker" Type="Self.worker" Multiplicity="1" />
           <End Role="orders" Type="Self.orders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -903,19 +895,7 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_orderProduct_product">
-          <End Role="product" Type="Self.product" Multiplicity="1" />
-          <End Role="orderProduct" Type="Self.orderProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="product">
-              <PropertyRef Name="productCode" />
-            </Principal>
-            <Dependent Role="orderProduct">
-              <PropertyRef Name="idProduct" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__recipeIng__idRec__5DCAEF64">
+        <Association Name="FK__recipeIng__idRec__5CD6CB2B">
           <End Role="recipe" Type="Self.recipe" Multiplicity="1" />
           <End Role="recipeIngredient" Type="Self.recipeIngredient" Multiplicity="*" />
           <ReferentialConstraint>
@@ -979,7 +959,6 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
           <EntitySet Name="supplierOrder" EntityType="Self.supplierOrder" />
           <EntitySet Name="users" EntityType="Self.users" />
           <EntitySet Name="worker" EntityType="Self.worker" />
-          <EntitySet Name="orderProduct" EntityType="Self.orderProduct" />
           <EntitySet Name="supplierIngredient" EntityType="Self.supplierIngredient" />
           <EntitySet Name="supplierProduct" EntityType="Self.supplierProduct" />
           <AssociationSet Name="FK__address__idCusto__52593CB8" Association="Self.FK__address__idCusto__52593CB8">
@@ -1010,11 +989,11 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
             <End Role="orders" EntitySet="orders" />
             <End Role="deliveryOrder" EntitySet="deliveryOrder" />
           </AssociationSet>
-          <AssociationSet Name="FK__recipeIng__idIng__5CD6CB2B" Association="Self.FK__recipeIng__idIng__5CD6CB2B">
+          <AssociationSet Name="FK__recipeIng__idIng__6FE99F9F" Association="Self.FK__recipeIng__idIng__6FE99F9F">
             <End Role="ingredient" EntitySet="ingredient" />
             <End Role="recipeIngredient" EntitySet="recipeIngredient" />
           </AssociationSet>
-          <AssociationSet Name="FK__supplierI__idIng__5FB337D6" Association="Self.FK__supplierI__idIng__5FB337D6">
+          <AssociationSet Name="FK__supplierI__idIng__72C60C4A" Association="Self.FK__supplierI__idIng__72C60C4A">
             <End Role="ingredient" EntitySet="ingredient" />
             <End Role="supplierIngredient" EntitySet="supplierIngredient" />
           </AssociationSet>
@@ -1026,13 +1005,9 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
             <End Role="product" EntitySet="product" />
             <End Role="orderProduct" EntitySet="orderProduct" />
           </AssociationSet>
-          <AssociationSet Name="FK__orders__idWorker__59FA5E80" Association="Self.FK__orders__idWorker__59FA5E80">
+          <AssociationSet Name="FK__orders__idWorker__5AEE82B9" Association="Self.FK__orders__idWorker__5AEE82B9">
             <End Role="worker" EntitySet="worker" />
             <End Role="orders" EntitySet="orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_orderProduct_orders" Association="Self.FK_orderProduct_orders">
-            <End Role="orders" EntitySet="orders" />
-            <End Role="orderProduct" EntitySet="orderProduct" />
           </AssociationSet>
           <AssociationSet Name="FK__product__idRecip__6E01572D" Association="Self.FK__product__idRecip__6E01572D">
             <End Role="recipe" EntitySet="recipe" />
@@ -1042,11 +1017,7 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
             <End Role="product" EntitySet="product" />
             <End Role="supplierProduct" EntitySet="supplierProduct" />
           </AssociationSet>
-          <AssociationSet Name="FK_orderProduct_product" Association="Self.FK_orderProduct_product">
-            <End Role="product" EntitySet="product" />
-            <End Role="orderProduct" EntitySet="orderProduct" />
-          </AssociationSet>
-          <AssociationSet Name="FK__recipeIng__idRec__5DCAEF64" Association="Self.FK__recipeIng__idRec__5DCAEF64">
+          <AssociationSet Name="FK__recipeIng__idRec__5CD6CB2B" Association="Self.FK__recipeIng__idRec__5CD6CB2B">
             <End Role="recipe" EntitySet="recipe" />
             <End Role="recipeIngredient" EntitySet="recipeIngredient" />
           </AssociationSet>
@@ -1063,18 +1034,6 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
             <End Role="worker" EntitySet="worker" />
           </AssociationSet>
         </EntityContainer>
-        <Association Name="supplierOrdersupplier">
-          <End Type="ItaliaPizzaModel.supplierOrder" Role="supplierOrder" Multiplicity="*" />
-          <End Type="ItaliaPizzaModel.supplier" Role="supplier" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="supplier">
-              <PropertyRef Name="idSupplier" />
-            </Principal>
-            <Dependent Role="supplierOrder">
-              <PropertyRef Name="idSupplier" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1141,6 +1100,7 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
                 <ScalarProperty Name="ingredientName" ColumnName="ingredientName" />
                 <ScalarProperty Name="quantity" ColumnName="quantity" />
                 <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="warningTreshold" ColumnName="warningTreshold" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1180,6 +1140,7 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
                 <ScalarProperty Name="idRecipe" ColumnName="idRecipe" />
                 <ScalarProperty Name="active" ColumnName="active" />
                 <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="warningTreshold" ColumnName="warningTreshold" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1287,7 +1248,7 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>

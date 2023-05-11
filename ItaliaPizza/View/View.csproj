@@ -425,9 +425,6 @@
     <Resource Include="Img\Icon_Update.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Img\Icon_AddProduct.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Img\Icon_Minus.png" />
   </ItemGroup>
   <ItemGroup>

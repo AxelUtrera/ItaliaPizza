@@ -40,7 +40,6 @@ namespace DataAccess
         public virtual DbSet<supplierOrder> supplierOrder { get; set; }
         public virtual DbSet<users> users { get; set; }
         public virtual DbSet<worker> worker { get; set; }
-        public virtual DbSet<orderProduct> orderProduct { get; set; }
         public virtual DbSet<supplierIngredient> supplierIngredient { get; set; }
         public virtual DbSet<supplierProduct> supplierProduct { get; set; }
     }
