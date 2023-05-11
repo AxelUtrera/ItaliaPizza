@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model
 {
@@ -18,6 +14,7 @@ namespace Model
         public byte[] Picture { get; set; }
         public string Restrictions { get; set; }
 		public double Quantity { get; set; }
+
 
 
 		public Product(string name, string description, string productCode, byte[] picture, double price, bool preparation, string productName, string restrictions, int idRecipe, bool active, double quantity)

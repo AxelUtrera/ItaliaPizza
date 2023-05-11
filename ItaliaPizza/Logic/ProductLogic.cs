@@ -34,7 +34,7 @@ namespace Logic
 							Image = ImageLogic.ConvertToBitMapImage(product.picture),
 							Preparation = product.preparation,
 							IdRecipe = product.idRecipe,
-							Quantity = product.quantity	
+							Quantity = (int)product.quantity	
 						};
 
 						productsObtained.Add(recoverProduct);
@@ -52,9 +52,6 @@ namespace Logic
 			return productsObtained;
 		
         }
-
-
-		
 
 		public int ModifyExistentProduct(ProductToView productToModify)
 		{
@@ -99,7 +96,6 @@ namespace Logic
 			return operationResult;
 		}
 
-
 		public Product ConvertToProduct(ProductToView productViewToConvert)
 		{
 
@@ -126,7 +122,6 @@ namespace Logic
 
 			return productResultant;
 		}
-
 
 		public static int AddNewProduct(Product newProduct)
 		{

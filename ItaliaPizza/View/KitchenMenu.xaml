@@ -56,9 +56,11 @@
 
 
                 </Grid>
+				
+				<Button Content="Button" HorizontalAlignment="Left" Margin="45,240,0,0" VerticalAlignment="Top" Height="55" Width="110" Click="Button_Click"/>
 
 
-            </Grid>
+			</Grid>
         </Grid>
     </Viewbox>
 

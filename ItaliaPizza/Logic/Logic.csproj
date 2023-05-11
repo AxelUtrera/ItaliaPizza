@@ -118,19 +118,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddressLogic.cs" />
     <Compile Include="ImageLogic.cs" />
     <Compile Include="IngredientLogic.cs" />
+    <Compile Include="OrderLogic.cs" />
     <Compile Include="ProductLogic.cs" />
     <Compile Include="RecipeLogic.cs" />
     <Compile Include="SupplierLogic.cs" />
     <Compile Include="SupplierOrderLogic.cs" />
+    <Compile Include="ShowPendingOrdersLogic.cs" />
     <Compile Include="UserLogic.cs" />
     <Compile Include="Encription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
-      <Project>{915a3a01-d02b-40a3-a073-89cfa6fa0476}</Project>
+      <Project>{1c38e313-9fec-4a53-9cb7-474658b1c92f}</Project>
       <Name>DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">

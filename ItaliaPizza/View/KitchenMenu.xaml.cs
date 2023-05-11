@@ -56,5 +56,12 @@ namespace View
             Close();
             recordRecipeWindow.ShowDialog();
         }
+
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+            ShowPendingOrders showPendingOrders = new ShowPendingOrders();
+            Close();
+            showPendingOrders.ShowDialog();
+        }
     }
 }

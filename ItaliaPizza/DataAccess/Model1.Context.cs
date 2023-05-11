@@ -31,6 +31,7 @@ namespace DataAccess
         public virtual DbSet<dailyBalance> dailyBalance { get; set; }
         public virtual DbSet<deliveryOrder> deliveryOrder { get; set; }
         public virtual DbSet<ingredient> ingredient { get; set; }
+        public virtual DbSet<orderProduct> orderProduct { get; set; }
         public virtual DbSet<orders> orders { get; set; }
         public virtual DbSet<product> product { get; set; }
         public virtual DbSet<recipe> recipe { get; set; }

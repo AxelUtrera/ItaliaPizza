@@ -14,6 +14,7 @@ namespace DataAccess
     
     public partial class orderProduct
     {
+        public int idOrderProduct { get; set; }
         public int idOrder { get; set; }
         public string idProduct { get; set; }
         public int quantity { get; set; }

@@ -142,6 +142,9 @@
     <Compile Include="AddProduct.xaml.cs">
       <DependentUpon>AddProduct.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomerView.xaml.cs">
+      <DependentUpon>CustomerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DeleteRecipe.xaml.cs">
       <DependentUpon>DeleteRecipe.xaml</DependentUpon>
     </Compile>
@@ -154,11 +157,20 @@
     <Compile Include="EditProduct.xaml.cs">
       <DependentUpon>EditProduct.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MessageNameClient.xaml.cs">
+      <DependentUpon>MessageNameClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Orders.xaml.cs">
+      <DependentUpon>Orders.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Products.xaml.cs">
       <DependentUpon>Products.xaml</DependentUpon>
     </Compile>
     <Compile Include="RecordRecipe.xaml.cs">
       <DependentUpon>RecordRecipe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RegisterOrder.xaml.cs">
+      <DependentUpon>RegisterOrder.xaml</DependentUpon>
     </Compile>
     <Compile Include="SeeRecipe.xaml.cs">
       <DependentUpon>SeeRecipe.xaml</DependentUpon>
@@ -178,6 +190,9 @@
     <Compile Include="SuppliersView.xaml.cs">
       <DependentUpon>SuppliersView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ShowPendingOrders.xaml.cs">
+      <DependentUpon>ShowPendingOrders.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserRegister.xaml.cs">
       <DependentUpon>UserRegister.xaml</DependentUpon>
     </Compile>
@@ -185,6 +200,10 @@
       <DependentUpon>UsersView.xaml</DependentUpon>
     </Compile>
     <Page Include="AddProduct.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -220,11 +239,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MessageNameClient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Orders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Products.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="RecordRecipe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RegisterOrder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -249,6 +280,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SuppliersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ShowPendingOrders.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -387,10 +422,28 @@
     <Resource Include="Img\Background_EditProduct.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Img\Icon_Update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\Icon_AddProduct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\Icon_Minus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\Icon_Quit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\Icon_Assignment.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Img\Suppliers_Background.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\SupplierRegister_Background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\showPendingOrdersBackground.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\Icon_AddProduct.png" />

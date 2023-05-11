@@ -1,0 +1,252 @@
+﻿<Window x:Class="View.RegisterOrder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:View"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        WindowStyle="None"
+        Title="New order" Height="870" Width="1550">
+
+    <Window.Resources>
+        <Style TargetType="{x:Type DataGrid}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="RowBackground" Value="Transparent"/>
+            <Setter Property="FontWeight" Value="light"/>
+            <Setter Property="Foreground" Value="#f3f3f3"/>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+
+
+        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="10,0,0,15"/>
+        </Style>
+
+
+        <Style BasedOn="{StaticResource {x:Type DataGridCellsPresenter}}" TargetType="{x:Type DataGridCellsPresenter}">
+            <Setter Property="Margin" Value="0,0,0,15"/>
+            <Setter Property="Foreground" Value="#f3f3f3"/>
+        </Style>
+
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Foreground" Value="#ffffff"></Setter>
+        </Style>
+
+        <Style TargetType="{x:Type DataGridRowHeader}">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridRowHeader}">
+                        <Grid Background="{TemplateBinding Background}" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+
+
+    <Grid Background="#000" HorizontalAlignment="Center">
+        <Image Source="/Img/Background_EditProduct.jpg" Stretch="UniformToFill" Opacity=".3"/>
+
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="40,40,40,0">
+                <Label Content="Nuevo pedido" FontSize="30" Foreground="#f3f3f3"></Label>
+                <Button Width="35" Click="Button_Exit_Click" Cursor="Hand" Height="35" VerticalAlignment="Center" Margin="1180,0,0,0">
+                    <Button.Template>
+                        <ControlTemplate  TargetType="Button">
+                            <Border Background="Transparent">
+                                <Image Source="/Img/ExitIcon.png" Width="35" Height="35"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+
+            <Grid Margin="40,10,40,40" Height="720">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="410"></ColumnDefinition>
+                    <ColumnDefinition Width="735"></ColumnDefinition>
+                    <ColumnDefinition Width="270"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Margin="25,0,0,0">
+                    <StackPanel.Background>
+                        <SolidColorBrush Color="#5b5b5b" Opacity=".5"/>
+                    </StackPanel.Background>
+
+                    <Label Content="Productos disponibles" Foreground="#f3f3f3" FontSize="22" HorizontalAlignment="Center" Margin="0,20,0,0"/>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Width="340">
+                        <TextBox Name ="Textbox_Search" Width="300" Height="40" BorderBrush="Transparent"  TextChanged="Texbox_TextSearchChanged">
+                            <TextBox.Background>
+                                <SolidColorBrush Color="#848484" Opacity=".5"/>
+                            </TextBox.Background>
+                        </TextBox>
+                        <Image Source="/Img/Icon_Search.png" Margin="10,0,0,0"/>
+                    </StackPanel>
+
+                    <DataGrid Name="ProductTable" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#f3f3f3"  Margin="25,15,25,0"  Foreground="#c3c3c3" AutoGenerateColumns="False" FontSize="20" ColumnWidth="*" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" SelectionChanged="ProductsTable_SelectionChanged" Height="586">
+
+                        <DataGrid.CellStyle>
+                            <Style>
+                                <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"></Setter>
+                                <Setter Property="FrameworkElement.VerticalAlignment" Value="Center"></Setter>
+                            </Style>
+                        </DataGrid.CellStyle>
+
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Producto" Binding="{Binding Name}" Width="auto"/>
+                            <DataGridTextColumn Header="Precio"  Binding="{Binding Price}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                                <DataGridTextColumn.EditingElementStyle>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                        <Setter Property="AcceptsReturn" Value="true" />
+                                    </Style>
+                                </DataGridTextColumn.EditingElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Source="/Img/Icon_AddProduct.png" HorizontalAlignment="Center" Width="25" Height="25" Cursor="Hand" MouseLeftButtonDown="Button_AddProduct_Click"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="7*"></RowDefinition>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Margin="25,0,25,0" Height="630" VerticalAlignment="Center">
+                        <StackPanel.Background>
+                            <SolidColorBrush Color="#5b5b5b" Opacity=".5"/>
+                        </StackPanel.Background>
+
+                        <Label Content="Pedido del cliente" Foreground="#f3f3f3" FontSize="22" HorizontalAlignment="Center" Margin="0,20,0,0"/>
+
+                        <DataGrid Name="OrderClientTable" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#c3c3c3" Margin="15,15,15,0" Foreground="#c3c3c3" AutoGenerateColumns="False" FontSize="18" ColumnWidth="*" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" SelectionChanged="ClientOrderTable_SelectionChanged" Height="440">
+
+                            <DataGrid.CellStyle>
+                                <Style>
+                                    <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"></Setter>
+                                    <Setter Property="FrameworkElement.VerticalAlignment" Value="Center"></Setter>
+                                    <Setter Property="TextBlock.TextDecorations" Value="None" />
+                                </Style>
+                                
+                            </DataGrid.CellStyle>
+
+
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Unidades" Binding="{Binding Quantity}"/>
+                                <DataGridTextColumn Header="Producto" Binding="{Binding Name}"/>
+                                <DataGridTextColumn Header="Precio unitario"  Binding="{Binding Price}"/>
+                                <DataGridTextColumn Header="Subtotal"  Binding="{Binding Subtotal}"/>
+
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="/Img/Icon_Quit.png" HorizontalAlignment="Center" Margin="0,0,35,0" Width="20" Height="20" Cursor="Hand" MouseLeftButtonDown="Button_QuitProductOfOrder_Click"/>
+                                                <Image Source="/Img/Icon_Minus.png" HorizontalAlignment="Center" Width="20" Height="20"  Cursor="Hand" MouseLeftButtonDown="Button_MinusProductOfOrder_Click"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <Grid Height="110" Margin=" 318,0,0,0">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Height="36">
+                                    <Label Content="Subtotal:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Foreground="#f3f3f3"/>
+                                    <Label Name="Label_Subtotal" Content="$0" Margin ="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Foreground="#f3f3f3"/>
+
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Height="36">
+                                    <Label Content="IVA (16%):" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Foreground="#f3f3f3"/>
+                                    <Label Name="Label_IVA" Content="$0" Margin ="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Foreground="#f3f3f3"/>
+
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Height="38">
+                                    <Label Content="Total:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Foreground="#f3f3f3"/>
+                                    <Label Name="Label_Total" Content="$0" Margin ="39,0,0,0" HorizontalAlignment="Center" FontSize="20" Foreground="#f3f3f3"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="25,23,25,0">
+                        <StackPanel.Background>
+                            <SolidColorBrush Color="#5b5b5b" Opacity=".5"/>
+                        </StackPanel.Background>
+
+                        <Label Content="Cliente:" Margin="10,0,0,0"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Foreground="#f3f3f3"/>
+                        <Label Name="Label_ClientName"  Margin ="15,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Foreground="#f3f3f3"/>
+
+                    </StackPanel>
+
+                </Grid>
+
+
+                <StackPanel Grid.Column="2">
+                    <StackPanel.Background>
+                        <SolidColorBrush Color="#5b5b5b" Opacity=".5"/>
+                    </StackPanel.Background>
+                    <Label Content="Tipo de  pedido" Foreground="#f3f3f3" FontSize="22" HorizontalAlignment="Center" Margin="0,20,0,0"/>
+
+                    <Button Cursor="Hand" Margin="0,25" Height="40" Click="Button_LocalOrder_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="#f3f3f3" FontSize="20" Width="180">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius= "10" Background="Transparent" BorderBrush="#55B633" BorderThickness="2">
+                                    <ContentPresenter Content="Consumo local" HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+
+                    <Button Cursor="Hand" Height="40" Click="Button_OrderToAddress_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="#f3f3f3" FontSize="20" Width="180">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius= "10" Background="Transparent" BorderBrush="#55B633" BorderThickness="2">
+                                    <ContentPresenter Content="Pedido a domicilio" HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Button Cursor="Hand" Height="40" Margin="0,470" Click="Button_RegisterOrder_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="#f3f3f3" FontSize="20" Width="140">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius= "15" Background="#55B633" >
+                                    <ContentPresenter Content="Registrar" HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+
+            </Grid>
+
+
+        </StackPanel>
+    </Grid>
+</Window>

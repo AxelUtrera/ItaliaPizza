@@ -16,6 +16,13 @@ namespace Model
         public string neighborhood { get; set; }
         public string instructions { get; set; }
         public int idCustomer { get; set; }
+        public string nameCustomer { get; set; }
+
+        public string completeDirection { get
+            {
+               return street + ", #" + number + ", " + city + ", " + neighborhood;
+            } 
+        }
 
         public override bool Equals(object obj)
         {

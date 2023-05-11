@@ -1,0 +1,48 @@
+﻿<Window x:Class="View.MessageNameClient"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:View"
+        mc:Ignorable="d"
+        WindowState="Normal"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        Title="MessageNameClient"  Height="150" Width="300">
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="#000"></SolidColorBrush>
+        </Grid.Background>
+        
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock Text="Ingrese el nombre del cliente:" Margin="10,20,10,0" Foreground="#f3f3f3"/>
+            <TextBox Name="InputTextBox" BorderThickness="0" VerticalContentAlignment="Center" Foreground="#f3f3f3" Margin="10" Height="25">
+                <TextBox.Background>
+                    <SolidColorBrush Color="#b3b3b3" Opacity=".6"></SolidColorBrush>
+                </TextBox.Background>
+            </TextBox>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+                <Button Content="Aceptar" Cursor="Hand" Width="80"  Height="20" Foreground="#f3f3f3" Margin="5" Click="Button_Cancel_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius= "5" Background="#FF3737" >
+                                <ContentPresenter Content="Cancelar" HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Content="Cancelar" IsDefault="True" Cursor="Hand" Width="80" Height="20" Foreground="#f3f3f3" Margin="5" Click="Button_Accept_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius= "5" Background="#55B633" >
+                                <ContentPresenter Content="Aceptar" HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+        
+    </Grid>
+</Window>

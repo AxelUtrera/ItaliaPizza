@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,10 +21,13 @@ namespace View
     /// </summary>
     public partial class MainMenu : Window
     {
+        public static Worker workerLogged { get; set; } 
+        
         public MainMenu()
         {
             InitializeComponent();
         }
+
 
         private void Button_Exit_Click(object sender, RoutedEventArgs e)
         {
@@ -36,10 +41,14 @@ namespace View
 
         }
 
+
         private void Button_Order_Click(object sender, MouseButtonEventArgs e)
         {
-
+            Orders orders = new Orders();
+            Orders.workerLogged = workerLogged;
+            orders.ShowDialog();
         }
+
 
         private void Button_Product_Click(object sender, MouseButtonEventArgs e)
         {
@@ -47,11 +56,13 @@ namespace View
             productWindow.ShowDialog();
         }
 
+
         private void Button_Kitchen_Click(object sender, MouseButtonEventArgs e)
         {
             KitchenMenu kitchenMenu = new KitchenMenu();
             kitchenMenu.ShowDialog();
         }
+
 
         private void Button_Suplier_Click(object sender, MouseButtonEventArgs e)
         {
@@ -59,6 +70,7 @@ namespace View
             suppliersMenu.Show();
             Close();
         }
+
 
         private void Button_User_Click(object sender, MouseButtonEventArgs e)
         {
