@@ -12,13 +12,13 @@ namespace DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class supplierIngredient
+    public partial class orderProduct
     {
-        public string idSupplierOrder { get; set; }
-        public int idIngredient { get; set; }
-        public double quantity { get; set; }
+        public int idOrder { get; set; }
+        public string idProduct { get; set; }
+        public int quantity { get; set; }
     
-        public virtual ingredient ingredient { get; set; }
-        public virtual supplierOrder supplierOrder { get; set; }
+        public virtual orders orders { get; set; }
+        public virtual product product { get; set; }
     }
 }

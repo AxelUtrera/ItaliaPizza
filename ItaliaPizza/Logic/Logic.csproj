@@ -130,7 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
-      <Project>{5d256bde-1cbe-43d4-8cf5-77b71b686cfa}</Project>
+      <Project>{915a3a01-d02b-40a3-a073-89cfa6fa0476}</Project>
       <Name>DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
