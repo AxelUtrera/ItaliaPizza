@@ -23,8 +23,6 @@ namespace Model
 
         public String SubtotalProduct { get; set; }
 
-
-
         public ProductToView()
         {
         }

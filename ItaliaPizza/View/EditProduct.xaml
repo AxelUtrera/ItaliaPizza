@@ -85,13 +85,13 @@
                     <TextBox Name="Textbox_Description" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Height="130" FontSize="20"  Background="#D9D9D9" Width="350" HorizontalAlignment="Left" BorderBrush="Red" BorderThickness="0" Margin="0,0,0,5">
                         
                     </TextBox>
-                    <Label Name="Label_Description_Error" Visibility="Hidden"  Content="El numero de caracteres fue excedido" Margin="0,0,0,20" Foreground="Red"></Label>
+                    <Label Name="Label_Description_Error" Visibility="Hidden"  Content="El campo se encuentra vacio o excedio el numero de caracteres" Margin="0,0,0,20" Foreground="Red"></Label>
 
                     <Label Content="Restricciones" Foreground="#ffff" FontSize="20"/>
                     <TextBox Name="Textbox_Restrictions" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Height="130" VerticalContentAlignment="Stretch" Background="#D9D9D9" Width="350" FontSize="20" HorizontalAlignment="Left" Margin="0,0,0,5" BorderBrush="Red" BorderThickness="0">
                         
                     </TextBox>
-                    <Label Name="Label_Restrictions_Error" Visibility="Hidden"  Content="El numero de caracteres fue excedido" Margin="0,0,0,0" Foreground="Red"></Label>
+                    <Label Name="Label_Restrictions_Error" Visibility="Hidden"  Content="El campo se encuentra vacio o excedio el numero de caracteres" Margin="0,0,0,0" Foreground="Red"></Label>
 
 
                 </StackPanel>

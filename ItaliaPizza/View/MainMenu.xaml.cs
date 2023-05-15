@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Logic;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations.Infrastructure;
@@ -21,11 +22,19 @@ namespace View
     /// </summary>
     public partial class MainMenu : Window
     {
-        public static Worker workerLogged { get; set; } 
+        public static Worker workerLogged;
         
         public MainMenu()
         {
             InitializeComponent();
+            AddNameUser();
+        }
+
+
+        public void AddNameUser()
+        {
+                string nameWorker = UserLogic.GetUserById(workerLogged.IdUser).Name;
+                Label_NameUser.Content = nameWorker;
         }
 
 

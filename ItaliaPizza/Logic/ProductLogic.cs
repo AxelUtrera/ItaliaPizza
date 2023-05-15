@@ -53,6 +53,37 @@ namespace Logic
 		
         }
 
+		//Recupera los datos de los productos en la orden.
+		public static List<ProductToView> GetProductByIdOrder(int idOrder)
+		{
+			List<ProductToView> productInOrder = new List<ProductToView>();
+			List<orderProduct> listProductsId = OrderLogic.GetIdProductsByIdOrder(idOrder);
+
+			using (ItaliaPizzaEntities database = new ItaliaPizzaEntities())
+			{
+				foreach(orderProduct product in listProductsId)
+				{
+					var productRecovered = database.product.FirstOrDefault(p => p.productCode.Equals(product.idProduct));
+					if (productRecovered != null)
+					{
+						ProductToView productToAdd = new ProductToView()
+						{
+							Name = productRecovered.productName,
+							Price = "$"+productRecovered.price,
+							ProductCode = productRecovered.productCode,
+							Restrictions = productRecovered.restrictions,
+							Quantity = product.quantity,
+							SubtotalProduct = "$"+ (productRecovered.price * product.quantity)
+						};
+
+						productInOrder.Add(productToAdd);
+					}
+				}
+			}
+
+			return productInOrder;
+		}
+
 		public int ModifyExistentProduct(ProductToView productToModify)
 		{
 			int operationResult = 500;
