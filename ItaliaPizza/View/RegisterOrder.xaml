@@ -63,7 +63,11 @@
                     <Button.Template>
                         <ControlTemplate  TargetType="Button">
                             <Border Background="Transparent">
-                                <Image Source="/Img/ExitIcon.png" Width="35" Height="35"/>
+                                <Image Source="/Img/ExitIcon.png" Width="35" Height="35">
+                                    <Image.ToolTip>
+                                        <ToolTip Content="Regresar"></ToolTip>
+                                    </Image.ToolTip>
+                                </Image>
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
@@ -121,7 +125,11 @@
                             <DataGridTemplateColumn>
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Image Source="/Img/Icon_AddProduct.png" HorizontalAlignment="Center" Width="25" Height="25" Cursor="Hand" MouseLeftButtonDown="Button_AddProduct_Click"/>
+                                        <Image Source="/Img/Icon_AddProduct.png" HorizontalAlignment="Center" Width="25" Height="25" Cursor="Hand" MouseLeftButtonDown="Button_AddProduct_Click">
+                                            <Image.ToolTip>
+                                                <ToolTip Content="Agregar a pedido"></ToolTip>
+                                            </Image.ToolTip>
+                                        </Image>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -164,8 +172,16 @@
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
-                                                <Image Source="/Img/Icon_Quit.png" HorizontalAlignment="Center" Margin="0,0,35,0" Width="20" Height="20" Cursor="Hand" MouseLeftButtonDown="Button_QuitProductOfOrder_Click"/>
-                                                <Image Source="/Img/Icon_Minus.png" HorizontalAlignment="Center" Width="20" Height="20"  Cursor="Hand" MouseLeftButtonDown="Button_MinusProductOfOrder_Click"/>
+                                                <Image Source="/Img/Icon_Quit.png" HorizontalAlignment="Center" Margin="0,0,35,0" Width="20" Height="20" Cursor="Hand" MouseLeftButtonDown="Button_QuitProductOfOrder_Click">
+                                                    <Image.ToolTip>
+                                                        <ToolTip Content="Quitar todas las unidades"></ToolTip>
+                                                    </Image.ToolTip>
+                                                </Image>
+                                                <Image Source="/Img/Icon_Minus.png" HorizontalAlignment="Center" Width="20" Height="20"  Cursor="Hand" MouseLeftButtonDown="Button_MinusProductOfOrder_Click">
+                                                    <Image.ToolTip>
+                                                        <ToolTip Content="Quitar uno"></ToolTip>
+                                                    </Image.ToolTip>
+                                                </Image>
                                             </StackPanel>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>

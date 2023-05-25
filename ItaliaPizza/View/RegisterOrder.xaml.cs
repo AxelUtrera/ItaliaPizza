@@ -154,7 +154,11 @@ namespace View
 
         private void Button_Exit_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            MessageBoxResult result = MessageBox.Show("¿Quiere salir?, los datos no seran guardados","Cancelar registro", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                this.Close();
+            }
         }
 
 
@@ -182,6 +186,9 @@ namespace View
                 orderToCreate.hour = actualDateTime.ToString("HH:mm:ss");
                 orderToCreate.idWorker = workerLogged.Username;
                 orderToCreate.nameCustomer = Label_ClientName.Content.ToString();
+                string dataTotal = Label_Total.Content.ToString();
+                string cleanTotal = dataTotal.Replace("$", "");
+                orderToCreate.total = Double.Parse(cleanTotal);
 
                 if (addressOrder.idCustomer != 0) {
                     if (OrderLogic.AddOrder(orderToCreate, productsInOrder, addressOrder) == 200)
@@ -244,8 +251,11 @@ namespace View
         {
             CustomerView customerView = (CustomerView)sender;
             Address customerData = customerView.addressSelected;
-            addressOrder = customerData;
-            Label_ClientName.Content = customerData.nameCustomer;
+            if(customerData != null) 
+            {
+                addressOrder = customerData;
+                Label_ClientName.Content = customerData.nameCustomer;
+            }
         }
 
 

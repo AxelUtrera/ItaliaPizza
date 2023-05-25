@@ -28,6 +28,7 @@ namespace DataAccess
         public string idWorker { get; set; }
         public string typeOrder { get; set; }
         public string nameCustomer { get; set; }
+        public Nullable<double> total { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<deliveryOrder> deliveryOrder { get; set; }

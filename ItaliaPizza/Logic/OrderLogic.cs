@@ -82,7 +82,8 @@ namespace Logic
                     idWorker = orderToCreate.idWorker,
                     nameCustomer = orderToCreate.nameCustomer,
                     status = orderToCreate.status,
-                    typeOrder = orderToCreate.typeOrder
+                    typeOrder = orderToCreate.typeOrder,
+                    total = orderToCreate.total
                 });
                 dataBase.SaveChanges();
                 if(resultOrder != null)
@@ -110,7 +111,8 @@ namespace Logic
                     idWorker = orderToCreate.idWorker,
                     nameCustomer = orderToCreate.nameCustomer,
                     status = orderToCreate.status,
-                    typeOrder = orderToCreate.typeOrder
+                    typeOrder = orderToCreate.typeOrder,
+                    total = orderToCreate.total
                 });
                 dataBase.SaveChanges();
                 if (resultOrder != null)

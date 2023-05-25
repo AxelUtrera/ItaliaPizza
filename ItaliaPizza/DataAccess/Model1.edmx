@@ -82,6 +82,7 @@
           <Property Name="idWorker" Type="varchar" MaxLength="16" Nullable="false" />
           <Property Name="typeOrder" Type="varchar" MaxLength="17" />
           <Property Name="nameCustomer" Type="varchar" MaxLength="50" />
+          <Property Name="total" Type="float" />
         </EntityType>
         <EntityType Name="product">
           <Key>
@@ -602,6 +603,7 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
           <Property Name="idWorker" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="typeOrder" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
           <Property Name="nameCustomer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="total" Type="Double" />
           <NavigationProperty Name="deliveryOrder" Relationship="Self.FK_deliveryOrder_orders" FromRole="orders" ToRole="deliveryOrder" />
           <NavigationProperty Name="orderProduct" Relationship="Self.FK_orderProduct_orders" FromRole="orders" ToRole="orderProduct" />
           <NavigationProperty Name="worker" Relationship="Self.FK__orders__idWorker__59FA5E80" FromRole="orders" ToRole="worker" />
@@ -1119,6 +1121,7 @@ advertencia 6002: La tabla o vista 'ItaliaPizza.dbo.supplierProduct' no tiene de
                 <ScalarProperty Name="idWorker" ColumnName="idWorker" />
                 <ScalarProperty Name="typeOrder" ColumnName="typeOrder" />
                 <ScalarProperty Name="nameCustomer" ColumnName="nameCustomer" />
+                <ScalarProperty Name="total" ColumnName="total" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

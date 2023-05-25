@@ -4,24 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bb6008549a6c4e799edc578a35bfb571" Name="Diagram1">
+      <Diagram DiagramId="43a642b9e743494684afc2beda844249" Name="Diagram1">
         <EntityTypeShape EntityType="ItaliaPizzaModel.address" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.cashbox" Width="1.5" PointX="6" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.cashbox" Width="1.5" PointX="6" PointY="16.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ItaliaPizzaModel.customer" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.dailyBalance" Width="1.5" PointX="8.25" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.deliveryOrder" Width="1.5" PointX="7.5" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.ingredient" Width="1.5" PointX="6" PointY="28" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.orderProduct" Width="1.5" PointX="7.5" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.dailyBalance" Width="1.5" PointX="8.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.deliveryOrder" Width="1.5" PointX="7.5" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.ingredient" Width="1.5" PointX="6" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.orderProduct" Width="1.5" PointX="7.5" PointY="13.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ItaliaPizzaModel.orders" Width="1.5" PointX="5.25" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.product" Width="1.5" PointX="5.25" PointY="19.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.recipe" Width="1.5" PointX="3" PointY="20" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.recipeIngredient" Width="1.5" PointX="8.25" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.product" Width="1.5" PointX="5.25" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.recipe" Width="1.5" PointX="3" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.recipeIngredient" Width="1.5" PointX="8.25" PointY="20.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ItaliaPizzaModel.supplier" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.supplierOrder" Width="1.5" PointX="5.25" PointY="24" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.users" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.worker" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.supplierIngredient" Width="1.5" PointX="8.25" PointY="26.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.supplierProduct" Width="1.5" PointX="7.5" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.supplierOrder" Width="1.5" PointX="5.25" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.users" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.worker" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.supplierIngredient" Width="1.5" PointX="8.25" PointY="26.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.supplierProduct" Width="1.5" PointX="7.5" PointY="23.25" IsExpanded="true" />
         <AssociationConnector Association="ItaliaPizzaModel.FK__address__idCusto__52593CB8" ManuallyRouted="false" />
         <AssociationConnector Association="ItaliaPizzaModel.FK_deliveryOrder_address" ManuallyRouted="false" />
         <AssociationConnector Association="ItaliaPizzaModel.FK__dailyBala__idCas__5535A963" ManuallyRouted="false" />
