@@ -35,11 +35,14 @@ namespace View
         {
             SuppliersView view = new SuppliersView();
             view.Show();
+            Close();
         }
 
         private void Button_SuppliersOrdersView_Click(object sender, RoutedEventArgs e)
         {
-
+            SuppliersOrderView view = new SuppliersOrderView();
+            view.Show();
+            Close();
         }
     }
 }
