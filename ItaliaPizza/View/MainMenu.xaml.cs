@@ -38,7 +38,9 @@ namespace View
 
         private void Button_CashBox_Click(object sender, MouseButtonEventArgs e)
         {
-
+            PendingPayOrders pendingPayOrders = new PendingPayOrders();
+            pendingPayOrders.Show();
+            Close();
         }
 
 

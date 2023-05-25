@@ -142,6 +142,7 @@
     <Compile Include="ProductLogicTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecipeLogicTest.cs" />
+    <Compile Include="SupplierLogicTests.cs" />
     <Compile Include="UserLogicTests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -150,7 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
-      <Project>{6d49c75e-d64e-412d-8f9b-8ebfc7d306d7}</Project>
+      <Project>{f62a323e-deb7-4f76-9053-3c874a9d1463}</Project>
       <Name>DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\Logic\Logic.csproj">

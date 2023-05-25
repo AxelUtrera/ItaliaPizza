@@ -31,6 +31,24 @@ namespace Logic
         }
 
 
+        public static List<Order> GetPayPendingOrders()
+        {
+            List<Order> orders = new List<Order>();
+
+            using (ItaliaPizzaEntities database = new ItaliaPizzaEntities())
+            {
+                var ordersDataBase = database.orders.Where(o => !o.status.Equals("Entregado") && !o.status.Equals("Pagado")).ToList();
+
+                if (ordersDataBase != null)
+                {
+                    orders = ConvertToOrderModel(ordersDataBase);
+                }
+            }
+
+            return orders;
+        }
+
+
         public static List<Order> ConvertToOrderModel(List<orders> ordersToConvert)
         {
             List<Order> ordersConverted = new List<Order>();

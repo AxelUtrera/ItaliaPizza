@@ -4,7 +4,9 @@ using Syncfusion.Windows.Forms.Tools.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,6 +14,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -41,11 +44,12 @@ namespace View
             TextBox_SupplierRFC.Text = selectedSupplier.Rfc.ToString();
             TextBox_OrderNumber.Text = SupplyOrderLogic.ObtainOrderNumber().ToString();
             DatePicker_DateOrder.SelectedDate = DateTime.Now;
-            DatePicker_StimatedOrderArrive.SelectedDate = DateTime.Now.AddDays(1);
             TextBox_SupplierEmail.Text = selectedSupplier.Email;
+            TextBox_SupplierPhoneNumber.Text = selectedSupplier.PhoneNumber;
 
             SetProductsInfo();
         }
+
 
         private void Button_CancelRegisterSupplierOrder_Click(object sender, RoutedEventArgs e)
         {
@@ -58,13 +62,126 @@ namespace View
             }
         }
 
+
         private void Button_RegisterSupplierOrder_Click(object sender, RoutedEventArgs e)
         {
             if (ValidateFields())
             {
+                Supplier selectedSupplier = ComboBox_Suppliers.SelectedItem as Supplier;
+                SupplierOrder newOrder = new SupplierOrder
+                {
+                    IdSupplier = selectedSupplier.IdSupplier,
+                    OrderNumber = TextBox_OrderNumber.Text,
+                    OrderDate = DatePicker_DateOrder.SelectedDate.Value.Date,
+                    OrderType = TextBox_SupplierType.Text
+                };
 
+                if(TextBox_SupplierType.Text.Equals("Productos Finales"))
+                {
+                    Dictionary<string, int> orderProducts = new Dictionary<string, int>();
+
+                    if (ValidateItemsQuantity("Productos"))
+                    {
+                        foreach (var item in ListBox_SelectedProducts.Items)
+                        {
+                            ListBoxItem listBoxItem = (ListBoxItem)(ListBox_SelectedProducts.ItemContainerGenerator.ContainerFromItem(item));
+
+                            ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(listBoxItem);
+                            DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
+                            TextBox myTextBox = (TextBox)myDataTemplate.FindName("TextBox_TotalOrder", myContentPresenter);
+
+                            Product product = listBoxItem.DataContext as Product;
+                            int quantity = Int32.Parse(myTextBox.Text);
+
+                            orderProducts.Add(product.ProductCode, quantity);
+                        }
+
+                        if (SupplyOrderLogic.RegisterSupplierProductsOrder(newOrder, orderProducts) == 200)
+                        {
+                            MessageBox.Show("Pedido a proveedor registrado con exito", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                            CloseWindow();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ingrese cantidades validas", "", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                } 
+                else if (TextBox_SupplierType.Text.Equals("Ingredientes"))
+                {
+                    Dictionary<int, int> orderIngredients = new Dictionary<int, int>();
+
+                    if (ValidateItemsQuantity("Ingredientes"))
+                    {
+                        foreach (var item in ListBox_SelectedIngredients.Items)
+                        {
+                            ListBoxItem listBoxItem = (ListBoxItem)(ListBox_SelectedIngredients.ItemContainerGenerator.ContainerFromItem(item));
+
+                            ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(listBoxItem);
+                            DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
+                            TextBox myTextBox = (TextBox)myDataTemplate.FindName("TextBox_TotalOrder", myContentPresenter);
+
+                            Ingredient ingredient = listBoxItem.Content as Ingredient;
+                            int quantity = Int32.Parse(myTextBox.Text);
+
+                            orderIngredients.Add(ingredient.IdIngredient, quantity);
+
+                            if (SupplyOrderLogic.RegisterSupplierIngredientOrder(newOrder, orderIngredients) == 200)
+                            {
+                                MessageBox.Show("Pedido a proveedor registrado con exito", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                                CloseWindow();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ingrese cantidades validas", "", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
             }
         }
+
+
+        private bool ValidateItemsQuantity(string orderType)
+        {
+            bool isValid = true;
+
+            if (orderType.Equals("Productos"))
+            {
+                foreach (var item in ListBox_SelectedProducts.Items)
+                {
+                    ListBoxItem listBoxItem = (ListBoxItem)(ListBox_SelectedProducts.ItemContainerGenerator.ContainerFromItem(item));
+
+                    ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(listBoxItem);
+                    DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
+                    TextBox myTextBox = (TextBox)myDataTemplate.FindName("TextBox_TotalOrder", myContentPresenter);
+
+                    if (myTextBox.Text.Equals("0") || myTextBox.Text.Equals(""))
+                    {
+                        isValid = false;
+                    }
+                }
+            }
+            else if (orderType.Equals("Ingredientes"))
+            {
+                foreach (var item in ListBox_SelectedIngredients.Items)
+                {
+                    ListBoxItem listBoxItem = (ListBoxItem)(ListBox_SelectedIngredients.ItemContainerGenerator.ContainerFromItem(item));
+
+                    ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(listBoxItem);
+                    DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
+                    TextBox myTextBox = (TextBox)myDataTemplate.FindName("TextBox_TotalOrder", myContentPresenter);
+                    
+                    if(myTextBox.Text.Equals("0") || myTextBox.Text.Equals(""))
+                    {
+                        isValid = false;
+                    }
+                }
+            }
+
+            return isValid;
+        }
+
 
         private void SetSuppliersComboBox()
         {
@@ -72,6 +189,7 @@ namespace View
             ComboBox_Suppliers.ItemsSource = activeSuppliers;
             ComboBox_Suppliers.DisplayMemberPath = "SupplierName";
         }
+
 
         private void SetProductsInfo()
         {
@@ -99,6 +217,7 @@ namespace View
 
         }
 
+
         private void Button_SelectProduct_Click(object sender, RoutedEventArgs e)
         {
             Product product = GetProductInfo(sender);
@@ -114,6 +233,7 @@ namespace View
             
         }
 
+
         private Product GetProductInfo(object sender)
         {
             Button buttonSelectProduct = (Button)sender;
@@ -121,6 +241,7 @@ namespace View
             Product ingredientRequest = (Product)parent.DataContext;
             return ingredientRequest;
         }
+
 
         private void Button_SelectIngredient_Click(object sender, RoutedEventArgs e)
         {
@@ -186,6 +307,12 @@ namespace View
                 isValid = false;
             }
 
+            if(DatePicker_DateOrder.SelectedDate == null)
+            {
+                MessageBox.Show("Seleccione una fecha valida", "", MessageBoxButton.OK, MessageBoxImage.Error);
+                isValid = false;
+            }
+
             if(TextBox_SupplierType.Text.Equals("Productos Finales") && ListBox_SelectedProducts.Items.Count == 0)
             {
                 MessageBox.Show("Seleccione al menos un producto", "", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -199,6 +326,41 @@ namespace View
             }
 
             return isValid;
+        }
+
+
+        private childItem FindVisualChild<childItem>(DependencyObject obj) where childItem : DependencyObject
+        {
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(obj, i);
+                if (child != null && child is childItem)
+                {
+                    return (childItem)child;
+                }
+                else
+                {
+                    childItem childOfChild = FindVisualChild<childItem>(child);
+                    if (childOfChild != null)
+                        return childOfChild;
+                }
+            }
+            return null;
+        }
+
+
+        private void CloseWindow()
+        {
+            SuppliersOrderView suppliersOrderView = new SuppliersOrderView();
+            suppliersOrderView.Show();
+            Close();
+        }
+
+
+        private void TextBox_ValidationNumber(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

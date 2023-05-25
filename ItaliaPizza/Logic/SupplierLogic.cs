@@ -2,6 +2,7 @@
 using Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,26 +16,27 @@ namespace Logic
         {
             int statusCode = 500;
 
-            using (var database = new ItaliaPizzaEntities())
-            {
-                var newSupplier = database.supplier.Add(new supplier
+                using (var database = new ItaliaPizzaEntities())
                 {
-                    supplierName = supplier.SupplierName,
-                    supplierAddress = supplier.SupplierAddress,
-                    email = supplier.Email,
-                    phoneNumber = supplier.PhoneNumber,
-                    rfc = supplier.Rfc,
-                    supplierType = supplier.SupplierType,
-                    active = true
-                });
+                    var newSupplier = database.supplier.Add(new supplier
+                    {
+                        supplierName = supplier.SupplierName,
+                        supplierAddress = supplier.SupplierAddress,
+                        email = supplier.Email,
+                        phoneNumber = supplier.PhoneNumber,
+                        rfc = supplier.Rfc,
+                        supplierType = supplier.SupplierType,
+                        active = true
+                    });
 
-                database.SaveChanges();
+                    database.SaveChanges();
 
-                if (newSupplier != null)
-                {
-                    statusCode = 200;
+                    if (newSupplier != null)
+                    {
+                        statusCode = 200;
+                    }
                 }
-            }
+            
 
             return statusCode;
         }
@@ -63,9 +65,9 @@ namespace Logic
                     statusCode = 200;
                 }
             }
-
             return statusCode;
         }
+
 
         public static List<Supplier> RecoverActiveSuppliers()
         {

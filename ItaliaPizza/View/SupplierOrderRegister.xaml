@@ -11,6 +11,7 @@
     <Grid Background="Black">
         
         <Label Content="Registrar Pedido a Proveedor" FontSize="34" Foreground="White" Margin="70,20,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
+        <Label Content="*Los articulos seleccionados se agregaran automaticamente al inventario" FontSize="24" Foreground="White" Margin="0,50,40,0" HorizontalAlignment="Right" VerticalAlignment="Top"></Label>
 
         <Image Source="/Img/SupplierRegister_Background.jpg" Stretch="UniformToFill" Opacity="0.3">
             <Image.Effect>
@@ -31,10 +32,10 @@
                 <TextBox x:Name="TextBox_SupplierRFC" IsEnabled="False" Margin="0,0,0,10" TextWrapping="Wrap" Width="450" Height="35" Background="White" Opacity="0.7" FontSize="24" BorderThickness="0" BorderBrush="Red" Foreground="Black"/>
                 <Label Content="Fecha de pedido:" FontSize="24" Foreground="White" Margin="25,0,0,0"/>
                 <DatePicker Name="DatePicker_DateOrder" Margin="0,0,0,10" Width="450" Height="35"/>
-                <Label Content="Fecha de entrega estimada:" FontSize="24" Foreground="White" Margin="25,0,0,0"/>
-                <DatePicker Name="DatePicker_StimatedOrderArrive" Margin="0,0,0,10" Width="450" Height="35"/>
                 <Label Content="Correo electronico:" FontSize="24" Foreground="White" Margin="25,0,0,0"/>
                 <TextBox x:Name="TextBox_SupplierEmail" IsEnabled="False" Margin="0,0,0,10" TextWrapping="Wrap" Width="450" Height="35" Background="White" Opacity="0.7" FontSize="24" BorderThickness="0" BorderBrush="Red" Foreground="Black"/>
+                <Label Content="Numero telefonico:" FontSize="24" Foreground="White" Margin="25,0,0,0"/>
+                <TextBox x:Name="TextBox_SupplierPhoneNumber" IsEnabled="False" Margin="0,0,0,10" TextWrapping="Wrap" Width="450" Height="35" Background="White" Opacity="0.7" FontSize="24" BorderThickness="0" BorderBrush="Red" Foreground="Black"/>
             </StackPanel>
         </Grid>
         <Line X1="50" Y1="0" X2="50" Y2="650" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,50,280,0" StrokeThickness="3" Stroke="White"/>
@@ -51,7 +52,8 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="{Binding Name}" Width="300" FontSize="14" Foreground="White" Margin="0,0,0,0"/>
+                                <Label Content="{Binding Name}" Width="250" FontSize="16" Foreground="White" Margin="0,0,0,0"/>
+                                <Label Content="{Binding Quantity}" Width="50" FontSize="16" Foreground="White" Margin="0,0,0,0"/>
                                 <Button Click="Button_SelectProduct_Click" Background="Transparent" Height="25" Width="25" Cursor="Hand">
                                     <Button.Content>
                                         <Image Source="/Img/Icon_AddProduct.png" Stretch="UniformToFill"/>
@@ -68,7 +70,8 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="{Binding IngredientName}" Width="300" FontSize="14" Foreground="White" Margin="0,0,0,0"/>
+                                <Label Content="{Binding IngredientName}" Width="250" FontSize="16" Foreground="White" Margin="0,0,0,0"/>
+                                <Label Content="{Binding Quantity}" Width="50" FontSize="16" Foreground="White" Margin="0,0,0,0"/>
                                 <Button Click="Button_SelectIngredient_Click" Background="Transparent" Height="25" Width="25" Cursor="Hand">
                                     <Button.Content>
                                         <Image Source="/Img/Icon_AddProduct.png" Stretch="UniformToFill"/>
@@ -86,9 +89,9 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="{Binding Name}" Width="180" FontSize="14" Foreground="White" Margin="0,0,0,0"/>
+                                <Label Content="{Binding Name}" Width="180" FontSize="16" Foreground="White" Margin="0,0,0,0"/>
                                 <Label Content="Cantidad:" Width="75" FontSize="14" Foreground="White" Margin="0,0,0,0"/>
-                                <TextBox x:Name="TextBox_TotalOrder" Text="1" Margin="0,0,0,0" TextWrapping="Wrap" Width="50" Height="20" HorizontalAlignment="Right" Background="White" Opacity="0.7" FontSize="14" BorderThickness="0" BorderBrush="Red" Foreground="Black"/>
+                                <TextBox x:Name="TextBox_TotalOrder" PreviewTextInput="TextBox_ValidationNumber" Text="1" Margin="0,0,0,0" TextWrapping="Wrap" Width="50" Height="20" HorizontalAlignment="Right" Background="White" Opacity="0.7" FontSize="14" BorderThickness="0" BorderBrush="Red" Foreground="Black"/>
                                 <Button Name="Button_Delete" Click="Button_RemoveSelectedProduct_Click" Height="22" Width="22" Background="Transparent" Cursor="Hand">
                                     <Button.Content>
                                         <Image Source="/Img/Icon_Delete.png" Stretch="UniformToFill"/>
@@ -106,8 +109,8 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="{Binding IngredientName}" Width="180" FontSize="14" Foreground="White" Margin="0,0,0,0"/>
-                                <Label Content="Cantidad:" Width="75" FontSize="14" Foreground="White" Margin="0,0,0,0"/>
-                                <TextBox x:Name="TextBox_TotalOrder" Text="1" Margin="0,0,0,0" TextWrapping="Wrap" Width="50" Height="20" HorizontalAlignment="Right" Background="White" Opacity="0.7" FontSize="14" BorderThickness="0" BorderBrush="Red" Foreground="Black"/>
+                                <Label Content="Cantidad:" Width="75" FontSize="16" Foreground="White" Margin="0,0,0,0"/>
+                                <TextBox x:Name="TextBox_TotalOrder" PreviewTextInput="TextBox_ValidationNumber" Text="1" Margin="0,0,0,0" TextWrapping="Wrap" Width="50" Height="20" HorizontalAlignment="Right" Background="White" Opacity="0.7" FontSize="14" BorderThickness="0" BorderBrush="Red" Foreground="Black"/>
                                 <Button Name="Button_Delete" Click="Button_RemoveSelectedIngredient_Click" Height="22" Width="22" Background="Transparent" Cursor="Hand">
                                     <Button.Content >
                                         <Image Source="/Img/Icon_Delete.png" Stretch="UniformToFill"/>
