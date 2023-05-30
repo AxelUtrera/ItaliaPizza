@@ -35,7 +35,11 @@ namespace View
 
         private void Button_Exit_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            MessageBoxResult result = MessageBox.Show("No se ha seleccionado ningun usuario, ¿Quiere salir de todos modos?","Cliente no seleccionado",MessageBoxButton.YesNo, MessageBoxImage.Information);
+            if(result == MessageBoxResult.Yes)
+            {
+                this.Close();
+            }
         }
 
 
@@ -82,7 +86,7 @@ namespace View
                 customerSelected = (Address)item;
             }
 
-            MessageBoxResult result = MessageBox.Show("¿El pedido es para "+ customerSelected.nameCustomer+ "?", "Quitar producto", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult result = MessageBox.Show("¿El pedido es para "+ customerSelected.nameCustomer+ "?", "Cliente seleccionado", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if(result == MessageBoxResult.Yes)
             {
                 addressSelected = customerSelected;

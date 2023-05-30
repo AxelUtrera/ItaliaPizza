@@ -206,13 +206,16 @@ namespace Logic
             {
                 var supplierOrder = database.supplierOrder.Where(x => x.orderNumber.Equals(orderNumber)).First();
 
-                supplierOrder.status = "INACTIVO";
-
-                int result = database.SaveChanges();
-
-                if(result != 0)
+                if(supplierOrder != null)
                 {
-                    statusCode = 200;
+                    supplierOrder.status = "INACTIVO";
+
+                    int result = database.SaveChanges();
+
+                    if (result != 0)
+                    {
+                        statusCode = 200;
+                    }
                 }
             }
 

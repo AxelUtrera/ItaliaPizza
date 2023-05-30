@@ -58,12 +58,16 @@
 
         <StackPanel>
             <StackPanel Orientation="Horizontal" Margin="40,40,40,0">
-                <Label Content="Nuevo pedido" FontSize="30" Foreground="#f3f3f3"></Label>
+                <Label Name="Label_WindowTittle" Content="Nuevo pedido" FontSize="30" Foreground="#f3f3f3"></Label>
                 <Button Width="35" Click="Button_Exit_Click" Cursor="Hand" Height="35" VerticalAlignment="Center" Margin="1180,0,0,0">
                     <Button.Template>
                         <ControlTemplate  TargetType="Button">
                             <Border Background="Transparent">
-                                <Image Source="/Img/ExitIcon.png" Width="35" Height="35"/>
+                                <Image Source="/Img/ExitIcon.png" Width="35" Height="35">
+                                    <Image.ToolTip>
+                                        <ToolTip Content="Regresar"></ToolTip>
+                                    </Image.ToolTip>
+                                </Image>
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
@@ -121,7 +125,11 @@
                             <DataGridTemplateColumn>
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Image Source="/Img/Icon_AddProduct.png" HorizontalAlignment="Center" Width="25" Height="25" Cursor="Hand" MouseLeftButtonDown="Button_AddProduct_Click"/>
+                                        <Image Source="/Img/Icon_AddProduct.png" HorizontalAlignment="Center" Width="25" Height="25" Cursor="Hand" MouseLeftButtonDown="Button_AddProduct_Click">
+                                            <Image.ToolTip>
+                                                <ToolTip Content="Agregar a pedido"></ToolTip>
+                                            </Image.ToolTip>
+                                        </Image>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -158,14 +166,22 @@
                                 <DataGridTextColumn Header="Unidades" Binding="{Binding Quantity}"/>
                                 <DataGridTextColumn Header="Producto" Binding="{Binding Name}"/>
                                 <DataGridTextColumn Header="Precio unitario"  Binding="{Binding Price}"/>
-                                <DataGridTextColumn Header="Subtotal"  Binding="{Binding Subtotal}"/>
+                                <DataGridTextColumn Header="Subtotal"  Binding="{Binding SubtotalProduct}"/>
 
                                 <DataGridTemplateColumn>
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
-                                                <Image Source="/Img/Icon_Quit.png" HorizontalAlignment="Center" Margin="0,0,35,0" Width="20" Height="20" Cursor="Hand" MouseLeftButtonDown="Button_QuitProductOfOrder_Click"/>
-                                                <Image Source="/Img/Icon_Minus.png" HorizontalAlignment="Center" Width="20" Height="20"  Cursor="Hand" MouseLeftButtonDown="Button_MinusProductOfOrder_Click"/>
+                                                <Image Source="/Img/Icon_Quit.png" HorizontalAlignment="Center" Margin="0,0,35,0" Width="20" Height="20" Cursor="Hand" MouseLeftButtonDown="Button_QuitProductOfOrder_Click">
+                                                    <Image.ToolTip>
+                                                        <ToolTip Content="Quitar todas las unidades"></ToolTip>
+                                                    </Image.ToolTip>
+                                                </Image>
+                                                <Image Source="/Img/Icon_Minus.png" HorizontalAlignment="Center" Width="20" Height="20"  Cursor="Hand" MouseLeftButtonDown="Button_MinusProductOfOrder_Click">
+                                                    <Image.ToolTip>
+                                                        <ToolTip Content="Quitar uno"></ToolTip>
+                                                    </Image.ToolTip>
+                                                </Image>
                                             </StackPanel>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
@@ -212,7 +228,7 @@
                     </StackPanel.Background>
                     <Label Content="Tipo de  pedido" Foreground="#f3f3f3" FontSize="22" HorizontalAlignment="Center" Margin="0,20,0,0"/>
 
-                    <Button Cursor="Hand" Margin="0,25" Height="40" Click="Button_LocalOrder_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="#f3f3f3" FontSize="20" Width="180">
+                    <Button Name="Button_LocalOrder" Cursor="Hand" Margin="0,25" Height="40" Click="Button_LocalOrder_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="#f3f3f3" FontSize="20" Width="180">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius= "10" Background="Transparent" BorderBrush="#55B633" BorderThickness="2">
@@ -223,7 +239,7 @@
                     </Button>
 
 
-                    <Button Cursor="Hand" Height="40" Click="Button_OrderToAddress_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="#f3f3f3" FontSize="20" Width="180">
+                    <Button Name="Button_DeliveryOrder" Cursor="Hand" Height="40" Click="Button_OrderToAddress_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="#f3f3f3" FontSize="20" Width="180">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius= "10" Background="Transparent" BorderBrush="#55B633" BorderThickness="2">
@@ -233,11 +249,21 @@
                         </Button.Template>
                     </Button>
 
-                    <Button Cursor="Hand" Height="40" Margin="0,470" Click="Button_RegisterOrder_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="#f3f3f3" FontSize="20" Width="140">
+                    <Button Name="Button_RegisterOrder" Cursor="Hand" Height="40" Margin="0,470" Click="Button_RegisterOrder_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="#f3f3f3" FontSize="20" Width="140">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius= "15" Background="#55B633" >
                                     <ContentPresenter Content="Registrar" HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Button Name="Button_SaveChanges" Visibility="Collapsed" Cursor="Hand" Height="40" Margin="0,470" Click="Button_SaveChanges_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="#f3f3f3" FontSize="20" Width="190">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius= "15" Background="#55B633" >
+                                    <ContentPresenter Content="Guardar cambios" HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>

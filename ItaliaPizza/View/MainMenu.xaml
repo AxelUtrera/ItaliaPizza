@@ -17,7 +17,10 @@
             </Grid.Background>
             <StackPanel Orientation="Horizontal" Height="50" VerticalAlignment="Top" Margin="20">
                 <Label Margin="25,0,0,0" Content="Menu principal" Foreground="#f3f3f3" FontSize="30"></Label>
-                <Button Width="35" Click="Button_Exit_Click" Cursor="Hand" Height="35" VerticalAlignment="Center" Margin="1100,0,0,0">
+                <Label Content="Usuario:" Foreground="#f3f3f3" FontSize="20" Margin="450,0,0,0" VerticalAlignment="Center"></Label>
+
+                <Label Name="Label_NameUser" Margin="5,0,0,0" FontSize="20" Foreground="#f3f3f3" VerticalAlignment="Center"></Label>
+                <Button Width="35" Click="Button_Exit_Click" Cursor="Hand" Height="35" VerticalAlignment="Center" Margin="510,0,0,0">
                     <Button.Template>
                         <ControlTemplate  TargetType="Button">
                             <Border Background="Transparent">

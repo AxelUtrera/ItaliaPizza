@@ -51,5 +51,26 @@ namespace Logic.Tests
             Assert.AreEqual("J1000", result[1].idWorker);
             Assert.AreEqual("Domicilio", result[1].typeOrder);
         }
+
+
+        [TestMethod]
+        public void Test03_GetPayPendingOrders_Valid()
+        {
+            List<Order> orders = OrderLogic.GetPayPendingOrders();
+
+            Assert.IsTrue(orders.Count > 0);
+        }
+
+
+        [TestMethod]
+        public void Test04_ChangeOrderStatus_Valid()
+        {
+            int orderToChange = 49;
+
+            int resultExpected = 200;
+            int resultObtained = OrderLogic.ChangeOrderStatus(orderToChange);
+
+            Assert.AreEqual(resultExpected, resultObtained);
+        }
     }
 }

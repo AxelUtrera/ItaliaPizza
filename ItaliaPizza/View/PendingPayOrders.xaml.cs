@@ -22,10 +22,13 @@ namespace View
     /// </summary>
     public partial class PendingPayOrders : Window
     {
+        public static PendingPayOrders instance { get; private set; }
+
         public PendingPayOrders()
         {
             InitializeComponent();
             RecoverPayPendingOrders();
+            instance = this;
         }
 
         private void Textbox_SearchSuppliersOrder_Input(object sender, TextChangedEventArgs e)
@@ -35,7 +38,18 @@ namespace View
 
         private void Button_PayOrder_Click(object sender, RoutedEventArgs e)
         {
+            Order selectedOrder = OrdersTable.SelectedItem as Order;
 
+            if(selectedOrder != null)
+            {
+                PayOrder.payingOrder = selectedOrder;
+                PayOrder payOrder = new PayOrder();
+                payOrder.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Seleccione una orden", "", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void Button_Exit_Click(object sender, RoutedEventArgs e)
@@ -46,7 +60,7 @@ namespace View
         }
 
 
-        private void RecoverPayPendingOrders()
+        public void RecoverPayPendingOrders()
         {
             List<Order> ordersRecover = OrderLogic.GetPayPendingOrders();
             ObservableCollection<Order> orderView = new ObservableCollection<Order>(ordersRecover);

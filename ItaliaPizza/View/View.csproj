@@ -163,6 +163,9 @@
     <Compile Include="Orders.xaml.cs">
       <DependentUpon>Orders.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PayOrder.xaml.cs">
+      <DependentUpon>PayOrder.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PendingPayOrders.xaml.cs">
       <DependentUpon>PendingPayOrders.xaml</DependentUpon>
     </Compile>
@@ -247,6 +250,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Orders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PayOrder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -362,16 +369,6 @@
     <Resource Include="Img\ExitIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Logic\Logic.csproj">
-      <Project>{cdcd6208-556e-41c9-978c-94039dc0d753}</Project>
-      <Name>Logic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{7225153a-ccaa-4585-8d31-c37a32b6182f}</Project>
-      <Name>Model</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Img\MainMenu_Background.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -451,6 +448,16 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\Icon_AddProduct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Logic\Logic.csproj">
+      <Project>{cdcd6208-556e-41c9-978c-94039dc0d753}</Project>
+      <Name>Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{7225153a-ccaa-4585-8d31-c37a32b6182f}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\Background_OrderPay.jpg" />

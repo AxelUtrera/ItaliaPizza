@@ -37,52 +37,56 @@ namespace View
 
             if (resultAutenticationUser == statusOK && UserLogic.GetUserById(worker.IdUser).IsActive)
             {
-                MainMenu mainMenu = new MainMenu();
                 MainMenu.workerLogged = worker;
+                MainMenu mainMenu = new MainMenu();
+         
                 if (worker.Role == "Administrador")
                 {
                     mainMenu.ImageOrders.IsEnabled = false;
-                    mainMenu.ImageOrders.Opacity = .7;
+                    mainMenu.ImageOrders.Opacity = .5;
                     mainMenu.ImageCashBox.IsEnabled = false;
-                    mainMenu.ImageCashBox.Opacity = .7;
+                    mainMenu.ImageCashBox.Opacity = .5;
                 }
+
 
                 if (worker.Role == "Cocinero")
                 {
                     mainMenu.ImageCashBox.IsEnabled = false;
-                    mainMenu.ImageCashBox.Opacity = .7;
+                    mainMenu.ImageCashBox.Opacity = .5;
                     mainMenu.ImageSuplier.IsEnabled = false;
-                    mainMenu.ImageSuplier.Opacity = .7;
+                    mainMenu.ImageSuplier.Opacity = .5;
                     mainMenu.ImageUsers.IsEnabled = false;
-                    mainMenu.ImageUsers.Opacity = .7;
+                    mainMenu.ImageUsers.Opacity = .5;
                     mainMenu.ImageProducts.IsEnabled = false;
-                    mainMenu.ImageProducts.Opacity = .7;
+                    mainMenu.ImageProducts.Opacity = .5;
                 }
+
 
                 if(worker.Role == "Mesero")
                 {
                     mainMenu.ImageProducts.IsEnabled = false;
-                    mainMenu.ImageProducts.Opacity = .7;
+                    mainMenu.ImageProducts.Opacity = .5;
                     mainMenu.ImageCashBox.IsEnabled = false;
-                    mainMenu.ImageCashBox.Opacity = .7;
+                    mainMenu.ImageCashBox.Opacity = .5;
                     mainMenu.ImageSuplier.IsEnabled = false;
-                    mainMenu.ImageSuplier.Opacity = .7;
+                    mainMenu.ImageSuplier.Opacity = .5;
                     mainMenu.ImageUsers.IsEnabled = false;
-                    mainMenu.ImageUsers.Opacity = .7;
+                    mainMenu.ImageUsers.Opacity = .5;
                     mainMenu.ImageKitchen.IsEnabled = false;
-                    mainMenu.ImageKitchen.Opacity = .7;
+                    mainMenu.ImageKitchen.Opacity = .5;
                 }
+
 
                 if(worker.Role == "Cajero")
                 {
                     mainMenu.ImageProducts.IsEnabled = false;
-                    mainMenu.ImageProducts.Opacity = .7;
+                    mainMenu.ImageProducts.Opacity = .5;
                     mainMenu.ImageSuplier.IsEnabled = false;
-                    mainMenu.ImageSuplier.Opacity = .7;
+                    mainMenu.ImageSuplier.Opacity = .5;
                     mainMenu.ImageUsers.IsEnabled = false;
-                    mainMenu.ImageUsers.Opacity = .7;
+                    mainMenu.ImageUsers.Opacity = .5;
                     mainMenu.ImageKitchen.IsEnabled = false;
-                    mainMenu.ImageKitchen.Opacity = .7;
+                    mainMenu.ImageKitchen.Opacity = .5;
                 }
                 mainMenu.Show();
                 this.Close();

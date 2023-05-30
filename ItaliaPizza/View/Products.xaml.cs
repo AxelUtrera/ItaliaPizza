@@ -146,7 +146,7 @@ namespace View
             var searchTextbox = sender as TextBox;
             if (searchTextbox.Text != "")
             {
-                var filteredList = products.Where(x => x.Name.Contains(searchTextbox.Text));
+                var filteredList = products.Where(x => x.Name.ToLower().Contains(searchTextbox.Text.ToLower()));
                 ProductsTable.ItemsSource = null;
                 ProductsTable.ItemsSource = filteredList;
             }
@@ -155,6 +155,6 @@ namespace View
                 ProductsTable.ItemsSource = products;
             }
         }
-
+     
     }
 }

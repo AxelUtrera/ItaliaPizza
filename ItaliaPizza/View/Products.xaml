@@ -67,7 +67,11 @@
                     <Button.Template>
                         <ControlTemplate  TargetType="Button">
                             <Border Background="#55B633" CornerRadius="30">
-                                <Image Source="/Img/Icon_AddNew.png" Width="40" Height="40"/>
+                                <Image Source="/Img/Icon_AddNew.png" Width="40" Height="40">
+                                    <Image.ToolTip>
+                                        <ToolTip Content="Agregar producto"></ToolTip>
+                                    </Image.ToolTip>
+                                </Image>
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
@@ -135,8 +139,16 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <Image Source="/Img/Icon_Edit.png" Margin="25,0,40,0" Width="25" Height="25" Cursor="Hand" MouseLeftButtonDown="Button_EditProduct_Click"/>
-                                            <Image Source="/Img/Icon_Delete.png" Margin="0,0,25,0"  Width="25" Height="25"  Cursor="Hand" MouseLeftButtonDown="Button_DeleteProduct_Click"/>
+                                            <Image Source="/Img/Icon_Edit.png" Margin="25,0,40,0" Width="25" Height="25" Cursor="Hand" MouseLeftButtonDown="Button_EditProduct_Click">
+                                                <Image.ToolTip>
+                                                    <ToolTip Content="Editar producto"></ToolTip>
+                                                </Image.ToolTip>
+                                            </Image>
+                                            <Image Source="/Img/Icon_Delete.png" Margin="0,0,25,0"  Width="25" Height="25"  Cursor="Hand" MouseLeftButtonDown="Button_DeleteProduct_Click">
+                                                <Image.ToolTip>
+                                                    <ToolTip Content="Eliminar producto"></ToolTip>
+                                                </Image.ToolTip>
+                                            </Image>
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>

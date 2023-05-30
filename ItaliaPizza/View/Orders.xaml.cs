@@ -7,6 +7,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace View
 {
@@ -66,8 +67,47 @@ namespace View
 
         private void Button_Edit_Click(object sender, MouseButtonEventArgs e)
         {
+            Order orderSelected = new Order();
+            var row = FindInTable<DataGridRow>((DependencyObject)e.OriginalSource);
+            if (row != null)
+            {
+                // Obtener el objeto asociado a la fila
+                var item = row.DataContext;
+                orderSelected = (Order)item;
+            }
+
+   
+            List<ProductToView> productsInOrder = ProductLogic.GetProductByIdOrder(orderSelected.idOrder);
+            RegisterOrder registerOrderWindow = new RegisterOrder();
+            registerOrderWindow.Label_WindowTittle.Content = "Editar pedido";
+            registerOrderWindow.Button_DeliveryOrder.IsEnabled = false;
+            registerOrderWindow.Button_DeliveryOrder.Opacity = .5;
+            registerOrderWindow.Button_LocalOrder.IsEnabled = false;
+            registerOrderWindow.Button_LocalOrder.Opacity = .5;
+            registerOrderWindow.Button_RegisterOrder.Visibility = Visibility.Collapsed;
+            registerOrderWindow.Button_SaveChanges.Visibility = Visibility.Visible;
+            registerOrderWindow.Label_ClientName.Content = orderSelected.nameCustomer;
+            registerOrderWindow.SetDataOnProductInOrderTable(productsInOrder, orderSelected);
+            registerOrderWindow.Show();
 
         }
+
+
+        private T FindInTable<T>(DependencyObject current) where T : DependencyObject
+        {
+            T objectObtained = null;
+            do
+            {
+                if (current is T ancestor)
+                {
+                    objectObtained = ancestor;
+                }
+                current = VisualTreeHelper.GetParent(current);
+            }
+            while (current != null);
+            return objectObtained;
+        }
+
 
         private void Button_Cancel_Click(object sender, MouseButtonEventArgs e)
         {

@@ -3,10 +3,7 @@ using Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Reflection.Emit;
-using System.Security.RightsManagement;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -20,17 +17,28 @@ namespace View
     public partial class RegisterOrder : Window
     {
         public static Worker workerLogged { get; set; }
-        private ObservableCollection<ProductToView> productsOnTable;
-        
-        //los siguientes 2 son los atributos que se envian al metodo que guarda la orden en la base de datos.
+        public static Order orderToCreate = new Order();
+
         private List<ProductToView> productsInOrder = new List<ProductToView>();
-        public Address addressOrder = new Address();
-        public Order orderToCreate = new Order();
+        private Address addressOrder = new Address();
+        private ObservableCollection<ProductToView> productsOnTable;
 
         public RegisterOrder()
         {
             InitializeComponent();
             AddProductsToTable();
+        }
+
+
+        public void SetDataOnProductInOrderTable(List<ProductToView> productsList, Order orderToEdit)
+        {
+            productsInOrder = productsList;
+            orderToCreate = orderToEdit;
+            OrderClientTable.ItemsSource = productsList;
+
+            Label_Subtotal.Content = "$" + SetSubtotal().ToString("N2");
+            Label_IVA.Content = "$" + SetIVA().ToString("N2");
+            Label_Total.Content = "$" + SetTotal().ToString("N2");
         }
 
 
@@ -71,6 +79,7 @@ namespace View
 
             AddToOrder(productSelected);
             ReloadOrderTable();
+
             Label_Subtotal.Content = "$" +SetSubtotal().ToString("N2");
             Label_IVA.Content = "$"+SetIVA().ToString("N2");
             Label_Total.Content = "$" + SetTotal().ToString("N2");
@@ -84,13 +93,12 @@ namespace View
             if (productInOrder != null)
             {
                 productInOrder.Quantity += 1;
-                product.SubtotalProduct = "$"+(Double.Parse(product.Price.Replace("$", "")) * product.Quantity).ToString();
-
+                productInOrder.SubtotalProduct = "$"+(Double.Parse(productInOrder.Price.Replace("$", "")) * productInOrder.Quantity);
             }
             else
             {
                 product.Quantity = 1;
-                product.SubtotalProduct = "$"+(Double.Parse(product.Price.Replace("$", "")) * product.Quantity).ToString();
+                product.SubtotalProduct = "$"+(Double.Parse(product.Price.Replace("$", "")) * product.Quantity);
                 productsInOrder.Add(product);
             }
         }
@@ -146,9 +154,11 @@ namespace View
 
         private void Button_Exit_Click(object sender, RoutedEventArgs e)
         {
-            Orders orderView = new Orders();
-            orderView.Show();
-            this.Close();
+            MessageBoxResult result = MessageBox.Show("¿Quiere salir?, los datos no seran guardados","Cancelar registro", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                this.Close();
+            }
         }
 
 
@@ -176,11 +186,14 @@ namespace View
                 orderToCreate.hour = actualDateTime.ToString("HH:mm:ss");
                 orderToCreate.idWorker = workerLogged.Username;
                 orderToCreate.nameCustomer = Label_ClientName.Content.ToString();
+                string dataTotal = Label_Total.Content.ToString();
+                string cleanTotal = dataTotal.Replace("$", "");
+                orderToCreate.total = Double.Parse(cleanTotal);
 
                 if (addressOrder.idCustomer != 0) {
                     if (OrderLogic.AddOrder(orderToCreate, productsInOrder, addressOrder) == 200)
                     {
-                        MessageBox.Show("Se agrego un nuevo pedido!", "Exito", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                        MessageBox.Show("Se agrego un nuevo pedido!", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     else
                     {
@@ -191,15 +204,13 @@ namespace View
                 {
                     if (OrderLogic.AddOrder(orderToCreate, productsInOrder) == 200)
                     {
-                        MessageBox.Show("Se agrego un nuevo pedido!", "Exito", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                        MessageBox.Show("Se agrego un nuevo pedido!", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     else
                     {
                         MessageBox.Show("Ocurrio un error al registrar la orden.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
-                Orders ordersView = new Orders();
-                ordersView.ShowDialog();
                 this.Close();
 
 
@@ -240,8 +251,11 @@ namespace View
         {
             CustomerView customerView = (CustomerView)sender;
             Address customerData = customerView.addressSelected;
-            addressOrder = customerData;
-            Label_ClientName.Content = customerData.nameCustomer;
+            if(customerData != null) 
+            {
+                addressOrder = customerData;
+                Label_ClientName.Content = customerData.nameCustomer;
+            }
         }
 
 
@@ -278,22 +292,87 @@ namespace View
                 var item = row.DataContext;
                 productSelected = (ProductToView)item;
             }
+
             ProductToView productToMinus = productsInOrder.FirstOrDefault(p => p.Name.Equals(productSelected.Name));
             if(productToMinus != null)
             {
                 if(productToMinus.Quantity - 1 != 0)
                 {
                     productToMinus.Quantity -= 1;
+                    double subtotalProductToDouble = Double.Parse(productToMinus.SubtotalProduct.Replace("$", ""));
+                    double priceProductToDouble = Double.Parse(productToMinus.Price.Replace("$", ""));
+                    productToMinus.SubtotalProduct = "$" + (subtotalProductToDouble - priceProductToDouble);
                 }
                 else
                 {
                     productsInOrder.Remove(productToMinus);
                 }
             }
+
             ReloadOrderTable();
             Label_Subtotal.Content = "$" + SetSubtotal().ToString("N2");
             Label_IVA.Content = "$" + SetIVA().ToString("N2");
             Label_Total.Content = "$" + SetTotal().ToString("N2");
+        }
+
+
+        private void Button_SaveChanges_Click(object sender, RoutedEventArgs e)
+        {
+            List<ProductToView> productsRegistered = ProductLogic.GetProductByIdOrder(orderToCreate.idOrder);
+            if (productsInOrder.Count == 0)
+            {
+                MessageBox.Show("El pedido se encuentra vacio, si desea cancelarlo, hagalo desde lista de pedidos", "Pedido vacio", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else if(!ValidateChangeOrder(productsRegistered, productsInOrder))
+            {
+                MessageBoxResult response = MessageBox.Show("¿Esta seguro de guardar los cambios?", "Guardar cambios", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (response == MessageBoxResult.Yes)
+                {
+                    if (OrderLogic.UpdateProductsInOrder(productsInOrder, orderToCreate) == 200)
+                    {
+                        MessageBox.Show("Los cambios han sido guardados", "Cambios guardados", MessageBoxButton.OK, MessageBoxImage.Information);
+                        this.Close();
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("El pedido no ha sido modificado", "Pedido sin modificar", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
+
+        }
+
+        private bool ValidateChangeOrder(List<ProductToView> listDataBase, List<ProductToView> listOrder)
+        {
+            bool resultValidation = true;
+
+            if (listDataBase.Count == listOrder.Count)
+            {
+                foreach(ProductToView productToView in listDataBase)
+                {
+                    ProductToView productInOrder = listOrder.FirstOrDefault(p => p.Name == productToView.Name);
+                    if (productInOrder != null)
+                    {
+                        if(productToView.Quantity != productInOrder.Quantity)
+                        {
+                            resultValidation = false;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        resultValidation = false;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                resultValidation = false;
+            }
+
+            return resultValidation;
         }
     }
 }

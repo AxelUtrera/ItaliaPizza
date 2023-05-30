@@ -25,7 +25,6 @@ namespace DataAccess
         public string ingredientName { get; set; }
         public double quantity { get; set; }
         public bool active { get; set; }
-        public int warningTreshold { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<recipeIngredient> recipeIngredient { get; set; }

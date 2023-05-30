@@ -36,12 +36,12 @@ namespace Test
 
 
         [TestMethod]
-        [ExpectedException(typeof(DbEntityValidationException))]
-        public void Test02_RegisterSupplier_InvalidSupplier()
+        public void Test02_ModifySupplier_ValidSupplier()
         {
             Supplier supplierTest = new Supplier
             {
-                SupplierName = null,
+                IdSupplier = 1,
+                SupplierName = "Test Modified",
                 SupplierAddress = "Test Address",
                 Email = "email@test.com",
                 PhoneNumber = "1234567890",
@@ -50,8 +50,63 @@ namespace Test
                 Active = false
             };
 
-            int obtainedResult = SupplierLogic.RegisterSupplier(supplierTest);
+            int expectedResult = 200;
+            int obtainedResult = SupplierLogic.ModifySupplier(supplierTest);
 
+            Assert.AreEqual(expectedResult, obtainedResult);
+        }
+
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void Test03_ModifySupplier_InvalidSupplier()
+        {
+            Supplier supplierTest = new Supplier
+            {
+                IdSupplier = 99,
+                SupplierName = "Test Modified",
+                SupplierAddress = "Test Address",
+                Email = "email@test.com",
+                PhoneNumber = "1234567890",
+                Rfc = "AAAAAAAAAAAAA",
+                SupplierType = "Test",
+                Active = false
+            };
+
+            SupplierLogic.ModifySupplier(supplierTest);
+        }
+
+
+        [TestMethod]
+        public void Test04_RecoverActiveSuppliers_Valid()
+        {
+            List<Supplier> suppliers = SupplierLogic.RecoverActiveSuppliers();
+
+            Assert.IsTrue(suppliers.Count () > 0);
+        }
+
+
+        [TestMethod]
+        public void Test05_DeleteSupplierById_Valid()
+        {
+            int suplierToDelete = 2;
+
+            int expectedResult = 200;
+            int resultObtained = SupplierLogic.DeleteSupplierById(suplierToDelete);
+
+            Assert.AreEqual(expectedResult, resultObtained);
+        }
+
+
+        [TestMethod]
+        public void Test06_DeleteSupplierById_Invalid()
+        {
+            int suplierToDelete = 2;
+
+            int expectedResult = 200;
+            int resultObtained = SupplierLogic.DeleteSupplierById(suplierToDelete);
+
+            Assert.AreEqual(expectedResult, resultObtained);
         }
     }
 }

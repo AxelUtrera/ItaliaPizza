@@ -26,7 +26,6 @@ namespace Logic
                     orders = ConvertToOrderModel(ordersDataBase);
                 }
             }
-
             return orders;
         }
 
@@ -49,6 +48,31 @@ namespace Logic
         }
 
 
+        public static int ChangeOrderStatus(int idOrder)
+        {
+            int resultCode = 500;
+            int result = 0;
+
+            using (var database = new ItaliaPizzaEntities())
+            {
+                var orderToChange = database.orders.Where(x => x.idOrder == idOrder).First();
+
+                if(orderToChange != null)
+                {
+                    orderToChange.status = "Pagado";
+                    result = database.SaveChanges();
+                }
+
+                if(result != 0)
+                {
+                    resultCode = 200;
+                }
+            }
+
+            return resultCode;
+        }
+
+
         public static List<Order> ConvertToOrderModel(List<orders> ordersToConvert)
         {
             List<Order> ordersConverted = new List<Order>();
@@ -63,11 +87,54 @@ namespace Logic
                     hour = toConvert.hour,
                     idWorker = toConvert.idWorker,
                     typeOrder = toConvert.typeOrder,
-                    nameCustomer = toConvert.nameCustomer
+                    nameCustomer = toConvert.nameCustomer,
+                    total = (double)toConvert.total
                 });
             }
 
             return ordersConverted;
+        }
+
+
+        public static List<orderProduct> GetIdProductsByIdOrder(int idOrder)
+        {
+            List<orderProduct> listOrderProducts = new List<orderProduct>();
+
+            using (ItaliaPizzaEntities database = new ItaliaPizzaEntities())
+            {
+                var productRecovered = database.orderProduct.Where(p => p.idOrder == idOrder).ToList();
+                if(productRecovered != null)
+                {
+                    listOrderProducts = productRecovered;
+                }
+            }
+            return listOrderProducts;
+        }
+
+
+        public static List<Product> GetInfoProductById(int idOrder)
+        {
+            List<orderProduct> orderProducts = GetIdProductsByIdOrder(idOrder);
+
+            List<Product> productInfo = new List<Product>();
+
+            using(var database = new ItaliaPizzaEntities())
+            {
+                foreach(var item in orderProducts)
+                {
+                    var info = database.product.Where(x => x.productCode.Equals(item.idProduct)).First();
+
+                    Product product = new Product
+                    {
+                        Name = info.productName,
+                        Price = info.price,
+                        Quantity = item.quantity
+                    };
+                    productInfo.Add(product);
+                }
+            }
+
+            return productInfo;
         }
 
         
@@ -84,7 +151,8 @@ namespace Logic
                     idWorker = orderToCreate.idWorker,
                     nameCustomer = orderToCreate.nameCustomer,
                     status = orderToCreate.status,
-                    typeOrder = orderToCreate.typeOrder
+                    typeOrder = orderToCreate.typeOrder,
+                    total = orderToCreate.total
                 });
                 dataBase.SaveChanges();
                 if(resultOrder != null)
@@ -112,7 +180,8 @@ namespace Logic
                     idWorker = orderToCreate.idWorker,
                     nameCustomer = orderToCreate.nameCustomer,
                     status = orderToCreate.status,
-                    typeOrder = orderToCreate.typeOrder
+                    typeOrder = orderToCreate.typeOrder,
+                    total = orderToCreate.total
                 });
                 dataBase.SaveChanges();
                 if (resultOrder != null)
@@ -166,12 +235,13 @@ namespace Logic
                         idProduct = product.ProductCode,
                         quantity = product.Quantity
                     });
-                    dataBase.SaveChanges();
                     if (resultProducts != null)
                     {
                         resultOperation = 200;
                     }
                 }
+                dataBase.SaveChanges();
+
                 if (!(AddDeliveryAddress(addressToDelivery, codeOrder) == 200))
                 {
                     resultOperation = 500;
@@ -200,6 +270,67 @@ namespace Logic
                 }
             }
             return result;
+        }
+
+
+        public static int UpdateProductsInOrder(List<ProductToView> listProductToUpdate, Order orderToUpdate)
+        {
+            int resultOperation = 500;
+
+            using (ItaliaPizzaEntities database = new ItaliaPizzaEntities())
+            {
+                foreach (ProductToView productToUpdate in listProductToUpdate)
+                {
+                    orderProduct orderDataBase = database.orderProduct.FirstOrDefault(p => p.idOrder.Equals(orderToUpdate.idOrder) && 
+                                                                                           p.idProduct.Equals(productToUpdate.ProductCode));
+                    if(orderDataBase != null)
+                    {
+                        orderDataBase.quantity = productToUpdate.Quantity;
+                        database.Entry(orderDataBase).State = EntityState.Modified;
+                    }
+                    else
+                    {
+                        database.orderProduct.Add(new orderProduct()
+                        {
+                            idOrder = orderToUpdate.idOrder,
+                            idProduct = productToUpdate.ProductCode,
+                            quantity = productToUpdate.Quantity,
+                        });
+                    }
+                }
+                var result = database.SaveChanges();
+
+                if (result > 0)
+                {
+                    resultOperation = 200;
+                }
+            }
+
+            RemoveProductsNoRequired(listProductToUpdate, orderToUpdate);
+            return resultOperation;   
+        }
+
+        private static int RemoveProductsNoRequired(List<ProductToView> productUpdated, Order orderUpdated)
+        {
+            int resultOperation = 500;
+
+            using(ItaliaPizzaEntities database = new ItaliaPizzaEntities())
+            {
+                var productCodes = productUpdated.Select(p => p.ProductCode).ToList();
+
+                var productsToDelete = database.orderProduct
+                    .Where(p => !productCodes.Contains(p.idProduct) && orderUpdated.idOrder == p.idOrder)
+                    .ToList();
+
+                database.orderProduct.RemoveRange(productsToDelete);
+
+                var resultDelete = database.SaveChanges();
+                if (resultDelete > 0)
+                {
+                    resultOperation = 200;
+                }
+            }
+            return resultOperation;
         }
     }
 }
