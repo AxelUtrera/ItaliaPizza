@@ -6,6 +6,7 @@ using System.Data.Entity.Core;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Logic
 {
@@ -31,7 +32,7 @@ namespace Logic
                                 IdCashbox = aux.idCashbox,
                             };
                             cashBoxes.Add(cashBox);
-                        }                        
+                        }
                     }
                 }
                 catch (EntityException ex)
@@ -41,5 +42,31 @@ namespace Logic
             }
             return cashBoxes;
         }
+        public static bool UpdateCashBox(CashBox updatedCashBox)
+        {
+            bool result = false;
+            using (var context = new ItaliaPizzaEntities())
+            {
+                try
+                {
+                    var cashboxFound = context.cashbox.Where(x => x.idCashbox.Equals(updatedCashBox.IdCashbox)).FirstOrDefault();
+                    if (cashboxFound != null)
+                    {
+                        cashboxFound.totalAmount = updatedCashBox.TotalAmount;
+                        cashboxFound.incomes = updatedCashBox.Incomes;
+                        cashboxFound.outcomes = updatedCashBox.Outcomes;
+                        context.SaveChanges();
+                        result = true;
+                    }
+                }catch (EntityException ex)
+                {
+                    Console.WriteLine($"Error: {ex.Message}");
+                }
+                
+            }
+                return result;
+        }
     }
 }
+   
+

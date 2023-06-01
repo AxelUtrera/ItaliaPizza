@@ -49,12 +49,14 @@ namespace View
 
         private void Button_Exit_Click(object sender, RoutedEventArgs e)
         {
-            
+            Products.workerLogged = workerLogged;
+            Products productsWindow = new Products();
+            Close();
+            productsWindow.ShowDialog();
         }
 
         private void InventoryReportTable_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
-            // MessageBox.Show(InventoryReportTable.CurrentItem as Model.InventoryReport +"");
         }
 
         private void Button_ExportPDF_Click(object sender, RoutedEventArgs e)
@@ -171,9 +173,7 @@ namespace View
                     }
                 }
 
-            }
-
-            
+            }            
         }
     }
 }

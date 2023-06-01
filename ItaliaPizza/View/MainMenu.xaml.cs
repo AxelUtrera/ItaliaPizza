@@ -61,6 +61,7 @@ namespace View
 
         private void Button_Product_Click(object sender, MouseButtonEventArgs e)
         {
+            Products.workerLogged = workerLogged;
             Products productWindow = new Products();
             productWindow.ShowDialog();
         }

@@ -78,7 +78,6 @@
 
 
             </Grid>
-            <Button x:Name="Button_InventaryReport" Content="REPORTE DE INVENTARIO" HorizontalAlignment="Left" Margin="1225,0,0,0" VerticalAlignment="Center" Height="74" Click="Button_InventaryReport_Click"/>
 
 
         </Grid>

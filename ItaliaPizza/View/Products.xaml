@@ -8,19 +8,19 @@
         WindowState="Maximized"
         WindowStyle="None"
         Title="Products" Height="810" Width="1440">
-    
-        <Window.Resources>
-            <Style TargetType="{x:Type DataGrid}">
-                <Setter Property="Background" Value="#0a0a0a"/>
-                <Setter Property="RowBackground" Value="#0a0a0a"/>
-                <Setter Property="BorderBrush" Value="#0a0a0a"/>
-                <Setter Property="FontWeight" Value="light"/>
-                <Setter Property="Foreground" Value="#f3f3f3"/>
-                <Setter Property="BorderThickness" Value="1"/>
-                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+
+    <Window.Resources>
+        <Style TargetType="{x:Type DataGrid}">
+            <Setter Property="Background" Value="#0a0a0a"/>
+            <Setter Property="RowBackground" Value="#0a0a0a"/>
+            <Setter Property="BorderBrush" Value="#0a0a0a"/>
+            <Setter Property="FontWeight" Value="light"/>
+            <Setter Property="Foreground" Value="#f3f3f3"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
         </Style>
-            
-            
+
+
         <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
             <Setter Property="Background" Value="#0a0a0a" />
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -33,15 +33,15 @@
         </Style>
 
         <Style TargetType="{x:Type TextBox}">
-                <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
-                <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
-                <Setter Property="Foreground" Value="#ffffff"></Setter>
-            </Style>
-        </Window.Resources>
-    
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Foreground" Value="#ffffff"></Setter>
+        </Style>
+    </Window.Resources>
+
     <Grid Background="black">
         <Image Source="/Img/Background_ViewProduct.jpg" Stretch="UniformToFill" Opacity="0.3"/>
-        
+
         <StackPanel>
             <StackPanel Orientation="Horizontal" Margin="40,40,40,0">
                 <Label Content="Productos" FontSize="30" Foreground="#f3f3f3"></Label>
@@ -56,7 +56,7 @@
                 </Button>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Width="880" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Width="1084" HorizontalAlignment="Center">
                 <TextBox Name ="Textbox_Search" Width="750" Height="40" BorderBrush="Transparent" VerticalAlignment="Center" TextChanged="Texbox_TextSearchChanged">
                     <TextBox.Background>
                         <SolidColorBrush Color="#848484" Opacity=".5"/>
@@ -72,6 +72,15 @@
                                         <ToolTip Content="Agregar producto"></ToolTip>
                                     </Image.ToolTip>
                                 </Image>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Cursor="Hand" x:Name="Button_InventoryReport" Width="150" Height="46" Foreground="#f3f3f3" FontSize="20" FontWeight="DemiBold" Click="Button_InventoryReport_Click" IsDefault="False" Background="#FF3F8C23" ToolTip="Ver Reporte de Inventario" Margin=" 50,0,0,0" >
+                    <Button.Template >
+                        <ControlTemplate TargetType="{x:Type Button}" >
+                            <Border Background="#3F8C23"  CornerRadius="15">
+                                <ContentPresenter Content="Inventario" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
@@ -158,6 +167,6 @@
                 </StackPanel>
             </Border>
         </StackPanel>
-        
+
     </Grid>
 </Window>

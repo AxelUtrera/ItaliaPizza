@@ -12,8 +12,10 @@ namespace Model
         protected int idTransaction;
         protected string worker;
         protected int amount;
+        protected CashBox cashbox;
 
         public string Reason { get { return reason; } set {  reason = value; } }
+        public CashBox CashBox { get { return cashbox; } set { cashbox = value; } }
         public int IdTransaction { get {  return idTransaction; } set {  idTransaction = value; } }
         public string Worker { get { return worker; } set { worker = value; } }
         public int Amount { get { return amount; }

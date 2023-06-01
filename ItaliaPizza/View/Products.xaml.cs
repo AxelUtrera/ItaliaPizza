@@ -23,6 +23,7 @@ namespace View
     /// </summary>
     public partial class Products : Window
     {
+        public static Worker workerLogged;
 
         private ObservableCollection<ProductToView> products;
 
@@ -155,6 +156,13 @@ namespace View
                 ProductsTable.ItemsSource = products;
             }
         }
-     
+
+        private void Button_InventoryReport_Click(object sender, RoutedEventArgs e)
+        {
+            InventoryReport.workerLogged = workerLogged;
+            InventoryReport inventoryReportWindow = new InventoryReport();
+            Close();
+            inventoryReportWindow.ShowDialog();
+        }
     }
 }

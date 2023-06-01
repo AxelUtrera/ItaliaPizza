@@ -55,6 +55,16 @@
             </Button>
             <Label Content="Cantidad a retirar:" HorizontalAlignment="Left" Margin="135,313,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Foreground="White"/>
             <Label Content="Motivo del Retiro:" HorizontalAlignment="Left" Margin="474,313,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Foreground="White"/>
+            <Button Width="35" Click="Button_Exit_Click" Cursor="Hand" Height="35" VerticalAlignment="Top" Margin="1378,30,28,0">
+                <Button.Template>
+                    <ControlTemplate  TargetType="{x:Type Button}">
+                        <Border Background="Transparent">
+                            <Image Source="/Img/Icon_Logout.png" Width="35" Height="35"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Label x:Name="Label_Cash2" Content="" HorizontalAlignment="Left" Margin="432,193,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="White" FontSize="24"/>
         </Grid>
     </Viewbox>
 
