@@ -51,8 +51,48 @@ namespace Logic
 		
         }
 
-		//Recupera los datos de los productos en la orden.
-		public static List<ProductToView> GetProductByIdOrder(int idOrder)
+
+        public static List<ProductToView> GetAllActiveProductToView()
+        {
+            List<ProductToView> productsObtained = new List<ProductToView>();
+
+            try
+            {
+                using (var database = new ItaliaPizzaEntities())
+                {
+                    var allProducts = database.product.Where(p => p.active).ToList();
+
+                    foreach (var product in allProducts)
+                    {
+                        ProductToView recoverProduct = new ProductToView()
+                        {
+                            Name = product.productName,
+                            Description = product.description,
+                            ProductCode = product.productCode,
+                            Price = "$" + product.price.ToString(),
+                            Restrictions = product.restrictions,
+                            Active = product.active == true ? "Si" : "No",
+                            Image = ImageLogic.ConvertToBitMapImage(product.picture),
+                            Preparation = product.preparation,
+                            IdRecipe = product.idRecipe,
+                            Quantity = product.quantity
+                        };
+
+                        productsObtained.Add(recoverProduct);
+                    }
+                }
+            }
+            catch (ArgumentNullException ex)
+            {
+
+            }
+
+            return productsObtained;
+
+        }
+
+        //Recupera los datos de los productos en la orden.
+        public static List<ProductToView> GetProductByIdOrder(int idOrder)
 		{
 			List<ProductToView> productInOrder = new List<ProductToView>();
 			List<orderProduct> listProductsId = OrderLogic.GetIdProductsByIdOrder(idOrder);

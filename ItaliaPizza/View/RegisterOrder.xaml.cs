@@ -43,7 +43,7 @@ namespace View
 
         private void AddProductsToTable()
         {
-            List<ProductToView> listProducts = ProductLogic.GetAllProductToView();
+            List<ProductToView> listProducts = ProductLogic.GetAllActiveProductToView();
             productsOnTable = listProducts;
             ProductTable.ItemsSource = productsOnTable;
         }

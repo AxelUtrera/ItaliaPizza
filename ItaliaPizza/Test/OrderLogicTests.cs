@@ -84,5 +84,17 @@ namespace Logic.Tests
 
             Assert.AreEqual(resultExpected, resultObtained);
         }
+
+
+        [TestMethod]
+        public void Test05_AddNewOrder_valid()
+        {
+            int orderToChange = 12;
+
+            int resultExpected = 500;
+            int resultObtained = OrderLogic.ChangeOrderStatus(orderToChange);
+
+            Assert.AreEqual(resultExpected, resultObtained);
+        }
     }
 }
