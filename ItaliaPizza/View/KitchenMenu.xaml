@@ -10,14 +10,12 @@
         Title="KitchenMenu" Height="810" Width="1440">
     <Viewbox Stretch="Fill" StretchDirection="Both">
         <Grid Width="1440" Height="810" Background="#000">
-
-            <Grid Cursor="Hand">
-                <Grid.Background>
-                    <ImageBrush ImageSource="/Img/MainMenu_Background.jpg" Stretch="UniformToFill" Opacity=".7"></ImageBrush>
-                </Grid.Background>
-                <StackPanel Orientation="Horizontal" Height="50" VerticalAlignment="Top" Margin="20">
-                    <Label Margin="25,0,0,0" Content="Menu principal" Foreground="#f3f3f3" FontSize="30"></Label>
-                    <Button Width="35" Click="Button_Exit_Click" Cursor="Hand" Height="35" VerticalAlignment="Center" Margin="1100,0,0,0">
+            <Viewbox Stretch="Fill" StretchDirection="Both">
+                <Grid  Width="1440" Height="810" Cursor="Hand">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/Img/MainMenu_Background.jpg" Stretch="UniformToFill" Opacity=".7"></ImageBrush>
+                    </Grid.Background>
+                    <Button Width="35" Click="Button_Exit_Click" Cursor="Hand" Height="35" VerticalAlignment="Center" Margin="1350,0,0,715">
                         <Button.Template>
                             <ControlTemplate  TargetType="Button">
                                 <Border Background="Transparent">
@@ -26,41 +24,18 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                </StackPanel>
-
-                <Rectangle HorizontalAlignment="Center" Height="670" Stroke="#5F5F5F" VerticalAlignment="Center" Width="1000" Opacity="0.6" Fill="#5F5F5F"/>
-                <Grid Margin="220,85,220,85" Cursor="" >
-                    <Grid.ColumnDefinitions>
-
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition ></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-
-                    <Label Grid.Row="0" Content="Ver Recetas" FontSize="20" Foreground="White" HorizontalAlignment="Center" Margin="0,-3,0,3"/>
-                    <Image Width="250" Height="250" Grid.Row="0" Grid.Column="0" Source="/Img/VisualizeKitchen.png" Stretch="UniformToFill" Cursor="Hand" MouseLeftButtonDown="Image_SeeRecipe_Click" Opacity=".9" />
-
-                    <Label Grid.Row="0" Grid.Column="1" Content="Resgistrar Receta" FontSize="20" Foreground="White" HorizontalAlignment="Center" Margin="0,-3,0,3"></Label>
-                    <Image Width="250" Height="250" Grid.Row="0" Grid.Column="2" Source="/Img/RecordKitchen.png" Stretch="UniformToFill" Cursor="Hand" MouseLeftButtonDown="Image_RecordRecipe_Click" />
-
-                    <Label Grid.Row="1" Grid.Column="0" Content="Eliminar Receta" FontSize="20" Foreground="White" HorizontalAlignment="Center"></Label>
-                    <Image Width="250" Height="250" Grid.Row="1" Grid.Column="0" Source="/Img/DeleteKitchen.png" Stretch="UniformToFill" Cursor="Hand" MouseLeftButtonDown="Image_DeleteRecipe_Click" />
-
-                    <Label Grid.Row="1" Grid.Column="2"  Content="Editar Receta" FontSize="20" Foreground="White" HorizontalAlignment="Center"></Label>
-                    <Image Width="250" Height="250" Grid.Row="1" Grid.Column="2" Source="/Img/EditKitchen.png" Stretch="UniformToFill" Cursor="Hand" MouseLeftButtonDown="Image_EditRecipe_Click" />
-
-
-
+                    <Rectangle HorizontalAlignment="Center" Height="670" Stroke="#5F5F5F" VerticalAlignment="Center" Width="1245" Opacity="0.6" Fill="#5F5F5F"/>
+                    <Label Content="INGREDIENTES" HorizontalAlignment="Left" Margin="254,234,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="36" Foreground="White" Width="314" HorizontalContentAlignment="Center"/>
+                    <Image x:Name="Image_ButtonIngredients" HorizontalAlignment="Left" Height="243" Margin="252,325,0,0" VerticalAlignment="Top" Width="314" Source="/Img/Image_Oil.jpg" MouseLeftButtonDown="Image_ButtonIngredients_MouseLeftButtonDown"/>
+                    <Label Content="RECETAS" HorizontalAlignment="Left" Margin="840,234,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="36" Foreground="White" Width="314" HorizontalContentAlignment="Center"/>
+                    <Image x:Name="Image_ButtonRecipes" HorizontalAlignment="Left" Height="243" Margin="838,325,0,0" VerticalAlignment="Top" Width="314" Source="/Img/RecipesView.jpg" ToolTip="Menu Recetas" Stretch="Fill" MouseLeftButtonDown="Image_ButtonRecipes_MouseLeftButtonDown">
+                        <Image.OpacityMask>
+                            <ImageBrush ImageSource="/Img/Image_Products.jpg" Stretch="Fill"/>
+                        </Image.OpacityMask>
+                    </Image>
                 </Grid>
-				
-				<Button Content="Button" HorizontalAlignment="Left" Margin="45,240,0,0" VerticalAlignment="Top" Height="55" Width="110" Click="Button_Click"/>
+            </Viewbox>
 
-
-			</Grid>
         </Grid>
     </Viewbox>
 

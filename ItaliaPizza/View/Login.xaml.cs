@@ -34,12 +34,11 @@ namespace View
             Model.Worker worker = UserLogic.GetWorkerByUsername(TextBox_Username.Text);
 
             int resultAutenticationUser = UserLogic.AutenticateUser(TextBox_Username.Text, PasswordBox_PasswordUser.Password);
-
             if (resultAutenticationUser == statusOK && UserLogic.GetUserById(worker.IdUser).IsActive)
             {
                 MainMenu.workerLogged = worker;
                 MainMenu mainMenu = new MainMenu();
-         
+                
                 if (worker.Role == "Administrador")
                 {
                     mainMenu.ImageOrders.IsEnabled = false;

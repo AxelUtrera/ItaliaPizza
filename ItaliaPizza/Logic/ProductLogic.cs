@@ -3,6 +3,7 @@ using Model;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core;
 using System.Data.Entity.Validation;
 using System.Linq;
 
@@ -260,6 +261,31 @@ namespace Logic
 
             return responseCode;
         }
-
+        public static bool UpdateQuantity(Product product)
+        {
+            bool result = false;
+            using (var context = new ItaliaPizzaEntities())
+            {
+                try
+                {
+                    var foundProduct = context.product.Where(x => x.productCode.Equals(product.ProductCode)).FirstOrDefault();
+                    if (foundProduct != null)
+                    {
+                        foundProduct.quantity = product.Quantity;
+                        context.SaveChanges();
+                        result = true;
+                    }
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+				catch(DbEntityValidationException ex)
+				{
+					Console.WriteLine(ex.Message);
+				}
+            }
+            return result;
+        }
     }
 }

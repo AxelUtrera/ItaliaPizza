@@ -46,11 +46,13 @@
                     <DataTemplate>
                         <Grid Margin="3">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="430"></ColumnDefinition>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="290"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="{Binding IngredientName}"></TextBlock>
-                            <TextBlock Grid.Column="1" Text="{Binding Quantity}"></TextBlock>
+                            <TextBlock Grid.Column="0" Text="{Binding IngredientName}"/>
+                            <TextBlock Grid.Column="2" Text="{Binding Quantity}"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Measurement}"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
