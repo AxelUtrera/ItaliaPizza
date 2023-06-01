@@ -50,7 +50,6 @@ namespace View
                 UserRegister userRegister = new UserRegister();
                 userRegister.SetModifyUserForm(userToModify);
                 userRegister.Show();
-                Close();
             }
             else
             {
@@ -63,7 +62,7 @@ namespace View
         {
             if (UsersTable.SelectedItem != null)
             {
-                MessageBoxResult result = MessageBox.Show("¿Está seguro de cancelar la eliminación del usuario?", "", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                MessageBoxResult result = MessageBox.Show("¿Desea eliminar al usuario?", "", MessageBoxButton.YesNo, MessageBoxImage.Information);
 
                 if (result == MessageBoxResult.Yes)
                 {
@@ -80,10 +79,10 @@ namespace View
                         MessageBox.Show("Ha ocurrido un error al intentar eliminar al usuario, inténtelo de nuevo.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Por favor, seleccione un usuario.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione un usuario.", "", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
 
@@ -114,7 +113,6 @@ namespace View
 		{
 			UserRegister userRegister = new UserRegister();
 			userRegister.Show();
-			Close();
 		}
 
 	}

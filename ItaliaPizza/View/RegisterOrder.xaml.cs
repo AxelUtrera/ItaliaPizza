@@ -18,11 +18,10 @@ namespace View
     {
         public static Worker workerLogged { get; set; }
         public static Order orderToCreate = new Order();
-
         private List<ProductToView> productsInOrder = new List<ProductToView>();
         private Address addressOrder = new Address();
-        private ObservableCollection<ProductToView> productsOnTable;
-
+        private List<ProductToView> productsOnTable;
+       
         public RegisterOrder()
         {
             InitializeComponent();
@@ -45,8 +44,8 @@ namespace View
         private void AddProductsToTable()
         {
             List<ProductToView> listProducts = ProductLogic.GetAllProductToView();
-            productsOnTable = new ObservableCollection<ProductToView>(listProducts);
-            ProductTable.ItemsSource = listProducts;
+            productsOnTable = listProducts;
+            ProductTable.ItemsSource = productsOnTable;
         }
 
 
@@ -66,6 +65,7 @@ namespace View
         }
 
 
+
         private void Button_AddProduct_Click(object sender, MouseButtonEventArgs e)
         {
             ProductToView productSelected = new ProductToView();
@@ -77,29 +77,60 @@ namespace View
                 productSelected = (ProductToView)item;
             }
 
-            AddToOrder(productSelected);
-            ReloadOrderTable();
+            if (productSelected != null)
+            {
+                if (productSelected.Quantity > 0)
+                {
+                    int productIndex = productsOnTable.FindIndex(p => p.Name.Equals(productSelected.Name));
+                    productsOnTable[productIndex].Quantity -= 1;
+                    AddToOrder(productSelected);
+                }
+                else
+                {
+                    MessageBox.Show("No quedan mas productos de este tipo", "Sin disponibilidad", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+                Console.WriteLine(productSelected.Quantity);
+            }
 
+            ReloadProductTable();
+            ReloadOrderTable();
             Label_Subtotal.Content = "$" +SetSubtotal().ToString("N2");
             Label_IVA.Content = "$"+SetIVA().ToString("N2");
             Label_Total.Content = "$" + SetTotal().ToString("N2");
         }
-       
+
+
+        private void ReloadProductTable()
+        {
+            ProductTable.ItemsSource = null;
+            ProductTable.ItemsSource = productsOnTable;
+        }
+
 
         private void AddToOrder(ProductToView product)
         {
-            ProductToView productInOrder = productsInOrder.FirstOrDefault(p => p.Name.Equals(product.Name));
+            ProductToView inOrder = productsInOrder.FirstOrDefault(p => p.Name.Equals(product.Name));
 
-            if (productInOrder != null)
+            if (inOrder != null)
             {
-                productInOrder.Quantity += 1;
-                productInOrder.SubtotalProduct = "$"+(Double.Parse(productInOrder.Price.Replace("$", "")) * productInOrder.Quantity);
+                inOrder.Quantity += 1;
+                inOrder.SubtotalProduct = "$"+(Double.Parse(inOrder.Price.Replace("$", "")) * inOrder.Quantity);
             }
             else
-            {
-                product.Quantity = 1;
-                product.SubtotalProduct = "$"+(Double.Parse(product.Price.Replace("$", "")) * product.Quantity);
-                productsInOrder.Add(product);
+            {   
+                ProductToView newProductForOrder = new ProductToView() 
+                { 
+                    Name = product.Name,
+                    Price = product.Price,
+                    SubtotalProduct = product.SubtotalProduct,
+                    Quantity = 1,
+                    ProductCode = product.ProductCode,
+                    Active = product.Active,
+                    Description = product.Description
+                };
+
+                newProductForOrder.SubtotalProduct = "$"+(Double.Parse(newProductForOrder.Price.Replace("$", "")) * newProductForOrder.Quantity);
+                productsInOrder.Add(newProductForOrder);
             }
         }
 
@@ -157,6 +188,8 @@ namespace View
             MessageBoxResult result = MessageBox.Show("¿Quiere salir?, los datos no seran guardados","Cancelar registro", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
+                Orders orders = new Orders();
+                orders.Show();
                 this.Close();
             }
         }
@@ -186,14 +219,16 @@ namespace View
                 orderToCreate.hour = actualDateTime.ToString("HH:mm:ss");
                 orderToCreate.idWorker = workerLogged.Username;
                 orderToCreate.nameCustomer = Label_ClientName.Content.ToString();
+
                 string dataTotal = Label_Total.Content.ToString();
                 string cleanTotal = dataTotal.Replace("$", "");
                 orderToCreate.total = Double.Parse(cleanTotal);
 
                 if (addressOrder.idCustomer != 0) {
-                    if (OrderLogic.AddOrder(orderToCreate, productsInOrder, addressOrder) == 200)
+                    if (OrderLogic.AddOrder(orderToCreate, productsInOrder, addressOrder) == 200 && ProductLogic.UpdateQuantityProduct(productsOnTable) == 200)
                     {
                         MessageBox.Show("Se agrego un nuevo pedido!", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+
                     }
                     else
                     {
@@ -202,7 +237,7 @@ namespace View
                 }
                 else
                 {
-                    if (OrderLogic.AddOrder(orderToCreate, productsInOrder) == 200)
+                    if (OrderLogic.AddOrder(orderToCreate, productsInOrder) == 200 && ProductLogic.UpdateQuantityProduct(productsOnTable) == 200)
                     {
                         MessageBox.Show("Se agrego un nuevo pedido!", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
@@ -211,9 +246,9 @@ namespace View
                         MessageBox.Show("Ocurrio un error al registrar la orden.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
+                Orders orders = new Orders();
+                orders.Show();
                 this.Close();
-
-
             }
             else
             {
@@ -270,12 +305,18 @@ namespace View
                 productSelected = (ProductToView)item;
             }
 
+
             MessageBoxResult response = MessageBox.Show("¿Desea quitar el producto?", "Quitar producto", MessageBoxButton.YesNo, MessageBoxImage.Question);
             
             if (response == MessageBoxResult.Yes)
             {
+
                 productsInOrder.Remove(productSelected);
+                ProductToView productOnProductTable = productsOnTable.FirstOrDefault(p => p.Name.Equals(productSelected.Name));
+                productOnProductTable.Quantity += productSelected.Quantity;
             }
+
+            ReloadProductTable();
             ReloadOrderTable();
             Label_Subtotal.Content = "$" + SetSubtotal().ToString("N2");
             Label_IVA.Content = "$" + SetIVA().ToString("N2");
@@ -302,17 +343,27 @@ namespace View
                     double subtotalProductToDouble = Double.Parse(productToMinus.SubtotalProduct.Replace("$", ""));
                     double priceProductToDouble = Double.Parse(productToMinus.Price.Replace("$", ""));
                     productToMinus.SubtotalProduct = "$" + (subtotalProductToDouble - priceProductToDouble);
+                    AddOneAtQuantityOnProductTable(productSelected);
                 }
                 else
                 {
+                    AddOneAtQuantityOnProductTable(productSelected);
                     productsInOrder.Remove(productToMinus);
                 }
             }
 
             ReloadOrderTable();
+            ReloadProductTable();
             Label_Subtotal.Content = "$" + SetSubtotal().ToString("N2");
             Label_IVA.Content = "$" + SetIVA().ToString("N2");
             Label_Total.Content = "$" + SetTotal().ToString("N2");
+        }
+
+
+        private void AddOneAtQuantityOnProductTable(ProductToView productSelected)
+        {
+            ProductToView productOnTableProduct = productsOnTable.FirstOrDefault(p => p.Name.Equals(productSelected.Name));
+            productOnTableProduct.Quantity += 1;
         }
 
 
@@ -325,12 +376,17 @@ namespace View
             }
             else if(!ValidateChangeOrder(productsRegistered, productsInOrder))
             {
+                string dataTotal = Label_Total.Content.ToString();
+                string cleanTotal = dataTotal.Replace("$", "");
+                orderToCreate.total = Double.Parse(cleanTotal);
                 MessageBoxResult response = MessageBox.Show("¿Esta seguro de guardar los cambios?", "Guardar cambios", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (response == MessageBoxResult.Yes)
                 {
-                    if (OrderLogic.UpdateProductsInOrder(productsInOrder, orderToCreate) == 200)
+                    if (OrderLogic.UpdateProductsInOrder(productsInOrder, orderToCreate) == 200 && ProductLogic.UpdateQuantityProduct(productsOnTable) == 200)
                     {
                         MessageBox.Show("Los cambios han sido guardados", "Cambios guardados", MessageBoxButton.OK, MessageBoxImage.Information);
+                        Orders orders = new Orders();
+                        orders.Show();
                         this.Close();
                     }
                 }

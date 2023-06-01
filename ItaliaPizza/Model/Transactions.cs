@@ -21,7 +21,6 @@ namespace Model
             {
                 amount = value;
             } }
-
         public Transactions()
         {
 

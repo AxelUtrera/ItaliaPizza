@@ -134,7 +134,7 @@
     <Compile Include="ProductLogic.cs" />
     <Compile Include="RecipeLogic.cs" />
     <Compile Include="SupplierLogic.cs" />
-    <Compile Include="SupplierOrderLogic.cs" />
+    <Compile Include="SupplyOrderLogic.cs" />
     <Compile Include="ShowPendingOrdersLogic.cs" />
     <Compile Include="UnitOfMeasurementLogic.cs" />
     <Compile Include="UserLogic.cs" />
@@ -143,7 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
-      <Project>{da129949-f5cc-4e26-9cd8-ab4a72c955b4}</Project>
+      <Project>{94c7bc2e-073e-48af-bad5-c756c38fd51e}</Project>
       <Name>DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">

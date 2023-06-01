@@ -14,6 +14,12 @@ namespace DataAccess
     
     public partial class supplier
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public supplier()
+        {
+            this.supplierOrder = new HashSet<supplierOrder>();
+        }
+    
         public int idSupplier { get; set; }
         public string supplierAddress { get; set; }
         public string email { get; set; }
@@ -22,5 +28,8 @@ namespace DataAccess
         public string supplierType { get; set; }
         public string supplierName { get; set; }
         public bool active { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<supplierOrder> supplierOrder { get; set; }
     }
 }

@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace View
 {
-    /// <summary>
-    /// Lógica de interacción para MainMenu.xaml
-    /// </summary>
     public partial class MainMenu : Window
     {
         public static Worker workerLogged;
@@ -47,10 +44,10 @@ namespace View
 
         private void Button_CashBox_Click(object sender, MouseButtonEventArgs e)
         {
-            TakeOutCash.workerLogged = workerLogged;
-            TakeOutCash takeOutCashWindow = new TakeOutCash();
+            PendingPayOrders.loggedWorker = workerLogged;
+            PendingPayOrders pendingPayOrders = new PendingPayOrders();
+            pendingPayOrders.Show();
             Close();
-            takeOutCashWindow.ShowDialog();
         }
 
 

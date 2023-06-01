@@ -1,17 +1,29 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Logic;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataAccess;
 using Model;
-using System.Data.Entity;
+using Syncfusion.Windows.Shared;
+using System;
 using Moq;
+using System.Data.Entity;
 
 namespace Logic.Tests
 {
+    internal class OrderProductComparer : Comparer<orderProduct>
+    {
+        public override int Compare(orderProduct x, orderProduct y)
+        {
+            if (x.idOrderProduct == y.idOrderProduct && x.idOrder == y.idOrder && x.idProduct == y.idProduct && x.quantity == y.quantity)
+            {
+                return 0;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+    }
+
     [TestClass()]
     public class OrderLogicTests
     {
@@ -19,8 +31,8 @@ namespace Logic.Tests
         public void GetOrders_OrdersExist_ReturnsNonDeliveredOrders()
         {
             var expected = 3;
-             var result = OrderLogic.GetOrders().Count;
-            Assert.AreEqual(expected,result ); 
+            var result = OrderLogic.GetOrders().Count;
+            Assert.AreEqual(expected, result);
         }
 
 
@@ -50,6 +62,27 @@ namespace Logic.Tests
             Assert.AreEqual("15:30", result[1].hour);
             Assert.AreEqual("J1000", result[1].idWorker);
             Assert.AreEqual("Domicilio", result[1].typeOrder);
+        }
+
+
+        [TestMethod]
+        public void Test03_GetPayPendingOrders_Valid()
+        {
+            List<Order> orders = OrderLogic.GetPayPendingOrders();
+
+            Assert.IsTrue(orders.Count > 0);
+        }
+
+
+        [TestMethod]
+        public void Test04_ChangeOrderStatus_Valid()
+        {
+            int orderToChange = 49;
+
+            int resultExpected = 200;
+            int resultObtained = OrderLogic.ChangeOrderStatus(orderToChange);
+
+            Assert.AreEqual(resultExpected, resultObtained);
         }
     }
 }
