@@ -237,7 +237,7 @@ namespace View
                 }
                 else
                 {
-                    if (OrderLogic.AddOrder(orderToCreate, productsInOrder) == 200 && ProductLogic.UpdateQuantityProduct(productsInOrder) == 200)
+                    if (OrderLogic.AddOrder(orderToCreate, productsInOrder) == 200 && ProductLogic.UpdateQuantityProduct(productsOnTable) == 200)
                     {
                         MessageBox.Show("Se agrego un nuevo pedido!", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
                     }

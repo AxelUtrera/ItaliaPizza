@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace View
 {
@@ -17,7 +18,7 @@ namespace View
     public partial class Orders : Window
     {
         public static Worker workerLogged { get; set; }
-        private ObservableCollection<Order> ordersToTable;
+        private List<Order> ordersToTable = OrderLogic.GetOrders();
 
         public Orders()
         {
@@ -36,8 +37,7 @@ namespace View
         private void AddOrdersToTable()
         {
             List<Order> allOrders = OrderLogic.GetOrders();
-            ordersToTable = new ObservableCollection<Order>(allOrders);
-            OrdersTable.ItemsSource = ordersToTable;
+            OrdersTable.ItemsSource = allOrders;
         }
 
         private void Texbox_TextSearchChanged(object sender, TextChangedEventArgs e)
@@ -139,5 +139,42 @@ namespace View
         {
             this.Close();
         }
+
+        private void ComboBoxFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ComboBox_States.SelectedItem is ComboBoxItem selectedItem)
+            {
+                string value = selectedItem.Content.ToString();
+                List<Order> orderListFiltered;
+
+                if (value.Equals("Pendiente"))
+                {
+                    orderListFiltered = ordersToTable.Where(item => item.status.Equals("Pendiente")).ToList();
+                }
+                else if (value.Equals("En preparación"))
+                {
+                    orderListFiltered = ordersToTable.Where(item => item.status.Equals("En preparación")).ToList();
+                }
+                else if (value.Equals("Preparado"))
+                {
+                    orderListFiltered = ordersToTable.Where(item => item.status.Equals("Preparado")).ToList();
+                }
+                else if (value.Equals("Entregado"))
+                {
+                    orderListFiltered = ordersToTable.Where(item => item.status.Equals("Entregado")).ToList();
+                }
+                else if (value.Equals("Pagado"))
+                {
+                    orderListFiltered = ordersToTable.Where(item => item.status.Equals("Pagado")).ToList();
+                }
+                else
+                {
+                    orderListFiltered = ordersToTable;
+                }
+
+                OrdersTable.ItemsSource = orderListFiltered;
+            }
+        }
+
     }
 }

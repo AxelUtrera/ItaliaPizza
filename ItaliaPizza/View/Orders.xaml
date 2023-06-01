@@ -67,28 +67,39 @@
                     </Button.Template>
                 </Button>
             </StackPanel>
+            <StackPanel Orientation="Horizontal" Width="1180" Margin="200,0,0,0">
+                <StackPanel Orientation="Horizontal" Width="880" HorizontalAlignment="Center">
+                    <TextBox Name ="Textbox_Search" Width="750" Height="40" BorderBrush="Transparent" VerticalAlignment="Center" TextChanged="Texbox_TextSearchChanged">
+                        <TextBox.Background>
+                            <SolidColorBrush Color="#848484" Opacity=".5"/>
+                        </TextBox.Background>
+                    </TextBox>
+                    <Image Source="/Img/Icon_Search.png" Margin="10,0,0,0"/>
+                    <Button Width="50" Click="Button_Add_Click" Cursor="Hand" Height="50" VerticalAlignment="Center" Margin="40,0,0,0">
+                        <Button.Template>
+                            <ControlTemplate  TargetType="Button">
+                                <Border Background="#55B633" CornerRadius="30">
+                                    <Image Source="/Img/Icon_AddNew.png" Width="40" Height="40">
+                                        <Image.ToolTip>
+                                            <ToolTip Content="Agregar pedido"></ToolTip>
+                                        </Image.ToolTip>
+                                    </Image>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Width="880" HorizontalAlignment="Center">
-                <TextBox Name ="Textbox_Search" Width="750" Height="40" BorderBrush="Transparent" VerticalAlignment="Center" TextChanged="Texbox_TextSearchChanged">
-                    <TextBox.Background>
-                        <SolidColorBrush Color="#848484" Opacity=".5"/>
-                    </TextBox.Background>
-                </TextBox>
-                <Image Source="/Img/Icon_Search.png" Margin="10,0,0,0"/>
-                <Button Width="50" Click="Button_Add_Click" Cursor="Hand" Height="50" VerticalAlignment="Center" Margin="40,0,0,0">
-                    <Button.Template>
-                        <ControlTemplate  TargetType="Button">
-                            <Border Background="#55B633" CornerRadius="30">
-                                <Image Source="/Img/Icon_AddNew.png" Width="40" Height="40">
-                                    <Image.ToolTip>
-                                        <ToolTip Content="Agregar pedido"></ToolTip>
-                                    </Image.ToolTip>
-                                </Image>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
+                <ComboBox Name="ComboBox_States" FontSize="18" Height="35" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="60,0,0,0" Width="220"  SelectionChanged="ComboBoxFilter_SelectionChanged">
+                    <ComboBoxItem Content="Todos"/>
+                    <ComboBoxItem Content="Pendiente"/>
+                    <ComboBoxItem Content="En preparación"/>
+                    <ComboBoxItem Content="Preparado"/>
+                    <ComboBoxItem Content="Entregado"/>
+                    <ComboBoxItem Content="Pagado"/>
+                </ComboBox>
             </StackPanel>
+           
 
             <Border Height="650" Width="1340" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,15,0,0">
                 <StackPanel>

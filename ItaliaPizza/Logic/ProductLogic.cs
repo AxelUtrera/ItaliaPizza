@@ -283,7 +283,6 @@ namespace Logic
 					if (productDataBase != null)
 					{
 						productDataBase.quantity = product.Quantity;
-						database.Entry(productDataBase).State = EntityState.Modified;
 					}
 				}
 
