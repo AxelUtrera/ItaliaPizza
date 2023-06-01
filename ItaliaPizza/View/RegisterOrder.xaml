@@ -76,8 +76,8 @@
 
             <Grid Margin="40,10,40,40" Height="720">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="410"></ColumnDefinition>
-                    <ColumnDefinition Width="735"></ColumnDefinition>
+                    <ColumnDefinition Width="465"></ColumnDefinition>
+                    <ColumnDefinition Width="685"></ColumnDefinition>
                     <ColumnDefinition Width="270"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
@@ -108,20 +108,22 @@
 
 
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Producto" Binding="{Binding Name}" Width="auto"/>
-                            <DataGridTextColumn Header="Precio"  Binding="{Binding Price}">
-                                <DataGridTextColumn.ElementStyle>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="TextWrapping" Value="Wrap" />
-                                    </Style>
-                                </DataGridTextColumn.ElementStyle>
-                                <DataGridTextColumn.EditingElementStyle>
-                                    <Style TargetType="TextBox">
-                                        <Setter Property="TextWrapping" Value="Wrap" />
-                                        <Setter Property="AcceptsReturn" Value="true" />
-                                    </Style>
-                                </DataGridTextColumn.EditingElementStyle>
+                            <DataGridTextColumn Header="Producto" Binding="{Binding Name}" Width="auto">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                            <DataGridTextColumn.EditingElementStyle>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="AcceptsReturn" Value="true" />
+                                </Style>
+                            </DataGridTextColumn.EditingElementStyle>
                             </DataGridTextColumn>
+                            <DataGridTextColumn Header="Precio" Binding="{Binding Price}" Width="120"/>
+
+                            <DataGridTextColumn Header="Disponibles" Binding="{Binding Quantity}" Width="auto"/>
                             <DataGridTemplateColumn>
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>

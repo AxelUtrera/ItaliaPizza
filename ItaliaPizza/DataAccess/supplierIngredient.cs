@@ -14,9 +14,10 @@ namespace DataAccess
     
     public partial class supplierIngredient
     {
+        public int idSupplierIngredient { get; set; }
         public string idSupplierOrder { get; set; }
         public int idIngredient { get; set; }
-        public double quantity { get; set; }
+        public int quantity { get; set; }
     
         public virtual ingredient ingredient { get; set; }
         public virtual supplierOrder supplierOrder { get; set; }

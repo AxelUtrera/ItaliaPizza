@@ -50,7 +50,6 @@ namespace View
                 UserRegister userRegister = new UserRegister();
                 userRegister.SetModifyUserForm(userToModify);
                 userRegister.Show();
-                Close();
             }
             else
             {
@@ -114,7 +113,6 @@ namespace View
 		{
 			UserRegister userRegister = new UserRegister();
 			userRegister.Show();
-			Close();
 		}
 
 	}

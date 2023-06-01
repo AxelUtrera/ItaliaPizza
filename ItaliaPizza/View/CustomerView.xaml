@@ -115,7 +115,7 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <Button Cursor="Hand" Height="40" Margin="0, 40,0,0" Click="Button_AddCustomer_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="#f3f3f3" FontSize="20" Width="340">
+            <Button Cursor="Hand" Height="40" Margin="0, 40,0,0" Click="Button_NewCustomer_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="#f3f3f3" FontSize="20" Width="340">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border CornerRadius= "15" Background="#55B633" >

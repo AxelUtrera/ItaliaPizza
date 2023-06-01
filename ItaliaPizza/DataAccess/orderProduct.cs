@@ -14,10 +14,10 @@ namespace DataAccess
     
     public partial class orderProduct
     {
-        public int idOrderProduct { get; set; }
         public int idOrder { get; set; }
         public string idProduct { get; set; }
         public int quantity { get; set; }
+        public int idOrderProduct { get; set; }
     
         public virtual orders orders { get; set; }
         public virtual product product { get; set; }

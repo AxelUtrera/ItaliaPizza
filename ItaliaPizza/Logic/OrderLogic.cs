@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Windows.Navigation;
 
@@ -19,7 +20,7 @@ namespace Logic
 
             using (ItaliaPizzaEntities database = new ItaliaPizzaEntities())
             {
-                var ordersDataBase = database.orders.Where(o => !o.status.Equals("Entregado")).ToList();
+                var ordersDataBase = database.orders.ToList();
 
                 if (ordersDataBase != null)
                 {
@@ -139,7 +140,7 @@ namespace Logic
                     {
                         idOrder = codeOrder,
                         idProduct = product.ProductCode,
-                        quantity = product.Quantity
+                        quantity = (int)product.Quantity
                     });
                     dataBase.SaveChanges();
                     if (resultProducts != null)
@@ -164,7 +165,7 @@ namespace Logic
                     {
                         idOrder = codeOrder,
                         idProduct = product.ProductCode,
-                        quantity = product.Quantity
+                        quantity = (int)product.Quantity
                     });
                     if (resultProducts != null)
                     {
@@ -180,6 +181,7 @@ namespace Logic
             }
             return resultOperation;
         }
+
 
         //Agrega la direccion de un pedido.
         private static int AddDeliveryAddress(Address addressToDelivery, int codeOrder)
@@ -212,22 +214,27 @@ namespace Logic
             {
                 foreach (ProductToView productToUpdate in listProductToUpdate)
                 {
-                    orderProduct orderDataBase = database.orderProduct.FirstOrDefault(p => p.idOrder.Equals(orderToUpdate.idOrder) && 
+                    orderProduct orderProductDataBase = database.orderProduct.FirstOrDefault(p => p.idOrder.Equals(orderToUpdate.idOrder) && 
                                                                                            p.idProduct.Equals(productToUpdate.ProductCode));
-                    if(orderDataBase != null)
+
+                    orders orderDataBase = database.orders.FirstOrDefault(o => o.idOrder == orderToUpdate.idOrder);
+                    if(orderProductDataBase != null)
                     {
-                        orderDataBase.quantity = productToUpdate.Quantity;
-                        database.Entry(orderDataBase).State = EntityState.Modified;
+                        orderDataBase.total = orderToUpdate.total;
+                        orderProductDataBase.quantity = (int)productToUpdate.Quantity;
                     }
                     else
                     {
+                        orderDataBase.total = orderToUpdate.total;
                         database.orderProduct.Add(new orderProduct()
                         {
                             idOrder = orderToUpdate.idOrder,
                             idProduct = productToUpdate.ProductCode,
-                            quantity = productToUpdate.Quantity,
+                            quantity = (int)productToUpdate.Quantity,
                         });
                     }
+                    database.Entry(orderProductDataBase).State = EntityState.Modified;
+                    database.Entry(orderDataBase).State = EntityState.Modified;
                 }
                 var result = database.SaveChanges();
 
@@ -240,6 +247,7 @@ namespace Logic
             RemoveProductsNoRequired(listProductToUpdate, orderToUpdate);
             return resultOperation;   
         }
+
 
         private static int RemoveProductsNoRequired(List<ProductToView> productUpdated, Order orderUpdated)
         {
@@ -261,6 +269,40 @@ namespace Logic
                     resultOperation = 200;
                 }
             }
+            return resultOperation;
+        }
+
+
+        public static int ChangeOrderStatus(Order orderToChangeStatus)
+        {
+            int resultOperation = 500;
+            string[] statusList = {"Pendiente", "En preparación", "Preparado", "Entregado" };
+            using (ItaliaPizzaEntities database = new ItaliaPizzaEntities())
+            {
+                var resultConsult = database.orders.FirstOrDefault(o => o.idOrder == orderToChangeStatus.idOrder);
+
+                if(resultConsult != null)
+                {
+                    int indexStatus = Array.IndexOf(statusList, resultConsult.status);
+                    if ((indexStatus + 1) < statusList.Length)
+                    {
+                        resultConsult.status = statusList[indexStatus + 1];
+                        database.Entry(resultConsult).State = EntityState.Modified;
+                    }
+                    else
+                    {
+                        resultOperation = 404;
+                    }
+
+                    int resultSaveChanges = database.SaveChanges();
+                      
+                    if(resultSaveChanges > 0)
+                    {
+                        resultOperation = 200;
+                    }
+                }
+            }
+
             return resultOperation;
         }
     }

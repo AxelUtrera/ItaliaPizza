@@ -62,8 +62,29 @@ namespace View
 
         private void Button_Update_Click(object sender, MouseButtonEventArgs e)
         {
+            Order orderSelected = new Order();
+            var row = FindInTable<DataGridRow>((DependencyObject)e.OriginalSource);
+            if (row != null)
+            {
+                var item = row.DataContext;
+                orderSelected = (Order)item;
+            }
 
+            if(orderSelected != null)
+            {
+                string[] statusValues = { "Pendiente", "En preparación", "Preparado", "Entregado" };
+                int indexActualStatus = Array.IndexOf(statusValues, orderSelected.status);
+
+                MessageBoxResult resultMessageBox = MessageBox.Show($"El estatus del pedido cambiará a: {statusValues[indexActualStatus + 1]}", "Cambiar estado de pedido", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (resultMessageBox == MessageBoxResult.Yes)
+                {
+                    OrderLogic.ChangeOrderStatus(orderSelected);
+                }
+
+                AddOrdersToTable();
+            }
         }
+
 
         private void Button_Edit_Click(object sender, MouseButtonEventArgs e)
         {

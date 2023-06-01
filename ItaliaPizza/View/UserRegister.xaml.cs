@@ -62,7 +62,6 @@ namespace View
 
             if(buttonPressed == MessageBoxResult.Yes)
             {
-                OpenUsersView();
                 Close();
             }
         }
@@ -70,7 +69,6 @@ namespace View
 
         private void Button_Exit_Click(object sender, RoutedEventArgs e)
         {
-            OpenUsersView();
             Close();
         }
 
@@ -120,7 +118,6 @@ namespace View
                             if (UserLogic.RegisterNewWorker(newUser, newWorker) == 200)
                             {
                                 MessageBox.Show(itemsResource.GetString("UserRegister_WorkerSuccesfull_Message"), "", MessageBoxButton.OK, MessageBoxImage.Information);
-                                OpenUsersView();
                                 Close();
                             }
                         }
@@ -130,7 +127,6 @@ namespace View
                             if(UserLogic.ModifyWorker(newUser, newWorker) == 200)
                             {
                                 MessageBox.Show("Usuario modificado con éxito", "", MessageBoxButton.OK, MessageBoxImage.Information);
-                                OpenUsersView();
                                 Close();
                             }
                             else
@@ -167,7 +163,6 @@ namespace View
                             if (UserLogic.RegisterNewCustomer(newUser, newAddress) == 200)
                             {
                                 MessageBox.Show(itemsResource.GetString("UserRegister_CustomerSuccesfull_Message"), "", MessageBoxButton.OK, MessageBoxImage.Information);
-                                OpenUsersView();
                                 Close();
                             }
                         }
@@ -177,7 +172,6 @@ namespace View
                             if (UserLogic.ModifyCustomer(newUser, newAddress) == 200)
                             {
                                 MessageBox.Show("Usuario modificado con éxito", "", MessageBoxButton.OK, MessageBoxImage.Information);
-                                OpenUsersView();
                                 Close();
                             }
                             else
@@ -416,11 +410,6 @@ namespace View
             }
         }
 
-        private void OpenUsersView()
-        {
-            UsersView usersView = new UsersView();
-            usersView.Show();
-        }
 
     }
 }

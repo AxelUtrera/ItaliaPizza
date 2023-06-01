@@ -3,8 +3,10 @@ using Model;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Net;
 
 namespace Logic
 {
@@ -18,8 +20,7 @@ namespace Logic
 			{
 				using (var database = new ItaliaPizzaEntities())
 				{
-					var allProducts = from product in database.product
-									  select product;
+					var allProducts = database.product.ToList();
 
 					foreach (var product in allProducts)
 					{
@@ -34,7 +35,7 @@ namespace Logic
 							Image = ImageLogic.ConvertToBitMapImage(product.picture),
 							Preparation = product.preparation,
 							IdRecipe = product.idRecipe,
-							Quantity = (int)product.quantity	
+							Quantity = product.quantity	
 						};
 
 						productsObtained.Add(recoverProduct);
@@ -45,10 +46,7 @@ namespace Logic
 			{
 
 			}
-			catch (DbEntityValidationException ex)
-			{
-
-			}
+			
 			return productsObtained;
 		
         }
@@ -58,27 +56,34 @@ namespace Logic
 		{
 			List<ProductToView> productInOrder = new List<ProductToView>();
 			List<orderProduct> listProductsId = OrderLogic.GetIdProductsByIdOrder(idOrder);
-
-			using (ItaliaPizzaEntities database = new ItaliaPizzaEntities())
+			try
 			{
-				foreach(orderProduct product in listProductsId)
-				{
-					var productRecovered = database.product.FirstOrDefault(p => p.productCode.Equals(product.idProduct));
-					if (productRecovered != null)
-					{
-						ProductToView productToAdd = new ProductToView()
-						{
-							Name = productRecovered.productName,
-							Price = "$"+productRecovered.price,
-							ProductCode = productRecovered.productCode,
-							Restrictions = productRecovered.restrictions,
-							Quantity = product.quantity,
-							SubtotalProduct = "$"+ (productRecovered.price * product.quantity)
-						};
+				using (ItaliaPizzaEntities database = new ItaliaPizzaEntities())
+                {
+                    foreach (orderProduct product in listProductsId)
+                    {
+                        var productRecovered = database.product.FirstOrDefault(p => p.productCode.Equals(product.idProduct));
+                        if (productRecovered != null)
+                        {
+                            ProductToView productToAdd = new ProductToView()
+                            {
+                                Name = productRecovered.productName,
+                                Price = "$" + productRecovered.price,
+                                ProductCode = productRecovered.productCode,
+                                Restrictions = productRecovered.restrictions,
+                                Quantity = product.quantity,
+                                SubtotalProduct = "$" + (productRecovered.price * product.quantity)
+                            };
 
-						productInOrder.Add(productToAdd);
-					}
-				}
+                            productInOrder.Add(productToAdd);
+                        }
+                    }
+                }
+
+            }
+            catch(EntityException ex)
+			{
+				Console.WriteLine(ex);
 			}
 
 			return productInOrder;
@@ -261,5 +266,50 @@ namespace Logic
             return responseCode;
         }
 
+
+		public static int UpdateQuantityProduct(List<ProductToView> productsToUpdate)
+		{
+			int codeStatus = 500;
+
+			using (ItaliaPizzaEntities database = new ItaliaPizzaEntities())
+			{
+				foreach (var product in productsToUpdate)
+				{
+					var productDataBase = database.product.FirstOrDefault(p => p.productCode.Equals(product.ProductCode));
+					if (productDataBase != null)
+					{
+						productDataBase.quantity -= product.Quantity;
+						database.Entry(productDataBase).State = EntityState.Modified;
+					}
+				}
+
+                int result = database.SaveChanges();
+				if (result > 0)
+				{
+					codeStatus = 200;
+				}
+            }
+
+            return codeStatus;
+		}
+
+
+		private static List<ProductToView> filteredProductList(List<ProductToView> products)
+		{
+			List<ProductToView> filteredList = new List<ProductToView>();
+			List<ProductToView> productOnDataBase = GetAllProductToView();
+
+			foreach (ProductToView p in products)
+			{
+				ProductToView product = productOnDataBase.FirstOrDefault(pdb => pdb.Name.Equals(p.Name));
+
+				if (product != null)
+				{
+					filteredList.Add(product);
+				}
+			}
+
+			return filteredList;
+        }
     }
 }

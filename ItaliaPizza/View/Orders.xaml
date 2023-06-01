@@ -138,6 +138,20 @@
                                                 <Image.ToolTip>
                                                     <ToolTip Content="Editar pedido"></ToolTip>
                                                 </Image.ToolTip>
+                                                
+                                                <Image.Style>
+                                                    <Style TargetType="Image">
+                                                        <Setter Property="IsEnabled" Value="True" />
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding status}" Value="Preparado">
+                                                                <Setter Property="Visibility" Value="Hidden" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding status}" Value="En preparación">
+                                                                <Setter Property="Visibility" Value="Hidden" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
                                             </Image>
                                             <Image Source="/Img/Icon_Delete.png" Margin="0,0,25,0"  Width="25" Height="25"  Cursor="Hand" MouseLeftButtonDown="Button_Cancel_Click">
                                                 <Image.ToolTip>
@@ -151,7 +165,7 @@
                                                             <DataTrigger Binding="{Binding status}" Value="Preparado">
                                                                 <Setter Property="Visibility" Value="Hidden" />
                                                             </DataTrigger>
-                                                            <DataTrigger Binding="{Binding status}" Value="En preparacion">
+                                                            <DataTrigger Binding="{Binding status}" Value="En preparación">
                                                                 <Setter Property="Visibility" Value="Hidden" />
                                                             </DataTrigger>
                                                         </Style.Triggers>
