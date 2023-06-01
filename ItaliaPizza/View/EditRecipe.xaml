@@ -56,9 +56,11 @@
                     <DataTemplate>
                         <Grid Margin="3">
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0" Text="{Binding IngredientName}"></TextBlock>
+                            <TextBlock Grid.Column="1" Text="{Binding Measurement}"></TextBlock>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

@@ -15,7 +15,7 @@ namespace View
     {
         public App()
         {
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTMwNjgzOEAzMjMwMmUzNDJlMzBZc0pWMUNwWGZhU0JmUjR3c0k2OUJBMjZSWkFPNjN3RFlBVU5hdnhvcU9vPQ==");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjI1NDE5M0AzMjMxMmUzMTJlMzMzNWVWcGhYbm8vQnU0RlVFMEJSazFSa2luVmpuYm9MOWE2bFVSeWNNSForK3M9==");
         }
     }
 }

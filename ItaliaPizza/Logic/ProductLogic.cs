@@ -335,5 +335,28 @@ namespace Logic
 
             return codeStatus;
 		}
+        public static bool UpdateQuantity(Product product)
+        {
+            bool result = false;
+            using (var context = new ItaliaPizzaEntities())
+            {
+                try
+                {
+                    var foundProducts = context.product.Where(x => x.productCode.Equals(product.ProductCode)).FirstOrDefault();
+                    if (foundProducts != null)
+                    {
+                        foundProducts.quantity = product.Quantity;
+                        context.SaveChanges();
+                        result = true;
+                    }
+                }
+                catch (EntityException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            return result;
+        }
     }
+
 }

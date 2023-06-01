@@ -45,53 +45,20 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Core.WinForms, Version=21.1460.41.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.Core.WinForms.21.1.41\lib\net46\Syncfusion.Core.WinForms.dll</HintPath>
+    <Reference Include="Syncfusion.Data.WPF, Version=21.2460.8.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Data.WPF.21.2.8\lib\net46\Syncfusion.Data.WPF.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Core.XForms, Version=21.1.41.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.Xamarin.Core.21.1.41\lib\netstandard2.0\Syncfusion.Core.XForms.dll</HintPath>
+    <Reference Include="Syncfusion.Licensing, Version=21.2460.8.0, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Licensing.21.2.8\lib\net46\Syncfusion.Licensing.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Data.WPF, Version=21.1460.41.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.Data.WPF.21.1.41\lib\net46\Syncfusion.Data.WPF.dll</HintPath>
+    <Reference Include="Syncfusion.SfGrid.WPF, Version=21.2460.8.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfGrid.WPF.21.2.8\lib\net46\Syncfusion.SfGrid.WPF.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Grid.Base, Version=21.1460.41.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.Grid.Base.21.1.41\lib\net46\Syncfusion.Grid.Base.dll</HintPath>
+    <Reference Include="Syncfusion.SfSkinManager.WPF, Version=21.2460.8.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfSkinManager.WPF.21.2.8\lib\net46\Syncfusion.SfSkinManager.WPF.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Grid.Windows, Version=21.1460.41.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.Grid.Windows.21.1.41\lib\net46\Syncfusion.Grid.Windows.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.Licensing, Version=21.1460.41.0, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.Licensing.21.1.41\lib\net46\Syncfusion.Licensing.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.SfGrid.WPF, Version=21.1460.41.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.SfGrid.WPF.21.1.41\lib\net46\Syncfusion.SfGrid.WPF.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.SfInput.WinForms, Version=21.1460.41.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.SfInput.WinForms.21.1.41\lib\net46\Syncfusion.SfInput.WinForms.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.SfNumericUpDown.XForms, Version=21.1.41.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.Xamarin.SfNumericUpDown.21.1.41\lib\netstandard2.0\Syncfusion.SfNumericUpDown.XForms.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.SfSkinManager.WPF, Version=21.1460.41.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.SfSkinManager.WPF.21.1.41\lib\net46\Syncfusion.SfSkinManager.WPF.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.Shared.Base, Version=21.1460.41.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.Shared.Base.21.1.41\lib\net46\Syncfusion.Shared.Base.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.Shared.Windows, Version=21.1460.41.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.Shared.Windows.21.1.41\lib\net46\Syncfusion.Shared.Windows.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.Shared.WPF, Version=21.1460.41.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.Shared.WPF.21.1.41\lib\net46\Syncfusion.Shared.WPF.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.SpellChecker.Base, Version=21.1460.41.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.SpellChecker.Base.21.1.41\lib\net46\Syncfusion.SpellChecker.Base.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.Tools.Base, Version=21.1460.41.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.Tools.Base.21.1.41\lib\net46\Syncfusion.Tools.Base.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.Tools.Windows, Version=21.1460.41.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.Tools.Windows.21.1.41\lib\net46\Syncfusion.Tools.Windows.dll</HintPath>
+    <Reference Include="Syncfusion.Shared.WPF, Version=21.2460.8.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Shared.WPF.21.2.8\lib\net46\Syncfusion.Shared.WPF.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -142,20 +109,32 @@
     <Compile Include="AddProduct.xaml.cs">
       <DependentUpon>AddProduct.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CashBoxMenu.xaml.cs">
+      <DependentUpon>CashBoxMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomerView.xaml.cs">
       <DependentUpon>CustomerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="DeleteRecipe.xaml.cs">
       <DependentUpon>DeleteRecipe.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditIngredient.xaml.cs">
+      <DependentUpon>EditIngredient.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditRecipe.xaml.cs">
       <DependentUpon>EditRecipe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryReport.xaml.cs">
+      <DependentUpon>InventoryReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="KitchenMenu.xaml.cs">
       <DependentUpon>KitchenMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="EditProduct.xaml.cs">
       <DependentUpon>EditProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="KitchenMenuRecipe.xaml.cs">
+      <DependentUpon>KitchenMenuRecipe.xaml</DependentUpon>
     </Compile>
     <Compile Include="MessageNameClient.xaml.cs">
       <DependentUpon>MessageNameClient.xaml</DependentUpon>
@@ -171,6 +150,9 @@
     </Compile>
     <Compile Include="Products.xaml.cs">
       <DependentUpon>Products.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RecordIngredient.xaml.cs">
+      <DependentUpon>RecordIngredient.xaml</DependentUpon>
     </Compile>
     <Compile Include="RecordRecipe.xaml.cs">
       <DependentUpon>RecordRecipe.xaml</DependentUpon>
@@ -199,6 +181,9 @@
     <Compile Include="ShowPendingOrders.xaml.cs">
       <DependentUpon>ShowPendingOrders.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TakeOutCash.xaml.cs">
+      <DependentUpon>TakeOutCash.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserRegister.xaml.cs">
       <DependentUpon>UserRegister.xaml</DependentUpon>
     </Compile>
@@ -206,6 +191,10 @@
       <DependentUpon>UsersView.xaml</DependentUpon>
     </Compile>
     <Page Include="AddProduct.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CashBoxMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -217,7 +206,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EditIngredient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EditRecipe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InventoryReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -226,6 +223,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditProduct.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="KitchenMenuRecipe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -265,6 +266,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="RecordIngredient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="RecordRecipe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -298,6 +303,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ShowPendingOrders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TakeOutCash.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -460,7 +469,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Img\Image_Oil.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\Icon_Save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\IconPDF.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Img\Background_OrderPay.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\CashBox.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

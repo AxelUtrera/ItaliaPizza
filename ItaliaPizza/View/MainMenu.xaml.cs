@@ -44,10 +44,10 @@ namespace View
 
         private void Button_CashBox_Click(object sender, MouseButtonEventArgs e)
         {
-            PendingPayOrders.loggedWorker = workerLogged;
-            PendingPayOrders pendingPayOrders = new PendingPayOrders();
-            pendingPayOrders.Show();
+            CashBoxMenu.workerLogged = workerLogged;
+            CashBoxMenu cashBoxMenuWindow = new CashBoxMenu();
             Close();
+            cashBoxMenuWindow.ShowDialog();
         }
 
 
@@ -61,6 +61,7 @@ namespace View
 
         private void Button_Product_Click(object sender, MouseButtonEventArgs e)
         {
+            Products.workerLogged = workerLogged;
             Products productWindow = new Products();
             productWindow.ShowDialog();
         }
@@ -68,7 +69,9 @@ namespace View
 
         private void Button_Kitchen_Click(object sender, MouseButtonEventArgs e)
         {
+            KitchenMenu.workerLogged = workerLogged;
             KitchenMenu kitchenMenu = new KitchenMenu();
+            Close();
             kitchenMenu.ShowDialog();
         }
 
@@ -85,6 +88,14 @@ namespace View
         {
             UsersView usersView = new UsersView();
             usersView.ShowDialog();
+        }
+
+        private void Button_InventaryReport_Click(object sender, RoutedEventArgs e)
+        {
+            InventoryReport.workerLogged = workerLogged;
+            InventoryReport inventoryReport = new InventoryReport();
+            Close();
+            inventoryReport.ShowDialog();
         }
     }
 }

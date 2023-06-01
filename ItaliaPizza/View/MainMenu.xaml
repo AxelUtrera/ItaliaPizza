@@ -8,9 +8,9 @@
         WindowState="Maximized"
         WindowStyle="None"
         Title="MainMenu" Height="810" Width="1440">
-   
+
     <Grid Background="#000">
-       
+
         <Grid>
             <Grid.Background>
                 <ImageBrush ImageSource="/Img/MainMenu_Background.jpg" Stretch="UniformToFill" Opacity=".7"></ImageBrush>
@@ -49,7 +49,7 @@
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Caja registradora" FontSize="20" Foreground="White" HorizontalAlignment="Center"></Label>
                 <Image Name ="ImageCashBox" Width="250" Height="250" Grid.Row="0" Grid.Column="0" Source="Img/Image_Cashbox.jpg" Stretch="UniformToFill" Cursor="Hand" MouseLeftButtonDown="Button_CashBox_Click">
-                    
+
                 </Image>
 
 
@@ -76,11 +76,11 @@
                 <Label Grid.Row="1" Grid.Column="2"  Content="Usuarios" FontSize="20" Foreground="White" HorizontalAlignment="Center"></Label>
                 <Image Name ="ImageUsers" Width="250" Height="250" Grid.Row="1" Grid.Column="2" Source="/Img/Image_Users.jpg" Stretch="UniformToFill" Cursor="Hand" MouseLeftButtonDown="Button_User_Click"/>
 
-  
+
             </Grid>
 
 
         </Grid>
-        
+
     </Grid>
 </Window>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,7 @@ namespace View
     /// </summary>
     public partial class KitchenMenu : Window
     {
+        public static Worker workerLogged;
         public KitchenMenu()
         {
             InitializeComponent();
@@ -26,42 +28,23 @@ namespace View
 
         private void Button_Exit_Click(object sender, RoutedEventArgs e)
         {
+            MainMenu mainMenu = new MainMenu();
             Close();
+            mainMenu.ShowDialog();
         }
 
-        private void Image_SeeRecipe_Click(object sender, MouseButtonEventArgs e)
+        private void Image_ButtonRecipes_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            SeeRecipe seeRecipeWindow = new SeeRecipe();
+            KitchenMenuRecipe kitchenMenuRecipeWindow = new KitchenMenuRecipe();
             Close();
-            seeRecipeWindow.ShowDialog();
+            kitchenMenuRecipeWindow.ShowDialog();
         }
 
-        private void Image_DeleteRecipe_Click(object sender, MouseButtonEventArgs e)
+        private void Image_ButtonIngredients_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            DeleteRecipe deleteRecipeWIndow = new DeleteRecipe();
+            RecordIngredient recordIngredientWindow = new RecordIngredient();
             Close();
-            deleteRecipeWIndow.ShowDialog();
-        }
-
-        private void Image_EditRecipe_Click(object sender, MouseButtonEventArgs e)
-        {
-            EditRecipe editRecipeWindow = new EditRecipe();
-            Close();
-            editRecipeWindow.ShowDialog();
-        }
-
-        private void Image_RecordRecipe_Click(object sender, MouseButtonEventArgs e)
-        {
-            RecordRecipe recordRecipeWindow = new RecordRecipe();
-            Close();
-            recordRecipeWindow.ShowDialog();
-        }
-
-		private void Button_Click(object sender, RoutedEventArgs e)
-		{
-            ShowPendingOrders showPendingOrders = new ShowPendingOrders();
-            Close();
-            showPendingOrders.ShowDialog();
+            recordIngredientWindow.ShowDialog();
         }
     }
 }

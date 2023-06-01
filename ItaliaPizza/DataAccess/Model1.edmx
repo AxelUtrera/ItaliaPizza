@@ -200,7 +200,7 @@
           <Property Name="workerNumber" Type="varchar" MaxLength="5" Nullable="false" />
           <Property Name="idUser" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK__address__idCusto__5812160E">
+        <Association Name="FK__address__idCusto__59FA5E80">
           <End Role="customer" Type="Self.customer" Multiplicity="1" />
           <End Role="address" Type="Self.address" Multiplicity="*" />
           <ReferentialConstraint>
@@ -212,7 +212,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__customer__idUser__59063A47">
+        <Association Name="FK__customer__idUser__5AEE82B9">
           <End Role="users" Type="Self.users" Multiplicity="1" />
           <End Role="customer" Type="Self.customer" Multiplicity="*" />
           <ReferentialConstraint>
@@ -224,7 +224,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__dailyBala__idCas__5AEE82B9">
+        <Association Name="FK__dailyBala__idCas__5CD6CB2B">
           <End Role="cashbox" Type="Self.cashbox" Multiplicity="1" />
           <End Role="dailyBalance" Type="Self.dailyBalance" Multiplicity="*" />
           <ReferentialConstraint>
@@ -236,7 +236,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__dailyBala__idWor__59FA5E80">
+        <Association Name="FK__dailyBala__idWor__5BE2A6F2">
           <End Role="worker" Type="Self.worker" Multiplicity="1" />
           <End Role="dailyBalance" Type="Self.dailyBalance" Multiplicity="*" />
           <ReferentialConstraint>
@@ -248,7 +248,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ingredien__idUni__5EBF139D">
+        <Association Name="FK__ingredien__idUni__60A75C0F">
           <End Role="unitOfMeasurement" Type="Self.unitOfMeasurement" Multiplicity="1" />
           <End Role="ingredient" Type="Self.ingredient" Multiplicity="*" />
           <ReferentialConstraint>
@@ -260,7 +260,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__orders__idWorker__619B8048">
+        <Association Name="FK__orders__idWorker__6383C8BA">
           <End Role="worker" Type="Self.worker" Multiplicity="1" />
           <End Role="orders" Type="Self.orders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -296,7 +296,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__recipeIng__idRec__6383C8BA">
+        <Association Name="FK__recipeIng__idRec__656C112C">
           <End Role="recipe" Type="Self.recipe" Multiplicity="1" />
           <End Role="recipeIngredient" Type="Self.recipeIngredient" Multiplicity="*" />
           <ReferentialConstraint>
@@ -308,7 +308,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__worker__idUser__6B24EA82">
+        <Association Name="FK__worker__idUser__6E01572D">
           <End Role="users" Type="Self.users" Multiplicity="1" />
           <End Role="worker" Type="Self.worker" Multiplicity="*" />
           <ReferentialConstraint>
@@ -484,27 +484,27 @@
           <EntitySet Name="unitOfMeasurement" EntityType="Self.unitOfMeasurement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="worker" EntityType="Self.worker" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__address__idCusto__5812160E" Association="Self.FK__address__idCusto__5812160E">
+          <AssociationSet Name="FK__address__idCusto__59FA5E80" Association="Self.FK__address__idCusto__59FA5E80">
             <End Role="customer" EntitySet="customer" />
             <End Role="address" EntitySet="address" />
           </AssociationSet>
-          <AssociationSet Name="FK__customer__idUser__59063A47" Association="Self.FK__customer__idUser__59063A47">
+          <AssociationSet Name="FK__customer__idUser__5AEE82B9" Association="Self.FK__customer__idUser__5AEE82B9">
             <End Role="users" EntitySet="users" />
             <End Role="customer" EntitySet="customer" />
           </AssociationSet>
-          <AssociationSet Name="FK__dailyBala__idCas__5AEE82B9" Association="Self.FK__dailyBala__idCas__5AEE82B9">
+          <AssociationSet Name="FK__dailyBala__idCas__5CD6CB2B" Association="Self.FK__dailyBala__idCas__5CD6CB2B">
             <End Role="cashbox" EntitySet="cashbox" />
             <End Role="dailyBalance" EntitySet="dailyBalance" />
           </AssociationSet>
-          <AssociationSet Name="FK__dailyBala__idWor__59FA5E80" Association="Self.FK__dailyBala__idWor__59FA5E80">
+          <AssociationSet Name="FK__dailyBala__idWor__5BE2A6F2" Association="Self.FK__dailyBala__idWor__5BE2A6F2">
             <End Role="worker" EntitySet="worker" />
             <End Role="dailyBalance" EntitySet="dailyBalance" />
           </AssociationSet>
-          <AssociationSet Name="FK__ingredien__idUni__5EBF139D" Association="Self.FK__ingredien__idUni__5EBF139D">
+          <AssociationSet Name="FK__ingredien__idUni__60A75C0F" Association="Self.FK__ingredien__idUni__60A75C0F">
             <End Role="unitOfMeasurement" EntitySet="unitOfMeasurement" />
             <End Role="ingredient" EntitySet="ingredient" />
           </AssociationSet>
-          <AssociationSet Name="FK__orders__idWorker__619B8048" Association="Self.FK__orders__idWorker__619B8048">
+          <AssociationSet Name="FK__orders__idWorker__6383C8BA" Association="Self.FK__orders__idWorker__6383C8BA">
             <End Role="worker" EntitySet="worker" />
             <End Role="orders" EntitySet="orders" />
           </AssociationSet>
@@ -516,11 +516,11 @@
             <End Role="ingredient" EntitySet="ingredient" />
             <End Role="recipeIngredient" EntitySet="recipeIngredient" />
           </AssociationSet>
-          <AssociationSet Name="FK__recipeIng__idRec__6383C8BA" Association="Self.FK__recipeIng__idRec__6383C8BA">
+          <AssociationSet Name="FK__recipeIng__idRec__656C112C" Association="Self.FK__recipeIng__idRec__656C112C">
             <End Role="recipe" EntitySet="recipe" />
             <End Role="recipeIngredient" EntitySet="recipeIngredient" />
           </AssociationSet>
-          <AssociationSet Name="FK__worker__idUser__6B24EA82" Association="Self.FK__worker__idUser__6B24EA82">
+          <AssociationSet Name="FK__worker__idUser__6E01572D" Association="Self.FK__worker__idUser__6E01572D">
             <End Role="users" EntitySet="users" />
             <End Role="worker" EntitySet="worker" />
           </AssociationSet>
@@ -590,7 +590,7 @@
           <Property Name="neighborhood" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="instructions" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="idCustomer" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="customer" Relationship="Self.FK__address__idCusto__5812160E" FromRole="address" ToRole="customer" />
+          <NavigationProperty Name="customer" Relationship="Self.FK__address__idCusto__59FA5E80" FromRole="address" ToRole="customer" />
           <NavigationProperty Name="deliveryOrder" Relationship="Self.FK_deliveryOrder_address" FromRole="address" ToRole="deliveryOrder" />
         </EntityType>
         <EntityType Name="cashbox">
@@ -601,7 +601,7 @@
           <Property Name="incomes" Type="Double" Nullable="false" />
           <Property Name="outcomes" Type="Double" Nullable="false" />
           <Property Name="totalAmount" Type="Double" Nullable="false" />
-          <NavigationProperty Name="dailyBalance" Relationship="Self.FK__dailyBala__idCas__5AEE82B9" FromRole="cashbox" ToRole="dailyBalance" />
+          <NavigationProperty Name="dailyBalance" Relationship="Self.FK__dailyBala__idCas__5CD6CB2B" FromRole="cashbox" ToRole="dailyBalance" />
           <NavigationProperty Name="transactions" Relationship="Self.fk_idCashbox" FromRole="cashbox" ToRole="transactions" />
         </EntityType>
         <EntityType Name="customer">
@@ -610,8 +610,8 @@
           </Key>
           <Property Name="idCustomer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="idUser" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="address" Relationship="Self.FK__address__idCusto__5812160E" FromRole="customer" ToRole="address" />
-          <NavigationProperty Name="users" Relationship="Self.FK__customer__idUser__59063A47" FromRole="customer" ToRole="users" />
+          <NavigationProperty Name="address" Relationship="Self.FK__address__idCusto__59FA5E80" FromRole="customer" ToRole="address" />
+          <NavigationProperty Name="users" Relationship="Self.FK__customer__idUser__5AEE82B9" FromRole="customer" ToRole="users" />
           <NavigationProperty Name="deliveryOrder" Relationship="Self.FK_deliveryOrder_customer" FromRole="customer" ToRole="deliveryOrder" />
         </EntityType>
         <EntityType Name="dailyBalance">
@@ -623,8 +623,8 @@
           <Property Name="totalMoney" Type="Double" Nullable="false" />
           <Property Name="idWorker" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="idCashbox" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="cashbox" Relationship="Self.FK__dailyBala__idCas__5AEE82B9" FromRole="dailyBalance" ToRole="cashbox" />
-          <NavigationProperty Name="worker" Relationship="Self.FK__dailyBala__idWor__59FA5E80" FromRole="dailyBalance" ToRole="worker" />
+          <NavigationProperty Name="cashbox" Relationship="Self.FK__dailyBala__idCas__5CD6CB2B" FromRole="dailyBalance" ToRole="cashbox" />
+          <NavigationProperty Name="worker" Relationship="Self.FK__dailyBala__idWor__5BE2A6F2" FromRole="dailyBalance" ToRole="worker" />
         </EntityType>
         <EntityType Name="deliveryOrder">
           <Key>
@@ -648,7 +648,7 @@
           <Property Name="active" Type="Boolean" Nullable="false" />
           <Property Name="warningTreshold" Type="Int32" Nullable="false" />
           <Property Name="idUnitOfMeasurement" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="unitOfMeasurement" Relationship="Self.FK__ingredien__idUni__5EBF139D" FromRole="ingredient" ToRole="unitOfMeasurement" />
+          <NavigationProperty Name="unitOfMeasurement" Relationship="Self.FK__ingredien__idUni__60A75C0F" FromRole="ingredient" ToRole="unitOfMeasurement" />
           <NavigationProperty Name="recipeIngredient" Relationship="Self.FK__recipeIng__idIng__6FE99F9F" FromRole="ingredient" ToRole="recipeIngredient" />
           <NavigationProperty Name="supplierIngredient" Relationship="Self.FK_supplierIngredient_ingredient" FromRole="ingredient" ToRole="supplierIngredient" />
         </EntityType>
@@ -677,7 +677,7 @@
           <Property Name="total" Type="Double" Nullable="false" />
           <NavigationProperty Name="deliveryOrder" Relationship="Self.FK_deliveryOrder_orders" FromRole="orders" ToRole="deliveryOrder" />
           <NavigationProperty Name="orderProduct" Relationship="Self.FK_orderProduct_orders" FromRole="orders" ToRole="orderProduct" />
-          <NavigationProperty Name="worker" Relationship="Self.FK__orders__idWorker__619B8048" FromRole="orders" ToRole="worker" />
+          <NavigationProperty Name="worker" Relationship="Self.FK__orders__idWorker__6383C8BA" FromRole="orders" ToRole="worker" />
         </EntityType>
         <EntityType Name="product">
           <Key>
@@ -707,7 +707,7 @@
           <Property Name="recipeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="active" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="product" Relationship="Self.FK__product__idRecip__6E01572D" FromRole="recipe" ToRole="product" />
-          <NavigationProperty Name="recipeIngredient" Relationship="Self.FK__recipeIng__idRec__6383C8BA" FromRole="recipe" ToRole="recipeIngredient" />
+          <NavigationProperty Name="recipeIngredient" Relationship="Self.FK__recipeIng__idRec__656C112C" FromRole="recipe" ToRole="recipeIngredient" />
         </EntityType>
         <EntityType Name="recipeIngredient">
           <Key>
@@ -718,7 +718,7 @@
           <Property Name="idRecipe" Type="Int32" Nullable="false" />
           <Property Name="quantity" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ingredient" Relationship="Self.FK__recipeIng__idIng__6FE99F9F" FromRole="recipeIngredient" ToRole="ingredient" />
-          <NavigationProperty Name="recipe" Relationship="Self.FK__recipeIng__idRec__6383C8BA" FromRole="recipeIngredient" ToRole="recipe" />
+          <NavigationProperty Name="recipe" Relationship="Self.FK__recipeIng__idRec__656C112C" FromRole="recipeIngredient" ToRole="recipe" />
         </EntityType>
         <EntityType Name="supplier">
           <Key>
@@ -786,7 +786,7 @@
           </Key>
           <Property Name="idUnitOfMeasurement" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="unitOfMeasurementName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ingredient" Relationship="Self.FK__ingredien__idUni__5EBF139D" FromRole="unitOfMeasurement" ToRole="ingredient" />
+          <NavigationProperty Name="ingredient" Relationship="Self.FK__ingredien__idUni__60A75C0F" FromRole="unitOfMeasurement" ToRole="ingredient" />
         </EntityType>
         <EntityType Name="users">
           <Key>
@@ -798,8 +798,8 @@
           <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="phoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="active" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="customer" Relationship="Self.FK__customer__idUser__59063A47" FromRole="users" ToRole="customer" />
-          <NavigationProperty Name="worker" Relationship="Self.FK__worker__idUser__6B24EA82" FromRole="users" ToRole="worker" />
+          <NavigationProperty Name="customer" Relationship="Self.FK__customer__idUser__5AEE82B9" FromRole="users" ToRole="customer" />
+          <NavigationProperty Name="worker" Relationship="Self.FK__worker__idUser__6E01572D" FromRole="users" ToRole="worker" />
         </EntityType>
         <EntityType Name="worker">
           <Key>
@@ -812,12 +812,12 @@
           <Property Name="role" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="workerNumber" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="idUser" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="dailyBalance" Relationship="Self.FK__dailyBala__idWor__59FA5E80" FromRole="worker" ToRole="dailyBalance" />
-          <NavigationProperty Name="orders" Relationship="Self.FK__orders__idWorker__619B8048" FromRole="worker" ToRole="orders" />
+          <NavigationProperty Name="dailyBalance" Relationship="Self.FK__dailyBala__idWor__5BE2A6F2" FromRole="worker" ToRole="dailyBalance" />
+          <NavigationProperty Name="orders" Relationship="Self.FK__orders__idWorker__6383C8BA" FromRole="worker" ToRole="orders" />
           <NavigationProperty Name="transactions" Relationship="Self.fk_worker" FromRole="worker" ToRole="transactions" />
-          <NavigationProperty Name="users" Relationship="Self.FK__worker__idUser__6B24EA82" FromRole="worker" ToRole="users" />
+          <NavigationProperty Name="users" Relationship="Self.FK__worker__idUser__6E01572D" FromRole="worker" ToRole="users" />
         </EntityType>
-        <Association Name="FK__address__idCusto__5812160E">
+        <Association Name="FK__address__idCusto__59FA5E80">
           <End Role="customer" Type="Self.customer" Multiplicity="1" />
           <End Role="address" Type="Self.address" Multiplicity="*" />
           <ReferentialConstraint>
@@ -841,7 +841,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__dailyBala__idCas__5AEE82B9">
+        <Association Name="FK__dailyBala__idCas__5CD6CB2B">
           <End Role="cashbox" Type="Self.cashbox" Multiplicity="1" />
           <End Role="dailyBalance" Type="Self.dailyBalance" Multiplicity="*" />
           <ReferentialConstraint>
@@ -865,7 +865,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__customer__idUser__59063A47">
+        <Association Name="FK__customer__idUser__5AEE82B9">
           <End Role="users" Type="Self.users" Multiplicity="1" />
           <End Role="customer" Type="Self.customer" Multiplicity="*" />
           <ReferentialConstraint>
@@ -889,7 +889,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__dailyBala__idWor__59FA5E80">
+        <Association Name="FK__dailyBala__idWor__5BE2A6F2">
           <End Role="worker" Type="Self.worker" Multiplicity="1" />
           <End Role="dailyBalance" Type="Self.dailyBalance" Multiplicity="*" />
           <ReferentialConstraint>
@@ -913,7 +913,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ingredien__idUni__5EBF139D">
+        <Association Name="FK__ingredien__idUni__60A75C0F">
           <End Role="unitOfMeasurement" Type="Self.unitOfMeasurement" Multiplicity="1" />
           <End Role="ingredient" Type="Self.ingredient" Multiplicity="*" />
           <ReferentialConstraint>
@@ -973,7 +973,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__orders__idWorker__619B8048">
+        <Association Name="FK__orders__idWorker__6383C8BA">
           <End Role="worker" Type="Self.worker" Multiplicity="1" />
           <End Role="orders" Type="Self.orders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1009,7 +1009,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__recipeIng__idRec__6383C8BA">
+        <Association Name="FK__recipeIng__idRec__656C112C">
           <End Role="recipe" Type="Self.recipe" Multiplicity="1" />
           <End Role="recipeIngredient" Type="Self.recipeIngredient" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1069,7 +1069,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__worker__idUser__6B24EA82">
+        <Association Name="FK__worker__idUser__6E01572D">
           <End Role="users" Type="Self.users" Multiplicity="1" />
           <End Role="worker" Type="Self.worker" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1101,7 +1101,7 @@
           <EntitySet Name="unitOfMeasurement" EntityType="Self.unitOfMeasurement" />
           <EntitySet Name="users" EntityType="Self.users" />
           <EntitySet Name="worker" EntityType="Self.worker" />
-          <AssociationSet Name="FK__address__idCusto__5812160E" Association="Self.FK__address__idCusto__5812160E">
+          <AssociationSet Name="FK__address__idCusto__59FA5E80" Association="Self.FK__address__idCusto__59FA5E80">
             <End Role="customer" EntitySet="customer" />
             <End Role="address" EntitySet="address" />
           </AssociationSet>
@@ -1109,7 +1109,7 @@
             <End Role="address" EntitySet="address" />
             <End Role="deliveryOrder" EntitySet="deliveryOrder" />
           </AssociationSet>
-          <AssociationSet Name="FK__dailyBala__idCas__5AEE82B9" Association="Self.FK__dailyBala__idCas__5AEE82B9">
+          <AssociationSet Name="FK__dailyBala__idCas__5CD6CB2B" Association="Self.FK__dailyBala__idCas__5CD6CB2B">
             <End Role="cashbox" EntitySet="cashbox" />
             <End Role="dailyBalance" EntitySet="dailyBalance" />
           </AssociationSet>
@@ -1117,7 +1117,7 @@
             <End Role="cashbox" EntitySet="cashbox" />
             <End Role="transactions" EntitySet="transactions" />
           </AssociationSet>
-          <AssociationSet Name="FK__customer__idUser__59063A47" Association="Self.FK__customer__idUser__59063A47">
+          <AssociationSet Name="FK__customer__idUser__5AEE82B9" Association="Self.FK__customer__idUser__5AEE82B9">
             <End Role="users" EntitySet="users" />
             <End Role="customer" EntitySet="customer" />
           </AssociationSet>
@@ -1125,7 +1125,7 @@
             <End Role="customer" EntitySet="customer" />
             <End Role="deliveryOrder" EntitySet="deliveryOrder" />
           </AssociationSet>
-          <AssociationSet Name="FK__dailyBala__idWor__59FA5E80" Association="Self.FK__dailyBala__idWor__59FA5E80">
+          <AssociationSet Name="FK__dailyBala__idWor__5BE2A6F2" Association="Self.FK__dailyBala__idWor__5BE2A6F2">
             <End Role="worker" EntitySet="worker" />
             <End Role="dailyBalance" EntitySet="dailyBalance" />
           </AssociationSet>
@@ -1133,7 +1133,7 @@
             <End Role="orders" EntitySet="orders" />
             <End Role="deliveryOrder" EntitySet="deliveryOrder" />
           </AssociationSet>
-          <AssociationSet Name="FK__ingredien__idUni__5EBF139D" Association="Self.FK__ingredien__idUni__5EBF139D">
+          <AssociationSet Name="FK__ingredien__idUni__60A75C0F" Association="Self.FK__ingredien__idUni__60A75C0F">
             <End Role="unitOfMeasurement" EntitySet="unitOfMeasurement" />
             <End Role="ingredient" EntitySet="ingredient" />
           </AssociationSet>
@@ -1153,7 +1153,7 @@
             <End Role="product" EntitySet="product" />
             <End Role="orderProduct" EntitySet="orderProduct" />
           </AssociationSet>
-          <AssociationSet Name="FK__orders__idWorker__619B8048" Association="Self.FK__orders__idWorker__619B8048">
+          <AssociationSet Name="FK__orders__idWorker__6383C8BA" Association="Self.FK__orders__idWorker__6383C8BA">
             <End Role="worker" EntitySet="worker" />
             <End Role="orders" EntitySet="orders" />
           </AssociationSet>
@@ -1165,7 +1165,7 @@
             <End Role="product" EntitySet="product" />
             <End Role="supplierProduct" EntitySet="supplierProduct" />
           </AssociationSet>
-          <AssociationSet Name="FK__recipeIng__idRec__6383C8BA" Association="Self.FK__recipeIng__idRec__6383C8BA">
+          <AssociationSet Name="FK__recipeIng__idRec__656C112C" Association="Self.FK__recipeIng__idRec__656C112C">
             <End Role="recipe" EntitySet="recipe" />
             <End Role="recipeIngredient" EntitySet="recipeIngredient" />
           </AssociationSet>
@@ -1185,7 +1185,7 @@
             <End Role="worker" EntitySet="worker" />
             <End Role="transactions" EntitySet="transactions" />
           </AssociationSet>
-          <AssociationSet Name="FK__worker__idUser__6B24EA82" Association="Self.FK__worker__idUser__6B24EA82">
+          <AssociationSet Name="FK__worker__idUser__6E01572D" Association="Self.FK__worker__idUser__6E01572D">
             <End Role="users" EntitySet="users" />
             <End Role="worker" EntitySet="worker" />
           </AssociationSet>
