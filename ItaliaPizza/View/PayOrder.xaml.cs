@@ -20,6 +20,8 @@ namespace View
 {
     public partial class PayOrder : Window
     {
+
+        public static Worker workerLogged;
         public static Order payingOrder = new Order();
 
         public PayOrder()
@@ -40,7 +42,10 @@ namespace View
             {
                 if (OrderLogic.ChangeOrderStatus(payingOrder.idOrder) == 200)
                 {
+                    OrderLogic.AddPaymentToCashBox(payingOrder.total, workerLogged.Username);
+                    OrderLogic.DownInventory(payingOrder.idOrder);
                     CalculateChange();
+
                     CloseWindowAndUpdateTable();
                 }
             }

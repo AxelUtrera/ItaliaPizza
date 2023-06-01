@@ -31,6 +31,7 @@ namespace DataAccess
         public int idRecipe { get; set; }
         public bool active { get; set; }
         public double quantity { get; set; }
+        public int warningTreshold { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<orderProduct> orderProduct { get; set; }

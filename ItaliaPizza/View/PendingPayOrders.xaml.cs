@@ -17,11 +17,9 @@ using Model;
 
 namespace View
 {
-    /// <summary>
-    /// Lógica de interacción para PendingPayOrders.xaml
-    /// </summary>
     public partial class PendingPayOrders : Window
     {
+        public static Worker loggedWorker;
         public static PendingPayOrders instance { get; private set; }
 
         public PendingPayOrders()
@@ -42,6 +40,7 @@ namespace View
 
             if(selectedOrder != null)
             {
+                PayOrder.workerLogged = loggedWorker;
                 PayOrder.payingOrder = selectedOrder;
                 PayOrder payOrder = new PayOrder();
                 payOrder.ShowDialog();

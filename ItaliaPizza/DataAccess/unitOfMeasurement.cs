@@ -12,23 +12,18 @@ namespace DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class cashbox
+    public partial class unitOfMeasurement
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public cashbox()
+        public unitOfMeasurement()
         {
-            this.dailyBalance = new HashSet<dailyBalance>();
-            this.transactions = new HashSet<transactions>();
+            this.ingredient = new HashSet<ingredient>();
         }
     
-        public int idCashbox { get; set; }
-        public double incomes { get; set; }
-        public double outcomes { get; set; }
-        public double totalAmount { get; set; }
+        public int idUnitOfMeasurement { get; set; }
+        public string unitOfMeasurementName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<dailyBalance> dailyBalance { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<transactions> transactions { get; set; }
+        public virtual ICollection<ingredient> ingredient { get; set; }
     }
 }

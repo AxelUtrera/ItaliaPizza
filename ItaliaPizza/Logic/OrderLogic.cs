@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using System.Windows.Navigation;
 
 namespace Logic
@@ -127,7 +128,10 @@ namespace Logic
                     Product product = new Product
                     {
                         Name = info.productName,
+                        ProductCode = info.productCode,
                         Price = info.price,
+                        IdRecipe = info.idRecipe,
+                        Preparation = info.preparation,
                         Quantity = item.quantity
                     };
                     productInfo.Add(product);
@@ -310,6 +314,7 @@ namespace Logic
             return resultOperation;   
         }
 
+
         private static int RemoveProductsNoRequired(List<ProductToView> productUpdated, Order orderUpdated)
         {
             int resultOperation = 500;
@@ -331,6 +336,119 @@ namespace Logic
                 }
             }
             return resultOperation;
+        }
+
+
+        public static int AddPaymentToCashBox(double total, string username)
+        {
+            int resultOperation = 500;
+
+            using(var database = new ItaliaPizzaEntities())
+            {
+                database.transactions.Add(new transactions
+                {
+                    reason = "Order Payment",
+                    idCashbox = 1,
+                    worker = username,
+                    amount = (int)total,
+                });
+
+                int resultObtained = database.SaveChanges();
+
+                if(resultObtained != 0)
+                {
+                    resultOperation = AddMoneyToCashBox(total);
+                }
+            }
+
+            return resultOperation;
+        }
+
+
+        private static int AddMoneyToCashBox(double total)
+        {
+            int resultOperation = 500;
+
+            using(var database = new ItaliaPizzaEntities())
+            {
+                var cashbox = database.cashbox.FirstOrDefault();
+
+                if(cashbox != null)
+                {
+                    cashbox.incomes += total;
+                    cashbox.totalAmount += total;
+                }
+
+                var resultObtained = database.SaveChanges();
+
+                if(resultObtained != 0)
+                {
+                    resultOperation = 200;
+                }
+            }
+
+            return resultOperation;
+        }
+
+
+        public static int DownInventory(int idOrder)
+        {
+            int resultOperation = 500;
+
+            List<Product> orderProducts = GetInfoProductById(idOrder);
+
+            using(var database = new ItaliaPizzaEntities())
+            {
+                foreach(var product in orderProducts)
+                {
+                    if(product.Preparation == false)
+                    {
+                        DownProductInventory(product.ProductCode, product.Quantity);
+                    }
+                    if(product.Preparation == true)
+                    {
+                        DownProductInventory(product.ProductCode, product.Quantity);
+                        DownIngredientInventory(product, product.Quantity);
+                    }
+                }
+            }
+
+
+            return resultOperation;
+        }
+
+
+        private static void DownProductInventory(string productCode, double quantity)
+        {
+            using(var database = new ItaliaPizzaEntities())
+            {
+                var productObtained = database.product.FirstOrDefault(x => x.productCode.Equals(productCode));
+                if(productObtained != null)
+                {
+                    productObtained.quantity -= quantity;
+                }
+                
+                database.SaveChanges();
+            }
+        }
+
+
+        private static void DownIngredientInventory(Product product, double quantity)
+        {
+            using(var database = new ItaliaPizzaEntities())
+            {
+                var recipe = database.recipeIngredient.Where(x => x.idRecipe == product.IdRecipe).ToList();
+
+                if(recipe.Count() > 0)
+                {
+                    foreach(var item in recipe)
+                    {
+                        var ingredient = database.ingredient.FirstOrDefault(x => x.idIngredient == item.idIngredient);
+                        ingredient.quantity -= item.quantity * quantity;
+                    }
+                    database.SaveChanges();
+                }
+            }
         }
     }
 }

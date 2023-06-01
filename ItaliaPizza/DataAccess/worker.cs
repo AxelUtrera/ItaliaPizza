@@ -19,6 +19,7 @@ namespace DataAccess
         {
             this.dailyBalance = new HashSet<dailyBalance>();
             this.orders = new HashSet<orders>();
+            this.transactions = new HashSet<transactions>();
         }
     
         public string username { get; set; }
@@ -33,6 +34,8 @@ namespace DataAccess
         public virtual ICollection<dailyBalance> dailyBalance { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<orders> orders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<transactions> transactions { get; set; }
         public virtual users users { get; set; }
     }
 }

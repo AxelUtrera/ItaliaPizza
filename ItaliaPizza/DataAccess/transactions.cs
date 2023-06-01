@@ -12,14 +12,15 @@ namespace DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class supplierProduct
+    public partial class transactions
     {
-        public int idSupplierProduct { get; set; }
-        public string idSupplierOrder { get; set; }
-        public string productCode { get; set; }
-        public int quantity { get; set; }
+        public int idTransaction { get; set; }
+        public string reason { get; set; }
+        public int idCashbox { get; set; }
+        public string worker { get; set; }
+        public int amount { get; set; }
     
-        public virtual product product { get; set; }
-        public virtual supplierOrder supplierOrder { get; set; }
+        public virtual cashbox cashbox { get; set; }
+        public virtual worker worker1 { get; set; }
     }
 }

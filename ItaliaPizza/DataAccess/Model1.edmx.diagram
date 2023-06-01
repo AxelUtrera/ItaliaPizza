@@ -4,43 +4,48 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d936001c2b4f44b7911fea98a5187fe3" Name="Diagram1">
-        <EntityTypeShape EntityType="ItaliaPizzaModel.address" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.cashbox" Width="1.5" PointX="6" PointY="16.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.customer" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.dailyBalance" Width="1.5" PointX="8.25" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.deliveryOrder" Width="1.5" PointX="7.5" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.ingredient" Width="1.5" PointX="12" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.orderProduct" Width="1.5" PointX="7.5" PointY="13.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.orders" Width="1.5" PointX="5.25" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.product" Width="1.5" PointX="5.25" PointY="19.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.recipe" Width="1.5" PointX="3" PointY="20.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.recipeIngredient" Width="1.5" PointX="14.25" PointY="14.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.supplier" Width="1.5" PointX="9.75" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.supplierIngredient" Width="1.5" PointX="14.25" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.supplierOrder" Width="1.5" PointX="12" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.supplierProduct" Width="1.5" PointX="14.25" PointY="11.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.users" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ItaliaPizzaModel.worker" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
-        <AssociationConnector Association="ItaliaPizzaModel.FK__address__idCusto__534D60F1" ManuallyRouted="false" />
+      <Diagram DiagramId="f86ddbd9603c425f864e7715738193ab" Name="Diagram1">
+        <EntityTypeShape EntityType="ItaliaPizzaModel.address" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.cashbox" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.customer" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.dailyBalance" Width="1.5" PointX="8.25" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.deliveryOrder" Width="1.5" PointX="7.5" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.ingredient" Width="1.5" PointX="13" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.orderProduct" Width="1.5" PointX="7.5" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.orders" Width="1.5" PointX="5.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.product" Width="1.5" PointX="5.25" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.recipe" Width="1.5" PointX="3" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.recipeIngredient" Width="1.5" PointX="15.25" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.supplier" Width="1.5" PointX="10.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.supplierIngredient" Width="1.5" PointX="15.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.supplierOrder" Width="1.5" PointX="13" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.supplierProduct" Width="1.5" PointX="15.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.transactions" Width="1.5" PointX="8.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.unitOfMeasurement" Width="1.5" PointX="10.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.users" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ItaliaPizzaModel.worker" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <AssociationConnector Association="ItaliaPizzaModel.FK__address__idCusto__5812160E" ManuallyRouted="false" />
         <AssociationConnector Association="ItaliaPizzaModel.FK_deliveryOrder_address" ManuallyRouted="false" />
-        <AssociationConnector Association="ItaliaPizzaModel.FK__dailyBala__idCas__5629CD9C" ManuallyRouted="false" />
-        <AssociationConnector Association="ItaliaPizzaModel.FK__customer__idUser__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="ItaliaPizzaModel.FK__dailyBala__idCas__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="ItaliaPizzaModel.fk_idCashbox" ManuallyRouted="false" />
+        <AssociationConnector Association="ItaliaPizzaModel.FK__customer__idUser__59063A47" ManuallyRouted="false" />
         <AssociationConnector Association="ItaliaPizzaModel.FK_deliveryOrder_customer" ManuallyRouted="false" />
-        <AssociationConnector Association="ItaliaPizzaModel.FK__dailyBala__idWor__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="ItaliaPizzaModel.FK__dailyBala__idWor__59FA5E80" ManuallyRouted="false" />
         <AssociationConnector Association="ItaliaPizzaModel.FK_deliveryOrder_orders" ManuallyRouted="false" />
-        <AssociationConnector Association="ItaliaPizzaModel.FK__recipeIng__idIng__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="ItaliaPizzaModel.FK__ingredien__idUni__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="ItaliaPizzaModel.FK__recipeIng__idIng__6FE99F9F" ManuallyRouted="false" />
         <AssociationConnector Association="ItaliaPizzaModel.FK_supplierIngredient_ingredient" ManuallyRouted="false" />
         <AssociationConnector Association="ItaliaPizzaModel.FK_orderProduct_orders" ManuallyRouted="false" />
         <AssociationConnector Association="ItaliaPizzaModel.FK_orderProduct_product" ManuallyRouted="false" />
-        <AssociationConnector Association="ItaliaPizzaModel.FK__orders__idWorker__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="ItaliaPizzaModel.FK__orders__idWorker__619B8048" ManuallyRouted="false" />
         <AssociationConnector Association="ItaliaPizzaModel.FK__product__idRecip__6E01572D" ManuallyRouted="false" />
         <AssociationConnector Association="ItaliaPizzaModel.FK_supplierProduct_product" ManuallyRouted="false" />
-        <AssociationConnector Association="ItaliaPizzaModel.FK__recipeIng__idRec__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="ItaliaPizzaModel.FK__recipeIng__idRec__6383C8BA" ManuallyRouted="false" />
         <AssociationConnector Association="ItaliaPizzaModel.FK_supplierOrder_supplier" ManuallyRouted="false" />
         <AssociationConnector Association="ItaliaPizzaModel.FK_supplierIngredient_supplierOrder" ManuallyRouted="false" />
         <AssociationConnector Association="ItaliaPizzaModel.FK_supplierProduct_supplierOrder" ManuallyRouted="false" />
-        <AssociationConnector Association="ItaliaPizzaModel.FK__worker__idUser__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="ItaliaPizzaModel.fk_worker" ManuallyRouted="false" />
+        <AssociationConnector Association="ItaliaPizzaModel.FK__worker__idUser__6B24EA82" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
