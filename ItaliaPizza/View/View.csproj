@@ -163,6 +163,12 @@
     <Compile Include="Orders.xaml.cs">
       <DependentUpon>Orders.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PayOrder.xaml.cs">
+      <DependentUpon>PayOrder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PendingPayOrders.xaml.cs">
+      <DependentUpon>PendingPayOrders.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Products.xaml.cs">
       <DependentUpon>Products.xaml</DependentUpon>
     </Compile>
@@ -244,6 +250,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Orders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PayOrder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PendingPayOrders.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -444,6 +458,9 @@
       <Project>{7225153a-ccaa-4585-8d31-c37a32b6182f}</Project>
       <Name>Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\Background_OrderPay.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

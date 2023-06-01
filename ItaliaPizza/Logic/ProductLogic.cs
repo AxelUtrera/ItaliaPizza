@@ -132,6 +132,7 @@ namespace Logic
 			return operationResult;
 		}
 
+
 		public Product ConvertToProduct(ProductToView productViewToConvert)
 		{
 
@@ -158,6 +159,7 @@ namespace Logic
 
 			return productResultant;
 		}
+
 
 		public static int AddNewProduct(Product newProduct)
 		{
@@ -210,6 +212,7 @@ namespace Logic
             return responseCode;
         }
 
+
 		public static List<Recipe> GetRecipesFromDatabase()
 		{
 			List<Recipe> recipes = new List<Recipe>();
@@ -231,6 +234,7 @@ namespace Logic
 
 			return recipes;
 		}
+
 
 		public static int DeleteProduct(string productCode)
         {
@@ -278,7 +282,7 @@ namespace Logic
 					var productDataBase = database.product.FirstOrDefault(p => p.productCode.Equals(product.ProductCode));
 					if (productDataBase != null)
 					{
-						productDataBase.quantity -= product.Quantity;
+						productDataBase.quantity = product.Quantity;
 						database.Entry(productDataBase).State = EntityState.Modified;
 					}
 				}
@@ -292,24 +296,5 @@ namespace Logic
 
             return codeStatus;
 		}
-
-
-		private static List<ProductToView> filteredProductList(List<ProductToView> products)
-		{
-			List<ProductToView> filteredList = new List<ProductToView>();
-			List<ProductToView> productOnDataBase = GetAllProductToView();
-
-			foreach (ProductToView p in products)
-			{
-				ProductToView product = productOnDataBase.FirstOrDefault(pdb => pdb.Name.Equals(p.Name));
-
-				if (product != null)
-				{
-					filteredList.Add(product);
-				}
-			}
-
-			return filteredList;
-        }
     }
 }

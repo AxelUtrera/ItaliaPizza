@@ -99,7 +99,14 @@ namespace View
             UserRegister ur = new UserRegister();
             ur.ComboBox_UserType.SelectedItem = "Cliente";
             ur.ComboBox_UserType.IsEnabled = false;
+            ur.Closed += ReloadTableCustomer;
             ur.Show();
+        }
+
+        private void ReloadTableCustomer(object sender, EventArgs e)
+        {
+            AddressesTable.ItemsSource = null;
+            AddressesTable.ItemsSource = AddressLogic.GetAllAddresses();
         }
     }
 }

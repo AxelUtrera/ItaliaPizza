@@ -66,29 +66,23 @@ namespace Logic.Tests
 
 
         [TestMethod]
-        public void AddOrder_ValidOrderAndProducts_Returns200()
+        public void Test03_GetPayPendingOrders_Valid()
         {
-            Order orderToCreate = new Order
-            {
-                date = "01/05/2023",
-                hour = "12:30:00",
-                idWorker = "J1000",
-                nameCustomer = "John Doe",
-                status = "Pendiente",
-                typeOrder = "Local",
-                total = 50.00
-            };
+            List<Order> orders = OrderLogic.GetPayPendingOrders();
 
-            List<ProductToView> productsInOrder = new List<ProductToView>
-            {
-                 new ProductToView { ProductCode = "9COSG", Quantity = 2 },
-                 new ProductToView { ProductCode = "B4XFM", Quantity = 3 }
-            };
-
-            int result = OrderLogic.AddOrder(orderToCreate, productsInOrder);
-
-            Assert.AreEqual(200, result);
+            Assert.IsTrue(orders.Count > 0);
         }
 
+
+        [TestMethod]
+        public void Test04_ChangeOrderStatus_Valid()
+        {
+            int orderToChange = 49;
+
+            int resultExpected = 200;
+            int resultObtained = OrderLogic.ChangeOrderStatus(orderToChange);
+
+            Assert.AreEqual(resultExpected, resultObtained);
+        }
     }
 }

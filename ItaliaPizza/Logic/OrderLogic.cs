@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
+using System.Windows;
 using System.Windows.Navigation;
 
 namespace Logic
@@ -31,6 +32,49 @@ namespace Logic
         }
 
 
+        public static List<Order> GetPayPendingOrders()
+        {
+            List<Order> orders = new List<Order>();
+
+            using (ItaliaPizzaEntities database = new ItaliaPizzaEntities())
+            {
+                var ordersDataBase = database.orders.Where(o => !o.status.Equals("Entregado") && !o.status.Equals("Pagado")).ToList();
+
+                if (ordersDataBase != null)
+                {
+                    orders = ConvertToOrderModel(ordersDataBase);
+                }
+            }
+
+            return orders;
+        }
+
+
+        public static int ChangeOrderStatus(int idOrder)
+        {
+            int resultCode = 500;
+            int result = 0;
+
+            using (var database = new ItaliaPizzaEntities())
+            {
+                var orderToChange = database.orders.Where(x => x.idOrder == idOrder).First();
+
+                if(orderToChange != null)
+                {
+                    orderToChange.status = "Pagado";
+                    result = database.SaveChanges();
+                }
+
+                if(result != 0)
+                {
+                    resultCode = 200;
+                }
+            }
+
+            return resultCode;
+        }
+
+
         public static List<Order> ConvertToOrderModel(List<orders> ordersToConvert)
         {
             List<Order> ordersConverted = new List<Order>();
@@ -45,7 +89,8 @@ namespace Logic
                     hour = toConvert.hour,
                     idWorker = toConvert.idWorker,
                     typeOrder = toConvert.typeOrder,
-                    nameCustomer = toConvert.nameCustomer
+                    nameCustomer = toConvert.nameCustomer,
+                    total = (double)toConvert.total
                 });
             }
 
@@ -65,8 +110,36 @@ namespace Logic
                     listOrderProducts = productRecovered;
                 }
             }
-
             return listOrderProducts;
+        }
+
+
+        public static List<Product> GetInfoProductById(int idOrder)
+        {
+            List<orderProduct> orderProducts = GetIdProductsByIdOrder(idOrder);
+
+            List<Product> productInfo = new List<Product>();
+
+            using(var database = new ItaliaPizzaEntities())
+            {
+                foreach(var item in orderProducts)
+                {
+                    var info = database.product.Where(x => x.productCode.Equals(item.idProduct)).First();
+
+                    Product product = new Product
+                    {
+                        Name = info.productName,
+                        ProductCode = info.productCode,
+                        Price = info.price,
+                        IdRecipe = info.idRecipe,
+                        Preparation = info.preparation,
+                        Quantity = item.quantity
+                    };
+                    productInfo.Add(product);
+                }
+            }
+
+            return productInfo;
         }
 
         
@@ -304,6 +377,115 @@ namespace Logic
             }
 
             return resultOperation;
+        }
+
+
+        public static int AddPaymentToCashBox(double total, string username)
+        {
+            int resultOperation = 500;
+
+            using(var database = new ItaliaPizzaEntities())
+            {
+                database.transactions.Add(new transactions
+                {
+                    reason = "Order Payment",
+                    idCashbox = 1,
+                    worker = username,
+                    amount = (int)total,
+                });
+
+                int resultObtained = database.SaveChanges();
+
+                if(resultObtained != 0)
+                {
+                    resultOperation = AddMoneyToCashBox(total);
+                }
+            }
+
+            return resultOperation;
+        }
+
+
+        private static int AddMoneyToCashBox(double total)
+        {
+            int resultOperation = 500;
+
+            using(var database = new ItaliaPizzaEntities())
+            {
+                var cashbox = database.cashbox.FirstOrDefault();
+
+                if(cashbox != null)
+                {
+                    cashbox.incomes += total;
+                    cashbox.totalAmount += total;
+                }
+
+                var resultObtained = database.SaveChanges();
+
+                if(resultObtained != 0)
+                {
+                    resultOperation = 200;
+                }
+            }
+
+            return resultOperation;
+        }
+
+
+        public static int DownInventory(int idOrder)
+        {
+            int resultOperation = 500;
+
+            List<Product> orderProducts = GetInfoProductById(idOrder);
+
+            using(var database = new ItaliaPizzaEntities())
+            {
+                foreach(var product in orderProducts)
+                {
+                    
+                    if(product.Preparation == true)
+                    {
+                        DownIngredientInventory(product, product.Quantity);
+                    }
+                }
+            }
+
+
+            return resultOperation;
+        }
+
+
+        private static void DownProductInventory(string productCode, double quantity)
+        {
+            using(var database = new ItaliaPizzaEntities())
+            {
+                var productObtained = database.product.FirstOrDefault(x => x.productCode.Equals(productCode));
+                if(productObtained != null)
+                {
+                    productObtained.quantity -= quantity;
+                }
+                
+                database.SaveChanges();
+            }
+        }
+
+
+        private static void DownIngredientInventory(Product product, double quantity)
+        {
+            using(var database = new ItaliaPizzaEntities())
+            {
+                var recipe = database.recipeIngredient.Where(x => x.idRecipe == product.IdRecipe).ToList();
+
+                if(recipe.Count() > 0)
+                {
+                    foreach(var item in recipe)
+                    {
+                        var ingredient = database.ingredient.FirstOrDefault(x => x.idIngredient == item.idIngredient);
+                        ingredient.quantity -= item.quantity * quantity;
+                    }
+                    database.SaveChanges();
+                }
+            }
         }
     }
 }

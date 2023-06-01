@@ -1,0 +1,99 @@
+﻿<Window x:Class="View.PayOrder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:View"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        Title="PayOrder" Height="700" Width="1050">
+
+    <Window.Resources>
+        <Style TargetType="{x:Type DataGrid}">
+            <Setter Property="Background" Value="#0a0a0a"/>
+            <Setter Property="RowBackground" Value="#0a0a0a"/>
+            <Setter Property="BorderBrush" Value="#0a0a0a"/>
+            <Setter Property="FontWeight" Value="light"/>
+            <Setter Property="Foreground" Value="#f3f3f3"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="Background" Value="#0a0a0a" />
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,0,0,30"/>
+        </Style>
+
+        <Style BasedOn="{StaticResource {x:Type DataGridCellsPresenter}}" TargetType="{x:Type DataGridCellsPresenter}">
+            <Setter Property="Margin" Value="0,0,0,15"/>
+        </Style>
+
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="FontSize" Value="24"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Foreground" Value="Black"></Setter>
+        </Style>
+
+        <SolidColorBrush x:Key="WhiteGridLine" Color="White" />
+    </Window.Resources>
+
+
+    <Grid Background="Black">
+        <Image Source="/Img/Background_OrderPay.jpg" Stretch="UniformToFill" Opacity="0.5"/>
+        <StackPanel>
+            <Label Content="Pagar Orden" Foreground="White" FontSize="26" Margin="30,20,0,0"/>
+            
+            <StackPanel Orientation="Horizontal">
+                <Border Background="White" Opacity="0.5" Height="500" Width="500" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,30,0,0">
+                    <DataGrid x:Name="ItemsTable"  AutoGenerateColumns="False" FontSize="20" ColumnWidth="*" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" VerticalGridLinesBrush="{StaticResource WhiteGridLine}" HorizontalGridLinesBrush="{StaticResource WhiteGridLine}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Producto" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Precio" Binding="{Binding Price}"/>
+                            <DataGridTextColumn Header="Unidades" Binding="{Binding Quantity}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
+
+                <StackPanel Width="500" Margin="20,30,0,0">
+                    <Label Content="No. Orden" Foreground="White" FontSize="20" Margin="10,0,0,0"/>
+                    <TextBox x:Name="TextBox_OrderNumber" Height="30" Width="470" IsEnabled="False"/>
+                    <Label Content="Cliente" Foreground="White" FontSize="20" Margin="10,15,0,0"/>
+                    <TextBox x:Name="TextBox_Client" Height="30" Width="470" IsEnabled="False"/>
+                    <Label Content="Tipo de orden" Foreground="White" FontSize="20" Margin="10,15,0,0"/>
+                    <TextBox x:Name="TextBox_TypeOrder" Height="30" Width="470" IsEnabled="False"/>
+                    <Label Content="Fecha de Orden" Foreground="White" FontSize="20" Margin="10,15,0,0"/>
+                    <TextBox x:Name="TextBox_Date" Height="30" Width="470" IsEnabled="False"/>
+                    <Label Content="Total" Foreground="White" FontSize="20" Margin="10,15,0,0"/>
+                    <TextBox x:Name="TextBox_Total" Height="30" Width="470" IsEnabled="False"/>
+                    <Label Content="Pago" Foreground="White" FontSize="20" Margin="10,15,0,0"/>
+                    <TextBox x:Name="TextBox_Pay" Height="30" Width="470" IsEnabled="True"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Cursor="Hand" x:Name="Button_Exit" VerticalAlignment="Bottom" Margin="30,0,0,0" Width="200" Height="45" Foreground="#f3f3f3" FontSize="20" FontWeight="DemiBold" Click="Button_Exit_Click" IsDefault="False">
+                    <Button.Template >
+                        <ControlTemplate TargetType="{x:Type Button}" >
+                            <Border Background="Red"  CornerRadius="15">
+                                <ContentPresenter Content="Salir" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                
+                
+                <Button Cursor="Hand" x:Name="Button_Pay" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="590,30,0,0" Width="200" Height="45" Foreground="#f3f3f3" FontSize="20" FontWeight="DemiBold" Click="Button_PayOrder_Click" IsDefault="True">
+                    <Button.Template >
+                        <ControlTemplate TargetType="{x:Type Button}" >
+                            <Border Background="Green"  CornerRadius="15">
+                                <ContentPresenter Content="Pagar Orden" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -225,7 +225,7 @@ namespace View
                 orderToCreate.total = Double.Parse(cleanTotal);
 
                 if (addressOrder.idCustomer != 0) {
-                    if (OrderLogic.AddOrder(orderToCreate, productsInOrder, addressOrder) == 200 && ProductLogic.UpdateQuantityProduct(productsInOrder) == 200)
+                    if (OrderLogic.AddOrder(orderToCreate, productsInOrder, addressOrder) == 200 && ProductLogic.UpdateQuantityProduct(productsOnTable) == 200)
                     {
                         MessageBox.Show("Se agrego un nuevo pedido!", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
 
@@ -382,7 +382,7 @@ namespace View
                 MessageBoxResult response = MessageBox.Show("¿Esta seguro de guardar los cambios?", "Guardar cambios", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (response == MessageBoxResult.Yes)
                 {
-                    if (OrderLogic.UpdateProductsInOrder(productsInOrder, orderToCreate) == 200)
+                    if (OrderLogic.UpdateProductsInOrder(productsInOrder, orderToCreate) == 200 && ProductLogic.UpdateQuantityProduct(productsOnTable) == 200)
                     {
                         MessageBox.Show("Los cambios han sido guardados", "Cambios guardados", MessageBoxButton.OK, MessageBoxImage.Information);
                         Orders orders = new Orders();

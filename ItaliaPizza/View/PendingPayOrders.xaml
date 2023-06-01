@@ -1,4 +1,4 @@
-﻿<Window x:Class="View.SuppliersOrderView"
+﻿<Window x:Class="View.PendingPayOrders"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,7 +7,7 @@
         WindowState="Maximized"
         WindowStyle="None"
         mc:Ignorable="d"
-        Title="SuppliersOrderView" Height="810" Width="1440">
+        Title="PendingPayOrders" Height="810" Width="1440">
 
     <Window.Resources>
         <Style TargetType="{x:Type DataGrid}">
@@ -40,9 +40,8 @@
     </Window.Resources>
 
     <Grid Background="Black">
-        <Label Content="Ver Pedidos a Proveedor" FontSize="34" Foreground="White" Margin="70,20,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
-
-        <Image Source="/Img/Suppliers_Background.jpg" Stretch="UniformToFill" Opacity="0.3">
+        <Label Content="Ordenes Pendietes de Pago" FontSize="34" Foreground="White" Margin="70,20,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
+        <Image Source="/Img/Background_OrderPay.jpg" Stretch="UniformToFill" Opacity="0.3">
             <Image.Effect>
                 <BlurEffect Radius="0"/>
             </Image.Effect>
@@ -51,32 +50,23 @@
         <Label Content="Buscar:" Foreground="White" FontSize="24" Margin="180,90,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
         <TextBox x:Name="TextBox_Search" Width="900" Height="35" Background="#5F5F5F" Opacity="0.7" Foreground="White" FontSize="24" BorderThickness="0" Margin="0,100,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" TextChanged="Textbox_SearchSuppliersOrder_Input"/>
 
-        <Button Width="50" Click="Button_SupplierOrderRegister_Click" Cursor="Hand" Height="50" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,90,200,0">
-            <Button.Template>
-                <ControlTemplate  TargetType="Button">
-                    <Border Background="#55B633" CornerRadius="30">
-                        <Image Source="/Img/Icon_AddNew.png" Width="40" Height="40"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-
         <Border Background="White" Opacity="0.5" Height="500" Width="1300" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0">
             <DataGrid x:Name="OrdersTable"  AutoGenerateColumns="False" FontSize="20" ColumnWidth="*" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" VerticalGridLinesBrush="{StaticResource WhiteGridLine}" HorizontalGridLinesBrush="{StaticResource WhiteGridLine}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="No. Orden" Binding="{Binding OrderNumber}"/>
-                    <DataGridTextColumn Header="Nombre" Binding="{Binding SupplierName}" />
-                    <DataGridTextColumn Header="Tipo" Binding="{Binding OrderType}"/>
-                    <DataGridTextColumn Header="Fecha de orden" Binding="{Binding OrderDate}"/>
+                    <DataGridTextColumn Header="Cliente" Binding="{Binding nameCustomer}"/>
+                    <DataGridTextColumn Header="Estado" Binding="{Binding status}"/>
+                    <DataGridTextColumn Header="Tipo de Orden" Binding="{Binding typeOrder}"/>
+                    <DataGridTextColumn Header="Fecha" Binding="{Binding date}" />
+                    <DataGridTextColumn Header="Total" Binding="{Binding total}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Border>
-        
-        <Button Cursor="Hand" x:Name="Button_Delete" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,70,50" Width="200" Height="45" Foreground="#f3f3f3" FontSize="20" FontWeight="DemiBold" Click="Button_DeleteSupplierOrder_Click" IsDefault="False">
+
+        <Button Cursor="Hand" x:Name="Button_Pay" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,70,50" Width="200" Height="45" Foreground="#f3f3f3" FontSize="20" FontWeight="DemiBold" Click="Button_PayOrder_Click" IsDefault="False">
             <Button.Template >
                 <ControlTemplate TargetType="{x:Type Button}" >
-                    <Border Background="Gray"  CornerRadius="15">
-                        <ContentPresenter Content="Eliminar" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Border Background="Green"  CornerRadius="15">
+                        <ContentPresenter Content="Pagar Orden" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                 </ControlTemplate>
             </Button.Template>
@@ -91,5 +81,6 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
+
     </Grid>
 </Window>

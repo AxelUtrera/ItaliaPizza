@@ -133,6 +133,19 @@
                                                 <Image.ToolTip>
                                                     <ToolTip Content="Actualizar estado"></ToolTip>
                                                 </Image.ToolTip>
+                                                <Image.Style>
+                                                    <Style TargetType="Image">
+                                                        <Setter Property="IsEnabled" Value="True" />
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding status}" Value="Entregado">
+                                                                <Setter Property="Visibility" Value="Hidden" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding status}" Value="Pagado">
+                                                                <Setter Property="Visibility" Value="Hidden" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
                                             </Image>
                                             <Image Source="/Img/Icon_Edit.png" Margin="25,0,40,0" Width="25" Height="25" Cursor="Hand" MouseLeftButtonDown="Button_Edit_Click">
                                                 <Image.ToolTip>
@@ -147,6 +160,12 @@
                                                                 <Setter Property="Visibility" Value="Hidden" />
                                                             </DataTrigger>
                                                             <DataTrigger Binding="{Binding status}" Value="En preparación">
+                                                                <Setter Property="Visibility" Value="Hidden" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding status}" Value="Entregado">
+                                                                <Setter Property="Visibility" Value="Hidden" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding status}" Value="Pagado">
                                                                 <Setter Property="Visibility" Value="Hidden" />
                                                             </DataTrigger>
                                                         </Style.Triggers>
@@ -166,6 +185,12 @@
                                                                 <Setter Property="Visibility" Value="Hidden" />
                                                             </DataTrigger>
                                                             <DataTrigger Binding="{Binding status}" Value="En preparación">
+                                                                <Setter Property="Visibility" Value="Hidden" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding status}" Value="Entregado">
+                                                                <Setter Property="Visibility" Value="Hidden" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding status}" Value="Pagado">
                                                                 <Setter Property="Visibility" Value="Hidden" />
                                                             </DataTrigger>
                                                         </Style.Triggers>

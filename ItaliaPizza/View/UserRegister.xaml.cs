@@ -40,7 +40,7 @@ namespace View
         public UserRegister()
         {
             InitializeComponent();
-            setComboBoxItems();
+            SetComboBoxItems();
         }
 
 
@@ -92,7 +92,7 @@ namespace View
 
                 string userTypeSelected = ComboBox_UserType.SelectedItem.ToString();
 
-                if (userTypeSelected.Equals(itemsResource.GetString("UserRegister_Worker_UserType")))
+                if (userTypeSelected.Equals("Trabajador"))
                 {
                     if (ValidateWorkerFields())
                     {
@@ -137,7 +137,7 @@ namespace View
                         }
                     }
                 }
-                else if (userTypeSelected.Equals(itemsResource.GetString("UserRegister_Customer_UserType")))
+                else if (userTypeSelected.Equals("Cliente"))
                 {
                     if (ValidateCustomerFields())
                     {
@@ -184,6 +184,7 @@ namespace View
             }
         }
 
+
         private void UserData(object sender, SelectionChangedEventArgs e)
         {
             string userSelected = ComboBox_UserType.SelectedItem.ToString();
@@ -201,7 +202,7 @@ namespace View
         }
 
 
-        private void setComboBoxItems()
+        private void SetComboBoxItems()
         {
             ComboBox_UserType.ItemsSource = new string[]
             {
