@@ -136,6 +136,7 @@
     <Compile Include="SupplierLogic.cs" />
     <Compile Include="SupplyOrderLogic.cs" />
     <Compile Include="ShowPendingOrdersLogic.cs" />
+    <Compile Include="TransactionsLogic.cs" />
     <Compile Include="UnitOfMeasurementLogic.cs" />
     <Compile Include="UserLogic.cs" />
     <Compile Include="Encription.cs" />

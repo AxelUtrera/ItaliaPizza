@@ -109,6 +109,9 @@
     <Compile Include="AddProduct.xaml.cs">
       <DependentUpon>AddProduct.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CashBoxMenu.xaml.cs">
+      <DependentUpon>CashBoxMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomerView.xaml.cs">
       <DependentUpon>CustomerView.xaml</DependentUpon>
     </Compile>
@@ -188,6 +191,10 @@
       <DependentUpon>UsersView.xaml</DependentUpon>
     </Compile>
     <Page Include="AddProduct.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CashBoxMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -470,9 +477,12 @@
   <ItemGroup>
     <Resource Include="Img\IconPDF.png" />
   </ItemGroup>
-	<ItemGroup>
-		<Resource Include="Img\Background_OrderPay.jpg" />
-	</ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\Background_OrderPay.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\CashBox.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

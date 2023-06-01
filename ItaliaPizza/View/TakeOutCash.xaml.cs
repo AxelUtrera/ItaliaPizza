@@ -31,8 +31,9 @@ namespace View
         }
         public void ConfigurateWindow()
         {
-            cashBoxes=CashBoxLogic.GetCashBoxes();
-            Label_Employee.Content = workerLogged.Username + " ; " + workerLogged.WorkerNumber;
+            string nameWorker = UserLogic.GetUserById(workerLogged.IdUser).Name;
+            cashBoxes = CashBoxLogic.GetCashBoxes();
+            Label_Employee.Content = nameWorker + " ; " + workerLogged.WorkerNumber;
             Label_Date.Content = DateTime.Today.ToString("dd/MM/yyyy");
             ComboBox_IdCashbox.ItemsSource=cashBoxes;
         }

@@ -44,10 +44,10 @@ namespace View
 
         private void Button_CashBox_Click(object sender, MouseButtonEventArgs e)
         {
-            PendingPayOrders.loggedWorker = workerLogged;
-            PendingPayOrders pendingPayOrders = new PendingPayOrders();
-            pendingPayOrders.Show();
+            CashBoxMenu.workerLogged = workerLogged;
+            CashBoxMenu cashBoxMenuWindow = new CashBoxMenu();
             Close();
+            cashBoxMenuWindow.ShowDialog();
         }
 
 
