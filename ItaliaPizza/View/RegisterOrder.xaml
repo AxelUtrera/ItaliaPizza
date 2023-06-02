@@ -97,7 +97,7 @@
                         <Image Source="/Img/Icon_Search.png" Margin="10,0,0,0"/>
                     </StackPanel>
 
-                    <DataGrid Name="ProductTable" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#f3f3f3"  Margin="25,15,25,0"  Foreground="#c3c3c3" AutoGenerateColumns="False" FontSize="20" ColumnWidth="*" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" SelectionChanged="ProductsTable_SelectionChanged" Height="586">
+                    <DataGrid Name="ProductTable" GridLinesVisibility="Horizontal" Width="400" HorizontalGridLinesBrush="#f3f3f3"  Margin="25,15,25,0"  Foreground="#c3c3c3" AutoGenerateColumns="False" FontSize="20" ColumnWidth="*" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" SelectionChanged="ProductsTable_SelectionChanged" Height="586">
 
                         <DataGrid.CellStyle>
                             <Style>
@@ -108,7 +108,7 @@
 
 
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Producto" Binding="{Binding Name}" Width="auto">
+                            <DataGridTextColumn Header="Producto" Binding="{Binding Name}" Width="100">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="TextWrapping" Value="Wrap" />

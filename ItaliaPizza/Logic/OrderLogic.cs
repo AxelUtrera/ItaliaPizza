@@ -306,8 +306,7 @@ namespace Logic
                             quantity = (int)productToUpdate.Quantity,
                         });
                     }
-                    database.Entry(orderProductDataBase).State = EntityState.Modified;
-                    database.Entry(orderDataBase).State = EntityState.Modified;
+                    
                 }
                 var result = database.SaveChanges();
 

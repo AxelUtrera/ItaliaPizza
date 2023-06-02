@@ -101,32 +101,41 @@ namespace View
                 report = (List<Model.InventoryReport>)InventoryReportTable.ItemsSource;
                 foreach (Model.InventoryReport aux in InventoryReportTable.Items)
                 {
-                    var row = InventoryReportTable.ItemContainerGenerator.ContainerFromItem(aux) as DataGridRow;
-                    var cellRealQuantity = InventoryReportTable.Columns[5].GetCellContent(row) as FrameworkElement;
-                    var columnaRealQuantity = InventoryReportTable.Columns[5] as DataGridTemplateColumn;
-                    var templateRealQuantity = columnaRealQuantity.CellTemplate as DataTemplate;
-                    var integerUpDownRealQuantity = templateRealQuantity.FindName("UpDownRealQuantity", cellRealQuantity) as UpDown;
-                    var realQuantity = integerUpDownRealQuantity.Value;
-                    aux.RealQuantity = (int)realQuantity.Value;
-                    updatedReport.Add(aux);
-                    if (aux.TypeOfProduct == "Ingrediente")
+                    try
                     {
-                        Ingredient ingredient = new Ingredient
+                        var row = InventoryReportTable.ItemContainerGenerator.ContainerFromItem(aux) as DataGridRow;
+                        var cellRealQuantity = InventoryReportTable.Columns[5].GetCellContent(row) as FrameworkElement;
+                        var columnaRealQuantity = InventoryReportTable.Columns[5] as DataGridTemplateColumn;
+                        var templateRealQuantity = columnaRealQuantity.CellTemplate as DataTemplate;
+                        var integerUpDownRealQuantity = templateRealQuantity.FindName("UpDownRealQuantity", cellRealQuantity) as UpDown;
+                        var realQuantity = integerUpDownRealQuantity.Value;
+                        
+                        aux.RealQuantity = (int)realQuantity.Value;
+                        updatedReport.Add(aux);
+                        if (aux.TypeOfProduct == "Ingrediente")
                         {
-                            IdIngredient = Int32.Parse(aux.IdItem),
-                            Quantity = aux.RealQuantity
-                        };
-                        ingredientsList.Add(ingredient);
+                            Ingredient ingredient = new Ingredient
+                            {
+                                IdIngredient = Int32.Parse(aux.IdItem),
+                                Quantity = aux.RealQuantity
+                            };
+                            ingredientsList.Add(ingredient);
+                        }
+                        else
+                        {
+                            Product product = new Product
+                            {
+                                ProductCode = aux.IdItem,
+                                Quantity = aux.RealQuantity
+                            };
+                            productsList.Add(product);
+                        }
                     }
-                    else
+                    catch
                     {
-                        Product product = new Product
-                        {
-                            ProductCode = aux.IdItem,
-                            Quantity = aux.RealQuantity
-                        };
-                        productsList.Add(product);
+
                     }
+                    
                 }
                 var response = MessageBox.Show("¿Estas seguro de actualizar el inventario? \n una vez realizados los cambios no podran deshacerse","Confirmar cambios",MessageBoxButton.YesNo,MessageBoxImage.Question,MessageBoxResult.No);
                 if (response == MessageBoxResult.Yes)

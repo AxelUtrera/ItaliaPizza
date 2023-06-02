@@ -69,28 +69,35 @@ namespace View
         private void Button_AddProduct_Click(object sender, MouseButtonEventArgs e)
         {
             ProductToView productSelected = new ProductToView();
-            var row = FindInTable<DataGridRow>((DependencyObject)e.OriginalSource);
-            if (row != null)
+            try
             {
-                // Obtener el objeto asociado a la fila
-                var item = row.DataContext;
-                productSelected = (ProductToView)item;
-            }
+                var row = FindInTable<DataGridRow>((DependencyObject)e.OriginalSource);
+                if (row != null)
+                {
+                    // Obtener el objeto asociado a la fila
+                    var item = row.DataContext;
+                    productSelected = (ProductToView)item;
+                }
 
-            if (productSelected != null)
+                if (productSelected != null)
+                {
+                    if (productSelected.Quantity > 0)
+                    {
+                        int productIndex = productsOnTable.FindIndex(p => p.Name.Equals(productSelected.Name));
+                        productsOnTable[productIndex].Quantity -= 1;
+                        AddToOrder(productSelected);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No quedan mas productos de este tipo", "Sin disponibilidad", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    }
+                    Console.WriteLine(productSelected.Quantity);
+                }
+            }catch(Exception ex)
             {
-                if (productSelected.Quantity > 0)
-                {
-                    int productIndex = productsOnTable.FindIndex(p => p.Name.Equals(productSelected.Name));
-                    productsOnTable[productIndex].Quantity -= 1;
-                    AddToOrder(productSelected);
-                }
-                else
-                {
-                    MessageBox.Show("No quedan mas productos de este tipo", "Sin disponibilidad", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                }
-                Console.WriteLine(productSelected.Quantity);
+                Console.WriteLine("se presento un error:" + ex);
             }
+            
 
             ReloadProductTable();
             ReloadOrderTable();

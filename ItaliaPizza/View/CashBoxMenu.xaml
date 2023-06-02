@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
+        WindowState="Maximized"
+        WindowStyle="None"
         mc:Ignorable="d"
         Title="CashBoxMenu" Height="810" Width="1440">
     <Viewbox Stretch="Fill" StretchDirection="Both">

@@ -77,7 +77,12 @@ namespace View
         {
             bool isValid = true;
             string regexPattern = @"^\d+(\.\d{2})?$";
-            double pay = Double.Parse(TextBox_Pay.Text);
+            double pay = 0;
+
+            if(Regex.IsMatch(TextBox_Pay.Text, regexPattern))
+            {
+                pay = Double.Parse(TextBox_Pay.Text);
+            }
 
             if(!Regex.IsMatch(TextBox_Pay.Text, regexPattern))
             {
